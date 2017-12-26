@@ -6,7 +6,6 @@ const BEER_DATABASE_FILE = "database.yml"
 var beerDb;
 var map, infoWindow, placesService;
 
-
 /**
  * Initializes Google Map
  */
@@ -16,11 +15,11 @@ function initGoogle() {
    */
   var setHome = function( homePos ) {
     // Add centre marker
-    var homeImage = new google.maps.MarkerImage(
-      'https://maps.google.com/mapfiles/kml/shapes/arrow.png'
-    );
     var homeMarker = new google.maps.Marker( {
-      icon: homeImage,
+      icon: {
+        path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+        scale: 5
+      },
       clickable: false,
       map: map,
       position: pos
@@ -55,8 +54,8 @@ function initGoogle() {
       };
       setHome( pos );
     },
-    () => {
-      console.log( "The browser doesn't allow GeoLocation." )
+    (error) => {
+      console.log( `Can't get the position: ${error.message}` );
       setHome( pos );
     } );
   }
@@ -69,14 +68,14 @@ function initGoogle() {
   map.addListener( 'click', () => infoWindow.close() );
 
   // Load the database and start the processing of information
-  // $.get(
-  //   BEER_DATABASE_FILE,
-  //   data => {
-  //     beerDb = new BeerPlacesDB( jsyaml.safeLoad( data )[ 'Beer places' ] )
-  //     beerDb.queryForLocations();
-  //   },
-  //   'text'
-  // );
+  $.get(
+    BEER_DATABASE_FILE,
+    data => {
+      beerDb = new BeerPlacesDB( jsyaml.safeLoad( data )[ 'Beer places' ] )
+      beerDb.queryForLocations();
+    },
+    'text'
+  );
 }
 
 /**
@@ -109,22 +108,27 @@ function BeerPlacesDB( YAMLData ) {
    */
   this.queryForLocations = function() {
     function executeLocationQuery( callback ) {
-      locationToLoad = locationToLoad.filter( place =>
+      thisRef.places = thisRef.places.filter( place =>
         !place.hasValidLocationData
       );
 
-      if ( locationToLoad.length != 0 ) {
-        locationToLoad[ 0 ].queryLocation( ( place, status ) => {
+      if ( thisRef.places.length != 0 ) {
+        thisRef.places[ 0 ].queryLocation( ( place, status ) => {
           if ( status == google.maps.places.PlacesServiceStatus.OK ) {
             thisRef.addMarker( place );
+            delay -= dDec; dDec *= 0.5; dInc *= 0.95;
+          }
+          else {
+            delay += dInc; dDec = dInc / 10.0;
           }
         } );
-        setTimeout( executeLocationQuery, 300 );
+        // The delay between requests is self-adjustable
+        setTimeout( executeLocationQuery, delay );
       }
     };
 
     var thisRef = this;
-    var locationToLoad = this.places;
+    var delay = 200, dInc = 100, dDec = 10;
     executeLocationQuery();
   }
 
@@ -156,6 +160,7 @@ function BeerPlacesDB( YAMLData ) {
     marker.addListener( 'click', () => {
       infoWindow.setContent( place.placeInfoWindow() );
       infoWindow.open( map, marker );
+      console.log( place );
     } );
   }
 
