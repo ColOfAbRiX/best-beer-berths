@@ -27,7 +27,7 @@ function initGoogle() {
     map.setCenter( pos );
   }
 
-  // Create objects
+  // Create global objects
   map = new google.maps.Map(
     $( '#map' )[ 0 ], {
       maxZoom: 18,
@@ -44,23 +44,23 @@ function initGoogle() {
     $( '#legend' )[ 0 ]
   );
 
-  // Center the map on the current position
+  // Centre the map on the current position
   var pos = new google.maps.LatLng( 51.5189138, -0.0924759 );
   if ( navigator.geolocation ) {
     navigator.geolocation.getCurrentPosition( position => {
-      pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-      setHome( pos );
-    },
-    (error) => {
-      console.log( `Can't get the position: ${error.message}` );
-      setHome( pos );
-    } );
+        pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        setHome( pos );
+      },
+      ( error ) => {
+        console.warn( `Can't get the position: ${error.message}` );
+        setHome( pos );
+      } );
   }
   else {
-    console.log( "The browser doesn't support GeoLocation." )
+    console.info( "The browser doesn't support GeoLocation." )
     setHome( pos );
   }
 
@@ -82,7 +82,7 @@ function initGoogle() {
  * Stores of all the Beer Places and some additional information
  */
 function BeerPlacesDB( YAMLData ) {
-  var places = new Array();
+  this.places = new Array();
   var timer;
 
   // Scan all the YAML results and build objects
@@ -92,44 +92,100 @@ function BeerPlacesDB( YAMLData ) {
       var cityPlaces = countryCities[ city ];
       for ( var place in cityPlaces ) {
         var beerPlace = cityPlaces[ place ];
-        places.push( new BeerPlace( beerPlace, country, city ) );
+        this.places.push( new BeerPlace( beerPlace, country, city ) );
       }
     }
   }
 
   // Properties with statistical data
-  this.places = places.sort();
-  this.averages = places.map( i => i.averageScore() );
+  this.places = this.places.sort();
+  this.averages = this.places.map( i => i.averageScore() );
   this.averageMax = this.averages.reduce( ( a, b ) => Math.max( a, b ) );
   this.averageMin = this.averages.reduce( ( a, b ) => Math.min( a, b ) );
+
+  // /**
+  //  * Loads asynchronously the information about the location of all the places
+  //  */
+  // this.queryForLocations = function() {
+  //   function executeLocationQuery( callback ) {
+  //     thisRef.queryPlaces = thisRef.queryPlaces.filter( place =>
+  //       !place.hasValidLocationData
+  //     );
+
+  //     if ( thisRef.queryPlaces.length != 0 ) {
+  //       thisRef.queryPlaces[ 0 ].queryLocation( ( place, status ) => {
+  //         if ( status == google.maps.places.PlacesServiceStatus.OK ) {
+  //           thisRef.addMarker( place );
+  //           delay -= dDec; dDec *= 0.5; dInc *= 0.95;
+  //         }
+  //         else {
+  //           delay += dInc; dDec = dInc / 10.0;
+  //         }
+  //       } );
+  //       // The delay between requests is self-adjustable
+  //       setTimeout( executeLocationQuery, delay );
+  //     }
+  //     else {
+  //       thisRef.queryForDetails();
+  //     }
+  //   };
+
+  //   var thisRef = this;
+  //   var delay = 200, dInc = 100, dDec = 10;
+  //   this.queryPlaces = this.places;
+  //   executeLocationQuery();
+  // }
+
+  this.queryForLocations = function() {
+    var startQueue = this.places;
+    var endQueue = new Array();
+    var start = new Date().getTime();
+    executeAsync(
+      startQueue,
+      endQueue,
+      ( place ) => place.queryLocation.bind(place),
+      google.maps.places.PlacesServiceStatus.OK,
+      ( place ) => this.addMarker.call(this, place),
+      ( place, error ) => { console.error(error); },
+      ( place ) => {
+        var time = (new Date().getTime() - start) / 1000.0;
+        console.info(`Query for locations completed in ${time.toFixed(3)}s.`);
+      }
+    );
+  }
 
   /**
    * Loads asynchronously the information about the location of all the places
    */
-  this.queryForLocations = function() {
-    function executeLocationQuery( callback ) {
-      thisRef.places = thisRef.places.filter( place =>
-        !place.hasValidLocationData
+  this.queryForDetails = function() {
+    function executeDetailsQuery( callback ) {
+      thisRef.queryPlaces = thisRef.queryPlaces.filter( place =>
+        !place.hasValidPlaceDetails
       );
 
-      if ( thisRef.places.length != 0 ) {
-        thisRef.places[ 0 ].queryLocation( ( place, status ) => {
+      if ( thisRef.queryPlaces.length != 0 ) {
+        thisRef.queryPlaces[ 0 ].queryDetails( ( place, status ) => {
           if ( status == google.maps.places.PlacesServiceStatus.OK ) {
-            thisRef.addMarker( place );
-            delay -= dDec; dDec *= 0.5; dInc *= 0.95;
+            delay -= dDec;
+            dDec *= 0.5;
+            dInc *= 0.95;
           }
           else {
-            delay += dInc; dDec = dInc / 10.0;
+            delay += dInc;
+            dDec = dInc / 10.0;
           }
         } );
         // The delay between requests is self-adjustable
-        setTimeout( executeLocationQuery, delay );
+        setTimeout( executeDetailsQuery, delay );
       }
     };
 
     var thisRef = this;
-    var delay = 200, dInc = 100, dDec = 10;
-    executeLocationQuery();
+    var delay = 200,
+      dInc = 100,
+      dDec = 10;
+    this.queryPlaces = this.places;
+    executeDetailsQuery();
   }
 
   /**
@@ -160,12 +216,12 @@ function BeerPlacesDB( YAMLData ) {
     marker.addListener( 'click', () => {
       infoWindow.setContent( place.placeInfoWindow() );
       infoWindow.open( map, marker );
-      console.log( place );
+      console.info( place );
     } );
   }
 
   /**
-   * Calculates the colour of the pin.
+   *   Calculates the colour of the pin.
    */
   this.pinColour = function( place ) {
     function toColorHex( number ) {
@@ -244,12 +300,12 @@ function BeerPlace( rawPlaceData, country, city ) {
     };
 
     placesService.textSearch( request, ( results, status ) => {
-      console.log( `Text search completed for ${this.Name} with status ${status}` );
+      console.info( `Text search completed for ${this.Name} with status ${status}` );
 
       if ( status == google.maps.places.PlacesServiceStatus.OK ) {
         Object.assign( this, results[ 0 ] );
         this.hasValidLocationData = true;
-        console.log( `Found ID for ${this.Name}: ${this.id}` );
+        console.info( `Found ID for ${this.Name}: ${this.place_id}` );
       }
       else if ( status == google.maps.places.PlacesServiceStatus.ZERO_RESULTS ) {
         this.hasValidLocationData = true;
@@ -266,20 +322,20 @@ function BeerPlace( rawPlaceData, country, city ) {
    * callback function when the data is available.
    */
   this.queryDetails = function( callback ) {
-    if ( !this.hasValidPlaceDetails ) {
+    if ( !this.hasValidLocationData ) {
       return;
     }
 
     var request = {
-      'placeId': this.placeId
+      'placeId': this.place_id
     };
     placesService.getDetails( request, ( results, status ) => {
-      console.log( `Details search completed for ${this.Name} with status ${status}` );
+      console.info( `Details search completed for ${this.Name} with status ${status}` );
 
       if ( status == google.maps.places.PlacesServiceStatus.OK ) {
         Object.assign( this, results[ 0 ] );
         this.hasValidPlaceDetails = true;
-        console.log( `Found details for ${this.Name}: ${this.id}` );
+        console.info( `Found details for ${this.Name}: ${this.id}` );
       }
       else if ( status == google.maps.places.PlacesServiceStatus.ZERO_RESULTS ) {
         this.hasValidPlaceDetails = true;
@@ -301,12 +357,61 @@ function BeerPlace( rawPlaceData, country, city ) {
 
     return hndPlaceInfo( {
       name: `${this.Name} - ${this.averageScore().toFixed(2)}/10`,
-      address: this.Address,
+      address: this.formatted_address,
       type: this.Type,
       score: this.Score || "",
       expectation: this.Expectation || ""
     } );
   }
+}
+
+/**
+ * Executes an asynchronous action over objects of a queue
+ */
+function executeAsync( inputQueue, outputQueue, action, successValue, successAction, failAction, doneAction ) {
+  function execute() {
+    if ( inputQueue.length > 0 ) {
+      var item = inputQueue[ 0 ];
+      action( item )(( item, status ) => {
+        console.info(`Delay info: inc=${dInc.toFixed(3)}ms, dec=${dDec.toFixed(3)}ms, delay=${delay.toFixed(3)}ms`);
+        if ( status == successValue ) {
+          // Transfer the item from input to output queue
+          var doneItem = inputQueue.shift();
+          if ( outputQueue != undefined ) {
+            outputQueue.push( doneItem );
+          }
+          // Tune delay and call callback
+          delay -= dDec;
+          dDec *= 0.5;
+          //dInc *= 0.95;
+          if( successAction ) {
+            successAction( doneItem );
+          }
+        }
+        else {
+          // Tune delay and call callback
+          delay += dInc;
+          dInc = delay / 2.0;
+          dDec = dInc / 2.0;
+          if( failAction ) {
+            failAction( item, status );
+          }
+        }
+        // The delay between requests is self-adjustable
+        setTimeout( execute, delay );
+      } );
+    }
+    else if ( doneAction ) {
+      // Call the done action
+      doneAction();
+    }
+  }
+
+  // Set initial values and start
+  var delay = 300;
+  var dInc = delay / 2.0;
+  var dDec = dInc / 2.0;
+  execute();
 }
 
 /* Adding the flatMap function to Arrays */
