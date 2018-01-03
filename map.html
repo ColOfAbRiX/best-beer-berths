@@ -5,42 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        margin: 10px;
-        height: 90%;
-        width: 67%;
-        left: 0;
-      }
-      #legend {
-        font-family: Arial, sans-serif;
-        background: #fff;
-        padding: 10px;
-        margin: 10px;
-        border: 2px solid #ccc;
-      }
-      #legend h3 {
-        margin-top: 0;
-      }
-      #legend img {
-        vertical-align: middle;
-      }
-      #legend div {
-        margin: 10px;
-      }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-    <script type="text/javascript" src="js-yaml.min.js"></script>
-    <script type="text/javascript" src="map.js"></script>
+    <script type="text/javascript" src="lib/js-yaml.min.js"></script>
+    <script type="text/javascript" src="lib/object_hash.min.js"></script>
+    <script type="text/javascript" src="global.js"></script>
+    <script type="text/javascript" src="beer.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqnWg__YSMdaJc0K46F7S5-kUYzNqyb_4&callback=initGoogle&libraries=places" async defer></script>
   </head>
 
@@ -62,31 +36,38 @@
     </div>
     <script id="place-template" type="text/x-handlebars-template">
       <div class="placeInfo">
-        <h6>{{ name }}</h6>
+        <h6>{{ name }} - {{ averageScore }}/10</h6>
+        <p>
+          <span class="stars">{{ averageScore }}</span>
+          {{# if website }}<a href="{{ website }}" target="_blank">Website</a>{{/ if }}
+        </p>
         <p>
           <b>Address:</b> {{ address }}<br/>
           <b>Type:</b> {{ type }}
         </p>
-        {{# if score }}
-        <p>
-          <strong>Score</strong>
-        </p>
-        <ul>
-          {{# each score }}
-          <li><strong>{{ @key }}: </strong>{{ this }}</li>
-          {{/ each }}
-        </ul>
-        {{/ if }}
-        {{# if expectation }}
-        <p>
-          <strong>Expectation</strong>
-        </p>
-        <ul>
-          {{# each expectation }}
-          <li><strong>{{ @key }}: </strong>{{ this }}</li>
-          {{/ each }}
-        </ul>
-        {{/ if }}
+        <div style="height: 120px">
+          {{# if imgUrl }}<img id="placeImage" src="{{ imgUrl }}" />{{/ if }}
+          {{# if score }}
+          <p>
+            <strong>Score</strong>
+          </p>
+          <ul>
+            {{# each score }}
+            <li><strong>{{ @key }}: </strong>{{ this }}</li>
+            {{/ each }}
+          </ul>
+          {{/ if }}
+          {{# if expectation }}
+          <p>
+            <strong>Expectation</strong>
+          </p>
+          <ul>
+            {{# each expectation }}
+            <li><strong>{{ @key }}: </strong>{{ this }}</li>
+            {{/ each }}
+          </ul>
+          {{/ if }}
+        </div>
       </div>
     </script>
   </body>

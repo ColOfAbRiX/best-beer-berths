@@ -1,0 +1,49 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Google Map */
+#map {
+  margin: 10px;
+  height: 90%;
+  width: 67%;
+  left: 0;
+}
+
+/* Legend */
+#legend {
+  font-family: Arial, sans-serif;
+  background: #fff;
+  padding: 10px;
+  margin: 10px;
+  padding: 5px 0px 10px 0px;
+  border: 2px solid #ccc;
+}
+#legend h3 {
+  margin-top: 0;
+  text-align: center;
+  font-size: 16pt;
+}
+#legend img {
+  vertical-align: middle;
+  margin: 10px 10px 0px 10px;
+}
+#legend div {
+  margin: 0px 10px 0px 10px;
+}
+
+/* InfoWindow */
+#placeImage {
+  float: right;
+}
+span.stars, span.stars span {
+  display: block;
+  background: url('../img/stars.png') 0 -16px repeat-x;
+  width: 80px;
+  height: 16px;
+}
+span.stars span {
+  background-position: 0 0;
+}
