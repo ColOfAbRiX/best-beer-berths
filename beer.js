@@ -30,21 +30,21 @@ function BeerPlacesDB( YAMLData ) {
   /**
    * A fingerprint of the Database data, excluding Google data
    */
-  this.placesHash = (function() {
-    var hashes = this.places.map(x => x.dataHash);
+  this.placesHash = ( function () {
+    var hashes = this.places.map( x => x.dataHash );
     return objectHash.sha1(
-      JSON.stringify(hashes)
+      JSON.stringify( hashes )
     );
-  }).apply(this);
+  } ).apply( this );
 
   /**
    * Starts the filling of the Beer Places DB
    */
-  this.fillDB = function() {
-    if( this.loadCache() ) {
+  this.fillDB = function () {
+    if ( this.loadCache() ) {
       // DB is loaded, but the pins are not displayed!
-      for( var i in this.places ) {
-        this.addMarker(this.places[i]);
+      for ( var i in this.places ) {
+        this.addMarker( this.places[ i ] );
       }
       this.saveCache();
     }
@@ -57,83 +57,101 @@ function BeerPlacesDB( YAMLData ) {
   /**
    * Loads the cache into the local beer DB
    */
-  this.loadCache = function() {
-    var cache = localStorage.getItem("BeerPlacesDB");
-    var result = false;
-
-    if( cache ) {
-      var cacheHash = localStorage.getItem("BeerPlacesDBHash");
-      var cacheTimestamp = localStorage.getItem("BeerPlacesDBTimestamp");
-
-      if( this.placesHash == cacheHash ) {
-        console.info(`Found and loaded cache ${cacheHash}`)
-        var places = JSON.parse(cache);
-
-        // Convert the cache into proper BeerPlace objects
-        this.places = new Array();
-        for( var i in places ) {
-          var place = places[i];
-          this.places.push( new BeerPlace( place, place.country, place.city ) );
-        }
-
-        result = true;
-      }
-      else {
-        console.info(`Cache found (${cacheHash}) but doesn't match data (${this.placesHash}).`)
-      }
-
-      localStorage.removeItem("BeerPlacesDB");
-      localStorage.removeItem("BeerPlacesDBHash");
-      localStorage.removeItem("BeerPlacesDBTimestamp");
+  this.loadCache = function () {
+    // Check cache enabled
+    if( !CACHE_ENABLED ) {
+      localStorage.removeItem( "BeerPlacesDB" );
+      localStorage.removeItem( "BeerPlacesDBHash" );
+      localStorage.removeItem( "BeerPlacesDBTimestamp" );
+      return false;
     }
 
-    return result;
+    var cache = localStorage.getItem( "BeerPlacesDB" );
+    if ( cache ) {
+      var cacheHash = localStorage.getItem( "BeerPlacesDBHash" );
+      var cacheTimestamp = parseInt( localStorage.getItem( "BeerPlacesDBTimestamp" ) || 0 );
+      var expired = new Date().getTime() - cacheTimestamp >= CACHE_DURATION;
+      var hashMatch = this.placesHash == cacheHash;
+
+      if ( expired ) {
+        console.info( `Cache expired.` )
+        return false;
+      }
+      if( !hashMatch ) {
+        console.info( `Cache found (${cacheHash}) but doesn't match data (${this.placesHash}).` )
+        return false;
+      }
+
+      var places = JSON.parse( cache );
+
+      // Convert the cache into proper BeerPlace objects
+      this.places = new Array();
+      for ( var i in places ) {
+        var place = places[ i ];
+        this.places.push( new BeerPlace( place, place.country, place.city ) );
+      }
+
+      console.info( `Found and loaded cache ${cacheHash}` )
+      return true;
+    }
+    return false;
   }
 
   /**
    * Saves the DB places into the cache
    */
-  this.saveCache = function() {
-    var data = JSON.stringify(this.places);
+  this.saveCache = function () {
+    // Check cache enabled
+    if( !CACHE_ENABLED ) {
+      localStorage.removeItem( "BeerPlacesDB" );
+      localStorage.removeItem( "BeerPlacesDBHash" );
+      localStorage.removeItem( "BeerPlacesDBTimestamp" );
+      return false;
+    }
+
+    var data = JSON.stringify( this.places );
     var dataHash = this.placesHash;
     var timestamp = new Date().getTime();
 
-    console.info(`Saving cache for DB ${dataHash}`)
+    console.info( `Saving cache for DB ${dataHash}` )
 
-    localStorage.setItem("BeerPlacesDB", data)
-    localStorage.setItem("BeerPlacesDBHash", dataHash)
-    localStorage.setItem("BeerPlacesDBTimestamp", timestamp)
+    localStorage.setItem( "BeerPlacesDB", data )
+    localStorage.setItem( "BeerPlacesDBHash", dataHash )
+    localStorage.setItem( "BeerPlacesDBTimestamp", timestamp )
+
+    return true;
   }
 
   /**
    * Loads asynchronously the information about the location of all the places
    */
   this.queryForLocations = function () {
-    // Stats
-    var start = new Date().getTime();
-    var counter = 0;
-
     var startQueue = this.places;
     var endQueue = new Array();
     var thisRef = this;
 
+    // Stats
+    var start = new Date().getTime();
+    var queries = 0,
+      failures = 0;
     // Run task
-    executeAsync(
+    processQueueAsync(
       startQueue,
       endQueue,
       place => place.queryLocation.bind( place ),
       google.maps.places.PlacesServiceStatus.OK,
       place => {
         this.addMarker.call( this, place )
-        counter++;
+        queries++;
       },
       ( place, error ) => {
         console.error( `Error querying location for ${place.Name}: ${error}` );
+        failures++;
       },
       place => {
         var time = ( new Date().getTime() - start ) / 1000.0;
-        console.info( `Query for locations completed: time=${time.toFixed(3)}s, queries=${counter}, items=${endQueue.length}.` );
 
+        console.info( `All locations done: items=${endQueue.length}, queries=${queries}, failures=${failures}, time=${time.toFixed(3)}s.` );
         thisRef.places = endQueue;
 
         // Run next query
@@ -146,30 +164,31 @@ function BeerPlacesDB( YAMLData ) {
    * Loads asynchronously the information about the location of all the places
    */
   this.queryForDetails = function () {
-    // Stats
-    var start = new Date().getTime();
-    var counter = 0;
-
     var startQueue = this.places.slice();
     var endQueue = new Array();
     var thisRef = this;
 
+    // Stats
+    var start = new Date().getTime();
+    var queries = 0,
+      failures = 0;
     // Run task
-    executeAsync(
+    processQueueAsync(
       startQueue,
       endQueue,
       place => place.queryDetails.bind( place ),
       google.maps.places.PlacesServiceStatus.OK,
       place => {
-        counter++;
+        queries++;
       },
       ( place, error ) => {
         console.error( `Error querying details for ${place.Name}: ${error}` );
+        failures++;
       },
       place => {
         var time = ( new Date().getTime() - start ) / 1000.0;
 
-        console.info( `Query for details completed: time=${time.toFixed(3)}s, queries=${counter}, items=${endQueue.length}.` );
+        console.info( `All letails done: items=${endQueue.length}, queries=${queries}, failures=${failures}, time=${time.toFixed(3)}s.` );
         thisRef.places = endQueue;
 
         thisRef.saveCache()
@@ -224,7 +243,7 @@ function BeerPlacesDB( YAMLData ) {
     }
 
     var range = 10.0 / ( this.averageMax - this.averageMin )
-    range = Math.min(Math.max(0.0, range), 10.0);
+    range = Math.min( Math.max( 0.0, range ), 10.0 );
     var colour = ( place.averageScore() - this.averageMin ) * range;
     colour = 255 - ( colour * 255 / 10.0 );
     colour = toColorHex( colour );
@@ -256,7 +275,7 @@ function BeerPlace( rawPlaceData, country, city ) {
   /**
    * A fingerprint of the object, excluding Google data
    */
-  this.dataHash = objectHash.sha1(rawPlaceData);
+  this.dataHash = objectHash.sha1( rawPlaceData );
 
   /**
    * The average score of the place
@@ -323,6 +342,9 @@ function BeerPlace( rawPlaceData, country, city ) {
         callback( this, status );
       }
     } );
+  }
+
+  this.incorporateLocation = function(googleLocation) {
   }
 
   /**

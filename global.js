@@ -2,8 +2,12 @@
 
 
 const BEER_DATABASE_FILE = "database.yml"
-const DEBUG = false;
-const DEBUG_CITY = /(riccione|rimini)/i;
+// Cache options
+const CACHE_ENABLED=true;
+const CACHE_DURATION=604800;
+// Debug options
+const DEBUG = true;
+const DEBUG_CITY = /(rimini|cattolica|riccione)/i;
 // Rimini
 const DEBUG_POSITION = {
   lat: 44.0372932,
@@ -108,7 +112,7 @@ function initGoogle() {
 /**
  * Executes an asynchronous action over objects of a queue
  */
-function executeAsync( inputQueue, outputQueue, action, successValue, successAction, failAction, doneAction ) {
+function processQueueAsync( inputQueue, outputQueue, action, successValue, successAction, failAction, doneAction ) {
   function execute() {
     if ( inputQueue.length > 0 ) {
       var item = inputQueue[ 0 ];
@@ -122,9 +126,9 @@ function executeAsync( inputQueue, outputQueue, action, successValue, successAct
 
       // Run the action
       runAction( ( item, status ) => {
-        console.info( `Delay info: delay=${delay.toFixed(3)}ms, inc=${dInc.toFixed(3)}ms, dec=${dDec.toFixed(3)}ms` );
+        console.info( `Delay info: delay=${delay.toFixed(3)}ms, dec=${dDec.toFixed(3)}ms` );
 
-        if ( status == successValue ) {
+        if ( status.match( successValue) ) {
           // Transfer the item from input to output queue
           var doneItem = inputQueue.shift();
           if ( outputQueue != undefined ) {
@@ -132,22 +136,23 @@ function executeAsync( inputQueue, outputQueue, action, successValue, successAct
           }
           // Tune delay and call callback
           delay -= dDec;
-          dDec *= 0.5;
+          dDec *= (1.0 - 1 / S) * 0.9;
           if ( successAction ) {
             successAction( doneItem );
           }
+          // The delay between requests is self-adjustable
+          setTimeout( execute, delay );
         }
         else {
           // Tune delay and call callback
-          delay += dInc;
-          dInc = delay / 2.0;
-          dDec = dInc / 2.0;
+          dDec = delay / S;
+          delay *= 2.0;
           if ( failAction ) {
             failAction( item, status );
           }
+          // The delay between requests is self-adjustable
+          setTimeout( execute, delay );
         }
-        // The delay between requests is self-adjustable
-        setTimeout( execute, delay );
       } );
     }
     else if ( doneAction ) {
@@ -157,10 +162,10 @@ function executeAsync( inputQueue, outputQueue, action, successValue, successAct
   }
 
   // Set initial values and start
+  const S = 3.0;  // Steepness
   var delay = 500;
-  var dInc = delay / 2.0;
-  var dDec = dInc / 2.0;
-  execute();
+  var dDec = delay / (S * 2.0);
+  setTimeout( execute, delay * 2.0 );
 }
 
 
