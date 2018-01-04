@@ -59,7 +59,7 @@ function BeerPlacesDB( YAMLData ) {
    */
   this.loadCache = function () {
     // Check cache enabled
-    if( !CACHE_ENABLED ) {
+    if ( !CACHE_ENABLED ) {
       localStorage.removeItem( "BeerPlacesDB" );
       localStorage.removeItem( "BeerPlacesDBHash" );
       localStorage.removeItem( "BeerPlacesDBTimestamp" );
@@ -70,14 +70,14 @@ function BeerPlacesDB( YAMLData ) {
     if ( cache ) {
       var cacheHash = localStorage.getItem( "BeerPlacesDBHash" );
       var cacheTimestamp = parseInt( localStorage.getItem( "BeerPlacesDBTimestamp" ) || 0 );
-      var expired = new Date().getTime() - cacheTimestamp >= CACHE_DURATION;
+      var expired = (new Date().getTime() - cacheTimestamp) >= CACHE_DURATION * 1000;
       var hashMatch = this.placesHash == cacheHash;
 
       if ( expired ) {
         console.info( `Cache expired.` )
         return false;
       }
-      if( !hashMatch ) {
+      if ( !hashMatch ) {
         console.info( `Cache found (${cacheHash}) but doesn't match data (${this.placesHash}).` )
         return false;
       }
@@ -102,7 +102,7 @@ function BeerPlacesDB( YAMLData ) {
    */
   this.saveCache = function () {
     // Check cache enabled
-    if( !CACHE_ENABLED ) {
+    if ( !CACHE_ENABLED ) {
       localStorage.removeItem( "BeerPlacesDB" );
       localStorage.removeItem( "BeerPlacesDBHash" );
       localStorage.removeItem( "BeerPlacesDBTimestamp" );
@@ -216,7 +216,7 @@ function BeerPlacesDB( YAMLData ) {
       map: map,
       title: title,
       icon: pinImage,
-      position: place.geometry.location,
+      position: place.GoogleLocation.geometry.location,
       infoWindow: infoWindow
     } );
 
@@ -268,9 +268,6 @@ function BeerPlace( rawPlaceData, country, city ) {
 
   this.country = country;
   this.city = city;
-
-  this.hasValidLocationData = false;
-  this.hasValidPlaceDetails = false;
 
   /**
    * A fingerprint of the object, excluding Google data
@@ -330,12 +327,8 @@ function BeerPlace( rawPlaceData, country, city ) {
       console.info( `Text search completed for "${this.Name}" with status ${status}` );
 
       if ( status == google.maps.places.PlacesServiceStatus.OK ) {
-        Object.assign( this, results[ 0 ] );
-        this.hasValidLocationData = true;
-        console.info( `Found ID for "${this.Name}": ${this.place_id}` );
-      }
-      else if ( status == google.maps.places.PlacesServiceStatus.ZERO_RESULTS ) {
-        this.hasValidLocationData = true;
+        this.incorporateLocation( results[ 0 ] );
+        console.info( `Found ID for "${this.Name}": ${this.GoogleLocation.place_id}` );
       }
 
       if ( callback ) {
@@ -344,7 +337,28 @@ function BeerPlace( rawPlaceData, country, city ) {
     } );
   }
 
-  this.incorporateLocation = function(googleLocation) {
+  /**
+   * Incorporates the location information provided by Google into this object
+   */
+  this.incorporateLocation = function ( googleLocation ) {
+    var photoUrl = ""
+    if ( googleLocation.photos.length > 0 ) {
+      photoUrl = googleLocation.photos[ 0 ].getUrl( {
+        'maxHeight': 100,
+        'maxWidth': 150,
+      } );
+    }
+
+    this.GoogleLocation = {
+      place_id: googleLocation.place_id,
+      formatted_address: googleLocation.formatted_address,
+      geometry: googleLocation.geometry,
+      name: googleLocation.name,
+      opening_hours: googleLocation.opening_hours,
+      open_now: googleLocation.open_now,
+      rating: googleLocation.rating,
+      photoUrl: photoUrl
+    };
   }
 
   /**
@@ -352,29 +366,32 @@ function BeerPlace( rawPlaceData, country, city ) {
    * callback function when the data is available.
    */
   this.queryDetails = function ( callback ) {
-    if ( !this.hasValidLocationData ) {
+    if ( !this.GoogleLocation ) {
       return;
     }
 
     var request = {
-      'placeId': this.place_id
+      'placeId': this.GoogleLocation.place_id
     };
     placesService.getDetails( request, ( results, status ) => {
       console.info( `Details search completed for "${this.Name}" with status ${status}` );
 
       if ( status == google.maps.places.PlacesServiceStatus.OK ) {
-        Object.assign( this, results );
-        this.hasValidPlaceDetails = true;
+        this.incorporateDetails( results[ 0 ] );
         console.info( `Found details for "${this.Name}".` );
-      }
-      else if ( status == google.maps.places.PlacesServiceStatus.ZERO_RESULTS ) {
-        this.hasValidPlaceDetails = true;
       }
 
       if ( callback ) {
         callback( this, status );
       }
     } );
+  }
+
+  /**
+   * Incorporates the details information provided by Google into this object
+   */
+  this.incorporateDetails = function ( googleDetails ) {
+    Object.assign( this, googleDetails );
   }
 
   /**
@@ -385,21 +402,14 @@ function BeerPlace( rawPlaceData, country, city ) {
       $( '#place-template' )[ 0 ].innerHTML
     );
 
-    if ( this.photos.length > 0 ) {
-      var imgUrl = this.photos[ 0 ].getUrl( {
-        'maxHeight': 100,
-        'maxWidth': 150,
-      } );
-    }
-
     return hndPlaceInfo( {
       name: this.Name,
       averageScore: this.averageScore().toFixed( 2 ),
-      address: this.formatted_address,
+      address: this.GoogleLocation.formatted_address,
       type: this.Type,
       score: this.Score || "",
       expectation: this.Expectation || "",
-      imgUrl: imgUrl || "",
+      imgUrl: this.GoogleLocation.photoUrl || "",
       website: this.website || ""
     } );
   }

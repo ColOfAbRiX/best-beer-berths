@@ -4,7 +4,7 @@
 const BEER_DATABASE_FILE = "database.yml"
 // Cache options
 const CACHE_ENABLED=true;
-const CACHE_DURATION=604800;
+const CACHE_DURATION=86400;
 // Debug options
 const DEBUG = true;
 const DEBUG_CITY = /(rimini|cattolica|riccione)/i;
