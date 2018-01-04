@@ -87,8 +87,9 @@ function BeerPlacesDB( YAMLData ) {
       // Convert the cache into proper BeerPlace objects
       this.places = new Array();
       for ( var i in places ) {
-        var place = places[ i ];
-        this.places.push( new BeerPlace( place, place.country, place.city ) );
+        this.places.push(
+          new BeerPlace( places[ i ], places[ i ].country, places[ i ].city )
+        );
       }
 
       console.info( `Found and loaded cache ${cacheHash}` )
@@ -319,6 +320,11 @@ function BeerPlace( rawPlaceData, country, city ) {
    * callback function when the data is available.
    */
   this.queryLocation = function ( callback ) {
+    // Skip if already present
+    if ( this.GoogleLocation ) {
+      return;
+    }
+
     var request = {
       'query': `${this.Name}, ${this.Address}`
     };
@@ -366,7 +372,8 @@ function BeerPlace( rawPlaceData, country, city ) {
    * callback function when the data is available.
    */
   this.queryDetails = function ( callback ) {
-    if ( !this.GoogleLocation ) {
+    // Skip if already present
+    if ( !this.GoogleLocation || this.GoogleDetails ) {
       return;
     }
 
@@ -377,7 +384,7 @@ function BeerPlace( rawPlaceData, country, city ) {
       console.info( `Details search completed for "${this.Name}" with status ${status}` );
 
       if ( status == google.maps.places.PlacesServiceStatus.OK ) {
-        this.incorporateDetails( results[ 0 ] );
+        this.incorporateDetails( results );
         console.info( `Found details for "${this.Name}".` );
       }
 
@@ -391,7 +398,8 @@ function BeerPlace( rawPlaceData, country, city ) {
    * Incorporates the details information provided by Google into this object
    */
   this.incorporateDetails = function ( googleDetails ) {
-    Object.assign( this, googleDetails );
+    this.GoogleDetails = {};
+    Object.assign( this.GoogleDetails, googleDetails );
   }
 
   /**
@@ -410,7 +418,7 @@ function BeerPlace( rawPlaceData, country, city ) {
       score: this.Score || "",
       expectation: this.Expectation || "",
       imgUrl: this.GoogleLocation.photoUrl || "",
-      website: this.website || ""
+      website: this.GoogleDetails.website || ""
     } );
   }
 }

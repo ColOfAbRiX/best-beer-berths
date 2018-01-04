@@ -6,8 +6,8 @@ const BEER_DATABASE_FILE = "database.yml"
 const CACHE_ENABLED=true;
 const CACHE_DURATION=86400;
 // Debug options
-const DEBUG = true;
-const DEBUG_CITY = /(rimini|cattolica|riccione)/i;
+const DEBUG = false;
+const DEBUG_CITY = /(rimini|riccione|cattolica|cesena)/i;
 // Rimini
 const DEBUG_POSITION = {
   lat: 44.0372932,
@@ -60,7 +60,7 @@ function initGoogle() {
   placesService = new google.maps.places.PlacesService( map );
 
   // Add legend to the map
-  map.controls[ google.maps.ControlPosition.RIGHT_TOP ].push(
+  map.controls[ google.maps.ControlPosition.TOP_RIGHT ].push(
     $( '#legend' )[ 0 ]
   );
 
@@ -146,7 +146,7 @@ function processQueueAsync( inputQueue, outputQueue, action, successValue, succe
         else {
           // Tune delay and call callback
           dDec = delay / S;
-          delay *= 2.0;
+          delay *= 2.2;
           if ( failAction ) {
             failAction( item, status );
           }
@@ -165,7 +165,7 @@ function processQueueAsync( inputQueue, outputQueue, action, successValue, succe
   const S = 3.0;  // Steepness
   var delay = 500;
   var dDec = delay / (S * 2.0);
-  setTimeout( execute, delay * 2.0 );
+  execute();
 }
 
 
