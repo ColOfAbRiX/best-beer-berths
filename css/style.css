@@ -10,6 +10,7 @@ html, body {
   height: 90%;
   width: 67%;
   left: 0;
+  border: 2px solid #999;
 }
 
 /* Legend */
@@ -20,6 +21,7 @@ html, body {
   margin: 8px;
   padding: 5px 0px 10px 0px;
   border: 2px solid #ccc;
+  display: none;
 }
 #legend h3 {
   margin-top: 0;

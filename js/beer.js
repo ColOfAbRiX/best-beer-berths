@@ -14,7 +14,7 @@ function BeerPlacesDB( YAMLData ) {
       var cityPlaces = countryCities[ city ];
       for ( var place in cityPlaces ) {
         var beerPlace = cityPlaces[ place ];
-        if ( city.match( DEBUG_CITY ) || !DEBUG ) {
+        if ( !DEBUG || city.match( DEBUG_CITY ) ) {
           this.places.push( new BeerPlace( beerPlace, country, city ) );
         }
       }
@@ -23,7 +23,7 @@ function BeerPlacesDB( YAMLData ) {
 
   // Properties with statistical data
   this.places = this.places.sort();
-  this.averages = this.places.map( i => i.averageScore() );
+  this.averages = this.places.map( i => i.averageScore );
   this.averageMax = this.averages.reduce( ( a, b ) => Math.max( a, b ) );
   this.averageMin = this.averages.reduce( ( a, b ) => Math.min( a, b ) );
 
@@ -42,14 +42,12 @@ function BeerPlacesDB( YAMLData ) {
    */
   this.fillDB = function () {
     if ( this.loadCache() ) {
-      // DB is loaded, but the pins are not displayed!
       for ( var i in this.places ) {
         this.addMarker( this.places[ i ] );
       }
       this.saveCache();
     }
     else {
-      // Start the queries to Google
       this.queryForLocations();
     }
   }
@@ -70,18 +68,22 @@ function BeerPlacesDB( YAMLData ) {
     if ( cache ) {
       var cacheHash = localStorage.getItem( "BeerPlacesDBHash" );
       var cacheTimestamp = parseInt( localStorage.getItem( "BeerPlacesDBTimestamp" ) || 0 );
-      var expired = (new Date().getTime() - cacheTimestamp) >= CACHE_DURATION * 1000;
-      var hashMatch = this.placesHash == cacheHash;
 
+      // Check expiry
+      var expired = (new Date().getTime() - cacheTimestamp) >= CACHE_DURATION * 1000;
       if ( expired ) {
         console.info( `Cache expired.` )
         return false;
       }
+
+      // Check hash
+      var hashMatch = this.placesHash == cacheHash;
       if ( !hashMatch ) {
         console.info( `Cache found (${cacheHash}) but doesn't match data (${this.placesHash}).` )
         return false;
       }
 
+      // Load
       var places = JSON.parse( cache );
 
       // Convert the cache into proper BeerPlace objects
@@ -148,6 +150,11 @@ function BeerPlacesDB( YAMLData ) {
       ( place, error ) => {
         console.error( `Error querying location for ${place.Name}: ${error}` );
         failures++;
+        // In case of ZERO_RESULTS, drop the item
+        var doneItem = startQueue.shift();
+        if ( endQueue != undefined ) {
+          endQueue.push( doneItem );
+        }
       },
       place => {
         var time = ( new Date().getTime() - start ) / 1000.0;
@@ -212,7 +219,7 @@ function BeerPlacesDB( YAMLData ) {
     );
 
     // Create and add the marker
-    var title = `${place.Name} - ${place.averageScore().toFixed(2)}/10`;
+    var title = `${place.Name} - ${place.averageScore.toFixed(2)}/10`;
     var marker = new google.maps.Marker( {
       map: map,
       title: title,
@@ -245,7 +252,7 @@ function BeerPlacesDB( YAMLData ) {
 
     var range = 10.0 / ( this.averageMax - this.averageMin )
     range = Math.min( Math.max( 0.0, range ), 10.0 );
-    var colour = ( place.averageScore() - this.averageMin ) * range;
+    var colour = ( place.averageScore - this.averageMin ) * range;
     colour = 255 - ( colour * 255 / 10.0 );
     colour = toColorHex( colour );
 
@@ -278,62 +285,96 @@ function BeerPlace( rawPlaceData, country, city ) {
   /**
    * The average score of the place
    */
-  this.averageScore = function () {
-    var average = 0.0;
-    var count = 0;
-
+  this.averageScore = (function () {
     // Missing status
     if ( !this.Status ) {
-      console.error( `Missing status for "${this.Name}"` )
+      console.error( `Missing Status for "${this.Name}"` )
       return 0.0;
     }
 
+    var average = 0.0;
+    var count = 0;
+    var penalty = 0.0;
+
     if ( this.Status.toLowerCase() == 'tried' ) {
+      // Draught score (weight of 33%)
       if ( 'Draught' in this.Score ) {
-        average += this.Score.Draught * 3.0;
-        count += 3;
+        if( this.Score.Draught > 0.0 ) {
+          average += this.Score.Draught * 3.0;
+          count += 3;
+        }
+        else penalty = 0.33;
       }
+
+      // Bottles score (weight of 33%)
       if ( 'Bottles' in this.Score ) {
-        average += this.Score.Bottles * 3.0;
-        count += 3;
+        if( this.Score.Bottles > 0.0 ) {
+          average += this.Score.Bottles * 3.0;
+          count += 3;
+        }
+        else penalty = 0.33;
       }
+
+      // Place score (weight of 22%)
       if ( 'Place' in this.Score ) {
-        average += this.Score.Place * 2.0;
-        count += 2;
+        if( this.Score.Place > 0.0 ) {
+          average += this.Score.Place * 2.0;
+          count += 2;
+        }
+        else penalty = 0.22;
       }
+
+      // Food score (weight of 11%)
       if ( 'Food' in this.Score ) {
-        average += this.Score.Food * 1.0;
-        count += 1;
+        if( this.Score.Food > 0.0 ) {
+          average += this.Score.Food * 1.0;
+          count += 1;
+        }
+        else penalty = 0.11;
       }
+
+      // Final calculations
       average /= count;
+      average -= penalty;
     }
     else if ( this.Status.toLowerCase() == 'to try' ) {
-      average = ( this.Expectation.Mine +
-        this.Expectation.Google * 2.0 ) / 2.0;
+      // Personal score (weight of 67%)
+      if ( 'Mine' in this.Expectation ) {
+        average += this.Expectation.Mine * 2.0;
+        count += 2;
+      }
+
+      // Google score, ranges from 0 to 5 (weight of 33%)
+      if ( 'Google' in this.Expectation ) {
+        average += this.Expectation.Google * 2.0;
+        count += 1;
+      }
+
+      // Final calculations
+      average /= count;
+      average -= penalty;
     }
 
     return average
-  }
+  }).apply(this);
 
   /**
    * Queries Google to fetch information about the position and then calls a
    * callback function when the data is available.
    */
-  this.queryLocation = function ( callback ) {
+  this.queryLocation = function ( callback, force = false ) {
     // Skip if already present
-    if ( this.GoogleLocation ) {
+    if ( this.GoogleLocation && !force ) {
+      console.warn(`Location data already loaded for ${this.Name}`);
       return;
     }
 
-    var request = {
-      'query': `${this.Name}, ${this.Address}`
-    };
-
+    var request = {'query': `${this.Name}, ${this.Address}`};
     placesService.textSearch( request, ( results, status ) => {
       console.info( `Text search completed for "${this.Name}" with status ${status}` );
 
       if ( status == google.maps.places.PlacesServiceStatus.OK ) {
-        this.incorporateLocation( results[ 0 ] );
+        this.mergeLocation( results[ 0 ] );
         console.info( `Found ID for "${this.Name}": ${this.GoogleLocation.place_id}` );
       }
 
@@ -344,9 +385,9 @@ function BeerPlace( rawPlaceData, country, city ) {
   }
 
   /**
-   * Incorporates the location information provided by Google into this object
+   * Merges the location information provided by Google into this object
    */
-  this.incorporateLocation = function ( googleLocation ) {
+  this.mergeLocation = function ( googleLocation ) {
     var photoUrl = ""
     if ( googleLocation.photos.length > 0 ) {
       photoUrl = googleLocation.photos[ 0 ].getUrl( {
@@ -371,20 +412,24 @@ function BeerPlace( rawPlaceData, country, city ) {
    * Queries Google for detaiDeliriumled information about the place and then calls a
    * callback function when the data is available.
    */
-  this.queryDetails = function ( callback ) {
+  this.queryDetails = function ( callback, force = false ) {
+    // Skip if details are missing
+    if ( !this.GoogleLocation ) {
+      console.error(`Can't load Details because Location is missing for ${this.Name}`);
+      return;
+    }
     // Skip if already present
-    if ( !this.GoogleLocation || this.GoogleDetails ) {
+    if ( this.GoogleDetails && !force ) {
+      console.warn(`Details data already loaded for ${this.Name}`);
       return;
     }
 
-    var request = {
-      'placeId': this.GoogleLocation.place_id
-    };
+    var request = {'placeId': this.GoogleLocation.place_id};
     placesService.getDetails( request, ( results, status ) => {
       console.info( `Details search completed for "${this.Name}" with status ${status}` );
 
       if ( status == google.maps.places.PlacesServiceStatus.OK ) {
-        this.incorporateDetails( results );
+        this.mergeDetails( results );
         console.info( `Found details for "${this.Name}".` );
       }
 
@@ -395,9 +440,9 @@ function BeerPlace( rawPlaceData, country, city ) {
   }
 
   /**
-   * Incorporates the details information provided by Google into this object
+   * Merges the details information provided by Google into this object
    */
-  this.incorporateDetails = function ( googleDetails ) {
+  this.mergeDetails = function ( googleDetails ) {
     this.GoogleDetails = {};
     Object.assign( this.GoogleDetails, googleDetails );
   }
@@ -412,13 +457,13 @@ function BeerPlace( rawPlaceData, country, city ) {
 
     return hndPlaceInfo( {
       name: this.Name,
-      averageScore: this.averageScore().toFixed( 2 ),
+      averageScore: this.averageScore.toFixed( 2 ),
       address: this.GoogleLocation.formatted_address,
       type: this.Type,
       score: this.Score || "",
       expectation: this.Expectation || "",
       imgUrl: this.GoogleLocation.photoUrl || "",
-      website: this.GoogleDetails.website || ""
+      website: this.GoogleDetails ? this.GoogleDetails.website : ""
     } );
   }
 }

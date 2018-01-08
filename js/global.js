@@ -2,30 +2,38 @@
 
 
 const BEER_DATABASE_FILE = "database.yml"
-// Cache options
-const CACHE_ENABLED=true;
-const CACHE_DURATION=86400;
+  // Cache options
+const CACHE_ENABLED = false;
+const CACHE_DURATION = 86400;
 // Debug options
 const DEBUG = false;
-const DEBUG_CITY = /(rimini|riccione|cattolica|cesena)/i;
+const DEBUG_CITY = /(london)/i;
 // Rimini
-const DEBUG_POSITION = {
-  lat: 44.0372932,
-  lng: 12.6069268
-};
-// London
 // const DEBUG_POSITION = {
-//   lat: 51.5189138,
-//   lng: -0.0924759
+//   lat: 44.0372932,
+//   lng: 12.6069268
 // };
-
+// London #1
+const DEBUG_POSITION = {
+  lat: 51.5189138,
+  lng: -0.0924759
+};
+// London #2
+// const DEBUG_POSITION = {
+//   lat: 51.532492399999995,
+//   lng: -0.0351538
+// };
 
 var beerDb;
 var map, infoWindow, placesService;
 
 
 /**
- * Initializes Google Map
+ * Initializes Google Map.
+ *
+ * For marker icons, see:
+ *   https://github.com/Concept211/Google-Maps-Marker
+ *   https://kml4earth.appspot.com/icons.html
  */
 function initGoogle() {
   /**
@@ -34,17 +42,19 @@ function initGoogle() {
   var setHome = function ( homePos ) {
     console.info( `Home location: ${JSON.stringify(homePos)}` );
 
-    // Add centre marker
+    // // Add centre marker
     var homeMarker = new google.maps.Marker( {
-      icon: {
-        path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-        scale: 5
-      },
+      icon: 'img/marker_red.png',
       clickable: false,
       map: map,
       position: pos
     } );
+
+    // Centre the map
     map.setCenter( pos );
+
+    // Display the legend
+    $( '#legend' ).show();
   }
 
   // Create global objects
@@ -63,6 +73,11 @@ function initGoogle() {
   map.controls[ google.maps.ControlPosition.TOP_RIGHT ].push(
     $( '#legend' )[ 0 ]
   );
+
+  // Set style if present
+  if( GOOGLE_MAP_STYLE || false ) {
+    map.set( 'styles', GOOGLE_MAP_STYLE );
+  }
 
   // Centre the map on the current position
   var pos = {
@@ -128,7 +143,7 @@ function processQueueAsync( inputQueue, outputQueue, action, successValue, succe
       runAction( ( item, status ) => {
         console.info( `Delay info: delay=${delay.toFixed(3)}ms, dec=${dDec.toFixed(3)}ms` );
 
-        if ( status.match( successValue) ) {
+        if ( status.match( successValue ) ) {
           // Transfer the item from input to output queue
           var doneItem = inputQueue.shift();
           if ( outputQueue != undefined ) {
@@ -136,7 +151,7 @@ function processQueueAsync( inputQueue, outputQueue, action, successValue, succe
           }
           // Tune delay and call callback
           delay -= dDec;
-          dDec *= (1.0 - 1 / S) * 0.9;
+          dDec *= ( 1.0 - 1 / S ) * 0.9;
           if ( successAction ) {
             successAction( doneItem );
           }
@@ -162,9 +177,9 @@ function processQueueAsync( inputQueue, outputQueue, action, successValue, succe
   }
 
   // Set initial values and start
-  const S = 3.0;  // Steepness
+  const S = 3.0; // Steepness
   var delay = 500;
-  var dDec = delay / (S * 2.0);
+  var dDec = delay / ( S * 2.0 );
   execute();
 }
 

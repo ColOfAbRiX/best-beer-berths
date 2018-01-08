@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-    <script type="text/javascript" src="lib/js-yaml.min.js"></script>
-    <script type="text/javascript" src="lib/object_hash.min.js"></script>
+    <script type="text/javascript" src="js/js-yaml.min.js"></script>
+    <script type="text/javascript" src="js/object_hash.min.js"></script>
+    <script type="text/javascript" src="js/map-style.js"></script>
     <script type="text/javascript" src="js/global.js"></script>
     <script type="text/javascript" src="js/beer.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqnWg__YSMdaJc0K46F7S5-kUYzNqyb_4&callback=initGoogle&libraries=places" async defer></script>
@@ -22,11 +23,27 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">Best Beer Berths</div>
+    <nav class="navbar navbar-inverse" role="navigation">
+      <div class="navbar-header">
+        <img src="img/logo.png" />
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Reload</a></li>
+              <li><a href="#">Centre Home</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </nav>
 
+    <!-- Google Map -->
     <div id="map"></div>
+
+    <!-- Legend for Google Map -->
     <div id="legend">
       <h3>Legend</h3>
       <div>
@@ -41,6 +58,7 @@
       </div>
     </div>
 
+    <!-- Google InfoWindow template for Handlebar -->
     <script id="place-template" type="text/x-handlebars-template">
       <div class="placeInfo">
         <h6>{{ name }} - {{ averageScore }}/10</h6>
