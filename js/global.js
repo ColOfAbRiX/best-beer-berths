@@ -3,7 +3,7 @@
 
 const BEER_DATABASE_FILE = "database.yml"
   // Cache options
-const CACHE_ENABLED = false;
+const CACHE_ENABLED = true;
 const CACHE_DURATION = 86400;
 // Debug options
 const DEBUG = false;
@@ -75,7 +75,7 @@ function initGoogle() {
   );
 
   // Set style if present
-  if( GOOGLE_MAP_STYLE || false ) {
+  if( typeof GOOGLE_MAP_STYLE !== 'undefined' ) {
     map.set( 'styles', GOOGLE_MAP_STYLE );
   }
 
@@ -189,13 +189,31 @@ function processQueueAsync( inputQueue, outputQueue, action, successValue, succe
  */
 $.fn.stars = function () {
   return $( this ).each( function () {
-    // Get the value and divide by 2 because we use only 5 stars
-    var val = parseFloat( $( this ).html() ) / 2.0;
-    // Make sure that the value is in 0 - 5 range, multiply to get width
-    var size = Math.max( 0, ( Math.min( 5, val ) ) ) * 16;
+    // Read values from HTML and interpret it as JSON
+    var json = $.parseJSON($( this ).html());
+
+    // Convert the value in pixel size (5 stars, each 16 pixels wide)
+    var value = rangeRelative(json.minValue, json.value, json.maxValue);
+    var quarterValue = Math.round(value * 4) / 4;
+    var imageWidth = quarterValue * 5 * 16;
+
     // Add the stars
     $( this ).html(
-      $( '<span />' ).width( size )
+      $( '<span />' ).width( imageWidth )
     );
   } );
+}
+
+/**
+ * Converts a value into its relative position inside a range
+ */
+function rangeRelative(minValue, value, maxValue) {
+  // Condition the value inside the range
+  var boundValue = Math.max( minValue, Math.min( maxValue, value ) );
+  // Calculate it percentage inside the range
+  var percentValue = ( boundValue - minValue ) / ( maxValue - minValue );
+
+  //console.log(`minValue: ${minValue}; value: ${value}; maxValue: ${maxValue}; boundValue: ${boundValue}; percentValue: ${percentValue};`);
+
+  return parseFloat(percentValue);
 }

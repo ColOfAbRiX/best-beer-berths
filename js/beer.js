@@ -23,9 +23,6 @@ function BeerPlacesDB( YAMLData ) {
 
   // Properties with statistical data
   this.places = this.places.sort();
-  this.averages = this.places.map( i => i.averageScore );
-  this.averageMax = this.averages.reduce( ( a, b ) => Math.max( a, b ) );
-  this.averageMin = this.averages.reduce( ( a, b ) => Math.min( a, b ) );
 
   /**
    * A fingerprint of the Database data, excluding Google data
@@ -36,6 +33,26 @@ function BeerPlacesDB( YAMLData ) {
       JSON.stringify( hashes )
     );
   } ).apply( this );
+
+  /**
+   * The highest average amongst all places, given a filter on places
+   */
+  this.maxAverageScore = function ( filterCallback = x => true ) {
+    return this.places
+      .filter( filterCallback )
+      .map( x => x.averageScore )
+      .reduce( ( x1, x2 ) => Math.max( x1, x2 ), 0.0 );
+  }
+
+  /**
+   * The lowest average amongst all places, given a filter on places
+   */
+  this.minAverageScore = function ( filterCallback = x => true ) {
+    return this.places
+      .filter( filterCallback )
+      .map( x => x.averageScore )
+      .reduce( ( x1, x2 ) => Math.min( x1, x2 ), 10.0 );
+  }
 
   /**
    * Starts the filling of the Beer Places DB
@@ -70,7 +87,7 @@ function BeerPlacesDB( YAMLData ) {
       var cacheTimestamp = parseInt( localStorage.getItem( "BeerPlacesDBTimestamp" ) || 0 );
 
       // Check expiry
-      var expired = (new Date().getTime() - cacheTimestamp) >= CACHE_DURATION * 1000;
+      var expired = ( new Date().getTime() - cacheTimestamp ) >= CACHE_DURATION * 1000;
       if ( expired ) {
         console.info( `Cache expired.` )
         return false;
@@ -129,7 +146,7 @@ function BeerPlacesDB( YAMLData ) {
    * Loads asynchronously the information about the location of all the places
    */
   this.queryForLocations = function () {
-    var startQueue = this.places;
+    var startQueue = this.places.slice();
     var endQueue = new Array();
     var thisRef = this;
 
@@ -196,7 +213,7 @@ function BeerPlacesDB( YAMLData ) {
       place => {
         var time = ( new Date().getTime() - start ) / 1000.0;
 
-        console.info( `All letails done: items=${endQueue.length}, queries=${queries}, failures=${failures}, time=${time.toFixed(3)}s.` );
+        console.info( `All details done: items=${endQueue.length}, queries=${queries}, failures=${failures}, time=${time.toFixed(3)}s.` );
         thisRef.places = endQueue;
 
         thisRef.saveCache()
@@ -245,17 +262,22 @@ function BeerPlacesDB( YAMLData ) {
    */
   this.pinColour = function ( place ) {
     function toColorHex( number ) {
-      number = Math.max( Math.min( parseInt( number ), 255 ), 0 )
+      number = Math.max( Math.min( parseInt( number ), 255 ), 0 );
       let str = number.toString( 16 );
       return "0".repeat( 2 - str.length ) + str;
     }
 
-    var range = 10.0 / ( this.averageMax - this.averageMin )
-    range = Math.min( Math.max( 0.0, range ), 10.0 );
-    var colour = ( place.averageScore - this.averageMin ) * range;
-    colour = 255 - ( colour * 255 / 10.0 );
-    colour = toColorHex( colour );
+    // Group the colouring by Status
+    var filter = x => x.Status.toLowerCase() == place.Status.toLowerCase();
+    console.log(place);
+    place.maxAverageScore = this.maxAverageScore(filter);
+    place.minAverageScore = this.minAverageScore(filter);
 
+    // Calculate colour
+    var colour = rangeRelative(place.minAverageScore, place.averageScore, place.maxAverageScore);
+    colour = toColorHex( parseInt(255 - colour * 255) );
+
+    // Translate to colour codes
     var pinColour = "FF";
     if ( place.Status.toLowerCase() == 'tried' ) {
       pinColour = `${colour}FF${colour}`;
@@ -299,7 +321,7 @@ function BeerPlace( rawPlaceData, country, city ) {
     if ( this.Status.toLowerCase() == 'tried' ) {
       // Draught score (weight of 33%)
       if ( 'Draught' in this.Score ) {
-        if( this.Score.Draught > 0.0 ) {
+        if ( this.Score.Draught > 0.0 ) {
           average += this.Score.Draught * 3.0;
           count += 3;
         }
@@ -308,7 +330,7 @@ function BeerPlace( rawPlaceData, country, city ) {
 
       // Bottles score (weight of 33%)
       if ( 'Bottles' in this.Score ) {
-        if( this.Score.Bottles > 0.0 ) {
+        if ( this.Score.Bottles > 0.0 ) {
           average += this.Score.Bottles * 3.0;
           count += 3;
         }
@@ -317,7 +339,7 @@ function BeerPlace( rawPlaceData, country, city ) {
 
       // Place score (weight of 22%)
       if ( 'Place' in this.Score ) {
-        if( this.Score.Place > 0.0 ) {
+        if ( this.Score.Place > 0.0 ) {
           average += this.Score.Place * 2.0;
           count += 2;
         }
@@ -326,7 +348,7 @@ function BeerPlace( rawPlaceData, country, city ) {
 
       // Food score (weight of 11%)
       if ( 'Food' in this.Score ) {
-        if( this.Score.Food > 0.0 ) {
+        if ( this.Score.Food > 0.0 ) {
           average += this.Score.Food * 1.0;
           count += 1;
         }
@@ -338,16 +360,16 @@ function BeerPlace( rawPlaceData, country, city ) {
       average -= penalty;
     }
     else if ( this.Status.toLowerCase() == 'to try' ) {
-      // Personal score (weight of 67%)
+      // Personal score (weight of 60%)
       if ( 'Mine' in this.Expectation ) {
-        average += this.Expectation.Mine * 2.0;
-        count += 2;
+        average += this.Expectation.Mine * 3.0;
+        count += 3;
       }
 
-      // Google score, ranges from 0 to 5 (weight of 33%)
+      // Google score, ranges from 0 to 5 (weight of 40%)
       if ( 'Google' in this.Expectation ) {
-        average += this.Expectation.Google * 2.0;
-        count += 1;
+        average += this.Expectation.Google * 4.0;
+        count += 2;
       }
 
       // Final calculations
@@ -356,25 +378,49 @@ function BeerPlace( rawPlaceData, country, city ) {
     }
 
     return average
-  }).apply(this);
+  } ).apply( this );
 
   /**
    * Queries Google to fetch information about the position and then calls a
    * callback function when the data is available.
    */
   this.queryLocation = function ( callback, force = false ) {
+    // Merges the location information provided by Google into this object
+    function mergeLocation( googleLocation ) {
+      var photoUrl = ""
+      if ( googleLocation.photos.length > 0 ) {
+        photoUrl = googleLocation.photos[ 0 ].getUrl( {
+          'maxHeight': 100,
+          'maxWidth': 150,
+        } );
+      }
+
+      this.GoogleLocation = {
+        place_id: googleLocation.place_id,
+        formatted_address: googleLocation.formatted_address,
+        geometry: googleLocation.geometry,
+        name: googleLocation.name,
+        opening_hours: googleLocation.opening_hours,
+        open_now: googleLocation.open_now,
+        rating: googleLocation.rating,
+        photoUrl: photoUrl
+      };
+    }
+
     // Skip if already present
     if ( this.GoogleLocation && !force ) {
-      console.warn(`Location data already loaded for ${this.Name}`);
+      console.warn( `Location data already loaded for ${this.Name}` );
       return;
     }
 
-    var request = {'query': `${this.Name}, ${this.Address}`};
+    var request = {
+      'query': `${this.Name}, ${this.Address}`
+    };
     placesService.textSearch( request, ( results, status ) => {
       console.info( `Text search completed for "${this.Name}" with status ${status}` );
 
       if ( status == google.maps.places.PlacesServiceStatus.OK ) {
-        this.mergeLocation( results[ 0 ] );
+        mergeLocation.call( this, results[ 0 ] );
         console.info( `Found ID for "${this.Name}": ${this.GoogleLocation.place_id}` );
       }
 
@@ -385,51 +431,35 @@ function BeerPlace( rawPlaceData, country, city ) {
   }
 
   /**
-   * Merges the location information provided by Google into this object
-   */
-  this.mergeLocation = function ( googleLocation ) {
-    var photoUrl = ""
-    if ( googleLocation.photos.length > 0 ) {
-      photoUrl = googleLocation.photos[ 0 ].getUrl( {
-        'maxHeight': 100,
-        'maxWidth': 150,
-      } );
-    }
-
-    this.GoogleLocation = {
-      place_id: googleLocation.place_id,
-      formatted_address: googleLocation.formatted_address,
-      geometry: googleLocation.geometry,
-      name: googleLocation.name,
-      opening_hours: googleLocation.opening_hours,
-      open_now: googleLocation.open_now,
-      rating: googleLocation.rating,
-      photoUrl: photoUrl
-    };
-  }
-
-  /**
    * Queries Google for detaiDeliriumled information about the place and then calls a
    * callback function when the data is available.
    */
   this.queryDetails = function ( callback, force = false ) {
+    // Merges the details information provided by Google into this object
+    function mergeDetails( googleDetails ) {
+      this.GoogleDetails = {}
+      Object.assign( this.GoogleDetails, googleDetails );
+    }
+
     // Skip if details are missing
     if ( !this.GoogleLocation ) {
-      console.error(`Can't load Details because Location is missing for ${this.Name}`);
+      console.error( `Can't load Details because Location is missing for ${this.Name}` );
       return;
     }
     // Skip if already present
     if ( this.GoogleDetails && !force ) {
-      console.warn(`Details data already loaded for ${this.Name}`);
+      console.warn( `Details data already loaded for ${this.Name}` );
       return;
     }
 
-    var request = {'placeId': this.GoogleLocation.place_id};
+    var request = {
+      'placeId': this.GoogleLocation.place_id
+    };
     placesService.getDetails( request, ( results, status ) => {
       console.info( `Details search completed for "${this.Name}" with status ${status}` );
 
       if ( status == google.maps.places.PlacesServiceStatus.OK ) {
-        this.mergeDetails( results );
+        mergeDetails.call( this, results );
         console.info( `Found details for "${this.Name}".` );
       }
 
@@ -437,14 +467,6 @@ function BeerPlace( rawPlaceData, country, city ) {
         callback( this, status );
       }
     } );
-  }
-
-  /**
-   * Merges the details information provided by Google into this object
-   */
-  this.mergeDetails = function ( googleDetails ) {
-    this.GoogleDetails = {};
-    Object.assign( this.GoogleDetails, googleDetails );
   }
 
   /**
@@ -458,6 +480,8 @@ function BeerPlace( rawPlaceData, country, city ) {
     return hndPlaceInfo( {
       name: this.Name,
       averageScore: this.averageScore.toFixed( 2 ),
+      minAverageScore: this.minAverageScore,
+      maxAverageScore: this.maxAverageScore,
       address: this.GoogleLocation.formatted_address,
       type: this.Type,
       score: this.Score || "",

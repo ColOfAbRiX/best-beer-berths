@@ -25,15 +25,15 @@
   <body>
     <nav class="navbar navbar-inverse" role="navigation">
       <div class="navbar-header">
-        <img src="img/logo.png" />
+        <img src="img/log2o.png" />
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Reload</a></li>
               <li><a href="#">Centre Home</a></li>
+              <li><a href="#">Reload</a></li>
             </ul>
           </li>
         </ul>
@@ -47,14 +47,14 @@
     <div id="legend">
       <h3>Legend</h3>
       <div>
-        <img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FFFFFF">&hellip;
-        <img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|80FF80">&hellip;
-        <img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|00FF00">&nbsp;<strong>Tried</strong>
+        <img src="https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FFFFFF">&hellip;
+        <img src="https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|80FF80">&hellip;
+        <img src="https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|00FF00">&nbsp;<strong>Tried</strong>
       </div>
       <div>
-        <img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FFFFFF">&hellip;
-        <img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|8080FF">&hellip;
-        <img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|0000FF">&nbsp;<strong>Haven't Tried</strong>
+        <img src="https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FFFFFF">&hellip;
+        <img src="https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|8080FF">&hellip;
+        <img src="https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|0000FF">&nbsp;<strong>Haven't Tried</strong>
       </div>
     </div>
 
@@ -63,7 +63,7 @@
       <div class="placeInfo">
         <h6>{{ name }} - {{ averageScore }}/10</h6>
         <p>
-          <span class="stars">{{ averageScore }}</span>
+          <span class="stars">{ "value":{{ averageScore }},"minValue":{{ minAverageScore }},"maxValue":{{ maxAverageScore }} }</span>
           {{# if website }}<a href="{{ website }}" target="_blank">Website</a>{{/ if }}
         </p>
         <p>
