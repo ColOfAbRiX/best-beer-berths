@@ -7,6 +7,52 @@ function BeerPlacesDB( YAMLData ) {
   this.places = new Array();
   var timer;
 
+  /**
+   * Checks that the raw data for a a place has got all the fields
+   */
+  this.checkPlaceData = function( rawPlaceData ) {
+    // Check for "Name"
+    if( !'Name' in beerPlace || !beerPlace.Name ) {
+      return false;
+    }
+    // Check for "Address"
+    if( !'Address' in beerPlace || !beerPlace.Address ) {
+      return false;
+    }
+    // Check for "Type"
+    if( !'Type' in beerPlace || !beerPlace.Type ) {
+      return false;
+    }
+    // Check for "Status"
+    if( !'Status' in beerPlace || !beerPlace.Status ) {
+      return false;
+    }
+
+    if( beerPlace.Status.toLowerCase() === "to try" ) {
+      // Check for "Expectation"
+      if( !'Expectation' in beerPlace || !beerPlace.Expectation ) {
+        return false;
+      }
+      // Check for "Expectation.Mine"
+      if( !'Mine' in beerPlace || !beerPlace.Expectation.Mine ) {
+        return false;
+      }
+      // Check for "Expectation.Google"
+      if( !'Google' in beerPlace || !beerPlace.Expectation.Google ) {
+        return false;
+      }
+    }
+
+    if( beerPlace.Status.toLowerCase() === "tried" ) {
+      // Check for "Score"
+      if( !'Score' in beerPlace || !beerPlace.Score ) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   // Scan all the YAML results and build objects
   for ( var country in YAMLData ) {
     var countryCities = YAMLData[ country ];
@@ -14,9 +60,14 @@ function BeerPlacesDB( YAMLData ) {
       var cityPlaces = countryCities[ city ];
       for ( var place in cityPlaces ) {
         var beerPlace = cityPlaces[ place ];
-        if ( !DEBUG || city.match( DEBUG_CITY ) ) {
-          this.places.push( new BeerPlace( beerPlace, country, city ) );
+        if ( DEBUG && !city.match( DEBUG_CITY ) ) {
+          continue;
         }
+        if( !this.checkPlaceData(beerPlace) ) {
+          console.warn(`Missing information on entry ${JSON.stringify(beerPlace)}`);
+          continue;
+        }
+        this.places.push( new BeerPlace( beerPlace, country, city ) );
       }
     }
   }
@@ -94,7 +145,7 @@ function BeerPlacesDB( YAMLData ) {
       }
 
       // Check hash
-      var hashMatch = this.placesHash == cacheHash;
+      var hashMatch = this.placesHash === cacheHash;
       if ( !hashMatch ) {
         console.info( `Cache found (${cacheHash}) but doesn't match data (${this.placesHash}).` )
         return false;
@@ -261,32 +312,28 @@ function BeerPlacesDB( YAMLData ) {
    *   Calculates the colour of the pin.
    */
   this.pinColour = function ( place ) {
-    function toColorHex( number ) {
-      number = Math.max( Math.min( parseInt( number ), 255 ), 0 );
-      let str = number.toString( 16 );
-      return "0".repeat( 2 - str.length ) + str;
-    }
-
     // Group the colouring by Status
-    var filter = x => x.Status.toLowerCase() == place.Status.toLowerCase();
-    console.log(place);
+    var filter = x => x.Status.toLowerCase() === place.Status.toLowerCase();
+
+    // Find range min and max
     place.maxAverageScore = this.maxAverageScore(filter);
     place.minAverageScore = this.minAverageScore(filter);
 
-    // Calculate colour
-    var colour = rangeRelative(place.minAverageScore, place.averageScore, place.maxAverageScore);
-    colour = toColorHex( parseInt(255 - colour * 255) );
+    // Calculate percentage
+    var colourPercentage = rangeRelative(
+      place.minAverageScore,
+      place.averageScore,
+      place.maxAverageScore
+    );
 
-    // Translate to colour codes
-    var pinColour = "FF";
-    if ( place.Status.toLowerCase() == 'tried' ) {
-      pinColour = `${colour}FF${colour}`;
-    }
-    else if ( place.Status.toLowerCase() == 'to try' ) {
-      pinColour = `${colour}${colour}FF`;
-    }
+    // Calculate the colour on the gradient
+    var colour = getGradientColor(
+      PINS[place.Status.toLowerCase()][0],
+      PINS[place.Status.toLowerCase()][1],
+      colourPercentage
+    );
 
-    return pinColour;
+    return colour;
   }
 }
 
@@ -318,7 +365,7 @@ function BeerPlace( rawPlaceData, country, city ) {
     var count = 0;
     var penalty = 0.0;
 
-    if ( this.Status.toLowerCase() == 'tried' ) {
+    if ( this.Status.toLowerCase() === 'tried' ) {
       // Draught score (weight of 33%)
       if ( 'Draught' in this.Score ) {
         if ( this.Score.Draught > 0.0 ) {
@@ -359,7 +406,7 @@ function BeerPlace( rawPlaceData, country, city ) {
       average /= count;
       average -= penalty;
     }
-    else if ( this.Status.toLowerCase() == 'to try' ) {
+    else if ( this.Status.toLowerCase() === 'to try' ) {
       // Personal score (weight of 60%)
       if ( 'Mine' in this.Expectation ) {
         average += this.Expectation.Mine * 3.0;
@@ -419,7 +466,7 @@ function BeerPlace( rawPlaceData, country, city ) {
     placesService.textSearch( request, ( results, status ) => {
       console.info( `Text search completed for "${this.Name}" with status ${status}` );
 
-      if ( status == google.maps.places.PlacesServiceStatus.OK ) {
+      if ( status === google.maps.places.PlacesServiceStatus.OK ) {
         mergeLocation.call( this, results[ 0 ] );
         console.info( `Found ID for "${this.Name}": ${this.GoogleLocation.place_id}` );
       }
@@ -458,7 +505,7 @@ function BeerPlace( rawPlaceData, country, city ) {
     placesService.getDetails( request, ( results, status ) => {
       console.info( `Details search completed for "${this.Name}" with status ${status}` );
 
-      if ( status == google.maps.places.PlacesServiceStatus.OK ) {
+      if ( status === google.maps.places.PlacesServiceStatus.OK ) {
         mergeDetails.call( this, results );
         console.info( `Found details for "${this.Name}".` );
       }

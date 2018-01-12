@@ -2,9 +2,18 @@
 
 
 const BEER_DATABASE_FILE = "database.yml"
-  // Cache options
+
+// Cache options
 const CACHE_ENABLED = true;
 const CACHE_DURATION = 86400;
+
+// Pins colours
+const PINS = {
+  //'tried': ['FFFFFF', '33DD33'],
+  'tried': ['FFFFFF', 'FF7FFF'],
+  'to try': ['FFFFFF', '007FFF']
+};
+
 // Debug options
 const DEBUG = false;
 const DEBUG_CITY = /(london)/i;
@@ -23,6 +32,7 @@ const DEBUG_POSITION = {
 //   lat: 51.532492399999995,
 //   lng: -0.0351538
 // };
+
 
 var beerDb;
 var map, infoWindow, placesService;
@@ -69,15 +79,13 @@ function initGoogle() {
   infoWindow = new google.maps.InfoWindow;
   placesService = new google.maps.places.PlacesService( map );
 
-  // Add legend to the map
-  map.controls[ google.maps.ControlPosition.TOP_RIGHT ].push(
-    $( '#legend' )[ 0 ]
-  );
-
   // Set style if present
   if( typeof GOOGLE_MAP_STYLE !== 'undefined' ) {
     map.set( 'styles', GOOGLE_MAP_STYLE );
   }
+
+  // Add the legend
+  addLegend();
 
   // Centre the map on the current position
   var pos = {
@@ -123,6 +131,45 @@ function initGoogle() {
   );
 }
 
+
+/**
+ * Adds the legend to the map and configures it
+ */
+function addLegend() {
+  function colouredPinUrl( colour ) {
+    return `https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|${colour}`
+  }
+  function imagesRange( type ) {
+    return [
+      colouredPinUrl(PINS[type][0]),
+      colouredPinUrl(getGradientColor(PINS[type][0], PINS[type][1], 0.5)),
+      colouredPinUrl(PINS[type][1])
+    ];
+  }
+
+  // Add legend to the map
+  map.controls[ google.maps.ControlPosition.TOP_RIGHT ].push(
+    $( '#legend' )[ 0 ]
+  );
+
+  // Build coloured pin images
+  var urls1 = imagesRange( 'tried' );
+  var img11 = $( '<img />' ).attr( "src", urls1[0] ).prop('outerHTML');
+  var img12 = $( '<img />' ).attr( "src", urls1[1] ).prop('outerHTML');
+  var img13 = $( '<img />' ).attr( "src", urls1[2] ).prop('outerHTML');
+  var urls2 = imagesRange( 'to try' );
+  var img21 = $( '<img />' ).attr( "src", urls2[0] ).prop('outerHTML');
+  var img22 = $( '<img />' ).attr( "src", urls2[1] ).prop('outerHTML');
+  var img23 = $( '<img />' ).attr( "src", urls2[2] ).prop('outerHTML');
+
+  // Add images
+  $( '#legend-tried' ).prepend(
+    img11 + "&hellip;" + img12 + "&hellip;" + img13
+  );
+  $( '#legend-totry' ).prepend(
+    img21 + "&hellip;" + img22 + "&hellip;" + img23
+  );
+}
 
 /**
  * Executes an asynchronous action over objects of a queue
@@ -185,6 +232,64 @@ function processQueueAsync( inputQueue, outputQueue, action, successValue, succe
 
 
 /**
+ * Converts a value into its relative position inside a range
+ */
+function rangeRelative(minValue, value, maxValue) {
+  // Condition the value inside the range
+  var boundValue = Math.max( minValue, Math.min( maxValue, value ) );
+  // Calculate it percentage inside the range
+  var percentValue = ( boundValue - minValue ) / ( maxValue - minValue );
+
+  return parseFloat(percentValue);
+}
+
+
+/**
+ * Gets a colour from a gradient.
+ * See: https://stackoverflow.com/questions/3080421/javascript-color-gradient
+ */
+function getGradientColor(start_color, end_color, percent) {
+   // Strip the leading # if it's there
+   var start_color = start_color.replace(/^\s*#|\s*$/g, '');
+   var end_color = end_color.replace(/^\s*#|\s*$/g, '');
+
+   // Convert 3 char codes --> 6, e.g. `E0F` --> `EE00FF`
+   if(start_color.length === 3){
+     start_color = start_color.replace(/(.)/g, '$1$1');
+   }
+
+   if(end_color.length === 3){
+     end_color = end_color.replace(/(.)/g, '$1$1');
+   }
+
+   // Get colours
+   var start_red = parseInt(start_color.substr(0, 2), 16),
+       start_green = parseInt(start_color.substr(2, 2), 16),
+       start_blue = parseInt(start_color.substr(4, 2), 16);
+
+   var end_red = parseInt(end_color.substr(0, 2), 16),
+       end_green = parseInt(end_color.substr(2, 2), 16),
+       end_blue = parseInt(end_color.substr(4, 2), 16);
+
+   // Calculate new colour
+   var diff_red = end_red - start_red;
+   var diff_green = end_green - start_green;
+   var diff_blue = end_blue - start_blue;
+
+   diff_red = ( (diff_red * percent) + start_red ).toString(16).split('.')[0];
+   diff_green = ( (diff_green * percent) + start_green ).toString(16).split('.')[0];
+   diff_blue = ( (diff_blue * percent) + start_blue ).toString(16).split('.')[0];
+
+   // Ensure 2 digits by colour
+   if( diff_red.length === 1 ) diff_red = '0' + diff_red
+   if( diff_green.length === 1 ) diff_green = '0' + diff_green
+   if( diff_blue.length === 1 ) diff_blue = '0' + diff_blue
+
+   return diff_red + diff_green + diff_blue;
+ }
+
+
+/**
  * Function to draw score stars
  */
 $.fn.stars = function () {
@@ -202,18 +307,4 @@ $.fn.stars = function () {
       $( '<span />' ).width( imageWidth )
     );
   } );
-}
-
-/**
- * Converts a value into its relative position inside a range
- */
-function rangeRelative(minValue, value, maxValue) {
-  // Condition the value inside the range
-  var boundValue = Math.max( minValue, Math.min( maxValue, value ) );
-  // Calculate it percentage inside the range
-  var percentValue = ( boundValue - minValue ) / ( maxValue - minValue );
-
-  //console.log(`minValue: ${minValue}; value: ${value}; maxValue: ${maxValue}; boundValue: ${boundValue}; percentValue: ${percentValue};`);
-
-  return parseFloat(percentValue);
 }
