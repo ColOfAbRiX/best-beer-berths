@@ -1,29 +1,33 @@
 ---
+# NOTE: To make this example working, rename the file into database.yml
+
 Beer places:
 
   England:
 
     London:
+     # Example entry when Score == "Tried"
      - Name: The Dove Freehouse and Kitchen
        Address: 24-28 Broadway Market, London E8 4QJ
        Type: Belgian Bar
        Status: Tried
        Score: { Draught: 7, Bottles: 10, Place: 9 }
+
+     # This entry has all the fields of Score.
      - Name: The Craft Beer Co. Islington
        Address: 55 White Lion St, London N1 9PP
        Type: English Pub
        Status: Tried
        Score: { Draught: 10, Bottles: 8, Food: 9, Place: 9 }
+
+     # In this entry it's shown that Score entries are optional
      - Name: Brewdog Shoreditch
        Address: 51-55 Bethnal Green Rd, London E1 6LA
        Type: Brewery Chain
        Status: Tried
        Score: { Draught: 9 , Place: 7 }
-     - Name: Brew by Numbers
-       Address: 79 Enid St, London SE16 3RA
-       Type: Brewery
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.5 }
+
+     # Example entry when Status == "To try"
      - Name: The Kernel Brewery
        Address: Arch 11, Dockley Road Industrial Estate, Dockley Rd, London SE16 3SF
        Type: Brewery

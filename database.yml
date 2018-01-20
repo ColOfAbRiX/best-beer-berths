@@ -1,0 +1,477 @@
+---
+#
+# List of worthy beer places around the world or places that I want to visit.
+# Last updated: 17/01/2018
+#
+
+Beer places:
+
+  Belgium:
+    Antwerpen:
+     - Name: Paters Vaetje
+       Address: Blauwmoezelstraat 1, 2000 Antwerpen, Belgium
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Bottles: 8, Place: 9 }
+
+    Brugge:
+     - Name: Le Trappiste
+       Address: Kuipersstraat 33, 8000 Brugge, Belgium
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Draught: 9, Bottles: 9, Place: 8 }
+
+    Ghen:
+     - Name: Dulle Griet
+       Address: Vrijdagmarkt 50, 9000 Gent, Belgium
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Bottles: 8, Place: 8 }
+
+    Bruxelles:
+     ##  Tried  ##
+     - Name: Delirium Café
+       Address: Impasse de la Fidélité 4, 1000 Bruxelles, Belgium
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Draught: 8, Bottles: 10, Place: 8 }
+
+     ##  Still To try  ##
+     - Name: Moeder Lambic Fontain
+       Address: Place Fontainas 8, 1000 Bruxelles, Belgium
+       Type: Belgian Bar
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.5 }
+     - Name: La Porte Noire
+       Address: Rue des Alexiens 67, 1000 Bruxelles, Belgium
+       Type: Belgian Bar
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.5 }
+     - Name: A La Mort Subite
+       Address: Rue Montagne aux Herbes Potagères 7, 1000 Bruxelles, Belgium
+       Type: Belgian Bar
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.2 }
+     - Name: La Porteuse d’Eau
+       Address: Avenue Jean Volders 48, 1060 Saint-Gilles, Belgium
+       Type: Belgian Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.1 }
+     - Name: Poechenellekelder
+       Address: Rue du Chêne 5, 1000 Bruxelles, Belgium
+       Type: Belgian Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Daringman
+       Address: Rue de Flandre 37, 1000 Bruxelles, Belgium
+       Type: Belgian Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.4 }
+     - Name: Moeder Lambic Original
+       Address: Rue de Savoie 68, 1060 Saint-Gilles, Belgium
+       Type: Belgian Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.5 }
+     - Name: Bier Circus
+       Address: Rue de l'Enseignement 57, 1000 Bruxelles, Belg
+       Type: Belgian Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.1 }
+
+    Others:
+     - Name: Espace Chimay
+       Address: Rue de Poteaupré 5, 6464 Bourlers, Belgium
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.0 }
+     - Name: Brouwerij Het Anker
+       Address: Guido Gezellelaan 49, 2800 Mechelen, Belgium
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.4 }
+     - Name: Brasserie Dupont sprl
+       Address: Rue Basse 5, 7904 Leuze-en-Hainaut, Belgium
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.3 }
+     - Name: St-Feuillien
+       Address: St-Feuillien
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Brasserie Le Maredsous
+       Address: Rue de Maredsous 11, 5537 Anhée, Belgium
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.2 }
+     - Name: Brouwerij Lindemans
+       Address: Lenniksebaan 1479, 1602 Vlezenbeek, Belgiu
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.8 }
+
+  Denmark:
+    København:
+     ##  Tried  ##
+     - Name: Fermentoren
+       Address: Halmtorvet 29C, 1700 København V, Denmark
+       Type: Pub
+       Status: Tried
+       Score: { Draught: 9, Place: 7 }
+     - Name: Warpigs Brewpub
+       Address: Flæsketorvet 25, 1711 København V, Denmark
+       Type: Pub
+       Status: Tried
+       Score: { Draught: 9, Place: 6 }
+     - Name: Ørsted Ølbar
+       Address: Nørre Farimagsgade 13, 1364 København K, Denmark
+       Type: Pub
+       Status: Tried
+       Score: { Draught: 8, Bottles: 9, Place: 8 }
+
+     ##  Still To try  ##
+     - Name: Mikkeller Bar
+       Address: Viktoriagade 8, 1655 København V, Denmark
+       Type: Pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.5 }
+     - Name: Nørrebro Bryghus
+       Address: Ryesgade 3, 2200 København N, Denmark
+       Type: Pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.1 }
+
+  England:
+    Colchester:
+     ##  Tried  ##
+     - Name: Queen St Brewhouse
+       Address: 7 Queen St, Colchester CO1 2PG
+       Type: English/Belgian Bar
+       Status: Tried
+       Score: { Draught: 8, Bottles: 8, Place: 10 }
+
+    London:
+     ##  Tried  ##
+     - Name: The Dove Freehouse and Kitchen
+       Address: 24-28 Broadway Market, London E8 4QJ
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Draught: 7, Bottles: 10, Place: 9 }
+     - Name: The Dovetail
+       Address: 9-10 Jerusalem Passage, Clerkenwell, London EC1V 4JP
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Draught: 8, Bottles: 8, Food: 8, Place: 8 }
+     - Name: The Craft Beer Co. Clerkenwell
+       Address: 82 Leather Ln, Clerkenwell, London EC1N 7TR
+       Type: English Pub
+       Status: Tried
+       Score: { Draught: 9, Place: 6 }
+     - Name: The Craft Beer Co. Islington
+       Address: 55 White Lion St, London N1 9PP
+       Type: English Pub
+       Status: Tried
+       Score: { Draught: 10, Bottles: 8, Food: 9, Place: 9 }
+     - Name: Brewdog Shoreditch
+       Address: 51-55 Bethnal Green Rd, London E1 6LA
+       Type: Brewery Chain
+       Status: Tried
+       Score: { Draught: 9 , Place: 7 }
+     - Name: The Exmouth Arms
+       Address: 23 Exmouth Market, Clerkenwell, London EC1R 4QL
+       Type: English Pub
+       Status: Tried
+       Score: { Draught: 8, Bottles: 9, Place: 7 }
+     - Name: Bierschenke
+       Address: London Wall Buildings, 4 Blomfield St, London EC2M
+       Type: German Pub
+       Status: Tried
+       Score: { Draught: 7, Bottles: 8, Food: 9, Place: 7 }
+     - Name: Bavarian Beerhouse Old Street
+       Address: 190 City Rd, London EC1V 2QH
+       Type: German Pub
+       Status: Tried
+       Score: { Draught: 8, Bottles: 7, Food: 8, Place: 9 }
+     - Name: Utobeer
+       Address: 24 Borough Market, London SE1 1TL
+       Type: Beer Shop
+       Status: Tried
+       Score: { Draught: -1, Bottles: 9, Place: 7 }
+     - Name: The Italian Job at Notting Hill
+       Address: 45 All Saints Rd, London W11 1HE
+       Type: English/Italian Pub
+       Status: Tried
+       Score: { Draught: 8, Place: 8 }
+     - Name: The Cat & Mutton
+       Address: 76 Broadway Market, London E8 4QJ
+       Type: English Pub
+       Status: Tried
+       Score: { Draught: 8, Place: 7 }
+
+     ##  Still to try  ##
+     - Name: London Beer House
+       Address: 24 Charles II St, St. James's, London SW1Y
+       Type: Taproom
+       Status: Tried
+       Score: { Draught: 7, Place: 8 }
+     - Name: Brew by Numbers
+       Address: 79 Enid St, London SE16 3RA
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.5 }
+     - Name: Caps and Taps
+       Address: Caps and Taps, 130 Kentish Town Road, Kentish Town NW1 9QB
+       Type: Beer shop
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.9 }
+     - Name: Howling Hops Brewery and Tank Bar
+       Address: Unit 9A Queen's Yard, White Post Ln, London E9 5EN
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.6 }
+     - Name: The Bull, Highate
+       Address: 13 North Hill, Highgate, London N6 4AB
+       Type: English Pub
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.3 }
+     - Name: Waterloo Tap
+       Address: Sutton Walk, Lambeth, London SE1 8RL
+       Type: Beer pub
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.1 }
+     - Name: The Five Points Brewing Company
+       Address: 3 Institute Pl, London E8 1JE, UK
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.9 }
+     - Name: The Kernel Brewery
+       Address: Arch 11, Dockley Road Industrial Estate, Dockley Rd, London SE16 3SF
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: Ubrew
+       Address: 29-30, Old Jamaica Business Estate, 24 Old Jamaica Rd, London SE16 4AW, UK
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.2 }
+     - Name: Fourpure Brewing Co.
+       Address: Fourpure Brewing Co.
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Mason & Company
+       Address: Queen Elizabeth Olympic Park, 25 E Bay Ln, London E20 3BS
+       Type: Beer pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.4 }
+     - Name: London Beer Lab
+       Address: Arch 41 Railway Arches, Nursery Rd, Brixton, London SW9 8BP
+       Type: Beer pub and shop
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.9 }
+     - Name: Wild Card Brewery Ravenswood
+       Address: Shernhall St, Walthamstow, London E17 9HQ
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
+     - Name: London Beer Dispensary
+       Address: 2ph, 389 Brockley Rd, London SE4 2PH
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
+     - Name: Mother Kelly's
+       Address: 251 Paradise Row, Bethnal Green, London E2 9LE
+       Type: Beer pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: BottleShop Bermondsey
+       Address: 128 Druid St, London SE1 2HH
+       Type: Beer Shop
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: The Beavertown Taproom
+       Address: Unit 17 - 18 Mill Mead Rd Tottenham Hale, Greater London
+       Type: Brewery taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: Redchurch Brewery
+       Address: 275-276 Poyser St, London E2 9RF
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: Earl of Essex
+       Address: 25 Danbury St, Islington, London N1 8LE
+       Type: English pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.4 }
+     - Name: Draft House Seething
+       Address: 14-15 Seething Ln, London EC3N 4AX
+       Type: Beer pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.3 }
+     - Name: Draft House Tower Bridge
+       Address: 206-208 Tower Bridge Rd, London SE1 2UP
+       Type: Beer pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.2 }
+     - Name: Katzenjammers
+       Address: The Hop Exchange, 24 Southwark St, London SE1 1TY
+       Type: German Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.1 }
+     - Name: The Pig and Butcher
+       Address: 80 Liverpool Rd, London N1 0QD
+       Type: English pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.5 }
+     - Name: Dragonfly Brewery
+       Address: 183 High St, Acton, London W3 9DJ
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.4 }
+     - Name: The Barrel Project
+       Address: 80 Druid St, London SE1
+       Type: Beer pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.3 }
+     - Name: The Euston Tap
+       Address: 190 Euston Rd, Kings Cross, London NW1 2EF
+       Type: Beer pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.3 }
+     - Name: The Lyric
+       Address: 37 Great Windmill St, Soho, London W1D 7LT
+       Type: English Pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.2 }
+     - Name: The White Hart Brew Pub
+       Address: 1 Mile End Rd, London E1 4TP
+       Type: English Pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.1 }
+     - Name: Partizan Brewing
+       Address: Partizan Brewing
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.3 }
+     - Name: Anspach & Hobday
+       Address: Anspach & Hobday
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.3 }
+
+  Italia:
+    Cattolica:
+     - Name: Birroteca88
+       Address: Via S.Allende, 88, 47841 Cattolica RN, Italy
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.7 }
+
+    Cesena:
+     ##  Tried  ##
+     - Name: Brasserie Arnage
+       Address: Viale Oberdan, Viale Guglielmo Oberdan, 618, 47521 Cesena FC, Italy
+       Type: Italian Pub
+       Status: Tried
+       Score: { Draught: 9, Bottles: 8, Place: 9 }
+     - Name: StHop BeerShop & Tap Bar
+       Address: Viale Giacomo Matteotti, Cesena FC, Italy
+       Type: Beer Bar
+       Status: Tried
+       Score: { Draught: 7, Bottles: 7, Place: 9 }
+
+     ##  Stil To try  ##
+     - Name: Mosaic Beer-House
+       Address: Via Cesare Battisti, 47, 47521 Cesena FC, Italy
+       Type: Italian Pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.4 }
+
+    Forlì:
+     - Name: Barbeer
+       Address: Via Decio Raggi, 25a, 47121 Forlì FC, Italy
+       Type: Italian Pub
+       Status: Tried
+       Score: { Draught: 7, Place: 8 }
+
+    Gabicce Mare:
+     - Name: La Tana Del Luppolo
+       Address: Via del Porto, 61011 Gabicce Mare PU, Italy
+       Type: Beer pub
+       Status: Tried
+       Score: { Draught: 8, Bottles: 9, Place: 7 }
+
+    Milano:
+     - Name: La Belle Alliance
+       Address: Via Evangelista Torricelli, 1, 20136 Milano MI
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 9, Bottles: 7, Place: 9 }
+     - Name: La Birreria Italiana
+       Address: Piazzale Antonio Cantore, 4, 20123 Milano MI
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 7, Bottles: 9, Food: 8, Place: 8 }
+     - Name: Quality Craft Beer BQ
+       Address: Alzaia Naviglio Grande, 44, 20144 Milano MI
+       Type: Italian Beer Pub
+       Status: Tried
+       Score: { Draught: 9, Bottles: -1, Place: 6 }
+
+    Rimini:
+     - Name: FOB
+       Address: Via Castracane, 17, 47921 Rimini RN, Italy
+       Type: Italian Pub
+       Status: Tried
+       Score: { Draught: 10, Food: 8, Place: 7 }
+     - Name: L'Angolo Blu
+       Address: Viale Siracusa, 73, 47924 Rimini RN, Italy
+       Type: Bavarian Restaurant and Pizzeria
+       Status: Tried
+       Score: { Draught: 7, Bottles: 8, Food: 9, Place: 8 }
+
+    Riccione:
+     - Name: Malto La Birreria
+       Address: Viale Armando Diaz, 3, 47838 Riccione RN, Italy
+       Type: Italian Pub
+       Status: Tried
+       Score: { Draught: 8, Food: 7, Place: 6 }
+     - Name: Amarcord Italian Gourmet Pub
+       Address: Via Virgilio, 17, 47838 Riccione RN, Italy
+       Type: Italian Pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.6 }
+
+    Savignano:
+     - Name: Sidro club
+       Address: Via A. Moroni, 92, 47039 Savignano Sul Rubicone FC, Italy
+       Type: Italian Pub
+       Status: To try
+       Expectation: { Mine: 6, Google: 4.6 }
+
+  Sweden:
+    Stockholm:
+     - Name: Restaurang Akkurat
+       Address: Hornsgatan 18, 118 20 Stockholm, Sweden
+       Type: Beer pub
+       Status: Tried
+       Score: { Draught: 9, Bottles: 10, Place: 7 }
+     - Name: Mikkeller Stockholm
+       Address: Brahegatan 3-5, 114 37 Stockholm, Sweden
+       Type: Brewery taproom
+       Status: Tried
+       Score: { Draught: 8, Place: 6 }
+
+  USA:
+    New York City, NY:
+     - Name: Valhalla NYC
+       Address: 815 9th Ave, New York, NY 10019, USA
+       Type: Beer pub
+       Status: Tried
+       Score: { Draught: 9, Place: 8 }
+     - Name: Brooklyn Brewery
+       Address: 79 N 11th St, Brooklyn, NY 11249, USA
+       Type: Brewery taproom
+       Status: Tried
+       Score: { Draught: 7, Place: 9 }

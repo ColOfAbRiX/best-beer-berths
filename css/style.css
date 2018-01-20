@@ -6,8 +6,8 @@ html, body {
 
 /* Google Map */
 #map {
-  margin: 10px;
-  height: 90%;
+  margin: 0px;
+  height: 100%;
   width: 67%;
   left: 0;
   border: 2px solid #999;
@@ -18,22 +18,20 @@ html, body {
   font-family: Arial, sans-serif;
   background: #fff;
   padding: 10px;
-  margin: 8px;
-  padding: 5px 0px 10px 0px;
+  margin: 5px;
+  padding: 5px;
   border: 2px solid #ccc;
   display: none;
 }
 #legend h3 {
-  margin-top: 0;
+  margin: 5px;
   text-align: center;
-  font-size: 16pt;
+  font-size: 14pt;
+  font-weight: bold
 }
 #legend img {
   vertical-align: middle;
-  margin: 10px 10px 0px 10px;
-}
-#legend div {
-  margin: 0px 10px 0px 10px;
+  margin: 5px;
 }
 
 /* InfoWindow */
