@@ -127,7 +127,7 @@ Beer places:
        Address: Nørre Farimagsgade 13, 1364 København K, Denmark
        Type: Pub
        Status: Tried
-       Score: { Draught: 8, Bottles: 9, Place: 8 }
+       Score: { Draught: 8, Bottles: 10, Place: 9 }
 
      ##  Still To try  ##
      - Name: Mikkeller Bar
@@ -156,7 +156,7 @@ Beer places:
        Address: 24-28 Broadway Market, London E8 4QJ
        Type: Belgian Bar
        Status: Tried
-       Score: { Draught: 7, Bottles: 10, Place: 9 }
+       Score: { Draught: 8, Bottles: 10, Place: 9 }
      - Name: The Dovetail
        Address: 9-10 Jerusalem Passage, Clerkenwell, London EC1V 4JP
        Type: Belgian Bar
@@ -207,6 +207,11 @@ Beer places:
        Type: English Pub
        Status: Tried
        Score: { Draught: 8, Place: 7 }
+     - Name: Draft House Seething
+       Address: 14-15 Seething Ln, London EC3N 4AX
+       Type: Beer pub
+       Status: Tried
+       Score: { Draught: 7, Bottles: 9, Place: 8 }
 
      ##  Still to try  ##
      - Name: London Beer House
@@ -304,11 +309,6 @@ Beer places:
        Type: English pub
        Status: To try
        Expectation: { Mine: 8, Google: 4.4 }
-     - Name: Draft House Seething
-       Address: 14-15 Seething Ln, London EC3N 4AX
-       Type: Beer pub
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.3 }
      - Name: Draft House Tower Bridge
        Address: 206-208 Tower Bridge Rd, London SE1 2UP
        Type: Beer pub
