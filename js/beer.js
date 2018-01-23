@@ -534,7 +534,8 @@ function BeerPlace( rawPlaceData, country, city ) {
       score: this.Score || "",
       expectation: this.Expectation || "",
       imgUrl: this.GoogleLocation.photoUrl || "",
-      website: this.GoogleDetails ? this.GoogleDetails.website : ""
+      website: this.GoogleDetails ? this.GoogleDetails.website : "",
+      url: this.GoogleDetails ? this.GoogleDetails.url : ""
     } );
   }
 }

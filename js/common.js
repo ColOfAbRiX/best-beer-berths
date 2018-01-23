@@ -7,6 +7,7 @@ const DEFAULT_POSITION = {
   lat: 51.5189138,
   lng: -0.0924759
 };
+const POSITION_UPDATE = 10;
 
 // Cache options
 const CACHE_ENABLED = true;

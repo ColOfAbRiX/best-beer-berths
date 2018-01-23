@@ -24,11 +24,15 @@
   </head>
 
   <body>
-    <!-- Google Map -->
-    <div id="map"></div>
+    <div id="main-container" class="container">
+      <div id="row-container" class="row">
+        <div id="map" class="col-xs-12 col-sm-12 col-md-9"></div>
+        <div id="places-container" class="col-xs-12 col-sm-12 col-md-3">Test</div>
+      </div>
+    </div>
 
-    <!-- Legend for Google Map -->
-    <div id="legend">
+    <div id="center-btn" class="map-ctrl-box"><div id="ctrl-center-text">Centre map</div></div>
+    <div id="legend" class="map-ctrl-box">
       <h3>Legend</h3>
       <div id="legend-tried">
         <strong>Tried</strong>
@@ -44,7 +48,8 @@
         <h6>{{ name }} - {{ averageScore }}/10</h6>
         <p>
           <span class="stars">{ "value":{{ averageScore }},"minValue":{{ minAverageScore }},"maxValue":{{ maxAverageScore }} }</span>
-          {{# if website }}<a href="{{ website }}" target="_blank">Website</a>{{/ if }}
+          {{# if website }}<a href="{{ website }}" target="_blank">Website</a>{{ else }}Website{{/ if }} -
+          {{# if url }}<a href="{{ url }}" target="_blank">Open on Google</a>{{ else }}Open on Google{{/ if }}
         </p>
         <p>
           <b>Address:</b> {{ address }}<br/>

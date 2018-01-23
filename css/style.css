@@ -4,23 +4,36 @@ html, body {
   padding: 0;
 }
 
+/* Controls on the Google Map */
+.map-ctrl-box {
+  background-color: #fff;
+  border: 2px solid #fff;
+  border-radius: 3px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.3);
+  margin: 5px;
+}
+
 /* Google Map */
-#map {
-  margin: 0px;
+#main-container {
   height: 100%;
-  width: 67%;
+  width: 100%;
+}
+#row-container {
+  height: 100%;
+  width: 100%;
+}
+#map {
+  height: 100%;
+  margin: 0;
   left: 0;
-  border: 2px solid #999;
+  border: 0;
 }
 
 /* Legend */
 #legend {
-  font-family: Arial, sans-serif;
+  font-family: Roboto, Arial, sans-serif;
   background: #fff;
-  padding: 10px;
-  margin: 5px;
   padding: 5px;
-  border: 2px solid #ccc;
   display: none;
 }
 #legend h3 {
@@ -32,6 +45,18 @@ html, body {
 #legend img {
   vertical-align: middle;
   margin: 5px;
+}
+
+/* Center button */
+#ctrl-center-text {
+  color: #191919;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 38px;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: center;
+  cursor: pointer;
 }
 
 /* InfoWindow */

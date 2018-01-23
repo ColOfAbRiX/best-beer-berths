@@ -2,7 +2,7 @@
 
 // Global objects
 var map, homeMarker, infoWindow, placesService;
-var centerHome = true, lastPosition;
+var lastPosition, centerHome = true;
 
 
 /**
@@ -31,8 +31,9 @@ function initGoogle() {
     map.set( 'styles', GOOGLE_MAP_STYLE );
   }
 
-  // Add the legend
+  // Add controls to the map
   addLegend();
+  addCentreButton();
 
   // Centre the map on the current position
   if ( !DEBUG && navigator.geolocation ) {
@@ -78,7 +79,7 @@ function updatePosition() {
       };
       console.info( `Current location: ${JSON.stringify(position)}` );
       setHome( position, centerHome );
-      setTimeout( updatePosition, 30000 );
+      setTimeout( updatePosition, POSITION_UPDATE * 1000 );
     },
     error => {
       console.warn( `Can't get the position: ${error.message}` );
@@ -94,7 +95,6 @@ function setHome( homePosition, center = true, init = false ) {
   lastPosition = homePosition;
 
   if ( init ) {
-    // Add home marker
     homeMarker = new google.maps.Marker( {
       icon: 'img/marker_red.png',
       clickable: false,
@@ -103,11 +103,9 @@ function setHome( homePosition, center = true, init = false ) {
     } );
   }
   else {
-    // Update the marker position
     homeMarker.setPosition( homePosition );
   }
 
-  // Centre the map. Can be be requested at every update
   if ( init || center ) {
     map.setCenter( homePosition );
   }
@@ -122,38 +120,40 @@ function addLegend() {
     return `https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|${colour}`
   }
 
-  function imagesRange( type ) {
-    return [0.0, 0.5, 1.0].map(x =>
-      colouredPinUrl( getGradientColor(
-        PINS[ type ][ 0 ],
-        PINS[ type ][ 1 ],
-        x
-      ) )
-    );
-  }
+  // Create a range of URLs to the coloured pins to display in the legend
+  var pins = [ 'tried', 'to try' ].map( cat =>
+    [ 0.0, 0.5, 1.0 ].map( x =>
+      colouredPinUrl( getGradientColor(PINS[cat][0], PINS[cat][1], x) )
+    ).map( url =>
+      $( '<img />' ).attr( "src", url ).prop( 'outerHTML' )
+    )
+  );
+
+  // Add the pin array to the legend
+  [ {i: 0, name: '#legend-tried'}, {i: 1, name: '#legend-totry'} ].map( x => {
+      $( x.name ).prepend( pins[ x.i ].join( '&hellip;' ) )
+    }
+  );
 
   // Add legend to the map
   map.controls[ google.maps.ControlPosition.TOP_RIGHT ].push(
     $( '#legend' )[ 0 ]
   );
 
-  // Build coloured pin images
-  var urls1 = imagesRange( 'tried' );
-  var img11 = $( '<img />' ).attr( "src", urls1[ 0 ] ).prop( 'outerHTML' );
-  var img12 = $( '<img />' ).attr( "src", urls1[ 1 ] ).prop( 'outerHTML' );
-  var img13 = $( '<img />' ).attr( "src", urls1[ 2 ] ).prop( 'outerHTML' );
-  var urls2 = imagesRange( 'to try' );
-  var img21 = $( '<img />' ).attr( "src", urls2[ 0 ] ).prop( 'outerHTML' );
-  var img22 = $( '<img />' ).attr( "src", urls2[ 1 ] ).prop( 'outerHTML' );
-  var img23 = $( '<img />' ).attr( "src", urls2[ 2 ] ).prop( 'outerHTML' );
-
-  // Add images
-  $( '#legend-tried' ).prepend(
-    img11 + "&hellip;" + img12 + "&hellip;" + img13
-  );
-  $( '#legend-totry' ).prepend(
-    img21 + "&hellip;" + img22 + "&hellip;" + img23
-  );
-
+  // Show the legend last
   $( '#legend' ).show();
+}
+
+/**
+ * Adds the button to centre the map
+ */
+function addCentreButton() {
+  var centreButton = $( '#center-btn' )[0];
+
+  centreButton.addEventListener( 'click', function () {
+    centerHome = true;
+    setHome( lastPosition, centerHome );
+  } );
+
+  map.controls[ google.maps.ControlPosition.TOP_CENTER ].push( centreButton );
 }
