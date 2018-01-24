@@ -524,6 +524,12 @@ function BeerPlace( rawPlaceData, country, city ) {
       $( '#place-template' )[ 0 ].innerHTML
     );
 
+    // See https://developers.google.com/maps/documentation/urls/guide
+    var directionsUrl = "https://www.google.com/maps/dir/?api=1";
+    //directionsUrl += "&destination_place_id=" + encodeURI(this.GoogleLocation.place_id)
+    directionsUrl += "&destination=" + encodeURI(this.GoogleLocation.formatted_address)
+    directionsUrl += "&travelmode=bicycling"      // Options are driving, walking, bicycling or transit
+
     return hndPlaceInfo( {
       name: this.Name,
       averageScore: this.averageScore.toFixed( 2 ),
@@ -535,7 +541,8 @@ function BeerPlace( rawPlaceData, country, city ) {
       expectation: this.Expectation || "",
       imgUrl: this.GoogleLocation.photoUrl || "",
       website: this.GoogleDetails ? this.GoogleDetails.website : "",
-      url: this.GoogleDetails ? this.GoogleDetails.url : ""
+      url: this.GoogleDetails ? this.GoogleDetails.url : "",
+      directionsUrl: directionsUrl
     } );
   }
 }

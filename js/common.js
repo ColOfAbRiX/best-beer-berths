@@ -170,3 +170,17 @@ $.fn.stars = function () {
     );
   } );
 }
+
+
+/**
+ * Returns true if we are on a mobile device
+ */
+function isMobile() {
+  try {
+    document.createEvent("TouchEvent");
+    return true;
+  }
+  catch(e) {
+    return false;
+  }
+}

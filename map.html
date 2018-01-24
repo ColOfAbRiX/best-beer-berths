@@ -14,8 +14,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script type="text/javascript" src="js/js-yaml.min.js"></script>
     <script type="text/javascript" src="js/object_hash.min.js"></script>
-    <script type="text/javascript" src="js/map-style.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/map-style.js"></script>
     <script type="text/javascript" src="js/map.js"></script>
     <script type="text/javascript" src="js/beer.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqnWg__YSMdaJc0K46F7S5-kUYzNqyb_4&callback=initGoogle&libraries=places" async defer></script>
@@ -48,8 +48,11 @@
         <h6>{{ name }} - {{ averageScore }}/10</h6>
         <p>
           <span class="stars">{ "value":{{ averageScore }},"minValue":{{ minAverageScore }},"maxValue":{{ maxAverageScore }} }</span>
+        </p>
+        <p>
           {{# if website }}<a href="{{ website }}" target="_blank">Website</a>{{ else }}Website{{/ if }} -
-          {{# if url }}<a href="{{ url }}" target="_blank">Open on Google</a>{{ else }}Open on Google{{/ if }}
+          {{# if url }}<a href="{{ url }}" target="_blank">Open on Google</a>{{ else }}Open on Google{{/ if }} -
+          {{# if directionsUrl }}<a href="{{ directionsUrl }}" target="_blank">Directions</a>{{ else }}Directions{{/ if }}
         </p>
         <p>
           <b>Address:</b> {{ address }}<br/>

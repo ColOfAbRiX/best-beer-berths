@@ -18,12 +18,14 @@ function initGoogle() {
     $( '#map' )[ 0 ], {
       maxZoom: 18,
       minZoom: 2,
-      zoom: 13,
+      zoom: 14,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       gestureHandling: 'greedy'
     }
   );
-  infoWindow = new google.maps.InfoWindow;
+  infoWindow = new google.maps.InfoWindow({
+    maxWidth: 300
+  });
   placesService = new google.maps.places.PlacesService( map );
 
   // Set style if present
@@ -32,7 +34,9 @@ function initGoogle() {
   }
 
   // Add controls to the map
-  addLegend();
+  if( !isMobile() ) {
+    addLegend();
+  }
   addCentreButton();
 
   // Centre the map on the current position
