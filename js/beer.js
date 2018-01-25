@@ -203,8 +203,7 @@ function BeerPlacesDB( YAMLData ) {
 
     // Stats
     var start = new Date().getTime();
-    var queries = 0,
-      failures = 0;
+    var queries = 0, failures = 0;
     // Run task
     processQueueAsync(
       startQueue,
@@ -246,8 +245,7 @@ function BeerPlacesDB( YAMLData ) {
 
     // Stats
     var start = new Date().getTime();
-    var queries = 0,
-      failures = 0;
+    var queries = 0, failures = 0;
     // Run task
     processQueueAsync(
       startQueue,
@@ -526,23 +524,36 @@ function BeerPlace( rawPlaceData, country, city ) {
 
     // See https://developers.google.com/maps/documentation/urls/guide
     var directionsUrl = "https://www.google.com/maps/dir/?api=1";
-    //directionsUrl += "&destination_place_id=" + encodeURI(this.GoogleLocation.place_id)
     directionsUrl += "&destination=" + encodeURI(this.GoogleLocation.formatted_address)
     directionsUrl += "&travelmode=bicycling"      // Options are driving, walking, bicycling or transit
 
+    // Opening hours
+    var openNow = "???", openNowColour = "black";
+    if( this.GoogleDetails && this.GoogleDetails.opening_hours ) {
+      if( this.GoogleDetails.opening_hours.open_now ) {
+        openNow = "Open"; openNowColour = "green";
+      }
+      else {
+        openNow = "Closed"; openNowColour = "red";
+      }
+    }
+
     return hndPlaceInfo( {
-      name: this.Name,
-      averageScore: this.averageScore.toFixed( 2 ),
+      name:            this.Name,
+      type:            this.Type,
+      address:         this.GoogleLocation.formatted_address,
+      averageScore:    this.averageScore.toFixed( 2 ),
       minAverageScore: this.minAverageScore,
       maxAverageScore: this.maxAverageScore,
-      address: this.GoogleLocation.formatted_address,
-      type: this.Type,
-      score: this.Score || "",
-      expectation: this.Expectation || "",
-      imgUrl: this.GoogleLocation.photoUrl || "",
-      website: this.GoogleDetails ? this.GoogleDetails.website : "",
-      url: this.GoogleDetails ? this.GoogleDetails.url : "",
-      directionsUrl: directionsUrl
+      score:           this.Score || "",
+      expectation:     this.Expectation || "",
+      imgUrl:          this.GoogleLocation.photoUrl || "",
+      hasDetails:      'GoogleDetails' in this,
+      openNow:         openNow,
+      openNowColour:   openNowColour,
+      website:         this.GoogleDetails ? this.GoogleDetails.website : "",
+      url:             this.GoogleDetails ? this.GoogleDetails.url : "",
+      directionsUrl:   directionsUrl
     } );
   }
 }

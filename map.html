@@ -25,13 +25,18 @@
 
   <body>
     <div id="main-container" class="container">
-      <div id="row-container" class="row">
-        <div id="map" class="col-xs-12 col-sm-12 col-md-9"></div>
-        <div id="places-container" class="col-xs-12 col-sm-12 col-md-3">Test</div>
+      <div id="row-container" class="row no-gutters">
+        <div id="map" class="col-xs-12 col-sm-8 col-md-9"></div>
+        <div id="places-container" class="col-xs-12 col-sm-4 col-md-3">
+          <h1>Best Beer Berths</h1>
+          <h3>Work in progress here...</h3>
+        </div>
       </div>
     </div>
 
-    <div id="center-btn" class="map-ctrl-box"><div id="ctrl-center-text">Centre map</div></div>
+    <div id="center-btn" class="map-ctrl-box" role="button">
+      <div id="ctrl-center-text">Centre map</div>
+    </div>
     <div id="legend" class="map-ctrl-box">
       <h3>Legend</h3>
       <div id="legend-tried">
@@ -50,13 +55,15 @@
           <span class="stars">{ "value":{{ averageScore }},"minValue":{{ minAverageScore }},"maxValue":{{ maxAverageScore }} }</span>
         </p>
         <p>
-          {{# if website }}<a href="{{ website }}" target="_blank">Website</a>{{ else }}Website{{/ if }} -
-          {{# if url }}<a href="{{ url }}" target="_blank">Open on Google</a>{{ else }}Open on Google{{/ if }} -
-          {{# if directionsUrl }}<a href="{{ directionsUrl }}" target="_blank">Directions</a>{{ else }}Directions{{/ if }}
+          {{# if hasDetails }}<a href="{{ website }}" target="_blank">Website</a> -{{/ if }}
+          {{# if hasDetails }}<a href="{{ url }}" target="_blank">Open on Google</a> -{{/ if }}
+          <a href="{{ directionsUrl }}" target="_blank">Directions</a>
+        </p>
         </p>
         <p>
-          <b>Address:</b> {{ address }}<br/>
-          <b>Type:</b> {{ type }}
+          <strong>Address:</strong> {{ address }}<br/>
+          <strong>Type:</strong> {{ type }}<br/>
+          <strong>Open now: </strong><span style="color: {{ openNowColour }}">{{ openNow }}</span>
         </p>
         <div style="height: 120px">
           {{# if imgUrl }}<img id="placeImage" src="{{ imgUrl }}" />{{/ if }}

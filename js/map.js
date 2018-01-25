@@ -18,7 +18,7 @@ function initGoogle() {
     $( '#map' )[ 0 ], {
       maxZoom: 18,
       minZoom: 2,
-      zoom: 14,
+      zoom: 13,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       gestureHandling: 'greedy'
     }
