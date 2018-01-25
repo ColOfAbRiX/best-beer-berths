@@ -55,11 +55,11 @@ function BeerPlacesDB( YAMLData ) {
 
   // Scan all the YAML results and build objects
   for ( var country in YAMLData ) {
-    var countryCities = YAMLData[ country ];
+    var countryCities = YAMLData[country];
     for ( var city in countryCities ) {
-      var cityPlaces = countryCities[ city ];
+      var cityPlaces = countryCities[city];
       for ( var place in cityPlaces ) {
-        var beerPlace = cityPlaces[ place ];
+        var beerPlace = cityPlaces[place];
         if ( DEBUG && !city.match( DEBUG_CITY ) ) {
           continue;
         }
@@ -111,7 +111,7 @@ function BeerPlacesDB( YAMLData ) {
   this.fillDB = function () {
     if ( this.loadCache() ) {
       for ( var i in this.places ) {
-        this.addMarker( this.places[ i ] );
+        this.addMarker( this.places[i] );
       }
       this.saveCache();
     }
@@ -158,7 +158,7 @@ function BeerPlacesDB( YAMLData ) {
       this.places = new Array();
       for ( var i in places ) {
         this.places.push(
-          new BeerPlace( places[ i ], places[ i ].country, places[ i ].city )
+          new BeerPlace( places[i], places[i].country, places[i].city )
         );
       }
 
@@ -276,7 +276,7 @@ function BeerPlacesDB( YAMLData ) {
   this.addMarker = function ( place ) {
     // Build the pin
     var pinColour = this.pinColour( place );
-    var icon = "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColour;
+    var icon = "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + encodeURI(pinColour);
     var pinImage = new google.maps.MarkerImage(
       icon,
       new google.maps.Size( 21, 34 ),
@@ -434,7 +434,7 @@ function BeerPlace( rawPlaceData, country, city ) {
     function mergeLocation( googleLocation ) {
       var photoUrl = ""
       if ( googleLocation.photos.length > 0 ) {
-        photoUrl = googleLocation.photos[ 0 ].getUrl( {
+        photoUrl = googleLocation.photos[0].getUrl( {
           'maxHeight': 100,
           'maxWidth': 150,
         } );
@@ -465,7 +465,7 @@ function BeerPlace( rawPlaceData, country, city ) {
       console.info( `Text search completed for "${this.Name}" with status ${status}` );
 
       if ( status === google.maps.places.PlacesServiceStatus.OK ) {
-        mergeLocation.call( this, results[ 0 ] );
+        mergeLocation.call( this, results[0] );
         console.info( `Found ID for "${this.Name}": ${this.GoogleLocation.place_id}` );
       }
 
@@ -519,7 +519,7 @@ function BeerPlace( rawPlaceData, country, city ) {
    */
   this.placeInfoWindow = function () {
     var hndPlaceInfo = Handlebars.compile(
-      $( '#place-template' )[ 0 ].innerHTML
+      $( '#place-template' )[0].innerHTML
     );
 
     // See https://developers.google.com/maps/documentation/urls/guide
@@ -556,4 +556,17 @@ function BeerPlace( rawPlaceData, country, city ) {
       directionsUrl:   directionsUrl
     } );
   }
+}
+
+function resetCache() {
+    if ( CACHE_ENABLED ) {
+      localStorage.removeItem( "BeerPlacesDB" );
+      localStorage.removeItem( "BeerPlacesDBHash" );
+      localStorage.removeItem( "BeerPlacesDBTimestamp" );
+      $( '#debug' )[0].innerHTML = "Done";
+    }
+    else {
+      $( '#debug' )[0].innerHTML = "The cache is not enabled";
+    }
+    setTimeout(() => $("#debug")[0].innerHTML = "", 15000)
 }

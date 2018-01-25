@@ -7,10 +7,9 @@ html, body {
 /* Controls on the Google Map */
 .map-ctrl-box {
   background-color: #fff;
-  border:        2px solid #fff;
   border-radius: 3px;
   box-shadow:    0px 1px 8px rgba(0, 0, 0, .2);
-  margin:        5px;
+  margin:        10px;
 }
 
 /* Google Map */
@@ -48,12 +47,11 @@ html, body {
 
 /* Center button */
 #ctrl-center-text {
-  color:         #191919;
+  color:         #000;
   font-family:   Roboto, Arial, sans-serif;
-  font-size:     16px;
-  line-height:   38px;
-  padding-left:  5px;
-  padding-right: 5px;
+  font-size:     11px;
+  line-height:   14px;
+  padding:       8px;
   text-align:    center;
   cursor:        pointer;
 }
