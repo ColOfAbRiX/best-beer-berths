@@ -15,7 +15,7 @@ var lastPosition, centerHome = true;
 function initGoogle() {
   // Create global objects
   map = new google.maps.Map(
-    $( '#map' )[ 0 ], {
+    $( '#map' )[0], {
       maxZoom: 18,
       minZoom: 2,
       zoom: 13,
@@ -34,24 +34,22 @@ function initGoogle() {
   }
 
   // Add controls to the map
-  if( !isMobile() ) {
-    addLegend();
-  }
+  if( !isMobile() ) { addLegend(); }
   addCentreButton();
 
   // Centre the map on the current position
   if ( !DEBUG && navigator.geolocation ) {
-    console.info( "Locating user..." )
+    Logger.info( "Locating user..." )
     setHome( DEFAULT_POSITION, true, true );
     updatePosition();
   }
   else {
     if ( !DEBUG ) {
-      console.info( "The browser doesn't support GeoLocation." )
+      Logger.info( "The browser doesn't support GeoLocation." )
       setHome( DEFAULT_POSITION );
     }
     else {
-      console.info( "Using debug position." )
+      Logger.info( "Using debug position." )
       setHome( DEBUG_POSITION );
     }
   }
@@ -64,7 +62,7 @@ function initGoogle() {
   $.get(
     BEER_DATABASE_FILE,
     data => {
-      beerDb = new BeerPlacesDB( jsyaml.safeLoad( data )[ 'Beer places' ] )
+      beerDb = new BeerPlacesDB( jsyaml.safeLoad( data )['Beer places'] )
       beerDb.fillDB();
     },
     'text'
@@ -76,29 +74,31 @@ function initGoogle() {
  * Updated the current position on the map
  */
 function updatePosition() {
-  navigator.geolocation.getCurrentPosition( position => {
+  navigator.geolocation.getCurrentPosition(
+    position => {
       var position = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-      console.info( `Current location: ${JSON.stringify(position)}` );
+      Logger.info( `Current location: ${JSON.stringify(position)}` );
       setHome( position, centerHome );
       setTimeout( updatePosition, POSITION_UPDATE * 1000 );
     },
     error => {
-      console.warn( `Can't get the position: ${error.message}` );
+      Logger.warn( `Can't get the position: ${error.message}` );
       setHome( lastPosition, centerHome );
-    } );
+    }
+  );
 }
 
 
 /**
- * Sets the home position on the Map
+ * Set the home position on the Map and optionally centre on it
  */
 function setHome( homePosition, center = true, init = false ) {
   lastPosition = homePosition;
 
-  if ( init ) {
+  if ( typeof(homeMarker) == 'undefined' || init ) {
     homeMarker = new google.maps.Marker( {
       icon: 'img/marker_red.png',
       clickable: false,
@@ -125,8 +125,8 @@ function addLegend() {
   }
 
   // Create a range of URLs to the coloured pins to display in the legend
-  var pins = [ 'tried', 'to try' ].map( cat =>
-    [ 0.0, 0.5, 1.0 ].map( x =>
+  var pins = ['tried', 'to try'].map( cat =>
+    [0.0, 0.5, 1.0].map( x =>
       colouredPinUrl( getGradientColor(PINS[cat][0], PINS[cat][1], x) )
     ).map( url =>
       $( '<img />' ).attr( "src", url ).prop( 'outerHTML' )
@@ -134,30 +134,33 @@ function addLegend() {
   );
 
   // Add the pin array to the legend
-  [ {i: 0, name: '#legend-tried'}, {i: 1, name: '#legend-totry'} ].map( x => {
-      $( x.name ).prepend( pins[ x.i ].join( '&hellip;' ) )
+  [{i: 0, name: '#legend-tried'}, {i: 1, name: '#legend-totry'}].map( x => {
+      $( x.name ).prepend( pins[x.i].join( '&hellip;' ) )
     }
   );
 
   // Add legend to the map
-  map.controls[ google.maps.ControlPosition.TOP_RIGHT ].push(
-    $( '#legend' )[ 0 ]
+  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(
+    $( '#legend' )[0]
   );
 
   // Show the legend last
   $( '#legend' ).show();
 }
 
+
 /**
  * Adds the button to centre the map
  */
 function addCentreButton() {
-  var centreButton = $( '#center-btn' )[0];
+  $('body').append('<div id="center-btn" class="map-ctrl-box" role="button"><div id="ctrl-center-text">Centre map</div></div>');
 
-  centreButton.addEventListener( 'click', function () {
+  var btn = $( '#center-btn' )[0];
+
+  btn.addEventListener('click', () => {
     centerHome = true;
     setHome( lastPosition, centerHome );
-  } );
+  });
 
-  map.controls[ google.maps.ControlPosition.TOP_CENTER ].push( centreButton );
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push( btn );
 }

@@ -69,3 +69,24 @@ span.stars, span.stars span {
 span.stars span {
   background-position: 0 0;
 }
+
+/* debug */
+#debug {
+  font-family: monospace;
+  font-size: 8pt;
+}
+#debug span {
+  display: block;
+}
+#debug span.log {
+  color: black;
+}
+#debug span.info {
+  color: black;
+}
+#debug span.warn {
+  color: orange;
+}
+#debug span.error {
+  color: red;
+}

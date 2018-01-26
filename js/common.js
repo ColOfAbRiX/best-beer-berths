@@ -3,35 +3,25 @@
 const BEER_DATABASE_FILE = "database.yml"
 
 // Default position when no other position is available
-const DEFAULT_POSITION = {
-  lat: 51.5189138,
-  lng: -0.0924759
-};
+const DEFAULT_POSITION = {lat: 51.5189138, lng: -0.0924759};
 const POSITION_UPDATE = 10;
 
 // Cache options
 const CACHE_ENABLED = true;
 const CACHE_DURATION = 86400;
 
+// Debug options
+const DEBUG = false || urlParam("DEBUG") != null;
+const DEBUG_CITY = /(london)/i;
+const DEBUG_POSITION = {lat: 51.5189138, lng: -0.0924759};
+// const DEBUG_POSITION = {lat: 44.0372932, lng: 12.6069268};
+// const DEBUG_POSITION = {lat: 51.532492399999995, lng: -0.0351538};
+
 // Pins colours
 const PINS = {
   'tried': [ 'FFFFFF', 'FF7FFF' ],
   'to try': [ 'FFFFFF', '007FFF' ]
 };
-
-// Debug options
-const DEBUG = false;
-const DEBUG_CITY = /(london)/i;
-const DEBUG_POSITION = {
-  lat: 51.5189138,
-  lng: -0.0924759
-};
-// const DEBUG_POSITION = {lat: 44.0372932, lng: 12.6069268};
-// const DEBUG_POSITION = {lat: 51.532492399999995, lng: -0.0351538};
-
-
-// Global status
-var beerDb;
 
 
 /**
@@ -51,7 +41,7 @@ function processQueueAsync( inputQueue, outputQueue, action, successValue, succe
 
       // Run the action
       runAction( ( item, status ) => {
-        console.info( `Delay info: delay=${delay.toFixed(3)}ms, dec=${dDec.toFixed(3)}ms` );
+        Logger.info( `Timing: delay=${delay.toFixed(3)}ms, dec=${dDec.toFixed(3)}ms` );
 
         if ( status.match( successValue ) ) {
           // Transfer the item from input to output queue
@@ -91,18 +81,6 @@ function processQueueAsync( inputQueue, outputQueue, action, successValue, succe
   var delay = 400;
   var dDec = delay / ( S * 2.0 );
   execute();
-}
-
-
-/**
- * Converts a value into its relative position inside a range using linear
- * interpolation
- */
-function rangeRelative( minValue, value, maxValue ) {
-  // Condition the value inside the range
-  var boundValue = Math.max( minValue, Math.min( maxValue, value ) );
-  // Calculate it percentage inside the range
-  return ( boundValue - minValue ) / ( maxValue - minValue );
 }
 
 
@@ -152,6 +130,85 @@ function getGradientColor( start_color, end_color, percent ) {
 
 
 /**
+ * Converts a value into its relative position inside a range using linear
+ * interpolation
+ */
+function rangeRelative( min, value, max ) {
+  var value = Math.max( min, Math.min( max, value ) );
+  return (value - min) / (max - min);
+}
+
+
+/**
+ * Returns true if we are on a mobile device
+ */
+function isMobile() {
+  try { document.createEvent("TouchEvent"); } catch(e) { return false; }
+  return true;
+}
+
+
+/**
+ * Get a URL parameter
+ * See https://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
+ */
+function urlParam(name) {
+  var searchParams = new URLSearchParams(window.location.search);
+  if( !searchParams.has(name) ) {
+    return null;
+  }
+  else {
+    return searchParams.get(name);
+  }
+}
+
+
+/**
+ * Helper for debugging
+ */
+var Logger = (function() {
+  var debug;
+  var getDebug = function() {
+    if( !debug && $('#debug').length === 0) {
+      $('body').append('<div id="debug"></div>');
+    }
+    debug = $('#debug')[0];
+    return debug;
+  };
+
+  var write = function(value, type) {
+    var time = $.format.date(new Date(), 'HH:mm:ss.SSS');
+    if( DEBUG && isMobile() ) {
+      if( getDebug() ) {
+        if( typeof(value) === "object" ) {
+          console.log(value);
+        } else {
+          debug.innerHTML = `<span class="${type}">${time}: ${value}</span>` + debug.innerHTML;
+        }
+      }
+    } else {
+      if( type === "log" ) {
+        console.log(value);
+      } else if( type === "info" ) {
+        console.info(value);
+      } else if( type === "warn" ) {
+        console.warn(value);
+      } else if( type === "error" ) {
+        console.error(value);
+      }
+    }
+  };
+
+  return {
+    log: function(text) { write(text, "log") },
+    info: function(text) { write(text, "info") },
+    warn: function(text) { write(text, "warn") },
+    error: function(text) { write(text, "error") }
+  };
+})();
+
+
+/**
  * Function to draw score stars
  */
 $.fn.stars = function () {
@@ -169,18 +226,4 @@ $.fn.stars = function () {
       $( '<span />' ).width( imageWidth )
     );
   } );
-}
-
-
-/**
- * Returns true if we are on a mobile device
- */
-function isMobile() {
-  try {
-    document.createEvent("TouchEvent");
-    return true;
-  }
-  catch(e) {
-    return false;
-  }
 }

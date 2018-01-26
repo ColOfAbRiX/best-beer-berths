@@ -1,5 +1,7 @@
 "use strict";
 
+var beerDb;
+
 /**
  * Stores of all the Beer Places and some additional information
  */
@@ -64,7 +66,7 @@ function BeerPlacesDB( YAMLData ) {
           continue;
         }
         if( !this.checkPlaceData(beerPlace) ) {
-          console.warn(`Missing information on entry ${JSON.stringify(beerPlace)}`);
+          Logger.warn(`Missing information on entry ${JSON.stringify(beerPlace)}`);
           continue;
         }
         this.places.push( new BeerPlace( beerPlace, country, city ) );
@@ -140,14 +142,14 @@ function BeerPlacesDB( YAMLData ) {
       // Check expiry
       var expired = ( new Date().getTime() - cacheTimestamp ) >= CACHE_DURATION * 1000;
       if ( expired ) {
-        console.info( `Cache expired.` )
+        Logger.info( `Cache expired.` )
         return false;
       }
 
       // Check hash
       var hashMatch = this.placesHash === cacheHash;
       if ( !hashMatch ) {
-        console.info( `Cache found (${cacheHash}) but doesn't match data (${this.placesHash}).` )
+        Logger.info( `Cache found (${cacheHash}) but doesn't match data (${this.placesHash}).` )
         return false;
       }
 
@@ -162,7 +164,7 @@ function BeerPlacesDB( YAMLData ) {
         );
       }
 
-      console.info( `Found and loaded cache ${cacheHash}` )
+      Logger.info( `Found and loaded cache ${cacheHash}` )
       return true;
     }
     return false;
@@ -184,7 +186,7 @@ function BeerPlacesDB( YAMLData ) {
     var dataHash = this.placesHash;
     var timestamp = new Date().getTime();
 
-    console.info( `Saving cache for DB ${dataHash}` )
+    Logger.info( `Saving cache for DB ${dataHash}` )
 
     localStorage.setItem( "BeerPlacesDB", data )
     localStorage.setItem( "BeerPlacesDBHash", dataHash )
@@ -215,18 +217,21 @@ function BeerPlacesDB( YAMLData ) {
         queries++;
       },
       ( place, error ) => {
-        console.error( `Error querying location for ${place.Name}: ${error}` );
+        Logger.error( `Error querying location for ${place.Name}: ${error}` );
         failures++;
         // In case of ZERO_RESULTS, drop the item
-        var doneItem = startQueue.shift();
-        if ( endQueue != undefined ) {
-          endQueue.push( doneItem );
+        if( error === google.maps.places.PlacesServiceStatus.ZERO_RESULTS ) {
+          var doneItem = startQueue.shift();
+          Logger.warn( `No results found for ${doneItem.name}.` );
+          if ( endQueue != undefined ) {
+            endQueue.push( doneItem );
+          }
         }
       },
       place => {
         var time = ( new Date().getTime() - start ) / 1000.0;
 
-        console.info( `All locations done: items=${endQueue.length}, queries=${queries}, failures=${failures}, time=${time.toFixed(3)}s.` );
+        Logger.warn( `All locations done: items=${endQueue.length}, queries=${queries}, failures=${failures}, time=${time.toFixed(3)}s.` );
         thisRef.places = endQueue;
 
         // Run next query
@@ -256,13 +261,13 @@ function BeerPlacesDB( YAMLData ) {
         queries++;
       },
       ( place, error ) => {
-        console.error( `Error querying details for ${place.Name}: ${error}` );
+        Logger.error( `Error querying details for ${place.Name}: ${error}` );
         failures++;
       },
       place => {
         var time = ( new Date().getTime() - start ) / 1000.0;
 
-        console.info( `All details done: items=${endQueue.length}, queries=${queries}, failures=${failures}, time=${time.toFixed(3)}s.` );
+        Logger.warn( `All details done: items=${endQueue.length}, queries=${queries}, failures=${failures}, time=${time.toFixed(3)}s.` );
         thisRef.places = endQueue;
 
         thisRef.saveCache()
@@ -302,7 +307,7 @@ function BeerPlacesDB( YAMLData ) {
       $( function () {
         $( 'span.stars' ).stars();
       } );
-      console.info( place );
+      Logger.info( place );
     } );
   }
 
@@ -355,7 +360,7 @@ function BeerPlace( rawPlaceData, country, city ) {
   this.averageScore = (function () {
     // Missing status
     if ( !this.Status ) {
-      console.error( `Missing Status for "${this.Name}"` )
+      Logger.error( `Missing Status for "${this.Name}"` )
       return 0.0;
     }
 
@@ -454,7 +459,7 @@ function BeerPlace( rawPlaceData, country, city ) {
 
     // Skip if already present
     if ( this.GoogleLocation && !force ) {
-      console.warn( `Location data already loaded for ${this.Name}` );
+      Logger.warn( `Location data already loaded for ${this.Name}` );
       return;
     }
 
@@ -462,11 +467,11 @@ function BeerPlace( rawPlaceData, country, city ) {
       'query': `${this.Name}, ${this.Address}`
     };
     placesService.textSearch( request, ( results, status ) => {
-      console.info( `Text search completed for "${this.Name}" with status ${status}` );
+      Logger.info( `Text search completed for "${this.Name}" with status ${status}` );
 
       if ( status === google.maps.places.PlacesServiceStatus.OK ) {
         mergeLocation.call( this, results[0] );
-        console.info( `Found ID for "${this.Name}": ${this.GoogleLocation.place_id}` );
+        Logger.info( `Found ID for "${this.Name}": ${this.GoogleLocation.place_id}` );
       }
 
       if ( callback ) {
@@ -488,12 +493,12 @@ function BeerPlace( rawPlaceData, country, city ) {
 
     // Skip if details are missing
     if ( !this.GoogleLocation ) {
-      console.error( `Can't load Details because Location is missing for ${this.Name}` );
+      Logger.error( `Can't load Details because Location is missing for ${this.Name}` );
       return;
     }
     // Skip if already present
     if ( this.GoogleDetails && !force ) {
-      console.warn( `Details data already loaded for ${this.Name}` );
+      Logger.warn( `Details data already loaded for ${this.Name}` );
       return;
     }
 
@@ -501,11 +506,11 @@ function BeerPlace( rawPlaceData, country, city ) {
       'placeId': this.GoogleLocation.place_id
     };
     placesService.getDetails( request, ( results, status ) => {
-      console.info( `Details search completed for "${this.Name}" with status ${status}` );
+      Logger.info( `Details search completed for "${this.Name}" with status ${status}` );
 
       if ( status === google.maps.places.PlacesServiceStatus.OK ) {
         mergeDetails.call( this, results );
-        console.info( `Found details for "${this.Name}".` );
+        Logger.info( `Found details for "${this.Name}".` );
       }
 
       if ( callback ) {
@@ -559,14 +564,13 @@ function BeerPlace( rawPlaceData, country, city ) {
 }
 
 function resetCache() {
-    if ( CACHE_ENABLED ) {
-      localStorage.removeItem( "BeerPlacesDB" );
-      localStorage.removeItem( "BeerPlacesDBHash" );
-      localStorage.removeItem( "BeerPlacesDBTimestamp" );
-      $( '#debug' )[0].innerHTML = "Done";
-    }
-    else {
-      $( '#debug' )[0].innerHTML = "The cache is not enabled";
-    }
-    setTimeout(() => $("#debug")[0].innerHTML = "", 15000)
+  if ( CACHE_ENABLED ) {
+    localStorage.removeItem( "BeerPlacesDB" );
+    localStorage.removeItem( "BeerPlacesDBHash" );
+    localStorage.removeItem( "BeerPlacesDBTimestamp" );
+    Logger.log("Cache cleaned");
+  }
+  else {
+    Logger.log("The cache is not enabled");
+  }
 }
