@@ -162,3 +162,49 @@ function addCentreButton() {
 
   map.controls[google.maps.ControlPosition.TOP_CENTER].push( btn );
 }
+
+
+/**
+ * Adds a Beer Place as a marker on the map
+ */
+function addMarker( place, min_avg_score, max_avg_score ) {
+  // Percentage of the colour based on the relative position of the score
+  var value_percent = rangeRelative( min_avg_score, place.avgScore, max_avg_score );
+
+  // Calculate the colour
+  var marker_colour = getGradientColor(
+    PINS[place.Status.toLowerCase()][0],
+    PINS[place.Status.toLowerCase()][1],
+    value_percent
+  );
+
+  // Build the pin
+  var icon = "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + encodeURI(marker_colour);
+  var pinImage = new google.maps.MarkerImage(
+    icon,
+    new google.maps.Size( 21, 34 ),
+    new google.maps.Point( 0, 0 ),
+    new google.maps.Point( 10, 34 )
+  );
+
+  // Create and add the marker
+  var title = `${place.Name} - ${place.avgScore.toFixed(2)}/10`;
+  var marker = new google.maps.Marker({
+    map: map,
+    title: title,
+    icon: pinImage,
+    position: place.google_location.geometry.location,
+    infoWindow: infoWindow
+  });
+
+  // Manage the click
+  marker.addListener('click', () => {
+    infoWindow.setContent( place.placeInfoWindow() );
+    infoWindow.open( map, marker );
+    // Build the stars
+    $( function() {
+      $( 'span.stars' ).stars();
+    } );
+    Logger.info( place );
+  });
+}

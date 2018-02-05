@@ -14,7 +14,7 @@ const CACHE_DURATION = 86400;
 const DEBUG = false || urlParam("DEBUG") != null;
 const DEBUG_CITY = /(london)/i;
 const DEBUG_POSITION = {lat: 51.5189138, lng: -0.0924759};
-// const DEBUG_POSITION = {lat: 44.0372932, lng: 12.6069268};
+//const DEBUG_POSITION = {lat: 44.0372932, lng: 12.6069268};
 // const DEBUG_POSITION = {lat: 51.532492399999995, lng: -0.0351538};
 
 // Pins colours
@@ -94,36 +94,36 @@ function getGradientColor( start_colour, end_colour, percent ) {
   var end_colour = end_colour.replace( /^\s*#|\s*$/g, '' );
 
   // Convert 3 char codes --> 6, e.g. `E0F` --> `EE00FF`
-  if ( start_colour.length === 3 ) {
+  if( start_colour.length === 3 ) {
     start_colour = start_colour.replace( /(.)/g, '$1$1' );
   }
 
-  if ( end_colour.length === 3 ) {
+  if( end_colour.length === 3 ) {
     end_colour = end_colour.replace( /(.)/g, '$1$1' );
   }
 
   // Get colours
-  var start_red = parseInt( start_colour.substr( 0, 2 ), 16 ),
-    start_green = parseInt( start_colour.substr( 2, 2 ), 16 ),
-    start_blue = parseInt( start_colour.substr( 4, 2 ), 16 );
+  var start_red = parseInt( start_colour.substr(0, 2), 16 );
+  var start_green = parseInt( start_colour.substr(2, 2), 16 );
+  var start_blue = parseInt( start_colour.substr(4, 2), 16 );
 
-  var end_red = parseInt( end_colour.substr( 0, 2 ), 16 ),
-    end_green = parseInt( end_colour.substr( 2, 2 ), 16 ),
-    end_blue = parseInt( end_colour.substr( 4, 2 ), 16 );
+  var end_red = parseInt( end_colour.substr(0, 2), 16 );
+  var end_green = parseInt( end_colour.substr(2, 2), 16 );
+  var end_blue = parseInt( end_colour.substr(4, 2), 16 );
 
   // Calculate new colour
   var diff_red = end_red - start_red;
   var diff_green = end_green - start_green;
   var diff_blue = end_blue - start_blue;
 
-  diff_red = ( ( diff_red * percent ) + start_red ).toString( 16 ).split( '.' )[ 0 ];
-  diff_green = ( ( diff_green * percent ) + start_green ).toString( 16 ).split( '.' )[ 0 ];
-  diff_blue = ( ( diff_blue * percent ) + start_blue ).toString( 16 ).split( '.' )[ 0 ];
+  diff_red = ( (diff_red * percent) + start_red ).toString( 16 ).split( '.' )[0];
+  diff_green = ( (diff_green * percent) + start_green ).toString( 16 ).split( '.' )[0];
+  diff_blue = ( (diff_blue * percent) + start_blue ).toString( 16 ).split( '.' )[0];
 
   // Ensure 2 digits by colour
-  if ( diff_red.length === 1 ) diff_red = '0' + diff_red
-  if ( diff_green.length === 1 ) diff_green = '0' + diff_green
-  if ( diff_blue.length === 1 ) diff_blue = '0' + diff_blue
+  if( diff_red.length === 1 ) diff_red = '0' + diff_red
+  if( diff_green.length === 1 ) diff_green = '0' + diff_green
+  if( diff_blue.length === 1 ) diff_blue = '0' + diff_blue
 
   return diff_red + diff_green + diff_blue;
 }

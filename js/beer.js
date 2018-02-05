@@ -4,6 +4,96 @@
  * Stores of all the Beer Places and some additional information
  */
 var PlacesDB = (function() {
+
+  var Cache = (function() {
+    /**
+     * Loads the cache into the local beer DB
+     */
+    var load = function() {
+      // Check cache enabled
+      if( !CACHE_ENABLED ) {
+        reset()
+        return false;
+      }
+
+      Logger.info("Looking for saved cache");
+
+      var cache = window.localStorage.getItem( "BeerPlacesDB" );
+      if( cache ) {
+        var cache_hash = window.localStorage.getItem( "BeerPlacesDBHash" );
+        var cache_timestamp = parseInt( window.localStorage.getItem( "BeerPlacesDBTimestamp" ) || 0 );
+
+        // Check expiry
+        var expired = ( new Date().getTime() - cache_timestamp ) >= CACHE_DURATION * 1000;
+        if( expired ) {
+          Logger.info( `Cache expired.` )
+          return false;
+        }
+
+        // Check hash
+        var hashMatch = dbHash() === cache_hash;
+        if( !hashMatch ) {
+          Logger.info( `Cache found (${cache_hash}) but doesn't match data (${dbHash()}).` )
+          return false;
+        }
+
+        // Load
+        var places = JSON.parse( cache );
+
+        // Convert the cache into proper BeerPlace objects
+        local_db = new Array();
+        for( var i in places ) {
+          local_db.push(places[i]);
+        }
+
+        Logger.info( `Found and loaded cache ${cache_hash}` )
+        return true;
+      }
+
+      return false;
+    };
+
+    /**
+     * Saves the DB places into the cache
+     */
+    var save = function() {
+      // Check cache enabled
+      if( !CACHE_ENABLED ) {
+        reset()
+        return false;
+      }
+
+      Logger.info( `Saving cache for DB ${dbHash()}` )
+
+      window.localStorage.setItem( "BeerPlacesDB", JSON.stringify(local_db) )
+      window.localStorage.setItem( "BeerPlacesDBHash", dbHash() )
+      window.localStorage.setItem( "BeerPlacesDBTimestamp", new Date().getTime() )
+
+      return true;
+    };
+
+    /**
+     * Resets the local cache
+     */
+    var reset = function() {
+      if( CACHE_ENABLED ) {
+        window.localStorage.removeItem( "BeerPlacesDB" );
+        window.localStorage.removeItem( "BeerPlacesDBHash" );
+        window.localStorage.removeItem( "BeerPlacesDBTimestamp" );
+        Logger.log( "Cache cleaned" );
+      }
+      else {
+        Logger.log( "The cache is not enabled" );
+      }
+    };
+
+    return {
+      'load': load,
+      'save': save,
+      'reset': reset
+    };
+  })();
+
   var local_db = new Array();
 
   /**
@@ -58,13 +148,13 @@ var PlacesDB = (function() {
   var parseYaml = function( yaml_data ) {
     var result = new Array();
 
-    for ( var country in yaml_data ) {
+    for( var country in yaml_data ) {
       var country_cities = yaml_data[country];
-      for ( var city in country_cities ) {
+      for( var city in country_cities ) {
         var city_places = country_cities[city];
-        for ( var place in city_places ) {
+        for( var place in city_places ) {
           var beer_place = city_places[place];
-          if ( DEBUG && !city.match( DEBUG_CITY ) ) {
+          if( DEBUG && !city.match( DEBUG_CITY ) ) {
             continue;
           }
           // Check the data is valid, if not don't add it
@@ -72,7 +162,8 @@ var PlacesDB = (function() {
             Logger.warn(`Missing information on entry ${JSON.stringify(beer_place)}`);
             continue;
           }
-          result.push( new BeerPlace( beer_place, country, city ) );
+
+          result.push( new BeerPlace(beer_place, country, city) );
         }
       }
     }
@@ -111,83 +202,9 @@ var PlacesDB = (function() {
   };
 
   /**
-   * Loads the cache into the local beer DB
-   */
-  var loadCache = function () {
-    // Check cache enabled
-    if ( !CACHE_ENABLED ) {
-      resetCache()
-      return false;
-    }
-
-    var cache = localStorage.getItem( "BeerPlacesDB" );
-    if ( cache ) {
-      var cache_hash = localStorage.getItem( "BeerPlacesDBHash" );
-      var cache_timestamp = parseInt( localStorage.getItem( "BeerPlacesDBTimestamp" ) || 0 );
-
-      // Check expiry
-      var expired = ( new Date().getTime() - cache_timestamp ) >= CACHE_DURATION * 1000;
-      if ( expired ) {
-        Logger.info( `Cache expired.` )
-        return false;
-      }
-
-      // Check hash
-      var hashMatch = dbHash() === cache_hash;
-      if ( !hashMatch ) {
-        Logger.info( `Cache found (${cache_hash}) but doesn't match data (${dbHash()}).` )
-        return false;
-      }
-
-      // Load
-      var places = JSON.parse( cache );
-
-      // Convert the cache into proper BeerPlace objects
-      local_db = new Array();
-      for ( var i in places ) {
-        local_db.push(
-          new BeerPlace( places[i], places[i].country, places[i].city )
-        );
-      }
-
-      Logger.info( `Found and loaded cache ${cache_hash}` )
-      return true;
-    }
-    return false;
-  };
-
-  /**
-   * Saves the DB places into the cache
-   */
-  var saveCache = function () {
-    // Check cache enabled
-    if ( !CACHE_ENABLED ) {
-      resetCache()
-      return false;
-    }
-
-    Logger.info( `Saving cache for DB ${dbHash()}` )
-
-    localStorage.setItem( "BeerPlacesDB", JSON.stringify( local_db ) )
-    localStorage.setItem( "BeerPlacesDBHash", dbHash() )
-    localStorage.setItem( "BeerPlacesDBTimestamp", new Date().getTime() )
-
-    return true;
-  };
-
-  /**
-   * Resets the local cache
-   */
-  var resetCache = function() {
-    localStorage.removeItem( "BeerPlacesDB" );
-    localStorage.removeItem( "BeerPlacesDBHash" );
-    localStorage.removeItem( "BeerPlacesDBTimestamp" );
-  };
-
-  /**
    * Loads asynchronously the information about the location of all the places
    */
-  var queryForLocations = function () {
+  var queryForLocations = function() {
     var start_queue = local_db.slice();
     var end_queue = new Array();
 
@@ -201,16 +218,7 @@ var PlacesDB = (function() {
       place => place.queryLocation.bind( place ),
       google.maps.places.PlacesServiceStatus.OK,
       place => {
-        // Group the colouring by Status
-        var filter = x => x.Status.toLowerCase() === place.Status.toLowerCase();
-
-        // Add the pin to the map
-        addMarker(
-          place,
-          minAvgScore( filter ),
-          maxAvgScore( filter )
-        );
-
+        addPlaceToMap( place );
         queries++;
       },
       ( place, error ) => {
@@ -220,7 +228,7 @@ var PlacesDB = (function() {
         if( error === google.maps.places.PlacesServiceStatus.ZERO_RESULTS ) {
           var done_item = start_queue.shift();
           Logger.warn( `No results found for ${done_item.name}.` );
-          if ( end_queue != undefined ) {
+          if( end_queue != undefined ) {
             end_queue.push( done_item );
           }
         }
@@ -240,7 +248,7 @@ var PlacesDB = (function() {
   /**
    * Loads asynchronously the information about the location of all the places
    */
-  var queryForDetails = function () {
+  var queryForDetails = function() {
     var start_queue = local_db.slice();
     var end_queue = new Array();
 
@@ -266,24 +274,36 @@ var PlacesDB = (function() {
         Logger.warn( `All details done: items=${end_queue.length}, queries=${queries}, failures=${failures}, time=${time.toFixed(3)}s.` );
         local_db = end_queue;
 
-        saveCache()
+        Cache.save()
       }
     );
   };
 
   /**
+   * Requests the addition of a marker on the map
+   */
+  var addPlaceToMap = function( place ) {
+    // Group the colouring by Status
+    var filter = x => x.Status.toLowerCase() === place.Status.toLowerCase();
+    // Add the pin to the map
+    addMarker( place, minAvgScore(filter), maxAvgScore(filter) );
+  };
+
+  /**
    * Initializes the DB
    */
-  var init = function( rawData ) {
+  var init = function( raw_data ) {
+    // Interpreting YAML data as first thing
+    local_db = parseYaml( raw_data );
+
     // Starts the filling of the Beer Places DB
-    if( loadCache() ) {
-      for ( var i in local_db ) {
-        addMarker( local_db[i] );
+    if( Cache.load() ) {
+      for( var i in local_db ) {
+        addPlaceToMap( local_db[i] );
       }
-      saveCache();
+      Cache.save();
     }
     else {
-      local_db = parseYaml( rawData );
       queryForLocations();
     }
   };
@@ -291,79 +311,35 @@ var PlacesDB = (function() {
   return {
     'init': init,
     'dbHash': dbHash,
-    'resetCache': resetCache,
     'maxAvgScore': maxAvgScore,
     'minAvgScore': minAvgScore,
+    'Cache': Cache
   };
 })();
-
-
-/**
- * Adds a Beer Place as a marker on the map
- */
-function addMarker( place, min_avg_score, max_avg_score ) {
-  // Percentage of the colour based on the relative position of the score
-  var value_percent = rangeRelative( min_avg_score, place.avgScore, max_avg_score );
-
-  // Calculate the colour
-  var marker_colour = getGradientColor(
-    PINS[place.Status.toLowerCase()][0],
-    PINS[place.Status.toLowerCase()][1],
-    value_percent
-  );
-
-  // Build the pin
-  var icon = "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + encodeURI(marker_colour);
-  var pinImage = new google.maps.MarkerImage(
-    icon,
-    new google.maps.Size( 21, 34 ),
-    new google.maps.Point( 0, 0 ),
-    new google.maps.Point( 10, 34 )
-  );
-
-  // Create and add the marker
-  var title = `${place.Name} - ${place.avgScore.toFixed(2)}/10`;
-  var marker = new google.maps.Marker( {
-    map: map,
-    title: title,
-    icon: pinImage,
-    position: place.GoogleLocation.geometry.location,
-    infoWindow: infoWindow
-  } );
-
-  // Manage the click
-  marker.addListener( 'click', () => {
-    infoWindow.setContent( place.placeInfoWindow() );
-    infoWindow.open( map, marker );
-    // Build the stars
-    $( function () {
-      $( 'span.stars' ).stars();
-    } );
-    Logger.info( place );
-  } );
-}
 
 
 /**
  * Represents a Beer Place
  */
 function BeerPlace( raw_data, country, city ) {
-  Object.assign( this, raw_data );
 
+  // The YAML data is assigned as parent level set of members
+  Object.assign( this, raw_data );
+  this.raw_data = raw_data;
   this.country = country;
   this.city = city;
 
   /**
-   * A fingerprint of the object, excluding Google data
+   * A fingerprint of the object, calculated with only the YAML data
    */
-  this.dataHash = objectHash.sha1( raw_data );
+  this.dataHash = objectHash.sha1( this.raw_data );
 
   /**
    * The average score of the place
    */
-  this.avgScore = (function () {
+  this.avgScore = (function() {
     // Missing status
-    if ( !this.Status ) {
+    if( !this.Status ) {
       Logger.error( `Missing Status for "${this.Name}"` )
       return 0.0;
     }
@@ -372,10 +348,10 @@ function BeerPlace( raw_data, country, city ) {
     var count = 0;
     var penalty = 0.0;
 
-    if ( this.Status.toLowerCase() === 'tried' ) {
+    if( this.Status.toLowerCase() === 'tried' ) {
       // Draught score (weight of 33%)
-      if ( 'Draught' in this.Score ) {
-        if ( this.Score.Draught > 0.0 ) {
+      if( 'Draught' in this.Score ) {
+        if( this.Score.Draught > 0.0 ) {
           average += this.Score.Draught * 3.0;
           count += 3;
         }
@@ -383,8 +359,8 @@ function BeerPlace( raw_data, country, city ) {
       }
 
       // Bottles score (weight of 33%)
-      if ( 'Bottles' in this.Score ) {
-        if ( this.Score.Bottles > 0.0 ) {
+      if( 'Bottles' in this.Score ) {
+        if( this.Score.Bottles > 0.0 ) {
           average += this.Score.Bottles * 3.0;
           count += 3;
         }
@@ -392,8 +368,8 @@ function BeerPlace( raw_data, country, city ) {
       }
 
       // Place score (weight of 22%)
-      if ( 'Place' in this.Score ) {
-        if ( this.Score.Place > 0.0 ) {
+      if( 'Place' in this.Score ) {
+        if( this.Score.Place > 0.0 ) {
           average += this.Score.Place * 2.0;
           count += 2;
         }
@@ -401,8 +377,8 @@ function BeerPlace( raw_data, country, city ) {
       }
 
       // Food score (weight of 11%)
-      if ( 'Food' in this.Score ) {
-        if ( this.Score.Food > 0.0 ) {
+      if( 'Food' in this.Score ) {
+        if( this.Score.Food > 0.0 ) {
           average += this.Score.Food * 1.0;
           count += 1;
         }
@@ -413,15 +389,15 @@ function BeerPlace( raw_data, country, city ) {
       average /= count;
       average -= penalty;
     }
-    else if ( this.Status.toLowerCase() === 'to try' ) {
+    else if( this.Status.toLowerCase() === 'to try' ) {
       // Personal score (weight of 60%)
-      if ( 'Mine' in this.Expectation ) {
+      if( 'Mine' in this.Expectation ) {
         average += this.Expectation.Mine * 3.0;
         count += 3;
       }
 
       // Google score, ranges from 0 to 5 (weight of 40%)
-      if ( 'Google' in this.Expectation ) {
+      if( 'Google' in this.Expectation ) {
         average += this.Expectation.Google * 4.0;
         count += 2;
       }
@@ -438,18 +414,18 @@ function BeerPlace( raw_data, country, city ) {
    * Queries Google to fetch information about the position and then calls a
    * callback function when the data is available.
    */
-  this.queryLocation = function ( callback, force = false ) {
+  this.queryLocation = function( callback, force = false ) {
     // Merges the location information provided by Google into this object
     function mergeLocation( googleLocation ) {
       var photo_url = ""
-      if ( googleLocation.photos.length > 0 ) {
+      if( googleLocation.photos.length > 0 ) {
         photo_url = googleLocation.photos[0].getUrl({
           'maxHeight': 100,
           'maxWidth': 150,
         });
       }
 
-      this.GoogleLocation = {
+      this.google_location = {
         place_id: googleLocation.place_id,
         formatted_address: googleLocation.formatted_address,
         geometry: googleLocation.geometry,
@@ -462,7 +438,7 @@ function BeerPlace( raw_data, country, city ) {
     }
 
     // Skip if already present
-    if ( this.GoogleLocation && !force ) {
+    if( this.google_location && !force ) {
       Logger.warn( `Location data already loaded for ${this.Name}` );
       return;
     }
@@ -473,12 +449,12 @@ function BeerPlace( raw_data, country, city ) {
     placesService.textSearch( request, ( results, status ) => {
       Logger.info( `Text search completed for "${this.Name}" with status ${status}` );
 
-      if ( status === google.maps.places.PlacesServiceStatus.OK ) {
+      if( status === google.maps.places.PlacesServiceStatus.OK ) {
         mergeLocation.call( this, results[0] );
-        Logger.info( `Found ID for "${this.Name}": ${this.GoogleLocation.place_id}` );
+        Logger.info( `Found ID for "${this.Name}": ${this.google_location.place_id}` );
       }
 
-      if ( callback ) {
+      if( callback ) {
         callback( this, status );
       }
     } );
@@ -490,56 +466,56 @@ function BeerPlace( raw_data, country, city ) {
    */
   this.queryDetails = function( callback, force = false ) {
     // Merges the details information provided by Google into this object
-    function mergeDetails( googleDetails ) {
-      this.GoogleDetails = {}
-      Object.assign( this.GoogleDetails, googleDetails );
+    function mergeDetails( google_details ) {
+      this.google_details = {}
+      Object.assign( this.google_details, google_details );
     }
 
     // Skip if details are missing
-    if ( !this.GoogleLocation ) {
+    if( !this.google_location ) {
       Logger.error( `Can't load Details because Location is missing for ${this.Name}` );
       return;
     }
     // Skip if already present
-    if ( this.GoogleDetails && !force ) {
+    if( this.google_details && !force ) {
       Logger.warn( `Details data already loaded for ${this.Name}` );
       return;
     }
 
     var request = {
-      'placeId': this.GoogleLocation.place_id
+      'placeId': this.google_location.place_id
     };
     placesService.getDetails( request, ( results, status ) => {
       Logger.info( `Details search completed for "${this.Name}" with status ${status}` );
 
-      if ( status === google.maps.places.PlacesServiceStatus.OK ) {
+      if( status === google.maps.places.PlacesServiceStatus.OK ) {
         mergeDetails.call( this, results );
         Logger.info( `Found details for "${this.Name}".` );
       }
 
-      if ( callback ) {
+      if( callback ) {
         callback( this, status );
       }
-    } );
+    });
   }
 
   /**
    * Build the InfoWindow content for the place
    */
-  this.placeInfoWindow = function () {
+  this.placeInfoWindow = function() {
     // See https://developers.google.com/maps/documentation/urls/guide
-    var directionsUrl = "https://www.google.com/maps/dir/?api=1";
-    directionsUrl += "&destination=" + encodeURI(this.GoogleLocation.formatted_address)
-    directionsUrl += "&travelmode=bicycling"      // Options are driving, walking, bicycling or transit
+    var directions_url = "https://www.google.com/maps/dir/?api=1";
+    directions_url += "&destination=" + encodeURI(this.google_location.formatted_address)
+    directions_url += "&travelmode=bicycling"      // Options are driving, walking, bicycling or transit
 
     // Opening hours
-    var openNow = "???", openNowColour = "black";
-    if( this.GoogleDetails && this.GoogleDetails.opening_hours ) {
-      if( this.GoogleDetails.opening_hours.open_now ) {
-        openNow = "Open"; openNowColour = "green";
+    var open_now = "???", open_now_colour = "black";
+    if( this.google_details && this.google_details.opening_hours ) {
+      if( this.google_details.opening_hours.open_now ) {
+        open_now = "Open"; open_now_colour = "green";
       }
       else {
-        openNow = "Closed"; openNowColour = "red";
+        open_now = "Closed"; open_now_colour = "red";
       }
     }
 
@@ -547,38 +523,23 @@ function BeerPlace( raw_data, country, city ) {
     var filter = x => x.Status.toLowerCase() === this.Status.toLowerCase();
 
     // Build and return template
-    var hndPlaceInfo = Handlebars.compile($('#place-template')[0].innerHTML);
-    return hndPlaceInfo({
+    var hndl_template = Handlebars.compile($('#place-template')[0].innerHTML);
+    return hndl_template({
       name:          this.Name,
       type:          this.Type,
-      address:       this.GoogleLocation.formatted_address,
+      address:       this.google_location.formatted_address,
       avgScore:      this.avgScore.toFixed( 2 ),
       minAvgScore:   PlacesDB.minAvgScore( filter ),
       maxAvgScore:   PlacesDB.maxAvgScore( filter ),
       score:         this.Score || "",
       expectation:   this.Expectation || "",
-      imgUrl:        this.GoogleLocation.photoUrl || "",
-      hasDetails:    'GoogleDetails' in this,
-      openNow:       openNow,
-      openNowColour: openNowColour,
-      website:       this.GoogleDetails ? this.GoogleDetails.website : "",
-      url:           this.GoogleDetails ? this.GoogleDetails.url : "",
-      directionsUrl: directionsUrl
+      imgUrl:        this.google_location.photoUrl || "",
+      hasDetails:    'google_details' in this,
+      openNow:       open_now,
+      openNowColour: open_now_colour,
+      website:       this.google_details ? this.google_details.website : "",
+      url:           this.google_details ? this.google_details.url : "",
+      directionsUrl: directions_url
     });
-  }
-}
-
-/**
- * Resets the local cache
- */
-function resetCache() {
-  if ( CACHE_ENABLED ) {
-    localStorage.removeItem( "BeerPlacesDB" );
-    localStorage.removeItem( "BeerPlacesDBHash" );
-    localStorage.removeItem( "BeerPlacesDBTimestamp" );
-    Logger.log( "Cache cleaned" );
-  }
-  else {
-    Logger.log( "The cache is not enabled" );
   }
 }
