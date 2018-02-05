@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link id="favicon" rel="shortcut icon" type="image/png" href="favicon.png" />
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" crossorigin="anonymous"></script>
@@ -15,10 +16,10 @@
     <script type="text/javascript" src="js/jquery-dateFormat.min.js"></script>
     <script type="text/javascript" src="js/js-yaml.min.js"></script>
     <script type="text/javascript" src="js/object_hash.min.js"></script>
+    <script type="text/javascript" src="js/beer.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
     <script type="text/javascript" src="js/map-style.js"></script>
     <script type="text/javascript" src="js/map.js"></script>
-    <script type="text/javascript" src="js/beer.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqnWg__YSMdaJc0K46F7S5-kUYzNqyb_4&callback=initGoogle&libraries=places" async defer></script>
 
     <title>Best Beer Berths</title>
@@ -30,8 +31,27 @@
         <div id="map" class="col-xs-12 col-sm-8 col-md-9"></div>
         <div id="places-container" class="col-xs-12 col-sm-4 col-md-3">
           <h1>Best Beer Berths</h1>
-          <h3>Work in progress here...</h3>
           <a href="javascript:resetCache()">Reset cache</a>
+          <h2>List of places</h2>
+
+          <div id="placesList">
+            <div class="placeItem normal">
+              <h4>Moeder Lambic Fontain - 8.2</h4>
+              <strong>Address:</strong> Place Fontainas 8, 1000 Bruxelles, Belgium<br/>
+              <strong>Type:</strong> Belgian Bar
+            </div>
+            <div class="placeItem selected">
+              <h4>Ørsted Ølbar - 8.2</h4>
+              <strong>Address:</strong> Nørre Farimagsgade 13, 1364 København K, Denmark<br/>
+              <strong>Type:</strong> Pub
+            </div>
+            <div class="placeItem normal">
+              <h4>The Dove Freehouse and Kitchen - 8.2</h4>
+              <strong>Address:</strong> 24-28 Broadway Market, London E8 4QJ<br/>
+              <strong>Type:</strong> Belgian Bar
+            </div>
+          </div>
+
           <div id="debug"></div>
         </div>
       </div>
@@ -50,9 +70,9 @@
     <!-- Google InfoWindow template for Handlebar -->
     <script id="place-template" type="text/x-handlebars-template">
       <div class="placeInfo">
-        <h6>{{ name }} - {{ averageScore }}/10</h6>
+        <h6>{{ name }} - {{ avgScore }}/10</h6>
         <p>
-          <span class="stars">{ "value":{{ averageScore }},"minValue":{{ minAverageScore }},"maxValue":{{ maxAverageScore }} }</span>
+          <span class="stars">{ "value": {{ avgScore }}, "minValue": {{ minAvgScore }}, "maxValue": {{ maxAvgScore }} }</span>
         </p>
         <p>
           {{# if hasDetails }}<a href="{{ website }}" target="_blank">Website</a> -{{/ if }}

@@ -86,30 +86,30 @@ function processQueueAsync( inputQueue, outputQueue, action, successValue, succe
 
 /**
  * Gets a colour from a gradient.
- * See: https://stackoverflow.com/questions/3080421/javascript-color-gradient
+ * See: https://stackoverflow.com/questions/3080421/javascript-colour-gradient
  */
-function getGradientColor( start_color, end_color, percent ) {
+function getGradientColor( start_colour, end_colour, percent ) {
   // Strip the leading # if it's there
-  var start_color = start_color.replace( /^\s*#|\s*$/g, '' );
-  var end_color = end_color.replace( /^\s*#|\s*$/g, '' );
+  var start_colour = start_colour.replace( /^\s*#|\s*$/g, '' );
+  var end_colour = end_colour.replace( /^\s*#|\s*$/g, '' );
 
   // Convert 3 char codes --> 6, e.g. `E0F` --> `EE00FF`
-  if ( start_color.length === 3 ) {
-    start_color = start_color.replace( /(.)/g, '$1$1' );
+  if ( start_colour.length === 3 ) {
+    start_colour = start_colour.replace( /(.)/g, '$1$1' );
   }
 
-  if ( end_color.length === 3 ) {
-    end_color = end_color.replace( /(.)/g, '$1$1' );
+  if ( end_colour.length === 3 ) {
+    end_colour = end_colour.replace( /(.)/g, '$1$1' );
   }
 
   // Get colours
-  var start_red = parseInt( start_color.substr( 0, 2 ), 16 ),
-    start_green = parseInt( start_color.substr( 2, 2 ), 16 ),
-    start_blue = parseInt( start_color.substr( 4, 2 ), 16 );
+  var start_red = parseInt( start_colour.substr( 0, 2 ), 16 ),
+    start_green = parseInt( start_colour.substr( 2, 2 ), 16 ),
+    start_blue = parseInt( start_colour.substr( 4, 2 ), 16 );
 
-  var end_red = parseInt( end_color.substr( 0, 2 ), 16 ),
-    end_green = parseInt( end_color.substr( 2, 2 ), 16 ),
-    end_blue = parseInt( end_color.substr( 4, 2 ), 16 );
+  var end_red = parseInt( end_colour.substr( 0, 2 ), 16 ),
+    end_green = parseInt( end_colour.substr( 2, 2 ), 16 ),
+    end_blue = parseInt( end_colour.substr( 4, 2 ), 16 );
 
   // Calculate new colour
   var diff_red = end_red - start_red;
@@ -134,6 +134,10 @@ function getGradientColor( start_color, end_color, percent ) {
  * interpolation
  */
 function rangeRelative( min, value, max ) {
+  // Make sure that min < max
+  if( min > max ) {
+    min = [max, max = min][0];
+  }
   var value = Math.max( min, Math.min( max, value ) );
   return (value - min) / (max - min);
 }

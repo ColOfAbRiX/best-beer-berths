@@ -70,6 +70,24 @@ span.stars span {
   background-position: 0 0;
 }
 
+/* List of places */
+#placesList {
+}
+#placesList .placeItem {
+  padding-bottom: 8pt;
+  border-top: 2px solid #999;
+}
+#placesList .placeItem {
+  padding-bottom: 8pt;
+  border-top: 2px solid #999;
+}
+#placesList .selected {
+  background-color: #ffc;
+}
+#placesList .normal {
+  background-color: #fff;
+}
+
 /* debug */
 #debug {
   font-family: monospace;

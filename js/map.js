@@ -4,7 +4,6 @@
 var map, homeMarker, infoWindow, placesService;
 var lastPosition, centerHome = true;
 
-
 /**
  * Initializes Google Map.
  *
@@ -29,7 +28,7 @@ function initGoogle() {
   placesService = new google.maps.places.PlacesService( map );
 
   // Set style if present
-  if ( typeof GOOGLE_MAP_STYLE !== 'undefined' ) {
+  if( typeof GOOGLE_MAP_STYLE !== 'undefined' ) {
     map.set( 'styles', GOOGLE_MAP_STYLE );
   }
 
@@ -38,13 +37,13 @@ function initGoogle() {
   addCentreButton();
 
   // Centre the map on the current position
-  if ( !DEBUG && navigator.geolocation ) {
+  if( !DEBUG && navigator.geolocation ) {
     Logger.info( "Locating user..." )
     setHome( DEFAULT_POSITION, true, true );
     updatePosition();
   }
   else {
-    if ( !DEBUG ) {
+    if( !DEBUG ) {
       Logger.info( "The browser doesn't support GeoLocation." )
       setHome( DEFAULT_POSITION );
     }
@@ -62,8 +61,7 @@ function initGoogle() {
   $.get(
     BEER_DATABASE_FILE,
     data => {
-      beerDb = new BeerPlacesDB( jsyaml.safeLoad( data )['Beer places'] )
-      beerDb.fillDB();
+      PlacesDB.init( jsyaml.safeLoad( data )['Beer places'] );
     },
     'text'
   );
