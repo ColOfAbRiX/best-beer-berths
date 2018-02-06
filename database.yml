@@ -407,8 +407,8 @@ Beer places:
        Type: Bar
        Status: To try
        Expectation: { Mine: 7, Google: 4.4 }
-     - Name: AcquaSanta Bistrot
-       Address: AcquaSanta Bistrot
+     - Name: Acqua Santa Bistrot
+       Address: Piazza Almerici, 4, 47521 Cesena FC, Italy
        Type: Bistrot
        Status: To try
        Expectation: { Mine: 8, Google: 4.5 }

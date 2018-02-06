@@ -124,7 +124,9 @@ var GoogleMap = (function(){
    */
   var addLegend = function() {
     var colouredPinUrl = function( colour ) {
-      return `https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|${colour}`
+      return (isSSL() ? "https" : "http") +
+        "://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" +
+        colour;
     }
 
     // Create a range of URLs to the coloured pins to display in the legend
