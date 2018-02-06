@@ -94,7 +94,13 @@ var PlacesDB = (function() {
     };
   })();
 
+  // Database with all the places
   var local_db = new Array();
+  // Local cache, to save some time...
+  var dataCache = {
+    'maxAvgScore': {},
+    'minAvgScore': {}
+  };
 
   /**
    * Checks that the raw data for a place is valid, with all the data
@@ -211,29 +217,35 @@ var PlacesDB = (function() {
     // Stats
     var start = new Date().getTime();
     var queries = 0, failures = 0;
+
     // Run task
     processQueueAsync(
-      start_queue,
-      end_queue,
-      place => place.queryLocation.bind( place ),
+      /* inputQueue, outputQueue */
+      start_queue, end_queue,
+      /* action */
+      ( place ) => place.queryLocation.bind( place ),
+      /* successValue */
       google.maps.places.PlacesServiceStatus.OK,
-      place => {
+      /* successAction */
+      ( place ) => {
         addPlaceToMap( place );
         queries++;
       },
+      /* failAction */
       ( place, error ) => {
         Logger.error( `Error querying location for ${place.Name}: ${error}` );
         failures++;
         // In case of ZERO_RESULTS, drop the item
         if( error === google.maps.places.PlacesServiceStatus.ZERO_RESULTS ) {
           var done_item = start_queue.shift();
-          Logger.warn( `No results found for ${done_item.name}.` );
+          Logger.warn( `No results found for ${done_item.name}, skipping place.` );
           if( end_queue != undefined ) {
             end_queue.push( done_item );
           }
         }
       },
-      place => {
+      /* doneAction */
+      ( place ) => {
         var time = ( new Date().getTime() - start ) / 1000.0;
 
         Logger.warn( `All locations done: items=${end_queue.length}, queries=${queries}, failures=${failures}, time=${time.toFixed(3)}s.` );
@@ -255,20 +267,26 @@ var PlacesDB = (function() {
     // Stats
     var start = new Date().getTime();
     var queries = 0, failures = 0;
+
     // Run task
     processQueueAsync(
-      start_queue,
-      end_queue,
-      place => place.queryDetails.bind( place ),
+      /* inputQueue, outputQueue */
+      start_queue, end_queue,
+      /* action */
+      ( place ) => place.queryDetails.bind( place ),
+      /* successValue */
       google.maps.places.PlacesServiceStatus.OK,
-      place => {
+      /* successAction */
+      ( place ) => {
         queries++;
       },
+      /* failAction */
       ( place, error ) => {
         Logger.error( `Error querying details for ${place.Name}: ${error}` );
         failures++;
       },
-      place => {
+      /* doneAction */
+      ( place ) => {
         var time = ( new Date().getTime() - start ) / 1000.0;
 
         Logger.warn( `All details done: items=${end_queue.length}, queries=${queries}, failures=${failures}, time=${time.toFixed(3)}s.` );
@@ -284,9 +302,23 @@ var PlacesDB = (function() {
    */
   var addPlaceToMap = function( place ) {
     // Group the colouring by Status
-    var filter = x => x.Status.toLowerCase() === place.Status.toLowerCase();
-    // Add the pin to the map
-    addMarker( place, minAvgScore(filter), maxAvgScore(filter) );
+    var status = place.Status.toLowerCase();
+    var filter = x => x.Status.toLowerCase() === status;
+
+    // Use a cache to calculate the values only once
+    if( !(status in dataCache.maxAvgScore) ) {
+      dataCache.maxAvgScore[status] = maxAvgScore(filter);
+    }
+    if( !(status in dataCache.minAvgScore) ) {
+      dataCache.minAvgScore[status] = minAvgScore(filter);
+    }
+
+    // Request the addition
+    GoogleMap.addMarker(
+      place,
+      dataCache['minAvgScore'][status],
+      dataCache['maxAvgScore'][status]
+    );
   };
 
   /**
@@ -323,7 +355,7 @@ var PlacesDB = (function() {
  */
 function BeerPlace( raw_data, country, city ) {
 
-  // The YAML data is assigned as parent level set of members
+  // The YAML data is also assigned as parent level set of members
   Object.assign( this, raw_data );
   this.raw_data = raw_data;
   this.country = country;
@@ -446,18 +478,18 @@ function BeerPlace( raw_data, country, city ) {
     var request = {
       'query': `${this.Name}, ${this.Address}`
     };
-    placesService.textSearch( request, ( results, status ) => {
+    GoogleMap.placesService().textSearch( request, ( results, status ) => {
       Logger.info( `Text search completed for "${this.Name}" with status ${status}` );
 
       if( status === google.maps.places.PlacesServiceStatus.OK ) {
         mergeLocation.call( this, results[0] );
-        Logger.info( `Found ID for "${this.Name}": ${this.google_location.place_id}` );
+        Logger.info( `Found location for "${this.Name}": ${this.google_location.place_id}` );
       }
 
       if( callback ) {
         callback( this, status );
       }
-    } );
+    });
   }
 
   /**
@@ -485,7 +517,7 @@ function BeerPlace( raw_data, country, city ) {
     var request = {
       'placeId': this.google_location.place_id
     };
-    placesService.getDetails( request, ( results, status ) => {
+    GoogleMap.placesService().getDetails( request, ( results, status ) => {
       Logger.info( `Details search completed for "${this.Name}" with status ${status}` );
 
       if( status === google.maps.places.PlacesServiceStatus.OK ) {
@@ -504,7 +536,7 @@ function BeerPlace( raw_data, country, city ) {
    */
   this.placeInfoWindow = function() {
     // See https://developers.google.com/maps/documentation/urls/guide
-    var directions_url = "https://www.google.com/maps/dir/?api=1";
+    var directions_url = (isSSL() ? "https" : "http") + "://www.google.com/maps/dir/?api=1";
     directions_url += "&destination=" + encodeURI(this.google_location.formatted_address)
     directions_url += "&travelmode=bicycling"      // Options are driving, walking, bicycling or transit
 

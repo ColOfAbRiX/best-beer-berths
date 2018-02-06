@@ -1,7 +1,7 @@
 ---
 #
 # List of worthy beer places around the world or places that I want to visit.
-# Last updated: 17/01/2018
+# Last updated: 05/02/2018
 #
 
 Beer places:
@@ -67,6 +67,11 @@ Beer places:
        Type: Belgian Bar
        Status: To try
        Expectation: { Mine: 8, Google: 4.4 }
+     - Name: Brussels Beer Project
+       Address: Brussels Beer Project
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
      - Name: Moeder Lambic Original
        Address: Rue de Savoie 68, 1060 Saint-Gilles, Belgium
        Type: Belgian Bar
@@ -77,6 +82,11 @@ Beer places:
        Type: Belgian Bar
        Status: To try
        Expectation: { Mine: 7, Google: 4.1 }
+     - Name: Nüetnigenough
+       Address: Rue du Lombard 25, 1000 Bruxelles, Belgium
+       Type: Belgian Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.5 }
 
     Others:
      - Name: Espace Chimay
@@ -392,6 +402,16 @@ Beer places:
        Type: Italian Pub
        Status: To try
        Expectation: { Mine: 7, Google: 4.4 }
+     - Name: Circolo Nonsolorosso
+       Address: Via Capannaguzzo, 1359, 47521 Bulgarnò FC, Italy
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.4 }
+     - Name: AcquaSanta Bistrot
+       Address: AcquaSanta Bistrot
+       Type: Bistrot
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
 
     Forlì:
      - Name: Barbeer
@@ -448,12 +468,39 @@ Beer places:
        Status: To try
        Expectation: { Mine: 7, Google: 4.6 }
 
-    Savignano:
+    Romagna:
      - Name: Sidro club
        Address: Via A. Moroni, 92, 47039 Savignano Sul Rubicone FC, Italy
        Type: Italian Pub
        Status: To try
        Expectation: { Mine: 6, Google: 4.6 }
+     - Name: Gran Cru
+       Address: Via G. da Serravalle, 4, 47822 Santarcangelo di Romagna RN, Italy
+       Type: Beer Shop
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.4 }
+     - Name: The Brews
+       Address: Via Marino Moretti, 32, 47042 Cesenatico FC, Italy
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.8 }
+
+    Altro:
+     - Name: Bir & Fud
+       Address: Via Benedetta, 23, 00153 Roma RM, Italy
+       Type: Beer Restaurant
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.4 }
+     - Name: Ma Che Siete Venuti A Fà
+       Address: Ma Che Siete Venuti A Fà
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Beershop the Pretext
+       Address: Via Riva di Reno, 60/d, 40121 Bologna BO, Italy
+       Type: Beer Shop
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.8 }
 
   Sweden:
     Stockholm:
