@@ -99,6 +99,12 @@ span.stars span {
 #debug span.log {
   color: black;
 }
+#debug span.trace {
+  color: silver;
+}
+#debug span.debug {
+  color: gray;
+}
 #debug span.info {
   color: black;
 }

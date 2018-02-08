@@ -89,11 +89,6 @@ Beer places:
        Expectation: { Mine: 7, Google: 4.5 }
 
     Others:
-     - Name: Espace Chimay
-       Address: Rue de Poteaupré 5, 6464 Bourlers, Belgium
-       Type: Brewery
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.0 }
      - Name: Brouwerij Het Anker
        Address: Guido Gezellelaan 49, 2800 Mechelen, Belgium
        Type: Brewery
@@ -114,6 +109,11 @@ Beer places:
        Type: Brewery
        Status: To try
        Expectation: { Mine: 8, Google: 4.2 }
+     - Name: Espace Chimay
+       Address: Rue de Poteaupré 5, 6464 Bourlers, Belgium
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.0 }
      - Name: Brouwerij Lindemans
        Address: Lenniksebaan 1479, 1602 Vlezenbeek, Belgiu
        Type: Brewery
@@ -162,56 +162,41 @@ Beer places:
 
     London:
      ##  Tried  ##
-     - Name: The Dove Freehouse and Kitchen
-       Address: 24-28 Broadway Market, London E8 4QJ
-       Type: Belgian Bar
-       Status: Tried
-       Score: { Draught: 8, Bottles: 10, Place: 9 }
-     - Name: The Dovetail
-       Address: 9-10 Jerusalem Passage, Clerkenwell, London EC1V 4JP
-       Type: Belgian Bar
-       Status: Tried
-       Score: { Draught: 8, Bottles: 8, Food: 8, Place: 8 }
-     - Name: The Craft Beer Co. Clerkenwell
-       Address: 82 Leather Ln, Clerkenwell, London EC1N 7TR
-       Type: English Pub
-       Status: Tried
-       Score: { Draught: 9, Place: 6 }
      - Name: The Craft Beer Co. Islington
        Address: 55 White Lion St, London N1 9PP
        Type: English Pub
        Status: Tried
        Score: { Draught: 10, Bottles: 8, Food: 9, Place: 9 }
+     - Name: The Dove Freehouse and Kitchen
+       Address: 24-28 Broadway Market, London E8 4QJ
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Draught: 8, Bottles: 10, Place: 9 }
+     - Name: The Craft Beer Co. Clerkenwell
+       Address: 82 Leather Ln, Clerkenwell, London EC1N 7TR
+       Type: English Pub
+       Status: Tried
+       Score: { Draught: 9, Place: 6 }
+     - Name: Mother Kelly's
+       Address: 251 Paradise Row, Bethnal Green, London E2 9LE
+       Type: Beer pub
+       Status: Tried
+       Score: { Draught: 9, Bottles: 9, Food: 7, Place: 8 }
+     - Name: The Dovetail
+       Address: 9-10 Jerusalem Passage, Clerkenwell, London EC1V 4JP
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Draught: 8, Bottles: 8, Food: 8, Place: 8 }
      - Name: Brewdog Shoreditch
        Address: 51-55 Bethnal Green Rd, London E1 6LA
        Type: Brewery Chain
        Status: Tried
-       Score: { Draught: 8 , Place: 7 }
-     - Name: Brewdog Clerkenwell
-       Address: 45-47 Clerkenwell Rd, Clerkenwell, London EC1M 5RS
-       Type: Brewery Chain
-       Status: Tried
-       Score: { Draught: 8 , Place: 7 }
+       Score: { Draught: 8, Bottles: 8, Place: 7 }
      - Name: The Exmouth Arms
        Address: 23 Exmouth Market, Clerkenwell, London EC1R 4QL
        Type: English Pub
        Status: Tried
        Score: { Draught: 8, Bottles: 9, Place: 7 }
-     - Name: Bierschenke
-       Address: London Wall Buildings, 4 Blomfield St, London EC2M
-       Type: German Pub
-       Status: Tried
-       Score: { Draught: 7, Bottles: 8, Food: 9, Place: 7 }
-     - Name: Bavarian Beerhouse Old Street
-       Address: 190 City Rd, London EC1V 2QH
-       Type: German Pub
-       Status: Tried
-       Score: { Draught: 8, Bottles: 7, Food: 8, Place: 9 }
-     - Name: Utobeer
-       Address: 24 Borough Market, London SE1 1TL
-       Type: Beer Shop
-       Status: Tried
-       Score: { Draught: -1, Bottles: 9, Place: 7 }
      - Name: The Italian Job at Notting Hill
        Address: 45 All Saints Rd, London W11 1HE
        Type: English/Italian Pub
@@ -222,6 +207,26 @@ Beer places:
        Type: English Pub
        Status: Tried
        Score: { Draught: 8, Place: 7 }
+     - Name: Bavarian Beerhouse Old Street
+       Address: 190 City Rd, London EC1V 2QH
+       Type: German Pub
+       Status: Tried
+       Score: { Draught: 8, Bottles: 7, Food: 8, Place: 9 }
+     - Name: Brewdog Clerkenwell
+       Address: 45-47 Clerkenwell Rd, Clerkenwell, London EC1M 5RS
+       Type: Brewery Chain
+       Status: Tried
+       Score: { Draught: 7 , Place: 7 }
+     - Name: Utobeer
+       Address: 24 Borough Market, London SE1 1TL
+       Type: Beer Shop
+       Status: Tried
+       Score: { Draught: -1, Bottles: 9, Place: 7 }
+     - Name: Bierschenke
+       Address: London Wall Buildings, 4 Blomfield St, London EC2M
+       Type: German Pub
+       Status: Tried
+       Score: { Draught: 7, Bottles: 8, Food: 9, Place: 7 }
      - Name: Draft House Seething
        Address: 14-15 Seething Ln, London EC3N 4AX
        Type: Beer pub
@@ -304,11 +309,6 @@ Beer places:
        Type: Brewery Taproom
        Status: To try
        Expectation: { Mine: 8, Google: 4.7 }
-     - Name: Mother Kelly's
-       Address: 251 Paradise Row, Bethnal Green, London E2 9LE
-       Type: Beer pub
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.6 }
      - Name: BottleShop Bermondsey
        Address: 128 Druid St, London SE1 2HH
        Type: Beer Shop

@@ -118,21 +118,16 @@ var GoogleMap = (function(){
     }
   };
 
+https://chart.apis.google.com/chart?chst=d_map_spin&chld=0.6|0|FFFF42|9|_|8.2
 
   /**
    * Adds the legend to the map and configures it
    */
   var addLegend = function() {
-    var colouredPinUrl = function( colour ) {
-      return (isSSL() ? "https" : "http") +
-        "://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" +
-        colour;
-    }
-
     // Create a range of URLs to the coloured pins to display in the legend
     var pins = ['tried', 'to try'].map( cat =>
       [0.0, 0.5, 1.0].map( x =>
-        colouredPinUrl( getGradientColor(PINS[cat][0], PINS[cat][1], x) )
+        buildPinUrl("%E2%80%A2", getGradientColour(PINS[cat][0], PINS[cat][1], x), 0.7, 8)
       ).map( url =>
         $( '<img />' ).attr( "src", url ).prop( 'outerHTML' )
       )
@@ -179,19 +174,15 @@ var GoogleMap = (function(){
     var value_percent = rangeRelative( min_avg_score, place.avgScore, max_avg_score );
 
     // Calculate the colour
-    var marker_colour = getGradientColor(
+    var marker_colour = getGradientColour(
       PINS[place.Status.toLowerCase()][0],
       PINS[place.Status.toLowerCase()][1],
       value_percent
     );
 
-    // Using Google Chart to have a custom colour pin
-    var icon = (isSSL() ? "https" : "http") +
-      "://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" +
-      encodeURI(marker_colour);
     // Build the pin
     var pinImage = new google.maps.MarkerImage(
-      icon,
+      buildPinUrl(place.avgScore.toFixed(2), marker_colour, 1.0, 9),
       new google.maps.Size( 21, 34 ),
       new google.maps.Point( 0, 0 ),
       new google.maps.Point( 10, 34 )

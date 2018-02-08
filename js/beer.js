@@ -169,7 +169,8 @@ var PlacesDB = (function() {
             continue;
           }
 
-          result.push( new BeerPlace(beer_place, country, city) );
+          var bp = new BeerPlace(beer_place, country, city);
+          result.push( bp );
         }
       }
     }
@@ -351,25 +352,35 @@ var PlacesDB = (function() {
 
 
 /**
- * Represents a Beer Place
+ * Represents a Beer Place with its information and data
  */
-function BeerPlace( raw_data, country, city ) {
+class BeerPlace {
+  constructor( raw_data, country, city ) {
+    this.raw_data = raw_data;
+    this.country = country;
+    this.city = city;
 
-  // The YAML data is also assigned as parent level set of members
-  Object.assign( this, raw_data );
-  this.raw_data = raw_data;
-  this.country = country;
-  this.city = city;
+    // The YAML data is also assigned as parent level set of members
+    Object.assign( this, raw_data );
+
+    this.data_hash = objectHash.sha1( this.raw_data );
+  }
 
   /**
    * A fingerprint of the object, calculated with only the YAML data
    */
-  this.dataHash = objectHash.sha1( this.raw_data );
+  get dataHash() {
+    return this.data_hash;
+  }
 
   /**
    * The average score of the place
    */
-  this.avgScore = (function() {
+  get avgScore() {
+    if( 'avg_score' in this ) {
+      return this.avg_score;
+    }
+
     // Missing status
     if( !this.Status ) {
       Logger.error( `Missing Status for "${this.Name}"` )
@@ -439,50 +450,45 @@ function BeerPlace( raw_data, country, city ) {
       average -= penalty;
     }
 
-    return average
-  }).apply( this );
+    this.avg_score = average;
+    return this.avg_score;
+  }
 
   /**
    * Queries Google to fetch information about the position and then calls a
    * callback function when the data is available.
    */
-  this.queryLocation = function( callback, force = false ) {
-    // Merges the location information provided by Google into this object
-    function mergeLocation( googleLocation ) {
-      var photo_url = ""
-      if( googleLocation.photos.length > 0 ) {
-        photo_url = googleLocation.photos[0].getUrl({
-          'maxHeight': 100,
-          'maxWidth': 150,
-        });
-      }
-
-      this.google_location = {
-        place_id: googleLocation.place_id,
-        formatted_address: googleLocation.formatted_address,
-        geometry: googleLocation.geometry,
-        name: googleLocation.name,
-        opening_hours: googleLocation.opening_hours,
-        open_now: googleLocation.open_now,
-        rating: googleLocation.rating,
-        photoUrl: photo_url
-      };
-    }
-
+  queryLocation( callback, force = false ) {
     // Skip if already present
     if( this.google_location && !force ) {
       Logger.warn( `Location data already loaded for ${this.Name}` );
       return;
     }
 
-    var request = {
-      'query': `${this.Name}, ${this.Address}`
-    };
+    var thisRef = this;
+    var request = { 'query': `${this.Name}, ${this.Address}` };
     GoogleMap.placesService().textSearch( request, ( results, status ) => {
       Logger.info( `Text search completed for "${this.Name}" with status ${status}` );
 
       if( status === google.maps.places.PlacesServiceStatus.OK ) {
-        mergeLocation.call( this, results[0] );
+        results = results[0];
+
+        var photo_url = ""
+        if( results.photos.length > 0 ) {
+          photo_url = results.photos[0].getUrl({ 'maxHeight': 100, 'maxWidth': 150 });
+        }
+
+        thisRef.google_location = {
+          place_id: results.place_id,
+          formatted_address: results.formatted_address,
+          geometry: results.geometry,
+          name: results.name,
+          opening_hours: results.opening_hours,
+          open_now: results.open_now,
+          rating: results.rating,
+          photoUrl: photo_url
+        };
+
         Logger.info( `Found location for "${this.Name}": ${this.google_location.place_id}` );
       }
 
@@ -493,35 +499,30 @@ function BeerPlace( raw_data, country, city ) {
   }
 
   /**
-   * Queries Google for detaiDeliriumled information about the place and then calls a
+   * Queries Google for detailed information about the place and then calls a
    * callback function when the data is available.
    */
-  this.queryDetails = function( callback, force = false ) {
-    // Merges the details information provided by Google into this object
-    function mergeDetails( google_details ) {
-      this.google_details = {}
-      Object.assign( this.google_details, google_details );
-    }
-
-    // Skip if details are missing
+  queryDetails( callback, force = false ) {
     if( !this.google_location ) {
       Logger.error( `Can't load Details because Location is missing for ${this.Name}` );
       return;
     }
-    // Skip if already present
     if( this.google_details && !force ) {
       Logger.warn( `Details data already loaded for ${this.Name}` );
       return;
     }
 
-    var request = {
-      'placeId': this.google_location.place_id
-    };
+    var thisRef = this;
+    var request = { 'placeId': this.google_location.place_id };
     GoogleMap.placesService().getDetails( request, ( results, status ) => {
       Logger.info( `Details search completed for "${this.Name}" with status ${status}` );
 
       if( status === google.maps.places.PlacesServiceStatus.OK ) {
-        mergeDetails.call( this, results );
+        results = results[0];
+        Logger.debug(results);
+
+        thisRef.google_details = {}
+        Object.assign( thisRef.google_details, results );
         Logger.info( `Found details for "${this.Name}".` );
       }
 
@@ -534,7 +535,7 @@ function BeerPlace( raw_data, country, city ) {
   /**
    * Build the InfoWindow content for the place
    */
-  this.placeInfoWindow = function() {
+  placeInfoWindow() {
     // See https://developers.google.com/maps/documentation/urls/guide
     var directions_url = (isSSL() ? "https" : "http") + "://www.google.com/maps/dir/?api=1";
     directions_url += "&destination=" + encodeURI(this.google_location.formatted_address)

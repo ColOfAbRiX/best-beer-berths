@@ -7,11 +7,11 @@ const DEFAULT_POSITION = {lat: 51.5189138, lng: -0.0924759};
 const POSITION_UPDATE = 10;
 
 // Cache options
-const CACHE_ENABLED = true;
+const CACHE_ENABLED = false;
 const CACHE_DURATION = 86400;
 
 // Debug options
-const DEBUG = false || urlParam("DEBUG") != null;
+const DEBUG = true || urlParam("DEBUG") != null;
 const DEBUG_CITY = /(london)/i;
 const DEBUG_POSITION = {lat: 51.5189138, lng: -0.0924759};
 // const DEBUG_POSITION = {lat: 44.0372932, lng: 12.6069268};
@@ -41,7 +41,7 @@ function processQueueAsync( inputQueue, outputQueue, action, successValue, succe
 
       // Run the action
       runAction( ( item, status ) => {
-        Logger.info( `Timing: delay=${delay.toFixed(3)}ms, dec=${dDec.toFixed(3)}ms` );
+        Logger.debug( `Timing: delay=${delay.toFixed(3)}ms, dec=${dDec.toFixed(3)}ms` );
 
         if ( status.match( successValue ) ) {
           // Transfer the item from input to output queue
@@ -88,7 +88,7 @@ function processQueueAsync( inputQueue, outputQueue, action, successValue, succe
  * Gets a colour from a gradient.
  * See: https://stackoverflow.com/questions/3080421/javascript-colour-gradient
  */
-function getGradientColor( start_colour, end_colour, percent ) {
+function getGradientColour( start_colour, end_colour, percent ) {
   // Condition the percentage
   percent = Math.max(Math.min(percent, 1.0), 0.0);
 
@@ -156,6 +156,19 @@ function isMobile() {
 
 
 /**
+ * Create a Google Pin URL
+ */
+function buildPinUrl(text, fill_colour, scale_factor, font_size) {
+  return `http${isSSL() ? 's' : ''}://` +
+    "chart.apis.google.com/chart?chst=d_map_pin_letter&" +
+    `chld=%E2%80%A2|${fill_colour}`;
+  // return `http${isSSL() ? 's' : ''}://` +
+  //   "chart.apis.google.com/chart?chst=d_map_spin&" +
+  //   `chld=${scale_factor * 0.5}|0|${fill_colour}|${font_size}|_|${text}`;
+}
+
+
+/**
  * Get a URL parameter
  * See https://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
  */
@@ -183,7 +196,9 @@ function isSSL() {
  */
 var Logger = (function() {
   var debug;
-  var getDebug = function() {
+  var log_level = 4;
+
+  var initDebug = function() {
     if( !debug && $('#debug').length === 0) {
       $('body').append('<div id="debug"></div>');
     }
@@ -191,18 +206,46 @@ var Logger = (function() {
     return debug;
   };
 
+  var setLogLevel = function( value ) {
+    log_level = value;
+  }
+
+  var getLogLevel = function() {
+    return log_level;
+  }
+
+  var canLog = function( requested ) {
+    if( requested === "log" ) {
+      return true;
+    } else if( requested === "trace" && log_level >= 4 ) {
+      return true;
+    } else if( requested === "debug" && log_level >= 3 ) {
+      return true;
+    } else if( requested === "info" && log_level >= 2 ) {
+      return true;
+    } else if( requested === "warn" && log_level >= 1 ) {
+      return true;
+    } else if( requested === "error" && log_level >= 0 ) {
+      return true;
+    }
+    return false;
+  }
+
   var write = function(value, type) {
+    if( !canLog(type) ) {
+      return;
+    }
     var time = $.format.date(new Date(), 'HH:mm:ss.SSS');
     if( DEBUG && isMobile() ) {
-      if( getDebug() ) {
+      if( initDebug() ) {
         if( typeof(value) === "object" ) {
-          console.log(value);
+          console.log( value );
         } else {
           debug.innerHTML = `<span class="${type}">${time}: ${value}</span>` + debug.innerHTML;
         }
       }
     } else {
-      if( type === "log" ) {
+      if( type === "log" || type === "trace" || type === "debug") {
         console.log(value);
       } else if( type === "info" ) {
         console.info(value);
@@ -215,7 +258,11 @@ var Logger = (function() {
   };
 
   return {
+    getLogLevel: getLogLevel,
+    setLogLevel: setLogLevel,
     log: function(text) { write(text, "log") },
+    trace: function(text) { write(text, "trace") },
+    debug: function(text) { write(text, "debug") },
     info: function(text) { write(text, "info") },
     warn: function(text) { write(text, "warn") },
     error: function(text) { write(text, "error") }
