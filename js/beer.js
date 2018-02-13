@@ -131,8 +131,7 @@ var PlacesDB = (function() {
       var country_cities = yaml_data[country];
       for( var city in country_cities ) {
         var city_places = country_cities[city];
-        for( var place in city_places ) {
-          var beer_place = city_places[place];
+        for( var beer_place of city_places ) {
           if( DEBUG && !city.match( DEBUG_CITY ) ) {
             continue;
           }
@@ -223,7 +222,7 @@ var PlacesDB = (function() {
       },
       /* failAction */
       ( place, error ) => {
-        Logger.error( `Error querying location for ${place.Name}: ${error}` );
+        Logger.error( `Error querying location for ${place.raw_data.Name}: ${error}` );
         failures++;
         // In case of ZERO_RESULTS, drop the item
         if( error === google.maps.places.PlacesServiceStatus.ZERO_RESULTS ) {
@@ -272,7 +271,7 @@ var PlacesDB = (function() {
       },
       /* failAction */
       ( place, error ) => {
-        Logger.error( `Error querying details for ${place.Name}: ${error}` );
+        Logger.error( `Error querying details for ${place.raw_data.Name}: ${error}` );
         failures++;
       },
       /* doneAction */
@@ -322,8 +321,8 @@ var PlacesDB = (function() {
    */
   var addPlaceToMap = function( place ) {
     // Group the colouring by Status
-    var status = place.Status.toLowerCase();
-    var filter = x => x.Status.toLowerCase() === status;
+    var status = place.raw_data.Status.toLowerCase();
+    var filter = x => x.raw_data.Status.toLowerCase() === status;
 
     // Use a cache to calculate the values only once
     if( !(status in dataCache.maxAvgScore) ) {
@@ -362,10 +361,6 @@ class BeerPlace {
     this.raw_data = raw_data;
     this.country = country;
     this.city = city;
-
-    // The YAML data is also assigned as parent level set of members
-    Object.assign( this, raw_data );
-
     this.data_hash = this._dataHash();
     this.avg_score = this._avgScore();
   }
@@ -388,8 +383,8 @@ class BeerPlace {
    */
   _avgScore() {
     // Missing status
-    if( !this.Status ) {
-      Logger.error( `Missing Status for "${this.Name}"` )
+    if( !this.raw_data.Status ) {
+      Logger.error( `Missing Status for "${this.raw_data.Name}"` )
       return 0.0;
     }
 
@@ -397,38 +392,38 @@ class BeerPlace {
     var count = 0;
     var penalty = 0.0;
 
-    if( this.Status.toLowerCase() === 'tried' ) {
+    if( this.raw_data.Status.toLowerCase() === 'tried' ) {
       // Draught score (weight of 33%)
-      if( 'Draught' in this.Score ) {
-        if( this.Score.Draught > 0.0 ) {
-          average += this.Score.Draught * 3.0;
+      if( 'Draught' in this.raw_data.Score ) {
+        if( this.raw_data.Score.Draught > 0.0 ) {
+          average += this.raw_data.Score.Draught * 3.0;
           count += 3;
         }
         else penalty = 0.33;
       }
 
       // Bottles score (weight of 33%)
-      if( 'Bottles' in this.Score ) {
-        if( this.Score.Bottles > 0.0 ) {
-          average += this.Score.Bottles * 3.0;
+      if( 'Bottles' in this.raw_data.Score ) {
+        if( this.raw_data.Score.Bottles > 0.0 ) {
+          average += this.raw_data.Score.Bottles * 3.0;
           count += 3;
         }
         else penalty = 0.33;
       }
 
       // Place score (weight of 22%)
-      if( 'Place' in this.Score ) {
-        if( this.Score.Place > 0.0 ) {
-          average += this.Score.Place * 2.0;
+      if( 'Place' in this.raw_data.Score ) {
+        if( this.raw_data.Score.Place > 0.0 ) {
+          average += this.raw_data.Score.Place * 2.0;
           count += 2;
         }
         else penalty = 0.22;
       }
 
       // Food score (weight of 11%)
-      if( 'Food' in this.Score ) {
-        if( this.Score.Food > 0.0 ) {
-          average += this.Score.Food * 1.0;
+      if( 'Food' in this.raw_data.Score ) {
+        if( this.raw_data.Score.Food > 0.0 ) {
+          average += this.raw_data.Score.Food * 1.0;
           count += 1;
         }
         else penalty = 0.11;
@@ -438,16 +433,16 @@ class BeerPlace {
       average /= count;
       average -= penalty;
     }
-    else if( this.Status.toLowerCase() === 'to try' ) {
+    else if( this.raw_data.Status.toLowerCase() === 'to try' ) {
       // Personal score (weight of 60%)
-      if( 'Mine' in this.Expectation ) {
-        average += this.Expectation.Mine * 3.0;
+      if( 'Mine' in this.raw_data.Expectation ) {
+        average += this.raw_data.Expectation.Mine * 3.0;
         count += 3;
       }
 
       // Google score, ranges from 0 to 5 (weight of 40%)
-      if( 'Google' in this.Expectation ) {
-        average += this.Expectation.Google * 4.0;
+      if( 'Google' in this.raw_data.Expectation ) {
+        average += this.raw_data.Expectation.Google * 4.0;
         count += 2;
       }
 
@@ -466,14 +461,14 @@ class BeerPlace {
   queryLocation( callback, force = false ) {
     // Skip if already present
     if( this.google_location && !force ) {
-      Logger.warn( `Location data already loaded for ${this.Name}` );
+      Logger.warn( `Location data already loaded for ${this.raw_data.Name}` );
       return;
     }
 
     var thisRef = this;
-    var request = { 'query': `${this.Name}, ${this.Address}` };
+    var request = { 'query': `${this.raw_data.Name}, ${this.raw_data.Address}` };
     GoogleMap.placesService().textSearch( request, ( results, status ) => {
-      Logger.info( `Text search completed for "${this.Name}" with status ${status}` );
+      Logger.info( `Text search completed for "${this.raw_data.Name}" with status ${status}` );
 
       if( status === google.maps.places.PlacesServiceStatus.OK ) {
         results = results[0];
@@ -494,7 +489,7 @@ class BeerPlace {
           photoUrl: photo_url
         };
 
-        Logger.info( `Found location for "${this.Name}": ${this.google_location.place_id}` );
+        Logger.info( `Found location for "${this.raw_data.Name}": ${this.google_location.place_id}` );
       }
 
       if( callback ) {
@@ -509,23 +504,23 @@ class BeerPlace {
    */
   queryDetails( callback, force = false ) {
     if( !this.google_location ) {
-      Logger.error( `Can't load Details because Location is missing for ${this.Name}` );
+      Logger.error( `Can't load Details because Location is missing for ${this.raw_data.Name}` );
       return;
     }
     if( this.google_details && !force ) {
-      Logger.warn( `Details data already loaded for ${this.Name}` );
+      Logger.warn( `Details data already loaded for ${this.raw_data.Name}` );
       return;
     }
 
     var thisRef = this;
     var request = { 'placeId': this.google_location.place_id };
     GoogleMap.placesService().getDetails( request, ( results, status ) => {
-      Logger.info( `Details search completed for "${this.Name}" with status ${status}` );
+      Logger.info( `Details search completed for "${this.raw_data.Name}" with status ${status}` );
 
       if( status === google.maps.places.PlacesServiceStatus.OK ) {
         thisRef.google_details = {}
         Object.assign( thisRef.google_details, results );
-        Logger.info( `Found details for "${this.Name}".` );
+        Logger.info( `Found details for "${this.raw_data.Name}".` );
       }
 
       if( callback ) {
@@ -555,19 +550,18 @@ class BeerPlace {
     }
 
     // Group the colouring by Status
-    var filter = x => x.Status.toLowerCase() === this.Status.toLowerCase();
+    var filter = x => x.raw_data.Status.toLowerCase() === this.raw_data.Status.toLowerCase();
 
     // Build and return template
-    var hndl_template = Handlebars.compile($('#place-template')[0].innerHTML);
-    return hndl_template({
-      name:          this.Name,
-      type:          this.Type,
+    var data = {
+      name:          this.raw_data.Name,
+      type:          this.raw_data.Type,
       address:       this.google_location.formatted_address,
       avgScore:      this.avg_score.toFixed( 2 ),
       minAvgScore:   PlacesDB.minAvgScore( filter ),
       maxAvgScore:   PlacesDB.maxAvgScore( filter ),
-      score:         this.Score || "",
-      expectation:   this.Expectation || "",
+      score:         this.raw_data.Score || "",
+      expectation:   this.raw_data.Expectation || "",
       imgUrl:        this.google_location.photoUrl || "",
       hasDetails:    'google_details' in this,
       openNow:       open_now,
@@ -575,6 +569,8 @@ class BeerPlace {
       website:       this.google_details ? this.google_details.website : "",
       url:           this.google_details ? this.google_details.url : "",
       directionsUrl: directions_url
-    });
+    };
+    var hndl_template = Handlebars.compile( $('#place-template')[0].innerHTML );
+    return hndl_template( data );
   }
 }

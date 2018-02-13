@@ -167,8 +167,8 @@ var GoogleMap = (function(){
 
     // Calculate the colour
     var marker_colour = getGradientColour(
-      PINS[place.Status.toLowerCase()][0],
-      PINS[place.Status.toLowerCase()][1],
+      PINS[place.raw_data.Status.toLowerCase()][0],
+      PINS[place.raw_data.Status.toLowerCase()][1],
       value_percent
     );
 
@@ -183,7 +183,7 @@ var GoogleMap = (function(){
     // Create and add the marker
     var marker = new google.maps.Marker({
       map: map,
-      title: `${place.Name} - ${place.avg_score.toFixed(2)}/10`,
+      title: `${place.raw_data.Name} - ${place.avg_score.toFixed(2)}/10`,
       icon: pin_image,
       position: place.google_location.geometry.location,
       infoWindow: infoWindow
