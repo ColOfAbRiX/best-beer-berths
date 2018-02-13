@@ -518,9 +518,6 @@ class BeerPlace {
       Logger.info( `Details search completed for "${this.Name}" with status ${status}` );
 
       if( status === google.maps.places.PlacesServiceStatus.OK ) {
-        results = results[0];
-        Logger.debug(results);
-
         thisRef.google_details = {}
         Object.assign( thisRef.google_details, results );
         Logger.info( `Found details for "${this.Name}".` );

@@ -7,11 +7,11 @@ const DEFAULT_POSITION = {lat: 51.5189138, lng: -0.0924759};
 const POSITION_UPDATE = 10;
 
 // Cache options
-const CACHE_ENABLED = false;
+const CACHE_ENABLED = true;
 const CACHE_DURATION = 86400;
 
 // Debug options
-const DEBUG = true || urlParam("DEBUG") != null;
+const DEBUG = false || urlParam("DEBUG") != null;
 const DEBUG_CITY = /(london)/i;
 const DEBUG_POSITION = {lat: 51.5189138, lng: -0.0924759};
 // const DEBUG_POSITION = {lat: 44.0372932, lng: 12.6069268};
