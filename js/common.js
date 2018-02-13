@@ -8,10 +8,10 @@ const POSITION_UPDATE = 10;
 
 // Cache options
 const CACHE_ENABLED = true;
-const CACHE_DURATION = 86400;
+const CACHE_DURATION = 604800;
 
 // Debug options
-const DEBUG = false || urlParam("DEBUG") != null;
+const DEBUG = true || urlParam("DEBUG") != null;
 const DEBUG_CITY = /(london)/i;
 const DEBUG_POSITION = {lat: 51.5189138, lng: -0.0924759};
 // const DEBUG_POSITION = {lat: 44.0372932, lng: 12.6069268};
@@ -25,34 +25,113 @@ const PINS = {
 
 
 /**
+ * Helper for debugging
+ */
+var Logger = (function() {
+  var debug;
+  var log_level = 4;
+
+  var _initDebug = function() {
+    if( !debug && $('#debug').length === 0) {
+      $('body').append('<div id="debug"></div>');
+    }
+    debug = $('#debug')[0];
+    return debug;
+  };
+
+  var _canLog = function( requested ) {
+    if( requested === "log" ) {
+      return true;
+    } else if( requested === "trace" && log_level >= 4 ) {
+      return true;
+    } else if( requested === "debug" && log_level >= 3 ) {
+      return true;
+    } else if( requested === "info" && log_level >= 2 ) {
+      return true;
+    } else if( requested === "warn" && log_level >= 1 ) {
+      return true;
+    } else if( requested === "error" && log_level >= 0 ) {
+      return true;
+    }
+    return false;
+  }
+
+  var _write = function(value, type) {
+    if( !_canLog(type) ) {
+      return;
+    }
+    var time = $.format.date(new Date(), 'HH:mm:ss.SSS');
+    if( DEBUG && isMobile() ) {
+      if( _initDebug() ) {
+        if( typeof(value) === "object" ) {
+          console.log( value );
+        } else {
+          debug.innerHTML = `<span class="${type}">${time}: ${value}</span>` + debug.innerHTML;
+        }
+      }
+    } else {
+      if( type === "log" || type === "trace" || type === "debug") {
+        console.log(value);
+      } else if( type === "info" ) {
+        console.info(value);
+      } else if( type === "warn" ) {
+        console.warn(value);
+      } else if( type === "error" ) {
+        console.error(value);
+      }
+    }
+  };
+
+  var setLogLevel = function( value ) {
+    log_level = value;
+  }
+
+  var getLogLevel = function() {
+    return log_level;
+  }
+
+  return {
+    getLogLevel: getLogLevel,
+    setLogLevel: setLogLevel,
+    log: function(text) { _write(text, "log") },
+    trace: function(text) { _write(text, "trace") },
+    debug: function(text) { _write(text, "debug") },
+    info: function(text) { _write(text, "info") },
+    warn: function(text) { _write(text, "warn") },
+    error: function(text) { _write(text, "error") }
+  };
+})();
+
+
+/**
  * Executes an asynchronous action over objects of a queue
  */
 function processQueueAsync( inputQueue, outputQueue, action, successValue, successAction, failAction, doneAction ) {
   function execute() {
-    if ( inputQueue.length > 0 ) {
+    if( inputQueue.length > 0 ) {
       var item = inputQueue[ 0 ];
 
       // Determine the action to run
       var runAction = action( item );
-      if ( !runAction ) {
+      if( !runAction ) {
         doneAction();
         return;
       }
 
       // Run the action
-      runAction( ( item, status ) => {
+      runAction( (item, status) => {
         Logger.debug( `Timing: delay=${delay.toFixed(3)}ms, dec=${dDec.toFixed(3)}ms` );
 
-        if ( status.match( successValue ) ) {
+        if( status.match(successValue) ) {
           // Transfer the item from input to output queue
           var doneItem = inputQueue.shift();
-          if ( outputQueue != undefined ) {
+          if( outputQueue != undefined ) {
             outputQueue.push( doneItem );
           }
           // Tune delay and call callback
           delay -= dDec;
           dDec *= ( 1.0 - 1 / S ) * 0.9;
-          if ( successAction ) {
+          if( successAction ) {
             successAction( doneItem );
           }
           // The delay between requests is self-adjustable
@@ -62,7 +141,7 @@ function processQueueAsync( inputQueue, outputQueue, action, successValue, succe
           // Tune delay and call callback
           dDec = delay / S;
           delay *= 2.2;
-          if ( failAction ) {
+          if( failAction ) {
             failAction( item, status );
           }
           // The delay between requests is self-adjustable
@@ -70,7 +149,7 @@ function processQueueAsync( inputQueue, outputQueue, action, successValue, succe
         }
       });
     }
-    else if ( doneAction ) {
+    else if( doneAction ) {
       // Call the done action
       doneAction();
     }
@@ -158,7 +237,7 @@ function isMobile() {
 /**
  * Create a Google Pin URL
  */
-function buildPinUrl(text, fill_colour, scale_factor, font_size) {
+function buildPinUrl( text, fill_colour, scale_factor, font_size ) {
   return `http${isSSL() ? 's' : ''}://` +
     "chart.apis.google.com/chart?chst=d_map_pin_letter&" +
     `chld=%E2%80%A2|${fill_colour}`;
@@ -172,7 +251,7 @@ function buildPinUrl(text, fill_colour, scale_factor, font_size) {
  * Get a URL parameter
  * See https://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
  */
-function urlParam(name) {
+function urlParam( name ) {
   var searchParams = new URLSearchParams(window.location.search);
   if( !searchParams.has(name) ) {
     return null;
@@ -189,85 +268,6 @@ function urlParam(name) {
 function isSSL() {
   return document.location.protocol === "https:"
 }
-
-
-/**
- * Helper for debugging
- */
-var Logger = (function() {
-  var debug;
-  var log_level = 4;
-
-  var initDebug = function() {
-    if( !debug && $('#debug').length === 0) {
-      $('body').append('<div id="debug"></div>');
-    }
-    debug = $('#debug')[0];
-    return debug;
-  };
-
-  var setLogLevel = function( value ) {
-    log_level = value;
-  }
-
-  var getLogLevel = function() {
-    return log_level;
-  }
-
-  var canLog = function( requested ) {
-    if( requested === "log" ) {
-      return true;
-    } else if( requested === "trace" && log_level >= 4 ) {
-      return true;
-    } else if( requested === "debug" && log_level >= 3 ) {
-      return true;
-    } else if( requested === "info" && log_level >= 2 ) {
-      return true;
-    } else if( requested === "warn" && log_level >= 1 ) {
-      return true;
-    } else if( requested === "error" && log_level >= 0 ) {
-      return true;
-    }
-    return false;
-  }
-
-  var write = function(value, type) {
-    if( !canLog(type) ) {
-      return;
-    }
-    var time = $.format.date(new Date(), 'HH:mm:ss.SSS');
-    if( DEBUG && isMobile() ) {
-      if( initDebug() ) {
-        if( typeof(value) === "object" ) {
-          console.log( value );
-        } else {
-          debug.innerHTML = `<span class="${type}">${time}: ${value}</span>` + debug.innerHTML;
-        }
-      }
-    } else {
-      if( type === "log" || type === "trace" || type === "debug") {
-        console.log(value);
-      } else if( type === "info" ) {
-        console.info(value);
-      } else if( type === "warn" ) {
-        console.warn(value);
-      } else if( type === "error" ) {
-        console.error(value);
-      }
-    }
-  };
-
-  return {
-    getLogLevel: getLogLevel,
-    setLogLevel: setLogLevel,
-    log: function(text) { write(text, "log") },
-    trace: function(text) { write(text, "trace") },
-    debug: function(text) { write(text, "debug") },
-    info: function(text) { write(text, "info") },
-    warn: function(text) { write(text, "warn") },
-    error: function(text) { write(text, "error") }
-  };
-})();
 
 
 /**

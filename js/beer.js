@@ -42,8 +42,8 @@ var PlacesDB = (function() {
 
         // Convert the cache into proper BeerPlace objects
         local_db = new Array();
-        for( var i in places ) {
-          local_db.push(places[i]);
+        for( var place of places ) {
+          local_db.push( place );
         }
 
         Logger.info( `Found and loaded cache ${cache_hash}` )
@@ -103,9 +103,58 @@ var PlacesDB = (function() {
   };
 
   /**
+   * Initializes the DB
+   */
+  var init = function( raw_data ) {
+    // Interpreting YAML data as first thing
+    local_db = _parseYaml( raw_data );
+
+    // Starts the filling of the Beer Places DB
+    if( Cache.load() ) {
+      for( var place of local_db ) {
+        addPlaceToMap( place );
+      }
+      Cache.save();
+    }
+    else {
+      _queryForLocations();
+    }
+  };
+
+  /**
+   * Scan all the YAML results and build the database
+   */
+  var _parseYaml = function( yaml_data ) {
+    var result = new Array();
+
+    for( var country in yaml_data ) {
+      var country_cities = yaml_data[country];
+      for( var city in country_cities ) {
+        var city_places = country_cities[city];
+        for( var place in city_places ) {
+          var beer_place = city_places[place];
+          if( DEBUG && !city.match( DEBUG_CITY ) ) {
+            continue;
+          }
+          // Check the data is valid, if not don't add it
+          if( !_checkRawData(beer_place) ) {
+            Logger.warn(`Missing information on entry ${JSON.stringify(beer_place)}`);
+            continue;
+          }
+
+          var bp = new BeerPlace(beer_place, country, city);
+          result.push( bp );
+        }
+      }
+    }
+
+    return result.sort();
+  };
+
+  /**
    * Checks that the raw data for a place is valid, with all the data
    */
-  var checkRawData = function( raw_item ) {
+  var _checkRawData = function( raw_item ) {
     // Check for "Name"
     if( !'Name' in raw_item || !raw_item.Name ) {
       return false;
@@ -149,69 +198,9 @@ var PlacesDB = (function() {
   };
 
   /**
-   * Scan all the YAML results and build the database
-   */
-  var parseYaml = function( yaml_data ) {
-    var result = new Array();
-
-    for( var country in yaml_data ) {
-      var country_cities = yaml_data[country];
-      for( var city in country_cities ) {
-        var city_places = country_cities[city];
-        for( var place in city_places ) {
-          var beer_place = city_places[place];
-          if( DEBUG && !city.match( DEBUG_CITY ) ) {
-            continue;
-          }
-          // Check the data is valid, if not don't add it
-          if( !checkRawData(beer_place) ) {
-            Logger.warn(`Missing information on entry ${JSON.stringify(beer_place)}`);
-            continue;
-          }
-
-          var bp = new BeerPlace(beer_place, country, city);
-          result.push( bp );
-        }
-      }
-    }
-
-    return result.sort();
-  };
-
-  /**
-   * A fingerprint of the Database data, excluding Google data
-   */
-  var dbHash = function() {
-    var hashes = local_db.map( x => x.dataHash );
-    return objectHash.sha1(
-      JSON.stringify( hashes )
-    );
-  };
-
-  /**
-   * The highest average amongst all places, given a filter on places
-   */
-  var maxAvgScore = function( filter_callback = x => true ) {
-    return local_db
-      .filter( filter_callback )
-      .map( x => x.avgScore )
-      .reduce( ( x1, x2 ) => Math.max( x1, x2 ), 0.0 );
-  };
-
-  /**
-   * The lowest average amongst all places, given a filter on places
-   */
-  var minAvgScore = function( filter_callback = x => true ) {
-    return local_db
-      .filter( filter_callback )
-      .map( x => x.avgScore )
-      .reduce( ( x1, x2 ) => Math.min( x1, x2 ), 10.0 );
-  };
-
-  /**
    * Loads asynchronously the information about the location of all the places
    */
-  var queryForLocations = function() {
+  var _queryForLocations = function() {
     var start_queue = local_db.slice();
     var end_queue = new Array();
 
@@ -253,7 +242,7 @@ var PlacesDB = (function() {
         local_db = end_queue;
 
         // Run next query
-        queryForDetails();
+        _queryForDetails();
       }
     );
   };
@@ -261,7 +250,7 @@ var PlacesDB = (function() {
   /**
    * Loads asynchronously the information about the location of all the places
    */
-  var queryForDetails = function() {
+  var _queryForDetails = function() {
     var start_queue = local_db.slice();
     var end_queue = new Array();
 
@@ -299,6 +288,36 @@ var PlacesDB = (function() {
   };
 
   /**
+   * A fingerprint of the Database data, excluding Google data
+   */
+  var dbHash = function() {
+    var hashes = local_db.map( x => x.data_hash );
+    return objectHash.sha1(
+      JSON.stringify( hashes )
+    );
+  };
+
+  /**
+   * The highest average amongst all places, given a filter on places
+   */
+  var maxAvgScore = function( filter_callback = x => true ) {
+    return local_db
+      .filter( filter_callback )
+      .map( x => x.avg_score )
+      .reduce( ( x1, x2 ) => Math.max( x1, x2 ), 0.0 );
+  };
+
+  /**
+   * The lowest average amongst all places, given a filter on places
+   */
+  var minAvgScore = function( filter_callback = x => true ) {
+    return local_db
+      .filter( filter_callback )
+      .map( x => x.avg_score )
+      .reduce( ( x1, x2 ) => Math.min( x1, x2 ), 10.0 );
+  };
+
+  /**
    * Requests the addition of a marker on the map
    */
   var addPlaceToMap = function( place ) {
@@ -322,25 +341,6 @@ var PlacesDB = (function() {
     );
   };
 
-  /**
-   * Initializes the DB
-   */
-  var init = function( raw_data ) {
-    // Interpreting YAML data as first thing
-    local_db = parseYaml( raw_data );
-
-    // Starts the filling of the Beer Places DB
-    if( Cache.load() ) {
-      for( var i in local_db ) {
-        addPlaceToMap( local_db[i] );
-      }
-      Cache.save();
-    }
-    else {
-      queryForLocations();
-    }
-  };
-
   return {
     'init': init,
     'dbHash': dbHash,
@@ -355,6 +355,9 @@ var PlacesDB = (function() {
  * Represents a Beer Place with its information and data
  */
 class BeerPlace {
+  /**
+   * Constructor
+   */
   constructor( raw_data, country, city ) {
     this.raw_data = raw_data;
     this.country = country;
@@ -363,24 +366,27 @@ class BeerPlace {
     // The YAML data is also assigned as parent level set of members
     Object.assign( this, raw_data );
 
-    this.data_hash = objectHash.sha1( this.raw_data );
+    this.data_hash = this._dataHash();
+    this.avg_score = this._avgScore();
+  }
+
+  /**
+   * Creates a BeerPlace from a JSON string
+   */
+  static loadFromJSON( json_string ) {
   }
 
   /**
    * A fingerprint of the object, calculated with only the YAML data
    */
-  get dataHash() {
-    return this.data_hash;
+  _dataHash() {
+    return objectHash.sha1( this.raw_data );
   }
 
   /**
    * The average score of the place
    */
-  get avgScore() {
-    if( 'avg_score' in this ) {
-      return this.avg_score;
-    }
-
+  _avgScore() {
     // Missing status
     if( !this.Status ) {
       Logger.error( `Missing Status for "${this.Name}"` )
@@ -450,8 +456,7 @@ class BeerPlace {
       average -= penalty;
     }
 
-    this.avg_score = average;
-    return this.avg_score;
+    return average;
   }
 
   /**
@@ -532,7 +537,7 @@ class BeerPlace {
   /**
    * Build the InfoWindow content for the place
    */
-  placeInfoWindow() {
+  getIWTemplate() {
     // See https://developers.google.com/maps/documentation/urls/guide
     var directions_url = (isSSL() ? "https" : "http") + "://www.google.com/maps/dir/?api=1";
     directions_url += "&destination=" + encodeURI(this.google_location.formatted_address)
@@ -558,7 +563,7 @@ class BeerPlace {
       name:          this.Name,
       type:          this.Type,
       address:       this.google_location.formatted_address,
-      avgScore:      this.avgScore.toFixed( 2 ),
+      avgScore:      this.avg_score.toFixed( 2 ),
       minAvgScore:   PlacesDB.minAvgScore( filter ),
       maxAvgScore:   PlacesDB.maxAvgScore( filter ),
       score:         this.Score || "",

@@ -21,7 +21,7 @@ Beer places:
        Status: Tried
        Score: { Draught: 9, Bottles: 9, Place: 8 }
 
-    Ghen:
+    Ghent:
      - Name: Dulle Griet
        Address: Vrijdagmarkt 50, 9000 Gent, Belgium
        Type: Belgian Bar
@@ -30,16 +30,26 @@ Beer places:
 
     Bruxelles:
      ##  Tried  ##
-     - Name: Delirium Café
-       Address: Impasse de la Fidélité 4, 1000 Bruxelles, Belgium
-       Type: Belgian Bar
-       Status: Tried
-       Score: { Draught: 9, Bottles: 9, Place: 8 }
      - Name: Moeder Lambic Fontain
        Address: Place Fontainas 8, 1000 Bruxelles, Belgium
        Type: Belgian Bar
        Status: Tried
        Score: { Draught: 9, Bottles: 9, Place: 9 }
+     - Name: Delirium Café
+       Address: Impasse de la Fidélité 4, 1000 Bruxelles, Belgium
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Draught: 9, Bottles: 9, Place: 8 }
+     - Name: Musée Bruxellois de la Gueuze-CANTILLON
+       Address: Rue Gheude 56, 1070 Anderlecht, Belgium
+       Type: Brewery
+       Status: Tried
+       Score: { Bottles: 8, Place: 9 }
+     - Name: De Biertempel
+       Address: Grasmarkt 56b, 1000 Brussel, Belgium
+       Type: Beer Shop
+       Status: Tried
+       Score: { Draught: -1, Bottles: 9, Place: 8 }
      - Name: Poechenellekelder
        Address: Rue du Chêne 5, 1000 Bruxelles, Belgium
        Type: Belgian Bar
@@ -49,27 +59,17 @@ Beer places:
        Address: Rue des Alexiens 67, 1000 Bruxelles, Belgium
        Type: Beer Pub
        Status: Tried
-       Score: { Draught: 8, Bottles: 9, Place: 8 }
+       Score: { Draught: 8, Bottles: 9, Place: 7 }
      - Name: A La Mort Subite
        Address: Rue Montagne aux Herbes Potagères 7, 1000 Bruxelles, Belgium
        Type: Belgian Bar
        Status: Tried
        Score: { Draught: 7, Bottles: 8, Place: 9, Food: 7 }
-     - Name: Musée Bruxellois de la Gueuze-CANTILLON
-       Address: Rue Gheude 56, 1070 Anderlecht, Belgium
-       Type: Brewery
-       Status: Tried
-       Score: { Bottles: 8, Place: 9 }
      - Name: Brasserie de l'Ermitage
        Address: Rue Lambert Crickx 26, 1070 Anderlecht, 1070 Brussel, Belgium
        Type: Belgian Bar
        Status: Tried
        Score: { Draught: 8, Place: 7 }
-     - Name: De Biertempel
-       Address: Grasmarkt 56b, 1000 Brussel, Belgium
-       Type: Beer Shop
-       Status: Tried
-       Score: { Draught: -1, Bottles: 9, Place: 8 }
 
      ##  Still To try  ##
      - Name: Daringman
@@ -136,6 +136,11 @@ Beer places:
   Denmark:
     København:
      ##  Tried  ##
+     - Name: Ørsted Ølbar
+       Address: Nørre Farimagsgade 13, 1364 København K, Denmark
+       Type: Pub
+       Status: Tried
+       Score: { Draught: 8, Bottles: 10, Place: 9 }
      - Name: Fermentoren
        Address: Halmtorvet 29C, 1700 København V, Denmark
        Type: Pub
@@ -146,11 +151,6 @@ Beer places:
        Type: Pub
        Status: Tried
        Score: { Draught: 9, Place: 6 }
-     - Name: Ørsted Ølbar
-       Address: Nørre Farimagsgade 13, 1364 København K, Denmark
-       Type: Pub
-       Status: Tried
-       Score: { Draught: 8, Bottles: 10, Place: 9 }
 
      ##  Still To try  ##
      - Name: Mikkeller Bar
@@ -185,71 +185,71 @@ Beer places:
        Type: Belgian Bar
        Status: Tried
        Score: { Draught: 8, Bottles: 10, Place: 9 }
-     - Name: The Craft Beer Co. Clerkenwell
-       Address: 82 Leather Ln, Clerkenwell, London EC1N 7TR
-       Type: English Pub
-       Status: Tried
-       Score: { Draught: 9, Place: 6 }
      - Name: Mother Kelly's
        Address: 251 Paradise Row, Bethnal Green, London E2 9LE
        Type: Beer pub
        Status: Tried
        Score: { Draught: 9, Bottles: 9, Food: 7, Place: 8 }
-     - Name: The Dovetail
-       Address: 9-10 Jerusalem Passage, Clerkenwell, London EC1V 4JP
-       Type: Belgian Bar
-       Status: Tried
-       Score: { Draught: 8, Bottles: 8, Food: 8, Place: 8 }
-     - Name: Brewdog Shoreditch
-       Address: 51-55 Bethnal Green Rd, London E1 6LA
-       Type: Brewery Chain
-       Status: Tried
-       Score: { Draught: 8, Bottles: 8, Place: 7 }
      - Name: The Exmouth Arms
        Address: 23 Exmouth Market, Clerkenwell, London EC1R 4QL
        Type: English Pub
        Status: Tried
        Score: { Draught: 8, Bottles: 9, Place: 7 }
+     - Name: The Dovetail
+       Address: 9-10 Jerusalem Passage, Clerkenwell, London EC1V 4JP
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Draught: 8, Bottles: 8, Food: 8, Place: 8 }
      - Name: The Italian Job at Notting Hill
        Address: 45 All Saints Rd, London W11 1HE
        Type: English/Italian Pub
        Status: Tried
        Score: { Draught: 8, Place: 8 }
-     - Name: The Cat & Mutton
-       Address: 76 Broadway Market, London E8 4QJ
-       Type: English Pub
-       Status: Tried
-       Score: { Draught: 8, Place: 7 }
-     - Name: Bavarian Beerhouse Old Street
-       Address: 190 City Rd, London EC1V 2QH
-       Type: German Pub
-       Status: Tried
-       Score: { Draught: 8, Bottles: 7, Food: 8, Place: 9 }
-     - Name: Brewdog Clerkenwell
-       Address: 45-47 Clerkenwell Rd, Clerkenwell, London EC1M 5RS
-       Type: Brewery Chain
-       Status: Tried
-       Score: { Draught: 7 , Place: 7 }
-     - Name: Utobeer
-       Address: 24 Borough Market, London SE1 1TL
-       Type: Beer Shop
-       Status: Tried
-       Score: { Draught: -1, Bottles: 9, Place: 7 }
-     - Name: Bierschenke
-       Address: London Wall Buildings, 4 Blomfield St, London EC2M
-       Type: German Pub
-       Status: Tried
-       Score: { Draught: 7, Bottles: 8, Food: 9, Place: 7 }
      - Name: Draft House Seething
        Address: 14-15 Seething Ln, London EC3N 4AX
        Type: Beer pub
        Status: Tried
        Score: { Draught: 7, Bottles: 9, Place: 8 }
+     - Name: Utobeer
+       Address: 24 Borough Market, London SE1 1TL
+       Type: Beer Shop
+       Status: Tried
+       Score: { Draught: -1, Bottles: 9, Place: 7 }
+     - Name: Bavarian Beerhouse Old Street
+       Address: 190 City Rd, London EC1V 2QH
+       Type: German Pub
+       Status: Tried
+       Score: { Draught: 8, Bottles: 7, Food: 8, Place: 9 }
+     - Name: The Craft Beer Co. Clerkenwell
+       Address: 82 Leather Ln, Clerkenwell, London EC1N 7TR
+       Type: English Pub
+       Status: Tried
+       Score: { Draught: 9, Place: 6 }
+     - Name: Brewdog Shoreditch
+       Address: 51-55 Bethnal Green Rd, London E1 6LA
+       Type: Brewery Chain
+       Status: Tried
+       Score: { Draught: 8, Bottles: 8, Place: 7 }
+     - Name: The Cat & Mutton
+       Address: 76 Broadway Market, London E8 4QJ
+       Type: English Pub
+       Status: Tried
+       Score: { Draught: 8, Place: 7 }
+     - Name: Bierschenke
+       Address: London Wall Buildings, 4 Blomfield St, London EC2M
+       Type: German Pub
+       Status: Tried
+       Score: { Draught: 7, Bottles: 8, Food: 9, Place: 7 }
      - Name: The Euston Tap
        Address: 190 Euston Rd, Kings Cross, London NW1 2EF
        Type: Beer pub
        Status: Tried
        Score: { Draught: 7, Place: 8 }
+     - Name: Brewdog Clerkenwell
+       Address: 45-47 Clerkenwell Rd, Clerkenwell, London EC1M 5RS
+       Type: Brewery Chain
+       Status: Tried
+       Score: { Draught: 7 , Place: 7 }
 
      ##  Still to try  ##
      - Name: London Beer House
