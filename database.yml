@@ -438,7 +438,7 @@ Beer places:
        Address: Via del Porto, 61011 Gabicce Mare PU, Italy
        Type: Beer pub
        Status: Tried
-       Score: { Draught: 8, Bottles: 9, Place: 7 }
+       Score: { Draught: 8, Bottles: 10, Place: 7 }
 
     Milano:
      - Name: La Belle Alliance

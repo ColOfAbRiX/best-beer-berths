@@ -43,7 +43,8 @@ var PlacesDB = (function() {
         // Convert the cache into proper BeerPlace objects
         local_db = new Array();
         for( var place of places ) {
-          local_db.push( place );
+          var bp = BeerPlace.loadFromJSON( place );
+          local_db.push( bp );
         }
 
         Logger.info( `Found and loaded cache ${cache_hash}` )
@@ -357,10 +358,14 @@ class BeerPlace {
   /**
    * Constructor
    */
-  constructor( raw_data, country, city ) {
+  constructor( raw_data, country = null, city = null ) {
     this.raw_data = raw_data;
-    this.country = country;
-    this.city = city;
+    if( country != null ) {
+      this.raw_data.Country = country;
+    }
+    if( city != null ) {
+      this.raw_data.City = city;
+    }
     this.data_hash = this._dataHash();
     this.avg_score = this._avgScore();
   }
@@ -368,7 +373,13 @@ class BeerPlace {
   /**
    * Creates a BeerPlace from a JSON string
    */
-  static loadFromJSON( json_string ) {
+  static loadFromJSON( json_object ) {
+    var bp = new BeerPlace( json_object.raw_data );
+    Object.assign( bp, {
+      google_details: json_object.google_details,
+      google_location: json_object.google_location
+    });
+    return bp;
   }
 
   /**

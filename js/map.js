@@ -22,7 +22,7 @@ var GoogleMap = (function(){
       $( '#map' )[0], {
         maxZoom: 18,
         minZoom: 2,
-        zoom: 13,
+        zoom: 14,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         gestureHandling: 'greedy'
       }
