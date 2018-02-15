@@ -191,10 +191,7 @@ var GoogleMap = (function(){
 
     // Manage the click
     marker.addListener('click', () => {
-      _setHome( lastPosition, true);
-      _updatePosition();
-
-      infoWindow.setContent( place.placeInfoWindow() );
+      infoWindow.setContent( place.htmlDetails() );
       infoWindow.open( map, marker );
 
       // Build the stars

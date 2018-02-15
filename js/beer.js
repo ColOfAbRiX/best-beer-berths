@@ -118,12 +118,14 @@ var PlacesDB = (function() {
 
     // Starts the filling of the Beer Places DB
     if( Cache.load() ) {
+      Logger.debug( "Adding cached objects to the map" );
       for( var place of local_db ) {
+        Logger.trace( `Adding ${place.toString()} to the map` );
         addPlaceToMap( place );
       }
-      Cache.save();
     }
     else {
+      // Start the querying process
       _queryForLocations();
     }
   };
@@ -132,6 +134,7 @@ var PlacesDB = (function() {
    * Scan all the YAML results and build the database
    */
   var _parseYaml = function( yaml_data ) {
+    Logger.trace( "Loading objects from YAML" );
     var result = new Array();
 
     for( var country in yaml_data ) {
@@ -144,7 +147,7 @@ var PlacesDB = (function() {
           }
           // Check the data is valid, if not don't add it
           if( !_checkRawData(beer_place) ) {
-            Logger.warn(`Missing information on entry ${JSON.stringify(beer_place)}`);
+            Logger.warn( `Missing information on entry ${JSON.stringify(beer_place)}` );
             continue;
           }
 
@@ -161,6 +164,8 @@ var PlacesDB = (function() {
    * Checks that the raw data for a place is valid, with all the data
    */
   var _checkRawData = function( raw_item ) {
+    Logger.trace( `Checking data validity for ${raw_item}` );
+
     // Check for "Name"
     if( !'Name' in raw_item || !raw_item.Name ) {
       return false;
@@ -224,20 +229,23 @@ var PlacesDB = (function() {
       google.maps.places.PlacesServiceStatus.OK,
       /* successAction */
       ( place ) => {
+        Logger.trace( `Adding ${place.toString()} to the map` );
         addPlaceToMap( place );
         queries++;
       },
       /* failAction */
       ( place, error ) => {
-        Logger.error( `Error querying location for ${place.raw_data.Name}: ${error}` );
-        failures++;
         // In case of ZERO_RESULTS, drop the item
         if( error === google.maps.places.PlacesServiceStatus.ZERO_RESULTS ) {
-          var done_item = start_queue.shift();
-          Logger.warn( `No results found for ${done_item.name}, skipping place.` );
+          var queried_place = start_queue.shift();
+          Logger.warn( `No results found for ${queried_place.toString()}, skipping place.` );
           if( end_queue != undefined ) {
-            end_queue.push( done_item );
+            end_queue.push( queried_place );
           }
+        }
+        else {
+          Logger.error( `Error querying location for ${place.toString()}: ${error}` );
+          failures++;
         }
       },
       /* doneAction */
@@ -278,7 +286,7 @@ var PlacesDB = (function() {
       },
       /* failAction */
       ( place, error ) => {
-        Logger.error( `Error querying details for ${place.raw_data.Name}: ${error}` );
+        Logger.error( `Error querying details for ${place.toString()}: ${error}` );
         failures++;
       },
       /* doneAction */
@@ -401,7 +409,7 @@ class BeerPlace {
   _avgScore() {
     // Missing status
     if( !this.raw_data.Status ) {
-      Logger.error( `Missing Status for "${this.raw_data.Name}"` )
+      Logger.error( `Missing Status for "${this.toString()}"` )
       return 0.0;
     }
 
@@ -478,7 +486,7 @@ class BeerPlace {
   queryLocation( callback, force = false ) {
     // Skip if already present
     if( this.google_location && !force ) {
-      Logger.warn( `Location data already loaded for ${this.raw_data.Name}` );
+      Logger.warn( `Location data already loaded for ${this.toString()}` );
       if( callback ) {
         callback( this, google.maps.places.PlacesServiceStatus.OK );
       }
@@ -488,7 +496,7 @@ class BeerPlace {
     var thisRef = this;
     var request = { 'query': `${this.raw_data.Name}, ${this.raw_data.Address}` };
     GoogleMap.placesService().textSearch( request, ( results, status ) => {
-      Logger.info( `Text search completed for "${this.raw_data.Name}" with status ${status}` );
+      Logger.info( `Text search completed for "${this.toString()}" with status ${status}` );
 
       if( status === google.maps.places.PlacesServiceStatus.OK ) {
         results = results[0];
@@ -509,7 +517,7 @@ class BeerPlace {
           photoUrl: photo_url
         };
 
-        Logger.info( `Found location for "${this.raw_data.Name}": ${this.google_location.place_id}` );
+        Logger.info( `Found location for "${this.toString()}": ${this.google_location.place_id}` );
       }
 
       if( callback ) {
@@ -559,7 +567,7 @@ class BeerPlace {
   /**
    * Build the InfoWindow content for the place
    */
-  getIWTemplate() {
+  htmlDetails() {
     // See https://developers.google.com/maps/documentation/urls/guide
     var directions_url = (isSSL() ? "https" : "http") + "://www.google.com/maps/dir/?api=1";
     directions_url += "&destination=" + encodeURI(this.google_location.formatted_address)
@@ -605,6 +613,6 @@ class BeerPlace {
    * Gets a string representation of the object
    */
   toString() {
-    return `${this.raw_data.Name}`;
+    return `${this.raw_data.Country}/${this.raw_data.City}/${this.raw_data.Name}`;
   }
 }

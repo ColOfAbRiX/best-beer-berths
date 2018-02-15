@@ -1,11 +1,2 @@
 [core]
     autocrlf = input
-
-[alias]
-    ll = log --oneline -10
-    lg = log --oneline -10 --graph
-    st = status
-    dc = diff --cached
-    dd = diff
-    aa = add -A :/
-    b = branch -a

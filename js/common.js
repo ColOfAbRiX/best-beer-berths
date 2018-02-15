@@ -113,7 +113,7 @@ function processQueueAsync( inputQueue, outputQueue, action, successValue, succe
       // Determine the action to run
       var runAction = action( item );
       if( !runAction ) {
-        Logger.debug( `processQueueAsync(): function didn't return an action to execute` );
+        Logger.debug( `processQueueAsync(): function didn't return any action to execute` );
         if( doneAction ) {
           doneAction();
         }
@@ -172,6 +172,7 @@ function processQueueAsync( inputQueue, outputQueue, action, successValue, succe
   }
 
   // Set initial values and start
+  Logger.debug( `processQueueAsync(): starting execution` );
   const S = 2.0; // Steepness
   var delay = 400;
   var dDec = delay / ( S * 2.0 );
