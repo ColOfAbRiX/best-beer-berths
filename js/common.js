@@ -7,12 +7,14 @@ const DEFAULT_POSITION = {lat: 51.5189138, lng: -0.0924759};
 const POSITION_UPDATE = 10;
 
 // Cache options
-const CACHE_ENABLED = true;
-const CACHE_DURATION = 604800;
+const CACHE_ENABLED = urlParam("CACHE_ENABLED", true);
+const CACHE_DURATION = urlParam("CACHE_DURATION", 604800);
 
 // Debug options
-const DEBUG = false || urlParam("DEBUG") != null;
-const DEBUG_CITY = /(london)/i;
+const DEBUG = urlParam("DEBUG", false);
+const DEBUG_LEVEL = urlParam("DEBUG_LEVEL", 2);
+const DEBUG_ON_PAGE = urlParam("DEBUG_ON_PAGE", false);
+const DEBUG_CITY = new RegExp( urlParam("DEBUG_CITY", "(london)"), 'i' );
 const DEBUG_POSITION = {lat: 51.5189138, lng: -0.0924759};
 //const DEBUG_POSITION = {lat: 44.0372932, lng: 12.6069268};
 //const DEBUG_POSITION = {lat: 51.532492399999995, lng: -0.0351538};
@@ -29,7 +31,7 @@ const PINS = {
  */
 var Logger = (function() {
   var debug;
-  var log_level = 4;
+  var log_level = DEBUG_LEVEL;
 
   var _initDebug = function() {
     if( !debug && $('#debug').length === 0) {
@@ -40,9 +42,7 @@ var Logger = (function() {
   };
 
   var _canLog = function( requested ) {
-    if( requested === "log" ) {
-      return true;
-    } else if( requested === "trace" && log_level >= 4 ) {
+    if( requested === "trace" && log_level >= 4 ) {
       return true;
     } else if( requested === "debug" && log_level >= 3 ) {
       return true;
@@ -61,7 +61,7 @@ var Logger = (function() {
       return;
     }
     var time = $.format.date(new Date(), 'HH:mm:ss.SSS');
-    if( DEBUG && isMobile() ) {
+    if( DEBUG && isMobile() || DEBUG_ON_PAGE ) {
       if( _initDebug() ) {
         if( typeof(value) === "object" ) {
           console.log( value );
@@ -70,7 +70,7 @@ var Logger = (function() {
         }
       }
     } else {
-      if( type === "log" || type === "trace" || type === "debug") {
+      if( type === "trace" || type === "debug") {
         console.log(value);
       } else if( type === "info" ) {
         console.info(value);
@@ -93,7 +93,6 @@ var Logger = (function() {
   return {
     getLogLevel: getLogLevel,
     setLogLevel: setLogLevel,
-    log: function(text) { _write(text, "log") },
     trace: function(text) { _write(text, "trace") },
     debug: function(text) { _write(text, "debug") },
     info: function(text) { _write(text, "info") },
@@ -114,15 +113,29 @@ function processQueueAsync( inputQueue, outputQueue, action, successValue, succe
       // Determine the action to run
       var runAction = action( item );
       if( !runAction ) {
-        doneAction();
+        Logger.debug( `processQueueAsync(): function didn't return an action to execute` );
+        if( doneAction ) {
+          doneAction();
+        }
         return;
       }
 
       // Run the action
       runAction( (item, status) => {
-        Logger.debug( `Timing: delay=${delay.toFixed(3)}ms, dec=${dDec.toFixed(3)}ms` );
+        Logger.debug( `processQueueAsync(): delay=${delay.toFixed(3)}ms, dec=${dDec.toFixed(3)}ms` );
 
-        if( status.match(successValue) ) {
+        if( status == null ) {
+          Logger.debug( "processQueueAsync(): Received null status" );
+
+          if( failAction ) {
+            failAction( item, status );
+          }
+          // The delay between requests is self-adjustable
+          setTimeout( execute, delay );
+        }
+        else if( status.match(successValue) ) {
+          Logger.trace( `processQueueAsync(): Received SUCCESS status` );
+
           // Transfer the item from input to output queue
           var doneItem = inputQueue.shift();
           if( outputQueue != undefined ) {
@@ -138,6 +151,8 @@ function processQueueAsync( inputQueue, outputQueue, action, successValue, succe
           setTimeout( execute, delay );
         }
         else {
+          Logger.debug( `processQueueAsync(): Received ${successValue} status` );
+
           // Tune delay and call callback
           dDec = delay / S;
           delay *= 2.2;
@@ -151,6 +166,7 @@ function processQueueAsync( inputQueue, outputQueue, action, successValue, succe
     }
     else if( doneAction ) {
       // Call the done action
+      Logger.trace( `processQueueAsync(): execution completed` );
       doneAction();
     }
   }
@@ -251,10 +267,10 @@ function buildPinUrl( text, fill_colour, scale_factor, font_size ) {
  * Get a URL parameter
  * See https://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
  */
-function urlParam( name ) {
+function urlParam( name, default_value = null ) {
   var searchParams = new URLSearchParams(window.location.search);
   if( !searchParams.has(name) ) {
-    return null;
+    return default_value;
   }
   else {
     return searchParams.get(name);

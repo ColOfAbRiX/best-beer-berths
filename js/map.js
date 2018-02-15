@@ -71,7 +71,7 @@ var GoogleMap = (function(){
   };
 
   /**
-   * Updated the current position on the map
+   * Updates the current position on the map
    */
   var _updatePosition = function() {
     navigator.geolocation.getCurrentPosition(
@@ -80,7 +80,7 @@ var GoogleMap = (function(){
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-        Logger.info( `Current location: ${JSON.stringify(position)}` );
+        Logger.debug( `Current location: ${JSON.stringify(position)}` );
         _setHome( position, centerHome );
         setTimeout( _updatePosition, POSITION_UPDATE * 1000 );
       },
@@ -191,8 +191,12 @@ var GoogleMap = (function(){
 
     // Manage the click
     marker.addListener('click', () => {
-      infoWindow.setContent( place.getIWTemplate() );
+      _setHome( lastPosition, true);
+      _updatePosition();
+
+      infoWindow.setContent( place.placeInfoWindow() );
       infoWindow.open( map, marker );
+
       // Build the stars
       $( function() {
         $( 'span.stars' ).stars();

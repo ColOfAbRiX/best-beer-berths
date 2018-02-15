@@ -23,6 +23,11 @@ var PlacesDB = (function() {
         var cache_hash = window.localStorage.getItem( "BeerPlacesDBHash" );
         var cache_timestamp = parseInt( window.localStorage.getItem( "BeerPlacesDBTimestamp" ) || 0 );
 
+        Logger.debug( `BeerPlacesDBHash: ${cache_hash}` );
+        Logger.debug( `BeerPlacesDBTimestamp: ${cache_timestamp}` );
+        Logger.debug( `Current timestamp: ${new Date().getTime()}` );
+        Logger.trace( `BeerPlacesDB: ${cache}` );
+
         // Check expiry
         var expired = ( new Date().getTime() - cache_timestamp ) >= CACHE_DURATION * 1000;
         if( expired ) {
@@ -38,6 +43,7 @@ var PlacesDB = (function() {
         }
 
         // Load
+        Logger.debug( `Loading objects from JSON` );
         var places = JSON.parse( cache );
 
         // Convert the cache into proper BeerPlace objects
@@ -47,7 +53,7 @@ var PlacesDB = (function() {
           local_db.push( bp );
         }
 
-        Logger.info( `Found and loaded cache ${cache_hash}` )
+        Logger.info( `Found and loaded cache ${cache_hash}` );
         return true;
       }
 
@@ -60,15 +66,15 @@ var PlacesDB = (function() {
     var save = function() {
       // Check cache enabled
       if( !CACHE_ENABLED ) {
-        reset()
+        reset();
         return false;
       }
 
-      Logger.info( `Saving cache for DB ${dbHash()}` )
+      Logger.info( `Saving cache for DB ${dbHash()}` );
 
-      window.localStorage.setItem( "BeerPlacesDB", JSON.stringify(local_db) )
-      window.localStorage.setItem( "BeerPlacesDBHash", dbHash() )
-      window.localStorage.setItem( "BeerPlacesDBTimestamp", new Date().getTime() )
+      window.localStorage.setItem( "BeerPlacesDB", JSON.stringify(local_db) );
+      window.localStorage.setItem( "BeerPlacesDBHash", dbHash() );
+      window.localStorage.setItem( "BeerPlacesDBTimestamp", new Date().getTime() );
 
       return true;
     };
@@ -81,10 +87,10 @@ var PlacesDB = (function() {
         window.localStorage.removeItem( "BeerPlacesDB" );
         window.localStorage.removeItem( "BeerPlacesDBHash" );
         window.localStorage.removeItem( "BeerPlacesDBTimestamp" );
-        Logger.log( "Cache cleaned" );
+        Logger.info( "Reset cache: cache cleaned" );
       }
       else {
-        Logger.log( "The cache is not enabled" );
+        Logger.debug( "Reset cache: the cache is not enabled" );
       }
     };
 
@@ -473,6 +479,9 @@ class BeerPlace {
     // Skip if already present
     if( this.google_location && !force ) {
       Logger.warn( `Location data already loaded for ${this.raw_data.Name}` );
+      if( callback ) {
+        callback( this, google.maps.places.PlacesServiceStatus.OK );
+      }
       return;
     }
 
@@ -515,11 +524,18 @@ class BeerPlace {
    */
   queryDetails( callback, force = false ) {
     if( !this.google_location ) {
+      Logger.debug( this );
       Logger.error( `Can't load Details because Location is missing for ${this.raw_data.Name}` );
+      if( callback ) {
+        callback( this, null );
+      }
       return;
     }
     if( this.google_details && !force ) {
       Logger.warn( `Details data already loaded for ${this.raw_data.Name}` );
+      if( callback ) {
+        callback( this, google.maps.places.PlacesServiceStatus.OK );
+      }
       return;
     }
 
@@ -583,5 +599,12 @@ class BeerPlace {
     };
     var hndl_template = Handlebars.compile( $('#place-template')[0].innerHTML );
     return hndl_template( data );
+  }
+
+  /**
+   * Gets a string representation of the object
+   */
+  toString() {
+    return `${this.raw_data.Name}`;
   }
 }
