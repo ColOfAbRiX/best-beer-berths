@@ -71,15 +71,28 @@ span.stars span {
 }
 
 /* List of places */
-#placesList {
+#placesList * {
+  font-family: Roboto, Arial, sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px;
+}
+#placesList p {
+  color: #999;
+}
+#placesList strong {
+  color: #666;
+}
+#placesList h1 {
+  font-size: 12pt;
+  font-weight: bold
+  color: black;
 }
 #placesList .placeItem {
-  padding-bottom: 8pt;
-  border-top: 2px solid #999;
-}
-#placesList .placeItem {
-  padding-bottom: 8pt;
-  border-top: 2px solid #999;
+  padding-top: 3pt;
+  padding-bottom: 3pt;
+  border-top: 1px solid #ccc;
 }
 #placesList .selected {
   background-color: #ffc;
@@ -88,16 +101,13 @@ span.stars span {
   background-color: #fff;
 }
 
-/* debug */
+/* Logger */
 #debug {
   font-family: monospace;
   font-size: 8pt;
 }
 #debug span {
   display: block;
-}
-#debug span.log {
-  color: black;
 }
 #debug span.trace {
   color: silver;
