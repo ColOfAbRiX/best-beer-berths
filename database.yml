@@ -250,6 +250,11 @@ Beer places:
        Type: Brewery Chain
        Status: Tried
        Score: { Draught: 7 , Place: 7 }
+     - Name: Smiths of Smithfield
+       Address: 67-77 Charterhouse St, Clerkenwell, London EC1M 6HJ
+       Type: English Pub
+       Status: Tried
+       Score: { Draught: 6, Bottles: 8, Place: 7 }
 
      ##  Still to try  ##
      - Name: London Beer House
@@ -378,15 +383,30 @@ Beer places:
        Status: To try
        Expectation: { Mine: 7, Google: 4.1 }
      - Name: Partizan Brewing
-       Address: Partizan Brewing
+       Address: 34 Raymouth Rd, London SE16 2DB
        Type: Brewery
        Status: To try
        Expectation: { Mine: 7, Google: 4.3 }
      - Name: Anspach & Hobday
-       Address: Anspach & Hobday
+       Address: 118 Druid St, Bermondsey, London SE1 2HH
        Type: Brewery
        Status: To try
        Expectation: { Mine: 7, Google: 4.3 }
+     - Name: Mondo Brewing Company
+       Address: 86 Stewart's Rd, Battersea, London SW8 4UG
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.8 }
+     - Name: Clapton Craft
+       Address: 97 Lower Clapton Rd, Clapton, London E5 0NP
+       Type: Beer shop
+       Status: To try
+       Expectation: { Mine: 9, Google: 5.0 }
+     - Name: CRATE Brewery
+       Address: CRATE Brewery
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.4 }
 
   Italia:
     Cattolica:
