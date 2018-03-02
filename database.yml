@@ -1,7 +1,7 @@
 ---
-# 
+#
 # Copyright 2018, Fabrizio Colonna, All rights reserved.
-# Last updated: 22/02/2018
+# Last updated: 02/03/2018
 #
 
 Beer places:
@@ -189,7 +189,7 @@ Beer places:
        Address: 251 Paradise Row, Bethnal Green, London E2 9LE
        Type: Beer pub
        Status: Tried
-       Score: { Draught: 9, Bottles: 9, Food: 7, Place: 8 }
+       Score: { Draught: 8, Bottles: 9, Food: 7, Place: 8 }
      - Name: The Exmouth Arms
        Address: 23 Exmouth Market, Clerkenwell, London EC1R 4QL
        Type: English Pub
@@ -249,7 +249,7 @@ Beer places:
        Address: 45-47 Clerkenwell Rd, Clerkenwell, London EC1M 5RS
        Type: Brewery Chain
        Status: Tried
-       Score: { Draught: 7 , Place: 7 }
+       Score: { Draught: 7 , Place: 8 }
      - Name: Smiths of Smithfield
        Address: 67-77 Charterhouse St, Clerkenwell, London EC1M 6HJ
        Type: English Pub
@@ -342,11 +342,21 @@ Beer places:
        Type: Brewery Taproom
        Status: To try
        Expectation: { Mine: 8, Google: 4.5 }
+     - Name: Lowlander Grand Cafe
+       Address: 36 Drury Ln, London WC2B 5RR
+       Type: English Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.4 }
      - Name: Earl of Essex
        Address: 25 Danbury St, Islington, London N1 8LE
        Type: English pub
        Status: To try
        Expectation: { Mine: 8, Google: 4.4 }
+     - Name: Herman ze German
+       Address: 43 Charlotte St, Fitzrovia, London W1T 1RS
+       Type: German Deli
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.3 }
      - Name: Draft House Tower Bridge
        Address: 206-208 Tower Bridge Rd, London SE1 2UP
        Type: Beer pub
@@ -357,6 +367,11 @@ Beer places:
        Type: German Pub
        Status: To try
        Expectation: { Mine: 8, Google: 4.1 }
+     - Name: The Carpenters Arms
+       Address: 80 Liverpool Rd, London N1 0QD
+       Type: English pub (german beers)
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.5 }
      - Name: The Pig and Butcher
        Address: 80 Liverpool Rd, London N1 0QD
        Type: English pub
