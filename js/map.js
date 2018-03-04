@@ -31,6 +31,7 @@ var GoogleMap = (function(){
   var placesService;
   var lastPosition;
   var centerHome = true;
+  var markers = [];
 
   /**
    * Initializes Google Map.
@@ -82,6 +83,7 @@ var GoogleMap = (function(){
     // Event management
     map.addListener( 'click', () => infoWindow.close() );
     map.addListener( 'drag', () => centerHome = false );
+    map.addListener( 'idle', () => _markersVisibility() )
 
     // Load the database and start the processing of information
     $.get(
@@ -182,6 +184,26 @@ var GoogleMap = (function(){
   };
 
   /**
+   * Manage the visibility of all the markers in the viewport
+   */
+  var _markersVisibility = function() {
+    var bounds = map.getBounds();
+    markers.forEach( marker => _displayMarker(marker, bounds) );
+  };
+
+  /**
+   * Display a marker if it's in the visible region of the map
+   */
+  var _displayMarker = function( marker, bounds ) {
+    if( bounds.contains(marker.position) ) {
+      marker.setMap( map );
+    }
+    else {
+      marker.setMap( null );
+    }
+  }
+
+  /**
    * Adds a Beer Place as a marker on the map
    */
   var addMarker = function( place, min_avg_score, max_avg_score ) {
@@ -205,12 +227,15 @@ var GoogleMap = (function(){
 
     // Create and add the marker
     var marker = new google.maps.Marker({
-      map: map,
       title: `${place.raw_data.Name} - ${place.avg_score.toFixed(2)}/10`,
       icon: pin_image,
       position: place.google_location.geometry.location,
       infoWindow: infoWindow
     });
+
+    // Add marker to the local list
+    markers.push( marker );
+    _displayMarker( marker, map.getBounds() );
 
     // Manage the click
     marker.addListener('click', () => {
