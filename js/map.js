@@ -188,15 +188,22 @@ var GoogleMap = (function(){
    */
   var _markersVisibility = function() {
     var bounds = map.getBounds();
-    markers.forEach( marker => _displayMarker(marker, bounds) );
+    markers.forEach( marker =>
+      _displayMarker(marker, bounds)
+    );
   };
 
   /**
    * Display a marker if it's in the visible region of the map
    */
   var _displayMarker = function( marker, bounds ) {
+    if( bounds == undefined ) {
+      return;
+    }
     if( bounds.contains(marker.position) ) {
-      marker.setMap( map );
+      if( marker.getMap() != map ) {
+        marker.setMap( map );
+      }
     }
     else {
       marker.setMap( null );
