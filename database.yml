@@ -1,7 +1,7 @@
 ---
 #
 # Copyright 2018, Fabrizio Colonna, All rights reserved.
-# Last updated: 02/03/2018
+# Last updated: 08/03/2018
 #
 
 Beer places:
@@ -224,7 +224,7 @@ Beer places:
        Address: 82 Leather Ln, Clerkenwell, London EC1N 7TR
        Type: English Pub
        Status: Tried
-       Score: { Draught: 9, Place: 6 }
+       Score: { Draught: 9, Place: 7 }
      - Name: Brewdog Shoreditch
        Address: 51-55 Bethnal Green Rd, London E1 6LA
        Type: Brewery Chain
@@ -238,6 +238,11 @@ Beer places:
      - Name: Bierschenke
        Address: London Wall Buildings, 4 Blomfield St, London EC2M
        Type: German Pub
+       Status: Tried
+       Score: { Draught: 7, Bottles: 8, Food: 9, Place: 7 }
+     - Name: Harrild and Sons
+       Address: 26 Farringdon St, London EC4A 4AB
+       Type: English Pub
        Status: Tried
        Score: { Draught: 7, Bottles: 8, Food: 9, Place: 7 }
      - Name: The Euston Tap
@@ -277,6 +282,11 @@ Beer places:
        Type: Brewery Taproom
        Status: To try
        Expectation: { Mine: 9, Google: 4.6 }
+     - Name: The Craft Beer Co. Covent Garden
+       Address: 168 High Holborn, London WC1V 7AA
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.4 }
      - Name: The Bull, Highate
        Address: 13 North Hill, Highgate, London N6 4AB
        Type: English Pub
@@ -340,6 +350,11 @@ Beer places:
      - Name: Redchurch Brewery
        Address: 275-276 Poyser St, London E2 9RF
        Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: Temple Brew House
+       Address: 46 Essex St, London WC2R 3JF
+       Type: Brewpub
        Status: To try
        Expectation: { Mine: 8, Google: 4.5 }
      - Name: Lowlander Grand Cafe
