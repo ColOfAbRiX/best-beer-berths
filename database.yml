@@ -166,12 +166,18 @@ Beer places:
 
   England:
     Colchester:
-     ##  Tried  ##
      - Name: Queen St Brewhouse
        Address: 7 Queen St, Colchester CO1 2PG
        Type: English/Belgian Bar
        Status: Tried
        Score: { Draught: 8, Bottles: 8, Place: 10 }
+
+    Folkestone:
+     - Name: Kipps' Alehouse
+       Address: Kipps' Alehouse
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 8, Place: 9 }
 
     London:
      ##  Tried  ##
@@ -190,6 +196,11 @@ Beer places:
        Type: Beer pub
        Status: Tried
        Score: { Draught: 8, Bottles: 9, Food: 7, Place: 8 }
+     - Name: The Craft Beer Co. Covent Garden
+       Address: 168 High Holborn, London WC1V 7AA
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 9, Bottles: 9, Place: 8 }
      - Name: The Exmouth Arms
        Address: 23 Exmouth Market, Clerkenwell, London EC1R 4QL
        Type: English Pub
@@ -265,6 +276,26 @@ Beer places:
        Type: English Pub
        Status: Tried
        Score: { Draught: 6, Bottles: 8, Place: 7 }
+     - Name: Brew by Numbers
+       Address: 79 Enid St, London SE16 3RA
+       Type: Brewery
+       Status: Tried
+       Score: { Draught: 8, Place: 8 }
+     - Name: Katzenjammers
+       Address: The Hop Exchange, 24 Southwark St, London SE1 1TY
+       Type: German Pub
+       Status: Tried
+       Score: { Draught: 7, Bottles: 8, Food: 7, Place: 8 }
+     - Name: Anspach & Hobday
+       Address: 118 Druid St, Bermondsey, London SE1 2HH
+       Type: Brewery
+       Status: Tried
+       Score: { Draught: 8, Bottles: 8, Place: 8 }
+     - Name: Moor Vaults
+       Address: 71 Enid Street, Bermondsey, London SE16 3RA
+       Type: Brewery Taproom
+       Status: Tried
+       Score: { Draught: 8, Place: 7 }
 
      ##  Still to try  ##
      - Name: London Beer House
@@ -272,11 +303,6 @@ Beer places:
        Type: Taproom
        Status: Tried
        Score: { Draught: 7, Place: 8 }
-     - Name: Brew by Numbers
-       Address: 79 Enid St, London SE16 3RA
-       Type: Brewery
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.5 }
      - Name: Caps and Taps
        Address: Caps and Taps, 130 Kentish Town Road, Kentish Town NW1 9QB
        Type: Beer shop
@@ -287,11 +313,6 @@ Beer places:
        Type: Brewery Taproom
        Status: To try
        Expectation: { Mine: 9, Google: 4.6 }
-     - Name: The Craft Beer Co. Covent Garden
-       Address: 168 High Holborn, London WC1V 7AA
-       Type: Beer Pub
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.4 }
      - Name: The Bull, Highate
        Address: 13 North Hill, Highgate, London N6 4AB
        Type: English Pub
@@ -382,11 +403,6 @@ Beer places:
        Type: Beer pub
        Status: To try
        Expectation: { Mine: 8, Google: 4.2 }
-     - Name: Katzenjammers
-       Address: The Hop Exchange, 24 Southwark St, London SE1 1TY
-       Type: German Pub
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.1 }
      - Name: Belgo Holborn
        Address: 67 Kingsway, London WC2B 6TD
        Type: Belgian Pub
@@ -424,11 +440,6 @@ Beer places:
        Expectation: { Mine: 7, Google: 4.1 }
      - Name: Partizan Brewing
        Address: 34 Raymouth Rd, London SE16 2DB
-       Type: Brewery
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.3 }
-     - Name: Anspach & Hobday
-       Address: 118 Druid St, Bermondsey, London SE1 2HH
        Type: Brewery
        Status: To try
        Expectation: { Mine: 7, Google: 4.3 }
