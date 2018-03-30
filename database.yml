@@ -291,8 +291,18 @@ Beer places:
        Type: Brewery
        Status: Tried
        Score: { Draught: 8, Bottles: 8, Place: 8 }
+     - Name: Ninth Ward
+       Address: 99-101 Farringdon Rd, London EC1R 3BN
+       Type: Pub and Grill
+       Status: Tried
+       Score: { Draught: 8, Bottles: 8, Place: 8, Food: 8}
      - Name: Moor Vaults
        Address: 71 Enid Street, Bermondsey, London SE16 3RA
+       Type: Brewery Taproom
+       Status: Tried
+       Score: { Draught: 8, Place: 7 }
+     - Name: Howling Hops Brewery and Tank Bar
+       Address: Unit 9A Queen's Yard, White Post Ln, London E9 5EN
        Type: Brewery Taproom
        Status: Tried
        Score: { Draught: 8, Place: 7 }
@@ -308,11 +318,6 @@ Beer places:
        Type: Beer shop
        Status: To try
        Expectation: { Mine: 9, Google: 4.9 }
-     - Name: Howling Hops Brewery and Tank Bar
-       Address: Unit 9A Queen's Yard, White Post Ln, London E9 5EN
-       Type: Brewery Taproom
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.6 }
      - Name: The Bull, Highate
        Address: 13 North Hill, Highgate, London N6 4AB
        Type: English Pub
