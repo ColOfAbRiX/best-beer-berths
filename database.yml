@@ -165,19 +165,6 @@ Beer places:
        Expectation: { Mine: 7, Google: 4.1 }
 
   England:
-    Colchester:
-     - Name: Queen St Brewhouse
-       Address: 7 Queen St, Colchester CO1 2PG
-       Type: English/Belgian Bar
-       Status: Tried
-       Score: { Draught: 8, Bottles: 8, Place: 10 }
-
-    Folkestone:
-     - Name: Kipps' Alehouse
-       Address: Kipps' Alehouse
-       Type: Beer Pub
-       Status: Tried
-       Score: { Draught: 8, Place: 9 }
 
     London:
      ##  Tried  ##
@@ -463,6 +450,23 @@ Beer places:
        Type: Brewery
        Status: To try
        Expectation: { Mine: 8, Google: 4.4 }
+
+    Others:
+     - Name: Queen St Brewhouse
+       Address: 7 Queen St, Colchester CO1 2PG
+       Type: English/Belgian Bar
+       Status: Tried
+       Score: { Draught: 8, Bottles: 8, Place: 10 }
+     - Name: Kipps' Alehouse
+       Address: 11-15 The Old High St, Folkestone CT20 1RL
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 8, Place: 9 }
+     - Name: Drayman's Son
+       Address: 29a Fore Hill, Ely CB7 4AA
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 8, Place: 9 }
 
   Italia:
     Cattolica:
