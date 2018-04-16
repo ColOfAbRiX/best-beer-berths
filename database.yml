@@ -282,7 +282,7 @@ Beer places:
        Address: 99-101 Farringdon Rd, London EC1R 3BN
        Type: Pub and Grill
        Status: Tried
-       Score: { Draught: 8, Bottles: 8, Place: 8, Food: 8}
+       Score: { Draught: 8, Bottles: 8, Place: 8, Food: 8 }
      - Name: Moor Vaults
        Address: 71 Enid Street, Bermondsey, London SE16 3RA
        Type: Brewery Taproom
@@ -293,6 +293,21 @@ Beer places:
        Type: Brewery Taproom
        Status: Tried
        Score: { Draught: 8, Place: 7 }
+     - Name: BottleShop Bermondsey
+       Address: 128 Druid St, London SE1 2HH
+       Type: Beer Shop
+       Status: Tried
+       Score: { Draught: 7, Bottles: 9, Place: 8 }
+     - Name: The Kernel Brewery
+       Address: Arch 11, Dockley Road Industrial Estate, Dockley Rd, London SE16 3SF
+       Type: Brewery
+       Status: Tried
+       Score: { Draught: -1, Bottles: 8, Place: 8 }
+     - Name: The Barrel Project
+       Address: 80 Druid St, London SE1
+       Type: Beer pub
+       Status: Tried
+       Score: { Draught: 7, Place: 8 }
 
      ##  Still to try  ##
      - Name: London Beer House
@@ -340,16 +355,6 @@ Beer places:
        Type: Brewery
        Status: To try
        Expectation: { Mine: 8, Google: 4.6 }
-     - Name: BottleShop Bermondsey
-       Address: 128 Druid St, London SE1 2HH
-       Type: Beer Shop
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.6 }
-     - Name: The Kernel Brewery
-       Address: Arch 11, Dockley Road Industrial Estate, Dockley Rd, London SE16 3SF
-       Type: Brewery
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.5 }
      - Name: Mason & Company
        Address: Queen Elizabeth Olympic Park, 25 E Bay Ln, London E20 3BS
        Type: Beer pub
@@ -415,11 +420,6 @@ Beer places:
        Type: Brewery Taproom
        Status: To try
        Expectation: { Mine: 7, Google: 4.4 }
-     - Name: The Barrel Project
-       Address: 80 Druid St, London SE1
-       Type: Beer pub
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.3 }
      - Name: The Lyric
        Address: 37 Great Windmill St, Soho, London W1D 7LT
        Type: English Pub
@@ -467,6 +467,11 @@ Beer places:
        Type: Beer Pub
        Status: Tried
        Score: { Draught: 8, Place: 9 }
+     - Name: The Cambridge Blue
+       Address: 85-87 Gwydir St, Cambridge CB1 2LG
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 8, Bottles: 8, Place: 10 }
 
   Italia:
     Cattolica:
