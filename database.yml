@@ -315,12 +315,7 @@ Beer places:
        Type: Taproom
        Status: Tried
        Score: { Draught: 7, Place: 8 }
-     - Name: Caps and Taps
-       Address: Caps and Taps, 130 Kentish Town Road, Kentish Town NW1 9QB
-       Type: Beer shop
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.9 }
-     - Name: The Bull, Highate
+     - Name: The Crown and Shuttle
        Address: 13 North Hill, Highgate, London N6 4AB
        Type: English Pub
        Status: To try
@@ -425,6 +420,36 @@ Beer places:
        Type: English Pub
        Status: To try
        Expectation: { Mine: 7, Google: 4.2 }
+     - Name: Draft House Old Street
+       Address: Mews Unit, The Bower, 211 Old St, London EC1V 9NR
+       Type: Beer pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.1 }
+     - Name: Old Fountain
+       Address: 3 Baldwin St, London EC1V 9NU
+       Type: Beer pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.4 }
+     - Name: Old Fountain
+       Address: 3 Baldwin St, London EC1V 9NU
+       Type: Beer pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.4 }
+     - Name: Strongroom Bar & Kitchen
+       Address: 120-124 Curtain Rd, Shoreditch, London EC2A 3SQ
+       Type: Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.1 }
+     - Name: The Crown and Shuttle
+       Address: 226 Shoreditch High St, London E1 6PJ
+       Type: Pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.1 }
+     - Name: Well and Bucket
+       Address: 226 Shoreditch High St, London E1 6PJ
+       Type: Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.2 }
      - Name: The White Hart Brew Pub
        Address: 1 Mile End Rd, London E1 4TP
        Type: English Pub
