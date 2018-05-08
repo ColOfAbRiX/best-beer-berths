@@ -166,6 +166,23 @@ Beer places:
 
   England:
 
+    Cambridge:
+     - Name: The Cambridge Blue
+       Address: 85-87 Gwydir St, Cambridge CB1 2LG
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 8, Bottles: 9, Place: 10 }
+     - Name: Pint Shop
+       Address: 10 Peas Hill, Cambridge CB2 3PN
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 8, Place: 7 }
+     - Name: The Cambridge Brew House
+       Address: 1 King St, Cambridge CB1 1LH
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 7, Food: 8, Place: 9 }
+
     London:
      ##  Tried  ##
      - Name: The Craft Beer Co. Islington
@@ -492,11 +509,6 @@ Beer places:
        Type: Beer Pub
        Status: Tried
        Score: { Draught: 8, Place: 9 }
-     - Name: The Cambridge Blue
-       Address: 85-87 Gwydir St, Cambridge CB1 2LG
-       Type: Beer Pub
-       Status: Tried
-       Score: { Draught: 8, Bottles: 8, Place: 10 }
 
   Italia:
     Cattolica:
