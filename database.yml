@@ -493,6 +493,18 @@ Beer places:
        Status: To try
        Expectation: { Mine: 8, Google: 4.4 }
 
+    Plymouth:
+     - Name: Vessel Beer Shop
+       Address: 184 Exeter St, Plymouth PL4 0NQ
+       Type: Bottle Shop
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.9 }
+     - Name: The Bread and Roses Free House
+       Address: 62 Ebrington St, Plymouth PL4 9AF
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.4 }
+
     Others:
      - Name: Queen St Brewhouse
        Address: 7 Queen St, Colchester CO1 2PG
