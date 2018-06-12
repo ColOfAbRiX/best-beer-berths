@@ -300,6 +300,11 @@ Beer places:
        Type: Pub and Grill
        Status: Tried
        Score: { Draught: 8, Bottles: 8, Place: 8, Food: 8 }
+     - Name: Understudy
+       Address: Upper Ground, Lambeth, London SE1 9PX
+       Type: Beer bar
+       Status: Tried
+       Score: { Draught: 8, Bottles: 8, Place: 7 }
      - Name: Moor Vaults
        Address: 71 Enid Street, Bermondsey, London SE16 3RA
        Type: Brewery Taproom
