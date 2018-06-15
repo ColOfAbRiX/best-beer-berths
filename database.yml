@@ -1,187 +1,12 @@
 ---
 #
 # Copyright 2018, Fabrizio Colonna, All rights reserved.
-# Last updated: 31/05/2018
+# Last updated: 15/06/2018
 #
 
 Beer places:
 
-  Belgium:
-    Antwerpen:
-     - Name: Paters Vaetje
-       Address: Blauwmoezelstraat 1, 2000 Antwerpen, Belgium
-       Type: Belgian Bar
-       Status: Tried
-       Score: { Bottles: 8, Place: 9 }
-
-    Brugge:
-     - Name: Le Trappiste
-       Address: Kuipersstraat 33, 8000 Brugge, Belgium
-       Type: Belgian Bar
-       Status: Tried
-       Score: { Draught: 9, Bottles: 9, Place: 8 }
-
-    Ghent:
-     - Name: Dulle Griet
-       Address: Vrijdagmarkt 50, 9000 Gent, Belgium
-       Type: Belgian Bar
-       Status: Tried
-       Score: { Bottles: 8, Place: 8 }
-
-    Bruxelles:
-     ##  Tried  ##
-     - Name: Moeder Lambic Fontain
-       Address: Place Fontainas 8, 1000 Bruxelles, Belgium
-       Type: Belgian Bar
-       Status: Tried
-       Score: { Draught: 9, Bottles: 9, Place: 9 }
-     - Name: Delirium Café
-       Address: Impasse de la Fidélité 4, 1000 Bruxelles, Belgium
-       Type: Belgian Bar
-       Status: Tried
-       Score: { Draught: 9, Bottles: 9, Place: 8 }
-     - Name: Musée Bruxellois de la Gueuze-CANTILLON
-       Address: Rue Gheude 56, 1070 Anderlecht, Belgium
-       Type: Brewery
-       Status: Tried
-       Score: { Bottles: 8, Place: 9 }
-     - Name: De Biertempel
-       Address: Grasmarkt 56b, 1000 Brussel, Belgium
-       Type: Beer Shop
-       Status: Tried
-       Score: { Draught: -1, Bottles: 9, Place: 8 }
-     - Name: Poechenellekelder
-       Address: Rue du Chêne 5, 1000 Bruxelles, Belgium
-       Type: Belgian Bar
-       Status: Tried
-       Score: { Draught: 7, Bottles: 8, Place: 10  }
-     - Name: La Porte Noire
-       Address: Rue des Alexiens 67, 1000 Bruxelles, Belgium
-       Type: Beer Pub
-       Status: Tried
-       Score: { Draught: 8, Bottles: 9, Place: 7 }
-     - Name: A La Mort Subite
-       Address: Rue Montagne aux Herbes Potagères 7, 1000 Bruxelles, Belgium
-       Type: Belgian Bar
-       Status: Tried
-       Score: { Draught: 7, Bottles: 8, Place: 9, Food: 7 }
-     - Name: Brasserie de l'Ermitage
-       Address: Rue Lambert Crickx 26, 1070 Anderlecht, 1070 Brussel, Belgium
-       Type: Belgian Bar
-       Status: Tried
-       Score: { Draught: 8, Place: 7 }
-
-     ##  Still To try  ##
-     - Name: Daringman
-       Address: Rue de Flandre 37, 1000 Bruxelles, Belgium
-       Type: Belgian Bar
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.4 }
-     - Name: Brussels Beer Project
-       Address: Brussels Beer Project
-       Type: Brewery
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.6 }
-     - Name: Moeder Lambic Original
-       Address: Rue de Savoie 68, 1060 Saint-Gilles, Belgium
-       Type: Belgian Bar
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.5 }
-     - Name: Bier Circus
-       Address: Rue de l'Enseignement 57, 1000 Bruxelles, Belg
-       Type: Belgian Bar
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.1 }
-     - Name: Nüetnigenough
-       Address: Rue du Lombard 25, 1000 Bruxelles, Belgium
-       Type: Belgian Bar
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.5 }
-
-    Others:
-     ##  Tried  ##
-     - Name: Brouwerij Het Anker
-       Address: Guido Gezellelaan 49, 2800 Mechelen, Belgium
-       Type: Brewery
-       Status: Tried
-       Score: { Draught: 8, Place: 9, Food: 9 }
-     - Name: Espace Chimay
-       Address: Rue de Poteaupré 5, 6464 Bourlers, Belgium
-       Type: Brewery
-       Status: Tried
-       Score: { Draught: 7, Place: 8 }
-
-     ##  Still To try  ##
-     - Name: Brasserie Dupont sprl
-       Address: Rue Basse 5, 7904 Leuze-en-Hainaut, Belgium
-       Type: Brewery
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.3 }
-     - Name: St-Feuillien
-       Address: St-Feuillien
-       Type: Brewery
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.6 }
-     - Name: Brasserie Le Maredsous
-       Address: Rue de Maredsous 11, 5537 Anhée, Belgium
-       Type: Brewery
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.2 }
-     - Name: Brouwerij Lindemans
-       Address: Lenniksebaan 1479, 1602 Vlezenbeek, Belgiu
-       Type: Brewery
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.8 }
-
-  Denmark:
-    København:
-     ##  Tried  ##
-     - Name: Ørsted Ølbar
-       Address: Nørre Farimagsgade 13, 1364 København K, Denmark
-       Type: Pub
-       Status: Tried
-       Score: { Draught: 8, Bottles: 10, Place: 9 }
-     - Name: Fermentoren
-       Address: Halmtorvet 29C, 1700 København V, Denmark
-       Type: Pub
-       Status: Tried
-       Score: { Draught: 9, Place: 7 }
-     - Name: Warpigs Brewpub
-       Address: Flæsketorvet 25, 1711 København V, Denmark
-       Type: Pub
-       Status: Tried
-       Score: { Draught: 9, Place: 6 }
-
-     ##  Still To try  ##
-     - Name: Mikkeller Bar
-       Address: Viktoriagade 8, 1655 København V, Denmark
-       Type: Pub
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.5 }
-     - Name: Nørrebro Bryghus
-       Address: Ryesgade 3, 2200 København N, Denmark
-       Type: Pub
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.1 }
-
   England:
-
-    Cambridge:
-     - Name: The Cambridge Blue
-       Address: 85-87 Gwydir St, Cambridge CB1 2LG
-       Type: Beer Pub
-       Status: Tried
-       Score: { Draught: 8, Bottles: 9, Place: 10 }
-     - Name: Pint Shop
-       Address: 10 Peas Hill, Cambridge CB2 3PN
-       Type: Beer Pub
-       Status: Tried
-       Score: { Draught: 8, Place: 7 }
-     - Name: The Cambridge Brew House
-       Address: 1 King St, Cambridge CB1 1LH
-       Type: Beer Pub
-       Status: Tried
-       Score: { Draught: 7, Food: 8, Place: 9 }
 
     London:
      ##  Tried  ##
@@ -325,6 +150,11 @@ Beer places:
        Type: Brewery
        Status: Tried
        Score: { Draught: -1, Bottles: 8, Place: 8 }
+     - Name: The White Hart
+       Address: 29 Cornwall Rd, Lambeth, London SE1 8TJ
+       Type: Enlgish Pub
+       Status: Tried
+       Score: { Draught: 7, Boittles: 7, Place: 8 }
      - Name: The Barrel Project
        Address: 80 Druid St, London SE1
        Type: Beer pub
@@ -335,8 +165,43 @@ Beer places:
        Type: Beer pub
        Status: Tried
        Score: { Draught: 7, Place: 7 }
+     - Name: Old Red Cow
+       Address: 71 Long Ln, London EC1A 9EJ
+       Type: Pub
+       Status: Tried
+       Score: { Draught: 7, Place: 7 }
 
      ##  Still to try  ##
+     - Name: The Rake
+       Address: Borough Market, 14A Winchester Walk, London SE1 9AG
+       Type: Beer shop and taps
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.3 }
+     - Name: The Italian Job at the Mercato Metropolitano
+       Address: 40-42 Newington Causeway, London SE1 6DR
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 5.0 }
+     - Name: Soutwark Brewing Company
+       Address: 46 Druid St, London SE1 2EZ
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.3 }
+     - Name: Hiver Beers and Taproom
+       Address: 56 Stanworth St, London SE1 3NY
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.1 }
+     - Name: The Other Room Bar
+       Address: 6, Brighton Buildings, 60 Tower Bridge Rd, London SE1 4TR
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.5 }
+     - Name: 7 Seasons
+       Address: 14, Hoxton Shopping Walk, 195 Hoxton Street, London N1 6RA
+       Type: Beer Shop
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
      - Name: London Beer House
        Address: 24 Charles II St, St. James's, London SW1Y
        Type: Taproom
@@ -503,6 +368,23 @@ Beer places:
        Status: To try
        Expectation: { Mine: 8, Google: 4.1 }
 
+    Cambridge:
+     - Name: The Cambridge Blue
+       Address: 85-87 Gwydir St, Cambridge CB1 2LG
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 8, Bottles: 9, Place: 10 }
+     - Name: Pint Shop
+       Address: 10 Peas Hill, Cambridge CB2 3PN
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 8, Place: 7 }
+     - Name: The Cambridge Brew House
+       Address: 1 King St, Cambridge CB1 1LH
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 7, Food: 8, Place: 9 }
+
     Plymouth:
      - Name: The Bread and Roses Free House
        Address: 62 Ebrington St, Plymouth PL4 9AF
@@ -663,6 +545,164 @@ Beer places:
        Type: Beer Shop
        Status: To try
        Expectation: { Mine: 9, Google: 4.8 }
+
+  Belgium:
+    Antwerpen:
+     - Name: Paters Vaetje
+       Address: Blauwmoezelstraat 1, 2000 Antwerpen, Belgium
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Bottles: 8, Place: 9 }
+
+    Brugge:
+     - Name: Le Trappiste
+       Address: Kuipersstraat 33, 8000 Brugge, Belgium
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Draught: 9, Bottles: 9, Place: 8 }
+
+    Ghent:
+     - Name: Dulle Griet
+       Address: Vrijdagmarkt 50, 9000 Gent, Belgium
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Bottles: 8, Place: 8 }
+
+    Bruxelles:
+     ##  Tried  ##
+     - Name: Moeder Lambic Fontain
+       Address: Place Fontainas 8, 1000 Bruxelles, Belgium
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Draught: 9, Bottles: 9, Place: 9 }
+     - Name: Delirium Café
+       Address: Impasse de la Fidélité 4, 1000 Bruxelles, Belgium
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Draught: 9, Bottles: 9, Place: 8 }
+     - Name: Musée Bruxellois de la Gueuze-CANTILLON
+       Address: Rue Gheude 56, 1070 Anderlecht, Belgium
+       Type: Brewery
+       Status: Tried
+       Score: { Bottles: 8, Place: 9 }
+     - Name: De Biertempel
+       Address: Grasmarkt 56b, 1000 Brussel, Belgium
+       Type: Beer Shop
+       Status: Tried
+       Score: { Draught: -1, Bottles: 9, Place: 8 }
+     - Name: Poechenellekelder
+       Address: Rue du Chêne 5, 1000 Bruxelles, Belgium
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Draught: 7, Bottles: 8, Place: 10  }
+     - Name: La Porte Noire
+       Address: Rue des Alexiens 67, 1000 Bruxelles, Belgium
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 8, Bottles: 9, Place: 7 }
+     - Name: A La Mort Subite
+       Address: Rue Montagne aux Herbes Potagères 7, 1000 Bruxelles, Belgium
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Draught: 7, Bottles: 8, Place: 9, Food: 7 }
+     - Name: Brasserie de l'Ermitage
+       Address: Rue Lambert Crickx 26, 1070 Anderlecht, 1070 Brussel, Belgium
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Draught: 8, Place: 7 }
+
+     ##  Still To try  ##
+     - Name: Daringman
+       Address: Rue de Flandre 37, 1000 Bruxelles, Belgium
+       Type: Belgian Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.4 }
+     - Name: Brussels Beer Project
+       Address: Brussels Beer Project
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Moeder Lambic Original
+       Address: Rue de Savoie 68, 1060 Saint-Gilles, Belgium
+       Type: Belgian Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.5 }
+     - Name: Bier Circus
+       Address: Rue de l'Enseignement 57, 1000 Bruxelles, Belg
+       Type: Belgian Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.1 }
+     - Name: Nüetnigenough
+       Address: Rue du Lombard 25, 1000 Bruxelles, Belgium
+       Type: Belgian Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.5 }
+
+    Others:
+     ##  Tried  ##
+     - Name: Brouwerij Het Anker
+       Address: Guido Gezellelaan 49, 2800 Mechelen, Belgium
+       Type: Brewery
+       Status: Tried
+       Score: { Draught: 8, Place: 9, Food: 9 }
+     - Name: Espace Chimay
+       Address: Rue de Poteaupré 5, 6464 Bourlers, Belgium
+       Type: Brewery
+       Status: Tried
+       Score: { Draught: 7, Place: 8 }
+
+     ##  Still To try  ##
+     - Name: Brasserie Dupont sprl
+       Address: Rue Basse 5, 7904 Leuze-en-Hainaut, Belgium
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.3 }
+     - Name: St-Feuillien
+       Address: St-Feuillien
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Brasserie Le Maredsous
+       Address: Rue de Maredsous 11, 5537 Anhée, Belgium
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.2 }
+     - Name: Brouwerij Lindemans
+       Address: Lenniksebaan 1479, 1602 Vlezenbeek, Belgiu
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.8 }
+
+  Denmark:
+    København:
+     ##  Tried  ##
+     - Name: Ørsted Ølbar
+       Address: Nørre Farimagsgade 13, 1364 København K, Denmark
+       Type: Pub
+       Status: Tried
+       Score: { Draught: 8, Bottles: 10, Place: 9 }
+     - Name: Fermentoren
+       Address: Halmtorvet 29C, 1700 København V, Denmark
+       Type: Pub
+       Status: Tried
+       Score: { Draught: 9, Place: 7 }
+     - Name: Warpigs Brewpub
+       Address: Flæsketorvet 25, 1711 København V, Denmark
+       Type: Pub
+       Status: Tried
+       Score: { Draught: 9, Place: 6 }
+
+     ##  Still To try  ##
+     - Name: Mikkeller Bar
+       Address: Viktoriagade 8, 1655 København V, Denmark
+       Type: Pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.5 }
+     - Name: Nørrebro Bryghus
+       Address: Ryesgade 3, 2200 København N, Denmark
+       Type: Pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.1 }
 
   Sweden:
     Stockholm:
