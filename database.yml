@@ -80,6 +80,11 @@ Beer places:
        Type: Beer Pub
        Status: Tried
        Score: { Draught: 8, Place: 7 }
+     - Name: The Rake
+       Address: Borough Market, 14A Winchester Walk, London SE1 9AG
+       Type: Beer shop and taps
+       Status: Tried
+       Score: { Draught: 8, Bottles: 8, Place: 8 }
      - Name: Bierschenke
        Address: London Wall Buildings, 4 Blomfield St, London EC2M
        Type: German Pub
@@ -170,53 +175,53 @@ Beer places:
        Type: Pub
        Status: Tried
        Score: { Draught: 7, Place: 7 }
+     - Name: Belgo Centraal
+       Address: 50 Earlham St, London WC2H 9LJ
+       Type: Belgian Pub
+       Status: Tried
+       Score: { Draught: 7, Boittles: 7, Place: 7 }
 
      ##  Still to try  ##
-     - Name: Hop Burns & Black, East Dulwich
-       Address:
-       Type:
+     - Name: Hop Burns & Black
+       Address: 38 E Dulwich Rd, London SE22 9AX
+       Type: Bottle Shop
        Status: To try
-       Expectation: { Mine: , Google:  }
-     - Name: The Beer Shop, Nunhead
-       Address:
-       Type:
+       Expectation: { Mine: 8, Google: 4.8 }
+     - Name: The Beer Shop
+       Address: 40 Nunhead Green, London SE15 3QF
+       Type: Beer Bar
        Status: To try
-       Expectation: { Mine: , Google:  }
-     - Name: Draft House Bermondsey
-       Address:
-       Type:
+       Expectation: { Mine: 7, Google: 4.9 }
+     - Name: Draft House Tower Bridge
+       Address: 206-208 Tower Bridge Rd, London SE1 2UP
+       Type: English Pub
        Status: To try
-       Expectation: { Mine: , Google:  }
+       Expectation: { Mine: 7, Google: 4.2 }
      - Name: Draft House Battersea
-       Address:
-       Type:
+       Address: 74-76 Battersea Bridge Rd, London SW11 3AG
+       Type: English Pub
        Status: To try
-       Expectation: { Mine: , Google:  }
-     - Name: Simon the Tanner, Bermondsey
-       Address:
-       Type:
+       Expectation: { Mine: 7, Google: 4.2 }
+     - Name: Simon the Tanner
+       Address: 231 Long Ln, London SE1 4PR
+       Type: English Pub
        Status: To try
-       Expectation: { Mine: , Google:  }
-     - Name: Dean Swift, South Bank
-       Address:
-       Type:
+       Expectation: { Mine: 7, Google: 4.5 }
+     - Name: Dean Swift
+       Address: 10 Gainsford St, London SE1 2NE
+       Type: English Pub
        Status: To try
-       Expectation: { Mine: , Google:  }
-     - Name: Beer Rebellion, Peckham
-       Address:
-       Type:
+       Expectation: { Mine: 8, Google: 4.3 }
+     - Name: Beer Rebellion
+       Address: 129 Queen's Rd, London SE15 2ND
+       Type: Beer Bar
        Status: To try
-       Expectation: { Mine: , Google:  }
-     - Name: Crown & Anchor, Brixton
-       Address:
-       Type:
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Crown & Anchor
+       Address: 246 Brixton Rd, London SW9 6AQ
+       Type: Beer Bar
        Status: To try
-       Expectation: { Mine: , Google:  }
-     - Name: The Rake
-       Address: Borough Market, 14A Winchester Walk, London SE1 9AG
-       Type: Beer shop and taps
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.3 }
+       Expectation: { Mine: 8, Google: 4.3 }
      - Name: The Italian Job at the Mercato Metropolitano
        Address: 40-42 Newington Causeway, London SE1 6DR
        Type: Beer Pub
