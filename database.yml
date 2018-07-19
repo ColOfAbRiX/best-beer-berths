@@ -50,6 +50,11 @@ Beer places:
        Type: Beer pub
        Status: Tried
        Score: { Draught: 7, Bottles: 9, Place: 8 }
+     - Name: Draft House Tower Bridge
+       Address: 206-208 Tower Bridge Rd, London SE1 2UP
+       Type: Beer pub
+       Status: Tried
+       Score: { Draught: 7, Bottles: 9, Place: 8 }
      - Name: Utobeer
        Address: 24 Borough Market, London SE1 1TL
        Type: Beer Shop
@@ -192,11 +197,6 @@ Beer places:
        Type: Beer Bar
        Status: To try
        Expectation: { Mine: 7, Google: 4.9 }
-     - Name: Draft House Tower Bridge
-       Address: 206-208 Tower Bridge Rd, London SE1 2UP
-       Type: English Pub
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.2 }
      - Name: Draft House Battersea
        Address: 74-76 Battersea Bridge Rd, London SW11 3AG
        Type: English Pub
@@ -322,11 +322,6 @@ Beer places:
        Type: German Deli
        Status: To try
        Expectation: { Mine: 8, Google: 4.3 }
-     - Name: Draft House Tower Bridge
-       Address: 206-208 Tower Bridge Rd, London SE1 2UP
-       Type: Beer pub
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.2 }
      - Name: Belgo Holborn
        Address: 67 Kingsway, London WC2B 6TD
        Type: Belgian Pub
@@ -417,11 +412,6 @@ Beer places:
        Type: Brewery
        Status: To try
        Expectation: { Mine: 7, Google: 4.8 }
-     - Name: The Rake
-       Address: Borough Market, 14A Winchester Walk, London SE1 9AG
-       Type: Beer Pub
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.3 }
 
     Cambridge:
      - Name: The Cambridge Blue
