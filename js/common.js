@@ -32,7 +32,7 @@ const POSITION_UPDATE = 10;
 
 // Cache options
 const CACHE_ENABLED = urlParam("CACHE_ENABLED", true);
-const CACHE_DURATION = urlParam("CACHE_DURATION", 604800);
+const CACHE_DURATION = urlParam("CACHE_DURATION", 2678400);
 
 // Debug options
 const DEBUG = urlParam("DEBUG", false);

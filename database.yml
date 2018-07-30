@@ -149,7 +149,7 @@ Beer places:
        Address: Unit 9A Queen's Yard, White Post Ln, London E9 5EN
        Type: Brewery Taproom
        Status: Tried
-       Score: { Draught: 8, Place: 7 }
+       Score: { Draught: 8, Place: 8 }
      - Name: BottleShop Bermondsey
        Address: 128 Druid St, London SE1 2HH
        Type: Beer Shop
@@ -175,6 +175,11 @@ Beer places:
        Type: Beer pub
        Status: Tried
        Score: { Draught: 7, Place: 7 }
+     - Name: CRATE Brewery
+       Address: 7, The white building, Queen's Yard, London E9 5EN
+       Type: Brewery
+       Status: Tried
+       Score: { Draught: 7, Bottles: 7, Food: 8, Place: 7 }
      - Name: Old Red Cow
        Address: 71 Long Ln, London EC1A 9EJ
        Type: Pub
@@ -184,7 +189,7 @@ Beer places:
        Address: 50 Earlham St, London WC2H 9LJ
        Type: Belgian Pub
        Status: Tried
-       Score: { Draught: 7, Boittles: 7, Place: 7 }
+       Score: { Draught: 7, Bottles: 8, Place: 7 }
 
      ##  Still to try  ##
      - Name: Hop Burns & Black
@@ -402,11 +407,6 @@ Beer places:
        Type: Beer Pub
        Status: To try
        Expectation: { Mine: 9, Google: 4.4 }
-     - Name: CRATE Brewery
-       Address: 7, The white building, Queen's Yard, London E9 5EN
-       Type: Brewery
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.4 }
      - Name: 40ft Brewery
        Address: 18a Ashwin St, London E8 3DP
        Type: Brewery
@@ -479,13 +479,13 @@ Beer places:
        Type: Beer Bar
        Status: Tried
        Score: { Draught: 7, Bottles: 7, Place: 9 }
-
-     ##  Stil To try  ##
      - Name: Mosaic Beer-House
        Address: Via Cesare Battisti, 47, 47521 Cesena FC, Italy
-       Type: Italian Pub
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.4 }
+       Type: Italian Beer Pub
+       Status: Tried
+       Score: { Draught: 8, Place: 8 }
+
+     ##  Stil To try  ##
      - Name: Circolo Nonsolorosso
        Address: Via Capannaguzzo, 1359, 47521 Bulgarnò FC, Italy
        Type: Bar
