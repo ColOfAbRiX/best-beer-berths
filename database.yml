@@ -75,6 +75,11 @@ Beer places:
        Type: Brewery Chain
        Status: Tried
        Score: { Draught: 8, Bottles: 8, Place: 7 }
+     - Name: Brewdog Soho
+       Address: 21 Poland St, Soho, London W1F 8QG
+       Type: Brewery Chain
+       Status: Tried
+       Score: { Draught: 8, Bottles: 7, Place: 7 }
      - Name: The Cat & Mutton
        Address: 76 Broadway Market, London E8 4QJ
        Type: English Pub
@@ -460,6 +465,7 @@ Beer places:
        Score: { Draught: 8, Place: 9 }
 
   Italia:
+
     Cattolica:
      - Name: Birroteca88
        Address: Via S.Allende, 88, 47841 Cattolica RN, Italy
@@ -592,6 +598,7 @@ Beer places:
        Expectation: { Mine: 9, Google: 4.8 }
 
   Belgium:
+
     Antwerpen:
      - Name: Paters Vaetje
        Address: Blauwmoezelstraat 1, 2000 Antwerpen, Belgium
@@ -703,7 +710,7 @@ Beer places:
        Status: To try
        Expectation: { Mine: 9, Google: 4.3 }
      - Name: St-Feuillien
-       Address: St-Feuillien
+       Address: Rue d'Houdeng 20, 7070 Le Roeulx, Belgium
        Type: Brewery
        Status: To try
        Expectation: { Mine: 8, Google: 4.6 }
@@ -719,6 +726,7 @@ Beer places:
        Expectation: { Mine: 7, Google: 4.8 }
 
   Denmark:
+
     København:
      ##  Tried  ##
      - Name: Ørsted Ølbar
@@ -750,6 +758,7 @@ Beer places:
        Expectation: { Mine: 7, Google: 4.1 }
 
   Sweden:
+
     Stockholm:
      - Name: Restaurang Akkurat
        Address: Hornsgatan 18, 118 20 Stockholm, Sweden
@@ -763,6 +772,7 @@ Beer places:
        Score: { Draught: 8, Place: 6 }
 
   USA:
+
     New York City, NY:
      - Name: Valhalla NYC
        Address: 815 9th Ave, New York, NY 10019, USA
