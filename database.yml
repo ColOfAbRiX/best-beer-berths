@@ -85,6 +85,11 @@ Beer places:
        Type: English Pub
        Status: Tried
        Score: { Draught: 8, Place: 7 }
+     - Name: Earl of Essex
+       Address: 25 Danbury St, Islington, London N1 8LE
+       Type: English pub
+       Status: Tried
+       Score: { Draught: 9, Bottles: 8, Place: 9 }
      - Name: The Arbitrager
        Address: 27 Throgmorton St, London EC2N 2AN
        Type: Beer Pub
@@ -140,6 +145,11 @@ Beer places:
        Type: Pub and Grill
        Status: Tried
        Score: { Draught: 8, Bottles: 8, Place: 8, Food: 8 }
+     - Name: The Astronomer
+       Address: 125-129 Middlesex St, London E1 7JF
+       Type: English Pub
+       Status: Tried
+       Score: { Draught: 7, Bottles: 8, Place: 9 }
      - Name: Understudy
        Address: Upper Ground, Lambeth, London SE1 9PX
        Type: Beer bar
@@ -197,6 +207,11 @@ Beer places:
        Score: { Draught: 7, Bottles: 8, Place: 7 }
 
      ##  Still to try  ##
+     - Name: Bavarian Beerhouse Tower Hill
+       Address: 9 Crutched Friars, London EC3N 2AU
+       Type: German Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 3.9 }
      - Name: Hop Burns & Black
        Address: 38 E Dulwich Rd, London SE22 9AX
        Type: Bottle Shop
@@ -320,11 +335,6 @@ Beer places:
      - Name: Lowlander Grand Cafe
        Address: 36 Drury Ln, London WC2B 5RR
        Type: English Pub
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.4 }
-     - Name: Earl of Essex
-       Address: 25 Danbury St, Islington, London N1 8LE
-       Type: English pub
        Status: To try
        Expectation: { Mine: 8, Google: 4.4 }
      - Name: Herman ze German
@@ -467,7 +477,7 @@ Beer places:
   Italia:
 
     Cattolica:
-     - Name: Birroteca88
+     - Name: Birroteca 88
        Address: Via S.Allende, 88, 47841 Cattolica RN, Italy
        Type: Beer Bar
        Status: To try
