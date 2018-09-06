@@ -526,7 +526,7 @@ class BeerPlace {
         results = results[0];
 
         var photo_url = ""
-        if( results.photos.length > 0 ) {
+        if( results.photos && results.photos.length > 0 ) {
           photo_url = results.photos[0].getUrl({ 'maxHeight': 100, 'maxWidth': 150 });
         }
 
