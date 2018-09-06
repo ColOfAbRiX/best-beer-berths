@@ -569,6 +569,11 @@ Beer places:
        Expectation: { Mine: 7, Google: 4.6 }
 
     Romagna:
+     - Name: StHop Craft Beer
+       Address: Viale Trento, Cesenatico, Province of Forlì-Cesena, Italy
+       Type: Beer Bar
+       Status: Tried
+       Score: { Draught: 8, Bottles: 8, Place: 8 }
      - Name: Sidro club
        Address: Via A. Moroni, 92, 47039 Savignano Sul Rubicone FC, Italy
        Type: Italian Pub
@@ -584,13 +589,13 @@ Beer places:
        Type: Beer Bar
        Status: To try
        Expectation: { Mine: 7, Google: 4.8 }
-     - Name: StHop Craft Beer
-       Address: Viale Trento, Cesenatico, Province of Forlì-Cesena, Italy
-       Type: Beer Bar
-       Status: To try
-       Expectation: { Mine: 8, Google: 5.0 }
 
     Altro:
+     - Name: Madama Beerstrò San Vitale
+       Address: Via S. Vitale, 31, 40125 Bologna BO, Italy
+       Type: Beer Bar
+       Status: Tried
+       Score: { Draught: 7, Food: 8, Place: 8 }
      - Name: Bir & Fud
        Address: Via Benedetta, 23, 00153 Roma RM, Italy
        Type: Beer Restaurant
