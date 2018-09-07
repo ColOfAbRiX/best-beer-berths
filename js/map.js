@@ -26,6 +26,7 @@ SOFTWARE*/
 var GoogleMap = (function(){
   // Global objects
   var map;
+  var heatmap;
   var homeMarker;
   var infoWindow;
   var placesService;
@@ -211,6 +212,23 @@ var GoogleMap = (function(){
   }
 
   /**
+   * Displays a heatmap with the places on the map
+   */
+  var toggleHeatmap = function( points = [] ) {
+    if( heatmap && heatmap.getMap() ) {
+      heatmap.setMap( null );
+    }
+    else {
+      heatmap = new google.maps.visualization.HeatmapLayer({
+        data: points,
+        radius: 100,
+        dissipating: true,
+        map: map
+      });
+    }
+  };
+
+  /**
    * Adds a Beer Place as a marker on the map
    */
   var addMarker = function( place, min_avg_score, max_avg_score ) {
@@ -261,5 +279,6 @@ var GoogleMap = (function(){
     'placesService': function() { return placesService; },
     'init': init,
     'addMarker': addMarker,
+    'toggleHeatmap': toggleHeatmap,
   };
 })();

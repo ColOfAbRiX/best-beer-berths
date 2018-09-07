@@ -147,6 +147,7 @@ var PlacesDB = (function() {
         Logger.trace( `Adding ${place.toString()} to the map` );
         addPlaceToMap( place );
       }
+      finalizeLoad();
     }
     else {
       // Start the querying process
@@ -320,10 +321,24 @@ var PlacesDB = (function() {
         Logger.warn( `All details done: items=${end_queue.length}, queries=${queries}, failures=${failures}, time=${time.toFixed(3)}s.` );
         local_db = end_queue;
 
-        Cache.save()
+        // Perform the final actions
+        finalizeLoad();
       }
     );
   };
+
+  /**
+   * Final actions when all places have been loaded
+   */
+  var finalizeLoad = function() {
+    Cache.save();
+    Logger.trace("Finalizing visualization of places");
+    var points = local_db.map( p => new google.maps.LatLng(
+      p.google_location.geometry.location.lat,
+      p.google_location.geometry.location.lng
+    ));
+    GoogleMap.toggleHeatmap(points);
+  }
 
   /**
    * A fingerprint of the Database data, excluding Google data
