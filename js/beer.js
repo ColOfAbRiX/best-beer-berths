@@ -332,11 +332,18 @@ var PlacesDB = (function() {
    */
   var finalizeLoad = function() {
     Cache.save();
-    Logger.trace("Finalizing visualization of places");
-    var points = local_db.map( p => new google.maps.LatLng(
-      p.google_location.geometry.location.lat,
-      p.google_location.geometry.location.lng
-    ));
+    Logger.info("Finalizing visualization of places");
+    var points = local_db.map( function( place ) {
+      return {
+        location: new google.maps.LatLng(
+          place.google_location.geometry.location.lat,
+          place.google_location.geometry.location.lng
+        ),
+        weight: (place.avg_score - 7.0) * 10.0 / 3.0
+      }
+    } );
+    Logger.trace("Heatmap points to follow:");
+    Logger.trace(points);
     GoogleMap.toggleHeatmap(points);
   }
 

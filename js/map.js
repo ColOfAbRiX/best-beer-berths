@@ -220,10 +220,11 @@ var GoogleMap = (function(){
     }
     else {
       heatmap = new google.maps.visualization.HeatmapLayer({
+        map: map,
         data: points,
         radius: 100,
-        dissipating: true,
-        map: map
+        maxIntensity: 15,
+        opacity: 0.5,
       });
     }
   };
