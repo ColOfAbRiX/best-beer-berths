@@ -207,6 +207,36 @@ Beer places:
        Score: { Draught: 7, Bottles: 8, Place: 7 }
 
      ##  Still to try  ##
+     - Name: House Of Hammerton
+       Address: 99 Holloway Rd, London N7 8LT
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: The Wenlock Arms
+       Address: The Wenlock Arms
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: House Of Hammerton
+       Address: House Of Hammerton
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: The Three Johns
+       Address: 73 White Lion St, London N1 9PF
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.3 }
+     - Name: Brewhouse & Kitchen - Highbury
+       Address: 2A Corsica St, Highbury East, London N5 1JJ
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.1 }
+     - Name: The Taproom
+       Address: 163 Upper St, London N1 1US
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.3 }
      - Name: Bavarian Beerhouse Tower Hill
        Address: 9 Crutched Friars, London EC3N 2AU
        Type: German Pub
