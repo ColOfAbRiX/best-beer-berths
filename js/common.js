@@ -39,9 +39,9 @@ const DEBUG = urlParam("DEBUG", false);
 const DEBUG_LEVEL = urlParam("DEBUG_LEVEL", 2);
 const DEBUG_ON_PAGE = urlParam("DEBUG_ON_PAGE", false);
 const DEBUG_CITY = new RegExp( urlParam("DEBUG_CITY", "(london)"), 'i' );
-const DEBUG_POSITION = {lat: 51.5189138, lng: -0.0924759};
-//const DEBUG_POSITION = {lat: 44.0372932, lng: 12.6069268};
 //const DEBUG_POSITION = {lat: 51.532492399999995, lng: -0.0351538};
+// const DEBUG_POSITION = {lat: 51.5189138, lng: -0.0924759};
+const DEBUG_POSITION = {lat: 44.0372932, lng: 12.6069268};
 
 // Pins colours
 const PINS = {

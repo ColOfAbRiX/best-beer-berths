@@ -54,6 +54,11 @@ var GoogleMap = (function(){
     );
     infoWindow = new google.maps.InfoWindow({ maxWidth: 300 });
     placesService = new google.maps.places.PlacesService( map );
+    heatmap = new google.maps.visualization.HeatmapLayer({
+      radius: 100,
+      maxIntensity: 15,
+      opacity: 0.5,
+    });
 
     // Set style if present
     if( typeof GOOGLE_MAP_STYLE !== 'undefined' ) {
@@ -214,18 +219,18 @@ var GoogleMap = (function(){
   /**
    * Displays a heatmap with the places on the map
    */
-  var toggleHeatmap = function( points = [] ) {
-    if( heatmap && heatmap.getMap() ) {
+  var toggleHeatmap = function( points = [], display = null ) {
+    var heatmapShowing = heatmap && heatmap.getMap() == map
+
+    if( heatmapShowing && display == null || display == false ) {
+      Logger.info( "Hiding heatmap" );
       heatmap.setMap( null );
     }
-    else {
-      heatmap = new google.maps.visualization.HeatmapLayer({
-        map: map,
-        data: points,
-        radius: 100,
-        maxIntensity: 15,
-        opacity: 0.5,
-      });
+    if( !heatmapShowing && display == null || display == true ) {
+      Logger.info( "Displaying heatmap points to follow" );
+      Logger.trace( points );
+      heatmap.setMap( map );
+      heatmap.setData( points );
     }
   };
 

@@ -331,21 +331,30 @@ var PlacesDB = (function() {
    * Final actions when all places have been loaded
    */
   var finalizeLoad = function() {
-    Cache.save();
     Logger.info("Finalizing visualization of places");
-    var points = local_db.map( function( place ) {
+
+    // Save the cache
+    Cache.save();
+
+    // Display heatmap
+    GoogleMap.toggleHeatmap( db2heatmap(local_db) );
+  }
+
+  /**
+   * Converts a database of point into data for Google heatmap
+   */
+  var db2heatmap = function( data ) {
+    Logger.info(data);
+    return data.map( function( place ) {
       return {
-        location: new google.maps.LatLng(
-          place.google_location.geometry.location.lat,
-          place.google_location.geometry.location.lng
-        ),
+        location: {
+          lat: place.google_location.geometry.location.lat,
+          lng: place.google_location.geometry.location.lng
+        },
         weight: (place.avg_score - 7.0) * 10.0 / 3.0
       }
-    } );
-    Logger.trace("Heatmap points to follow:");
-    Logger.trace(points);
-    GoogleMap.toggleHeatmap(points);
-  }
+    } )
+  };
 
   /**
    * A fingerprint of the Database data, excluding Google data
