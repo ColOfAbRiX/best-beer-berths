@@ -205,6 +205,26 @@ Beer places:
        Type: Belgian Pub
        Status: Tried
        Score: { Draught: 7, Bottles: 8, Place: 7 }
+     - Name: Fourpure Brewing Co.
+       Address: 34 Raymouth Rd, London SE16 2DB
+       Type: Brewery
+       Status: Tried
+       Score: { Draught: 9, Bottles: 7, Place: 8 }
+     - Name: Partizan Brewing
+       Address: 34 Raymouth Rd, London SE16 2DB
+       Type: Brewery
+       Status: Tried
+       Score: { Draught: 7, Place: 7 }
+     - Name: EeBria.com
+       Address: 15 Almond Rd, London SE16 3LR
+       Type: Taproom
+       Status: Tried
+       Score: { Draught: 7, Place: 9 }
+     - Name: Affinity Brewing Company
+       Address: Railway Arch 7, Almond Road, London SE16 3LR
+       Type: Brewery
+       Status: Tried
+       Score: { Draught: 7, Place: 7 }
 
      ##  Still to try  ##
      - Name: House Of Hammerton
@@ -332,11 +352,6 @@ Beer places:
        Type: Brewery Taproom
        Status: To try
        Expectation: { Mine: 8, Google: 4.7 }
-     - Name: Fourpure Brewing Co.
-       Address: Fourpure Brewing Co.
-       Type: Brewery
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.6 }
      - Name: Mason & Company
        Address: Queen Elizabeth Olympic Park, 25 E Bay Ln, London E20 3BS
        Type: Beer pub
@@ -432,11 +447,6 @@ Beer places:
        Type: English Pub
        Status: To try
        Expectation: { Mine: 7, Google: 4.1 }
-     - Name: Partizan Brewing
-       Address: 34 Raymouth Rd, London SE16 2DB
-       Type: Brewery
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.3 }
      - Name: Mondo Brewing Company
        Address: 86 Stewart's Rd, Battersea, London SW8 4UG
        Type: Brewery
