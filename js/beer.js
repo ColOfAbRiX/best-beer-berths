@@ -344,16 +344,39 @@ var PlacesDB = (function() {
    * Converts a database of point into data for Google heatmap
    */
   var db2heatmap = function( data ) {
-    Logger.info(data);
-    return data.map( function( place ) {
-      return {
-        location: {
-          lat: place.google_location.geometry.location.lat,
-          lng: place.google_location.geometry.location.lng
-        },
-        weight: (place.avg_score - 7.0) * 10.0 / 3.0
+    // Centering the averages of the two types of places
+    var toTryFilter = x => x.raw_data.Status.toLowerCase() === "to try";
+    var avgToTryScore = avgScore( toTryFilter );
+    var minToTryScore = minAvgScore( toTryFilter ) - avgToTryScore;
+    var maxToTryScore = maxAvgScore( toTryFilter ) - avgToTryScore;
+
+    var triedFilter = x => x.raw_data.Status.toLowerCase() === "tried";
+    var avgTriedScore = avgScore( triedFilter );
+    var minTriedScore = minAvgScore( triedFilter ) - avgTriedScore;
+    var maxTriedScore = maxAvgScore( triedFilter ) - avgTriedScore;
+
+    data = data.map( function(place) {
+      if( place.raw_data.Status.toLowerCase() === "to try" ) {
+        return {
+          location: {
+            lat: place.google_location.geometry.location.lat,
+            lng: place.google_location.geometry.location.lng
+          },
+          weight: place.avg_score - avgToTryScore
+        }
       }
-    } )
+      else if( place.raw_data.Status.toLowerCase() === "tried" ) {
+        return {
+          location: {
+            lat: place.google_location.geometry.location.lat,
+            lng: place.google_location.geometry.location.lng
+          },
+          weight: place.avg_score - avgTriedScore
+        }
+      }
+    });
+
+    return data;
   };
 
   /**
@@ -369,8 +392,8 @@ var PlacesDB = (function() {
   /**
    * The highest average amongst all places, given a filter on places
    */
-  var maxAvgScore = function( filter_callback = x => true ) {
-    return local_db
+  var maxAvgScore = function( filter_callback = x => true, data = local_db ) {
+    return data
       .filter( filter_callback )
       .map( x => x.avg_score )
       .reduce( ( x1, x2 ) => Math.max( x1, x2 ), 0.0 );
@@ -379,11 +402,21 @@ var PlacesDB = (function() {
   /**
    * The lowest average amongst all places, given a filter on places
    */
-  var minAvgScore = function( filter_callback = x => true ) {
-    return local_db
+  var minAvgScore = function( filter_callback = x => true, data = local_db ) {
+    return data
       .filter( filter_callback )
       .map( x => x.avg_score )
       .reduce( ( x1, x2 ) => Math.min( x1, x2 ), 10.0 );
+  };
+
+  /**
+   * The average score amongst all places, given a filter on places
+   */
+  var avgScore = function( filter_callback = x => true, data = local_db ) {
+    return data
+      .filter( filter_callback )
+      .map( x => x.avg_score )
+      .reduce( ( x1, x2 ) => x1 + x2, 0.0 ) / data.length;
   };
 
   /**
