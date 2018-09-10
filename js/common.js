@@ -312,6 +312,14 @@ function isSSL() {
 
 
 /**
+ * Rescales a point from the input range mapping it into the output range
+ */
+function rescalePoint(point, inputMin, inputMax, outputMin = 0.0, outputMax = 10.0) {
+  return (point - inputMin + outputMin) * outputMax / (inputMax - inputMin)
+}
+
+
+/**
  * Function to draw score stars
  */
 $.fn.stars = function () {

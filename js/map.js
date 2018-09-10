@@ -56,8 +56,8 @@ var GoogleMap = (function(){
     placesService = new google.maps.places.PlacesService( map );
     heatmap = new google.maps.visualization.HeatmapLayer({
       radius: 100,
-      maxIntensity: 15,
       opacity: 0.5,
+      maxIntensity: 15,
     });
 
     // Set style if present
@@ -227,10 +227,10 @@ var GoogleMap = (function(){
       heatmap.setMap( null );
     }
     if( !heatmapShowing && display == null || display == true ) {
-      Logger.info( "Displaying heatmap points to follow" );
+      Logger.info( "Displaying heatmap" );
       Logger.trace( points );
-      heatmap.setMap( map );
       heatmap.setData( points );
+      heatmap.setMap( map );
     }
   };
 

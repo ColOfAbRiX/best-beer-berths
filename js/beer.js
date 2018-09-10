@@ -147,7 +147,7 @@ var PlacesDB = (function() {
         Logger.trace( `Adding ${place.toString()} to the map` );
         addPlaceToMap( place );
       }
-      finalizeLoad();
+      _finalizeLoad();
     }
     else {
       // Start the querying process
@@ -322,61 +322,69 @@ var PlacesDB = (function() {
         local_db = end_queue;
 
         // Perform the final actions
-        finalizeLoad();
+        _finalizeLoad();
       }
     );
   };
 
   /**
-   * Final actions when all places have been loaded
-   */
-  var finalizeLoad = function() {
-    Logger.info("Finalizing visualization of places");
-
-    // Save the cache
-    Cache.save();
-
-    // Display heatmap
-    GoogleMap.toggleHeatmap( db2heatmap(local_db) );
-  }
-
-  /**
    * Converts a database of point into data for Google heatmap
    */
-  var db2heatmap = function( data ) {
+  var _db2heatmap = function( data ) {
     // Centering the averages of the two types of places
-    var toTryFilter = x => x.raw_data.Status.toLowerCase() === "to try";
-    var avgToTryScore = avgScore( toTryFilter );
-    var minToTryScore = minAvgScore( toTryFilter ) - avgToTryScore;
-    var maxToTryScore = maxAvgScore( toTryFilter ) - avgToTryScore;
+    var filter = x => x.status === "to try";
+    var avgToTryScore = avgAvgScore( filter );
+    var minToTryScore = minAvgScore( filter ) - avgToTryScore;
+    var maxToTryScore = maxAvgScore( filter ) - avgToTryScore;
 
-    var triedFilter = x => x.raw_data.Status.toLowerCase() === "tried";
-    var avgTriedScore = avgScore( triedFilter );
-    var minTriedScore = minAvgScore( triedFilter ) - avgTriedScore;
-    var maxTriedScore = maxAvgScore( triedFilter ) - avgTriedScore;
+    var filter = x => x.status === "tried";
+    var avgTriedScore = avgAvgScore( filter );
+    var minTriedScore = minAvgScore( filter ) - avgTriedScore;
+    var maxTriedScore = maxAvgScore( filter ) - avgTriedScore;
 
     data = data.map( function(place) {
-      if( place.raw_data.Status.toLowerCase() === "to try" ) {
-        return {
-          location: {
-            lat: place.google_location.geometry.location.lat,
-            lng: place.google_location.geometry.location.lng
-          },
-          weight: place.avg_score - avgToTryScore
-        }
+      // Rescaling weight
+      var weight = place.avg_score;
+      if( place.status === "to try" ) {
+        weight -= avgToTryScore;
+        weight = rescalePoint(weight, minToTryScore, maxToTryScore)
       }
-      else if( place.raw_data.Status.toLowerCase() === "tried" ) {
-        return {
-          location: {
-            lat: place.google_location.geometry.location.lat,
-            lng: place.google_location.geometry.location.lng
-          },
-          weight: place.avg_score - avgTriedScore
-        }
+      else if( place.status === "tried" ) {
+        weight -= avgTriedScore;
+        weight = rescalePoint(weight, minTriedScore, maxTriedScore)
       }
+
+      // Location of the point
+      var location = {
+        lat: place.google_location.geometry.location.lat,
+        lng: place.google_location.geometry.location.lng
+      };
+
+      // Result
+      return {
+        location: new google.maps.LatLng( location ),
+        weight: weight
+      };
     });
 
     return data;
+  };
+
+  /**
+   * Final actions when all places have been loaded
+   */
+  var _finalizeLoad = function() {
+    Logger.info("Finalizing visualization of places");
+    // Save the cache
+    Cache.save();
+  }
+
+  /**
+   * Request the toggle of the Heatmap
+   */
+  var toggleHeatmap = function() {
+    var points = _db2heatmap(local_db);
+    GoogleMap.toggleHeatmap( points );
   };
 
   /**
@@ -412,11 +420,10 @@ var PlacesDB = (function() {
   /**
    * The average score amongst all places, given a filter on places
    */
-  var avgScore = function( filter_callback = x => true, data = local_db ) {
-    return data
-      .filter( filter_callback )
-      .map( x => x.avg_score )
-      .reduce( ( x1, x2 ) => x1 + x2, 0.0 ) / data.length;
+  var avgAvgScore = function( filter_callback = x => true, data = local_db ) {
+    var subset = data.filter( filter_callback ).map( x => x.avg_score );
+    var sum = subset.reduce( ( x1, x2 ) => x1 + x2, 0.0 );
+    return sum / subset.length;
   };
 
   /**
@@ -424,8 +431,8 @@ var PlacesDB = (function() {
    */
   var addPlaceToMap = function( place ) {
     // Group the colouring by Status
-    var status = place.raw_data.Status.toLowerCase();
-    var filter = x => x.raw_data.Status.toLowerCase() === status;
+    var status = place.status;
+    var filter = x => x.status === status;
 
     // Use a cache to calculate the values only once
     if( !(status in dataCache.maxAvgScore) ) {
@@ -444,11 +451,12 @@ var PlacesDB = (function() {
   };
 
   return {
+    'Cache': Cache,
     'init': init,
     'dbHash': dbHash,
     'maxAvgScore': maxAvgScore,
     'minAvgScore': minAvgScore,
-    'Cache': Cache
+    'toggleHeatmap': toggleHeatmap,
   };
 })();
 
@@ -462,6 +470,8 @@ class BeerPlace {
    */
   constructor( raw_data, country = null, city = null ) {
     this.raw_data = raw_data;
+    // Other places will use this, so this must go first
+    this.status = this.raw_data.Status.toLowerCase();
     if( country != null ) {
       this.raw_data.Country = country;
     }
@@ -505,7 +515,7 @@ class BeerPlace {
     var count = 0;
     var penalty = 0.0;
 
-    if( this.raw_data.Status.toLowerCase() === 'tried' ) {
+    if( this.status === 'tried' ) {
       // Draught score (weight of 33%)
       if( 'Draught' in this.raw_data.Score ) {
         if( this.raw_data.Score.Draught > 0.0 ) {
@@ -546,7 +556,7 @@ class BeerPlace {
       average /= count;
       average -= penalty;
     }
-    else if( this.raw_data.Status.toLowerCase() === 'to try' ) {
+    else if( this.status === 'to try' ) {
       // Personal score (weight of 60%)
       if( 'Mine' in this.raw_data.Expectation ) {
         average += this.raw_data.Expectation.Mine * 3.0;
@@ -673,7 +683,7 @@ class BeerPlace {
     }
 
     // Group the colouring by Status
-    var filter = x => x.raw_data.Status.toLowerCase() === this.raw_data.Status.toLowerCase();
+    var filter = x => x.status === this.status;
 
     // Build and return template
     var data = {
