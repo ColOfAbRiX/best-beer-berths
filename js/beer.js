@@ -260,24 +260,26 @@ var PlacesDB = (function() {
       },
       /* failAction */
       ( place, error ) => {
-        // In case of ZERO_RESULTS, drop the item
-        if( error === google.maps.places.PlacesServiceStatus.ZERO_RESULTS ) {
+        if( error === google.maps.places.PlacesServiceStatus.OVER_QUERY_LIMIT ) {
+          // In case of Google throttling us, retry
+          Logger.error( `Google throttling error for ${place.toString()}: ${error}` );
+          failures++;
+        }
+        else {
+          // In all other error cases, drop the item and continue
           var queried_place = start_queue.shift();
-          Logger.warn( `No results found for ${queried_place.toString()}, skipping place.` );
+          Logger.error( `Error querying location for ${place.toString()}: ${error}` );
+          failures++;
           if( end_queue != undefined ) {
             end_queue.push( queried_place );
           }
-        }
-        else {
-          Logger.error( `Error querying location for ${place.toString()}: ${error}` );
-          failures++;
         }
       },
       /* doneAction */
       ( place ) => {
         var time = ( new Date().getTime() - start ) / 1000.0;
 
-        Logger.warn( `All locations done: items=${end_queue.length}, queries=${queries}, failures=${failures}, time=${time.toFixed(3)}s.` );
+        Logger.warn( `All locations done: items=${local_db.length}, successful=${end_queue.length} queries=${queries}, failures=${failures}, time=${time.toFixed(3)}s.` );
         local_db = end_queue;
 
         // Run next query
@@ -311,14 +313,18 @@ var PlacesDB = (function() {
       },
       /* failAction */
       ( place, error ) => {
-        Logger.error( `Error querying details for ${place.toString()}: ${error}` );
+        var queried_place = start_queue.shift();
+        Logger.error( `Error querying location for ${place.toString()}: ${error}` );
         failures++;
+        if( end_queue != undefined ) {
+          end_queue.push( queried_place );
+        }
       },
       /* doneAction */
       ( place ) => {
         var time = ( new Date().getTime() - start ) / 1000.0;
 
-        Logger.warn( `All details done: items=${end_queue.length}, queries=${queries}, failures=${failures}, time=${time.toFixed(3)}s.` );
+        Logger.warn( `All details done: items=${local_db.length}, successful=${end_queue.length} queries=${queries}, failures=${failures}, time=${time.toFixed(3)}s.` );
         local_db = end_queue;
 
         // Perform the final actions

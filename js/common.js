@@ -39,8 +39,9 @@ const DEBUG = urlParam("DEBUG", false);
 const DEBUG_LEVEL = urlParam("DEBUG_LEVEL", 2);
 const DEBUG_ON_PAGE = urlParam("DEBUG_ON_PAGE", false);
 const DEBUG_CITY = new RegExp( urlParam("DEBUG_CITY", "(london)"), 'i' );
-//const DEBUG_POSITION = {lat: 51.532492399999995, lng: -0.0351538};
+// const DEBUG_POSITION = {lat: 51.532492399999995, lng: -0.0351538};
 // const DEBUG_POSITION = {lat: 51.5189138, lng: -0.0924759};
+// const DEBUG_POSITION = {lat: 51.5034208, lng: -0.1109708}
 const DEBUG_POSITION = {lat: 44.0372932, lng: 12.6069268};
 
 // Pins colours
@@ -279,12 +280,11 @@ function isMobile() {
  * Create a Google Pin URL
  */
 function buildPinUrl( text, fill_colour, scale_factor, font_size ) {
-  return `http${isSSL() ? 's' : ''}://` +
-    "chart.apis.google.com/chart?chst=d_map_pin_letter&" +
+  var pin_url = `http${isSSL() ? 's' : ''}://` +
+    `chart.apis.google.com/chart?chst=d_map_pin_letter&` +
     `chld=%E2%80%A2|${fill_colour}`;
-  // return `http${isSSL() ? 's' : ''}://` +
-  //   "chart.apis.google.com/chart?chst=d_map_spin&" +
-  //   `chld=${scale_factor * 0.5}|0|${fill_colour}|${font_size}|_|${text}`;
+  Logger.trace( `pin_url: ${pin_url}` );
+  return pin_url
 }
 
 
