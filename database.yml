@@ -497,6 +497,23 @@ Beer places:
        Status: To try
        Expectation: { Mine: 7, Google: 4.9 }
 
+    Birmingham:
+     - Name: Post Office Vaults
+       Address: 84b New St, Birmingham B2 4BA
+       Type: English/Belgian Bar
+       Status: Tried
+       Score: { Draught: 8, Bottles: 10, Place: 8 }
+     - Name: Purecraft Bar & Kitchen
+       Address: 30 Waterloo St, Birmingham B2 5TJ
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 9, Place: 7 }
+     - Name: Indian Brewery
+       Address: 16, Livery St, Birmingham B3 1EU
+       Type: English Bar
+       Status: Tried
+       Score: { Draught: 7, Food: 9, Place: 7 }
+
     Others:
      - Name: Queen St Brewhouse
        Address: 7 Queen St, Colchester CO1 2PG
@@ -595,6 +612,11 @@ Beer places:
        Type: Bavarian Restaurant and Pizzeria
        Status: Tried
        Score: { Draught: 7, Bottles: 8, Food: 9, Place: 8 }
+     - Name: La Cantinetta
+       Address: Piazzetta Gregorio da Rimini, 2, 47921 Rimini RN, Italy
+       Type: Italian Pub
+       Status: Tried
+       Score: { Draught: 7, Bottles: 9, Food: 8, Place: 8 }
 
     Riccione:
      - Name: Malto La Birreria
