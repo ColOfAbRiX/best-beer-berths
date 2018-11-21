@@ -353,6 +353,10 @@ var PlacesDB = (function() {
     var maxTriedScore = maxAvgScore( filter ) - avgTriedScore;
 
     data = data.map( function(place) {
+      if( !place.google_location ) {
+        return { location: null, weight: 0.0 }
+      };
+
       // Rescaling weight
       var weight = place.avg_score;
       if( place.status === "to try" ) {
@@ -369,6 +373,9 @@ var PlacesDB = (function() {
         lat: place.google_location.geometry.location.lat,
         lng: place.google_location.geometry.location.lng
       };
+      if( place.google_location.geometry.location instanceof google.maps.LatLng ) {
+        location = place.google_location.geometry.location.toJSON();
+      }
 
       // Result
       return {
@@ -466,7 +473,7 @@ var PlacesDB = (function() {
     'dbHash': dbHash,
     'maxAvgScore': maxAvgScore,
     'minAvgScore': minAvgScore,
-    'toggleHeatmap': toggleHeatmap,
+    'toggleHeatmap': toggleHeatmap
   };
 })();
 
