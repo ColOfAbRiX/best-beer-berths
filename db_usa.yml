@@ -1,0 +1,350 @@
+---
+#
+# Copyright 2018, Fabrizio Colonna, All rights reserved.
+# Last updated: 21/11/2018
+#
+
+Beer places:
+
+  USA:
+
+    New York City, NY:
+     - Name: Valhalla NYC
+       Address: 815 9th Ave, New York, NY 10019, USA
+       Type: Beer pub
+       Status: Tried
+       Score: { Draught: 9, Place: 8 }
+     - Name: Brooklyn Brewery
+       Address: 79 N 11th St, Brooklyn, NY 11249, USA
+       Type: Brewery taproom
+       Status: Tried
+       Score: { Draught: 7, Place: 9 }
+
+    San Diego, CA:
+     - Name: Longship Brewery
+       Address: 10320 Camino Santa Fe ste C, San Diego, CA 92121, USA
+       Type: Brewpub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.8 }
+     - Name: Viewpoint Brewing Company
+       Address: 2201 San Dieguito Dr, Del Mar, CA 92014, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.6 }
+     - Name: Burgeon Beer Company
+       Address: 6350 Yarrow Dr suite c, Carlsbad, CA 92011, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
+     - Name: Pure Project
+       Address: "9030 Kenamar Dr #308, San Diego, CA 92121, USA"
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
+     - Name: Intergalactic Brewing Company
+       Address: "9715 Carroll Centre Rd #107, San Diego, CA 92126, USA"
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.8 }
+     - Name: Belching Beaver Brewery Ocean Beach
+       Address: 4836 Newport Ave, San Diego, CA 92107, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
+     - Name: Alpine Beer Company Tasting Room
+       Address: 2363 Alpine Blvd, Alpine, CA 91901, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.7 }
+     - Name: White Labs
+       Address: 9495 Candida St, San Diego, CA 92126, USA
+       Type: Yeast Laboratory Taproom
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.7 }
+     - Name: Benchmark Brewing Company
+       Address: 6190 Fairmount Ave G, San Diego, CA 92120, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.7  }
+     - Name: Bagby Beer Co.
+       Address: 601 S Coast Hwy, Oceanside, CA 92054, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.5 }
+     - Name: Resident Brewing
+       Address: 1065 Fourth Ave, San Diego, CA 92101, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.6 }
+     - Name: Karl Strauss Brewing Company
+       Address: 5801 Armada Dr, Carlsbad, CA 92008, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.4 }
+     - Name: Second Chance Beer Lounge
+       Address: 4045 30th St Ste. A, San Diego, CA 92104, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.9 }
+     - Name: Bear Roots Brewing Co.
+       Address: 1213 S Santa Fe Ave, Vista, CA 92083, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.9 }
+     - Name: Eppig Brewing Waterfront Biergarten
+       Address: 2817 Dickens St, San Diego, CA 92106, USA
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.7 }
+     - Name: New English Brewing
+       Address: "11545 Sorrento Valley Rd #305, San Diego, CA 92121, USA"
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.7 }
+     - Name: Mother Earth Tap House
+       Address: 206 Main St, Vista, CA 92084, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
+     - Name: Mike Hess Brewing
+       Address: 3812 Grim Ave, San Diego, CA 92104, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: AleSmith Brewing Company
+       Address: 9990 AleSmith Ct, San Diego, CA 92126, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
+     - Name: Stone Brewing Tap Room
+       Address: 795 J St, San Diego, CA 92101, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: Mikkeller Brewing San Diego
+       Address: 9366 Cabot Dr, San Diego, CA 92126, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.7 }
+     - Name: Hillcrest Brewing Company
+       Address: 1458 University Ave, San Diego, CA 92103, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: BORDER X BREWING
+       Address: 2181 Logan Ave, San Diego, CA 92113, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
+     - Name: Modern Times Beer
+       Address: 3725 Greenwood St, San Diego, CA 92110, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
+     - Name: Green Flash Brewing
+       Address: 6550 Mira Mesa Blvd, San Diego, CA 92121, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.7 }
+     - Name: Kilowatt Brewing Kearny Mesa
+       Address: 7576 Clairemont Mesa Blvd, San Diego, CA 92111, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.8 }
+
+    Lake Elsinore, CA:
+     - Name: Craft Brewing Company
+       Address: 530 Crane St suite c, Lake Elsinore, CA 92530, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.7 }
+     - Name: The Mason Jar Brewing Company
+       Address: "29683 New Hub Drive #A, Menifee, CA 92586, United States"
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.8 }
+     - Name: 8 Bit Brewing Company
+       Address: 26755 Jefferson Ave, Murrieta, CA 92562, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
+     - Name: Electric Brewing Co
+       Address: 41537 Cherry St, Murrieta, CA 92562, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.7 }
+     - Name: Stone Church Brewing
+       Address: "2785 Cabot Dr #160, Corona, CA 92883, USA"
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.6 }
+     - Name: Inland Wharf Brewing Co
+       Address: 26440 Jefferson Ave suite a, Murrieta, CA 92562, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.9 }
+
+    Perris, CA:
+     - Name: Route 30 Brewing Company
+       Address: "9860 Indiana Ave #19, Riverside, CA 92503, USA"
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.7 }
+     - Name: Thompson Brewing
+       Address: 9900 Indiana Ave, Riverside, CA 92503, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.6 }
+     - Name: Inland Empire Brewing Co.
+       Address: "1710 Palmyrita Ave #11, Riverside, CA 92507, USA"
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.6 }
+     - Name: Rök House Brewing Company
+       Address: 1939 W 11th St, Upland, CA 91786, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.8 }
+     - Name: Hamilton Family Brewery
+       Address: "9757 7th St #802, Rancho Cucamonga, CA 91730, USA"
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.8 }
+     - Name: Sons of Liberty Aleworks
+       Address: "1780 Town and Country Dr #101, Norco, CA 92860, USA"
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.8 }
+
+
+    Los Angeles, CA:
+     - Name: Cellador Ales
+       Address: 16745 Schoenborn St, North Hills, CA 91343, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.9 }
+     - Name: The Stalking Horse Brewery & Freehouse
+       Address: 10543 Pico Blvd, Los Angeles, CA 90064, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.5 }
+     - Name: Los Angeles Aleworks
+       Address: 12918 Cerise Ave, Hawthorne, CA 90250, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.7 }
+     - Name: Smog City Brewing Company
+       Address: 1901 Del Amo Blvd, Torrance, CA 90501, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.7 }
+     - Name: Brewyard Brewing Company
+       Address: 906 Western Ave, Glendale, CA 91201, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.8 }
+     - Name: Brouwerij West
+       Address: 110 E 22nd St, San Pedro, CA 90731, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.7 }
+     - Name: Mikkeller Bar
+       Address: 330 W Olympic Blvd, Los Angeles, CA 90015, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: Modern Times Brewery
+       Address: 3006, 832 S Olive St, Los Angeles, CA 90014, United States
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
+     - Name: Sunset Beer Company
+       Address: 1498 Sunset Blvd, Los Angeles, CA 90026, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.7 }
+     - Name: Mumford Brewing
+       Address: 416 Boyd St, Los Angeles, CA 90013, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.5 }
+     - Name: Arts District Brewing
+       Address: 828 Traction Ave, Los Angeles, CA 90013, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: Highland Park Brewery
+       Address: 1220 N Spring St, Los Angeles, CA 90012, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Boomtown Brewery
+       Address: 700 Jackson St, Los Angeles, CA 90012, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Craft Beer Cellar
+       Address: 1353 Colorado Blvd, Los Angeles, CA 90041, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Beachwood BBQ & Brewing
+       Address: "131 Main St #1/2, Seal Beach, CA 90740, USA"
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.5 }
+     - Name: Beer Belly Long Beach
+       Address: 255 Long Beach Boulevard, Long Beach, CA 90802, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.3 }
+     - Name: Homage Brewing
+       Address: "281 S Thomas St #101, Pomona, CA 91766, USA"
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.8 }
+     - Name: The Paradox Arcade + Bar
+       Address: 396 S Thomas St, Pomona, CA 91766, USA
+       Type: Arcade Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.8 }
+     - Name: Karl Strauss Brewing Company
+       Address: "600 Wilshire Blvd #100, Los Angeles, CA 90017, USA"
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.6 }
+     - Name: Karl Strauss Brewing Company Costa Mesa
+       Address: 901 S Coast Dr, Costa Mesa, CA 92626, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.5 }
+     - Name: Firestone Walker Brewing Company - The Propagator
+       Address: 3205 Washington Blvd, Marina Del Rey, CA 90292, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.5 }
+     - Name: Legends Craft Brewery
+       Address: 1301 S Lewis St, Anaheim, CA 92805, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.6 }
+     - Name: The BrewHouse
+       Address: "#D3, 31896 Plaza Dr, San Juan Capistrano, CA 92675, USA"
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.7 }
+     - Name: Blackbeard's Crafts
+       Address: 1820 Sawtelle Blvd, Los Angeles, CA 90025, USA
+       Type: Bottle Shop
+       Status: To try
+       Expectation: { Mine: 10, Google: 4.9 }
+     - Name: Southland Beer
+       Address: "740 S Western Ave #112, Los Angeles, CA 90005, USA"
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.6 }
+     - Name: Brewport Tap House
+       Address: 204 Main St, El Segundo, CA 90245, USA
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.6 }

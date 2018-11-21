@@ -1,0 +1,150 @@
+---
+#
+# Copyright 2018, Fabrizio Colonna, All rights reserved.
+# Last updated: 21/11/2018
+#
+
+Beer places:
+
+  Italia:
+
+    Cattolica:
+     - Name: Birroteca 88
+       Address: Via S.Allende, 88, 47841 Cattolica RN, Italy
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.7 }
+
+    Cesena:
+     ##  Tried  ##
+     - Name: Brasserie Arnage
+       Address: Viale Oberdan, Viale Guglielmo Oberdan, 618, 47521 Cesena FC, Italy
+       Type: Italian Pub
+       Status: Tried
+       Score: { Draught: 9, Bottles: 8, Place: 9 }
+     - Name: StHop BeerShop & Tap Bar
+       Address: Viale Giacomo Matteotti, Cesena FC, Italy
+       Type: Beer Bar
+       Status: Tried
+       Score: { Draught: 7, Bottles: 7, Place: 9 }
+     - Name: Mosaic Beer-House
+       Address: Via Cesare Battisti, 47, 47521 Cesena FC, Italy
+       Type: Italian Beer Pub
+       Status: Tried
+       Score: { Draught: 8, Place: 8 }
+
+     ##  Stil To try  ##
+     - Name: Circolo Nonsolorosso
+       Address: Via Capannaguzzo, 1359, 47521 Bulgarnò FC, Italy
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.4 }
+     - Name: Acqua Santa Bistrot
+       Address: Piazza Almerici, 4, 47521 Cesena FC, Italy
+       Type: Bistrot
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+
+    Forlì:
+     - Name: Barbeer
+       Address: Via Decio Raggi, 25a, 47121 Forlì FC, Italy
+       Type: Italian Pub
+       Status: Tried
+       Score: { Draught: 7, Place: 8 }
+
+    Gabicce Mare:
+     - Name: La Tana Del Luppolo
+       Address: Via del Porto, 61011 Gabicce Mare PU, Italy
+       Type: Beer pub
+       Status: Tried
+       Score: { Draught: 8, Bottles: 10, Place: 7 }
+
+    Milano:
+     - Name: La Belle Alliance
+       Address: Via Evangelista Torricelli, 1, 20136 Milano MI
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 9, Bottles: 7, Place: 9 }
+     - Name: La Birreria Italiana
+       Address: Piazzale Antonio Cantore, 4, 20123 Milano MI
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 7, Bottles: 9, Food: 8, Place: 8 }
+     - Name: Quality Craft Beer BQ
+       Address: Alzaia Naviglio Grande, 44, 20144 Milano MI
+       Type: Italian Beer Pub
+       Status: Tried
+       Score: { Draught: 9, Bottles: -1, Place: 6 }
+
+    Rimini:
+     - Name: FOB
+       Address: Via Castracane, 17, 47921 Rimini RN, Italy
+       Type: Italian Pub
+       Status: Tried
+       Score: { Draught: 10, Food: 8, Place: 7 }
+     - Name: L'Angolo Blu
+       Address: Viale Siracusa, 73, 47924 Rimini RN, Italy
+       Type: Bavarian Restaurant and Pizzeria
+       Status: Tried
+       Score: { Draught: 7, Bottles: 8, Food: 9, Place: 8 }
+     - Name: La Cantinetta
+       Address: Piazzetta Gregorio da Rimini, 2, 47921 Rimini RN, Italy
+       Type: Italian Pub
+       Status: Tried
+       Score: { Draught: 7, Bottles: 9, Food: 8, Place: 8 }
+
+    Riccione:
+     - Name: Malto La Birreria
+       Address: Viale Armando Diaz, 3, 47838 Riccione RN, Italy
+       Type: Italian Pub
+       Status: Tried
+       Score: { Draught: 8, Food: 7, Place: 6 }
+     - Name: Amarcord Italian Gourmet Pub
+       Address: Via Virgilio, 17, 47838 Riccione RN, Italy
+       Type: Italian Pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.6 }
+
+    Romagna:
+     - Name: StHop Craft Beer
+       Address: Viale Trento, Cesenatico, Province of Forlì-Cesena, Italy
+       Type: Beer Bar
+       Status: Tried
+       Score: { Draught: 8, Bottles: 8, Place: 8 }
+     - Name: Sidro club
+       Address: Via A. Moroni, 92, 47039 Savignano Sul Rubicone FC, Italy
+       Type: Italian Pub
+       Status: To try
+       Expectation: { Mine: 6, Google: 4.6 }
+     - Name: Gran Cru
+       Address: Via G. da Serravalle, 4, 47822 Santarcangelo di Romagna RN, Italy
+       Type: Beer Shop
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.4 }
+     - Name: The Brews
+       Address: Via Marino Moretti, 32, 47042 Cesenatico FC, Italy
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.8 }
+
+    Altro:
+     - Name: Madama Beerstrò San Vitale
+       Address: Via S. Vitale, 31, 40125 Bologna BO, Italy
+       Type: Beer Bar
+       Status: Tried
+       Score: { Draught: 7, Food: 8, Place: 8 }
+     - Name: Bir & Fud
+       Address: Via Benedetta, 23, 00153 Roma RM, Italy
+       Type: Beer Restaurant
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.4 }
+     - Name: Ma Che Siete Venuti A Fà
+       Address: Ma Che Siete Venuti A Fà
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Beershop the Pretext
+       Address: Via Riva di Reno, 60/d, 40121 Bologna BO, Italy
+       Type: Beer Shop
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.8 }

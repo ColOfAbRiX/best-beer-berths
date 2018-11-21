@@ -1,0 +1,135 @@
+---
+#
+# Copyright 2018, Fabrizio Colonna, All rights reserved.
+# Last updated: 21/11/2018
+#
+
+Beer places:
+
+  Belgium:
+
+    Antwerpen:
+     - Name: Paters Vaetje
+       Address: Blauwmoezelstraat 1, 2000 Antwerpen, Belgium
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Bottles: 8, Place: 9 }
+
+    Brugge:
+     - Name: Le Trappiste
+       Address: Kuipersstraat 33, 8000 Brugge, Belgium
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Draught: 9, Bottles: 9, Place: 8 }
+
+    Ghent:
+     - Name: Dulle Griet
+       Address: Vrijdagmarkt 50, 9000 Gent, Belgium
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Bottles: 8, Place: 8 }
+
+    Bruxelles:
+     ##  Tried  ##
+     - Name: Moeder Lambic Fontain
+       Address: Place Fontainas 8, 1000 Bruxelles, Belgium
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Draught: 9, Bottles: 9, Place: 9 }
+     - Name: Delirium Café
+       Address: Impasse de la Fidélité 4, 1000 Bruxelles, Belgium
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Draught: 9, Bottles: 9, Place: 8 }
+     - Name: Musée Bruxellois de la Gueuze-CANTILLON
+       Address: Rue Gheude 56, 1070 Anderlecht, Belgium
+       Type: Brewery
+       Status: Tried
+       Score: { Bottles: 8, Place: 9 }
+     - Name: De Biertempel
+       Address: Grasmarkt 56b, 1000 Brussel, Belgium
+       Type: Beer Shop
+       Status: Tried
+       Score: { Draught: -1, Bottles: 9, Place: 8 }
+     - Name: Poechenellekelder
+       Address: Rue du Chêne 5, 1000 Bruxelles, Belgium
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Draught: 7, Bottles: 8, Place: 10  }
+     - Name: La Porte Noire
+       Address: Rue des Alexiens 67, 1000 Bruxelles, Belgium
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 8, Bottles: 9, Place: 7 }
+     - Name: A La Mort Subite
+       Address: Rue Montagne aux Herbes Potagères 7, 1000 Bruxelles, Belgium
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Draught: 7, Bottles: 8, Place: 9, Food: 7 }
+     - Name: Brasserie de l'Ermitage
+       Address: Rue Lambert Crickx 26, 1070 Anderlecht, 1070 Brussel, Belgium
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Draught: 8, Place: 7 }
+
+     ##  Still To try  ##
+     - Name: Daringman
+       Address: Rue de Flandre 37, 1000 Bruxelles, Belgium
+       Type: Belgian Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.4 }
+     - Name: Brussels Beer Project
+       Address: Brussels Beer Project
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Moeder Lambic Original
+       Address: Rue de Savoie 68, 1060 Saint-Gilles, Belgium
+       Type: Belgian Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.5 }
+     - Name: Bier Circus
+       Address: Rue de l'Enseignement 57, 1000 Bruxelles, Belg
+       Type: Belgian Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.1 }
+     - Name: Nüetnigenough
+       Address: Rue du Lombard 25, 1000 Bruxelles, Belgium
+       Type: Belgian Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.5 }
+
+    Others:
+     ##  Tried  ##
+     - Name: Brouwerij Het Anker
+       Address: Guido Gezellelaan 49, 2800 Mechelen, Belgium
+       Type: Brewery
+       Status: Tried
+       Score: { Draught: 8, Place: 9, Food: 9 }
+     - Name: Espace Chimay
+       Address: Rue de Poteaupré 5, 6464 Bourlers, Belgium
+       Type: Brewery
+       Status: Tried
+       Score: { Draught: 7, Place: 8 }
+
+     ##  Still To try  ##
+     - Name: Brasserie Dupont sprl
+       Address: Rue Basse 5, 7904 Leuze-en-Hainaut, Belgium
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.3 }
+     - Name: St-Feuillien
+       Address: Rue d'Houdeng 20, 7070 Le Roeulx, Belgium
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Brasserie Le Maredsous
+       Address: Rue de Maredsous 11, 5537 Anhée, Belgium
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.2 }
+     - Name: Brouwerij Lindemans
+       Address: Lenniksebaan 1479, 1602 Vlezenbeek, Belgiu
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.8 }

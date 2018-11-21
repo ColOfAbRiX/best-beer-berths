@@ -30,6 +30,10 @@ SOFTWARE.
 var PlacesDB = (function() {
 
   var Cache = (function() {
+    var BeerPlacesDB = "BeerPlacesDB_" + BEER_DATABASE_FILE;
+    var BeerPlacesDBHash = "BeerPlacesDBHash_" + BEER_DATABASE_FILE;
+    var BeerPlacesDBTimestamp = "BeerPlacesDBTimestamp_" + BEER_DATABASE_FILE;
+
     /**
      * Loads the cache into the local beer DB
      */
@@ -42,10 +46,10 @@ var PlacesDB = (function() {
 
       Logger.info("Looking for saved cache");
 
-      var cache = window.localStorage.getItem( "BeerPlacesDB" );
+      var cache = window.localStorage.getItem( BeerPlacesDB );
       if( cache ) {
-        var cache_hash = window.localStorage.getItem( "BeerPlacesDBHash" );
-        var cache_timestamp = parseInt( window.localStorage.getItem( "BeerPlacesDBTimestamp" ) || 0 );
+        var cache_hash = window.localStorage.getItem( BeerPlacesDBHash );
+        var cache_timestamp = parseInt( window.localStorage.getItem( BeerPlacesDBTimestamp ) || 0 );
 
         Logger.debug( `BeerPlacesDBHash: ${cache_hash}` );
         Logger.debug( `BeerPlacesDBTimestamp: ${cache_timestamp}` );
@@ -96,9 +100,9 @@ var PlacesDB = (function() {
 
       Logger.info( `Saving cache for DB ${dbHash()}` );
 
-      window.localStorage.setItem( "BeerPlacesDB", JSON.stringify(local_db) );
-      window.localStorage.setItem( "BeerPlacesDBHash", dbHash() );
-      window.localStorage.setItem( "BeerPlacesDBTimestamp", new Date().getTime() );
+      window.localStorage.setItem( BeerPlacesDB, JSON.stringify(local_db) );
+      window.localStorage.setItem( BeerPlacesDBHash, dbHash() );
+      window.localStorage.setItem( BeerPlacesDBTimestamp, new Date().getTime() );
 
       return true;
     };
@@ -108,9 +112,9 @@ var PlacesDB = (function() {
      */
     var reset = function() {
       if( CACHE_ENABLED ) {
-        window.localStorage.removeItem( "BeerPlacesDB" );
-        window.localStorage.removeItem( "BeerPlacesDBHash" );
-        window.localStorage.removeItem( "BeerPlacesDBTimestamp" );
+        window.localStorage.removeItem( BeerPlacesDB );
+        window.localStorage.removeItem( BeerPlacesDBHash );
+        window.localStorage.removeItem( BeerPlacesDBTimestamp );
         Logger.info( "Reset cache: cache cleaned" );
       }
       else {

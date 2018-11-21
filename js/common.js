@@ -24,7 +24,7 @@ SOFTWARE.
 
 "use strict";
 
-const BEER_DATABASE_FILE = "database.yml"
+const BEER_DATABASE_FILE = urlParam("BEER_DATABASE_FILE", "database.yml")
 
 // Default position when no other position is available
 const DEFAULT_POSITION = {lat: 51.5189138, lng: -0.0924759};
