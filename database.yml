@@ -1058,8 +1058,25 @@ Beer places:
        Status: To try
        Expectation: { Mine: 8, Google: 4.8 }
 
-
     Los Angeles, CA:
+     ##  Tried  ##
+     - Name: Karl Strauss Brewing Company
+       Address: 1000 Universal Studios Blvd, Universal City, CA 91608, USA
+       Type: Brewery Taproom
+       Status: Tried
+       Score: { Draught: 8, Place: 7, Food: 9 }
+     - Name: Mikkeller Bar
+       Address: 330 W Olympic Blvd, Los Angeles, CA 90015, USA
+       Type: Beer Bar
+       Status: Tried
+       Score: { Draught: 9, Place: 7, Food: 8 }
+     - Name: Modern Times Brewery
+       Address: 3006, 832 S Olive St, Los Angeles, CA 90014, United States
+       Type: Brewery Taproom
+       Status: Tried
+       Score: { Draught: 8, Place: 9 }
+
+     ##  Still to try  ##
      - Name: Cellador Ales
        Address: 16745 Schoenborn St, North Hills, CA 91343, USA
        Type: Brewery Taproom
@@ -1090,16 +1107,6 @@ Beer places:
        Type: Brewery Taproom
        Status: To try
        Expectation: { Mine: 7, Google: 4.7 }
-     - Name: Mikkeller Bar
-       Address: 330 W Olympic Blvd, Los Angeles, CA 90015, USA
-       Type: Brewery Taproom
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.5 }
-     - Name: Modern Times Brewery
-       Address: 3006, 832 S Olive St, Los Angeles, CA 90014, United States
-       Type: Brewery Taproom
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.7 }
      - Name: Sunset Beer Company
        Address: 1498 Sunset Blvd, Los Angeles, CA 90026, USA
        Type: Brewery Taproom
