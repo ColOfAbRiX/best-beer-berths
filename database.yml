@@ -652,12 +652,50 @@ Beer places:
        Status: To try
        Expectation: { Mine: 7, Google: 4.8 }
 
-    Altro:
+    Bologna:
+     - Name: BrewDog Bar Bologna
+       Address: Via S. Valentino, 2f, 40122 Bologna BO
+       Type: Brepub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.5 }
+     - Name: Zapap Pratello
+       Address: Via del Pratello, 31, 40122 Bologna BO
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.5 }
+     - Name: Astral Beers Pub
+       Address: Via Castiglione, 13/B, 40124 Bologna BO
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.5 }
+     - Name: Birra Cerqua
+       Address: Via Broccaindosso, 5, 40125 Bologna BO
+       Type: Brewpub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.7 }
+     - Name: Baladin Bologna
+       Address: Via Clavature, 12, 40124 Bologna BO
+       Type: Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.4 }
+     - Name: Il Santo Bevitore
+       Address: Via Galliera, 42, 40121 Bologna BO
+       Type: Brewpub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.4 }
+
      - Name: Madama Beerstrò San Vitale
        Address: Via S. Vitale, 31, 40125 Bologna BO, Italy
        Type: Beer Bar
        Status: Tried
        Score: { Draught: 7, Food: 8, Place: 8 }
+     - Name: Beershop the Pretext
+       Address: Via Riva di Reno, 60/d, 40121 Bologna BO, Italy
+       Type: Beer Shop
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.8 }
+
+    Altro:
      - Name: Bir & Fud
        Address: Via Benedetta, 23, 00153 Roma RM, Italy
        Type: Beer Restaurant
@@ -668,11 +706,6 @@ Beer places:
        Type: Beer Bar
        Status: To try
        Expectation: { Mine: 8, Google: 4.6 }
-     - Name: Beershop the Pretext
-       Address: Via Riva di Reno, 60/d, 40121 Bologna BO, Italy
-       Type: Beer Shop
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.8 }
 
   Belgium:
 
