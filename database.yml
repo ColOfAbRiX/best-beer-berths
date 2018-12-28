@@ -577,13 +577,6 @@ Beer places:
        Status: Tried
        Score: { Draught: 7, Place: 8 }
 
-    Gabicce Mare:
-     - Name: La Tana Del Luppolo
-       Address: Via del Porto, 61011 Gabicce Mare PU, Italy
-       Type: Beer pub
-       Status: Tried
-       Score: { Draught: 8, Bottles: 10, Place: 7 }
-
     Milano:
      - Name: La Belle Alliance
        Address: Via Evangelista Torricelli, 1, 20136 Milano MI
@@ -631,11 +624,19 @@ Beer places:
        Expectation: { Mine: 7, Google: 4.6 }
 
     Romagna:
+     ##  Tried  ##
+     - Name: La Tana Del Luppolo
+       Address: Via del Porto, 61011 Gabicce Mare PU, Italy
+       Type: Beer pub
+       Status: Tried
+       Score: { Draught: 8, Bottles: 10, Place: 7 }
      - Name: StHop Craft Beer
        Address: Viale Trento, Cesenatico, Province of Forlì-Cesena, Italy
        Type: Beer Bar
        Status: Tried
        Score: { Draught: 8, Bottles: 8, Place: 8 }
+
+     ##  Stil To try  ##
      - Name: Sidro club
        Address: Via A. Moroni, 92, 47039 Savignano Sul Rubicone FC, Italy
        Type: Italian Pub
@@ -653,6 +654,14 @@ Beer places:
        Expectation: { Mine: 7, Google: 4.8 }
 
     Bologna:
+     ##  Tried  ##
+     - Name: Madama Beerstrò San Vitale
+       Address: Via S. Vitale, 31, 40125 Bologna BO, Italy
+       Type: Beer Bar
+       Status: Tried
+       Score: { Draught: 7, Food: 8, Place: 8 }
+
+     ##  Stil To try  ##
      - Name: BrewDog Bar Bologna
        Address: Via S. Valentino, 2f, 40122 Bologna BO
        Type: Brepub
@@ -683,17 +692,38 @@ Beer places:
        Type: Brewpub
        Status: To try
        Expectation: { Mine: 7, Google: 4.4 }
-
-     - Name: Madama Beerstrò San Vitale
-       Address: Via S. Vitale, 31, 40125 Bologna BO, Italy
-       Type: Beer Bar
-       Status: Tried
-       Score: { Draught: 7, Food: 8, Place: 8 }
      - Name: Beershop the Pretext
        Address: Via Riva di Reno, 60/d, 40121 Bologna BO, Italy
        Type: Beer Shop
        Status: To try
-       Expectation: { Mine: 9, Google: 4.8 }
+       Expectation: { Mine: 8, Google: 4.8 }
+     - Name: Bir & Fud
+       Address: Via Benedetta, 23, 00153 Roma RM, Italy
+       Type: Beer Restaurant
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.4 }
+
+    Venezia:
+     - Name: Il Santo Bevitore
+       Address: Fondamenta Diedo, 30121 Venezia VE
+       Type: Beer Pub
+       Status: To Try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Il Santo Bevitore Pub Venezia
+       Address: Cannaregio 2393/a, 30121 Venezia VE
+       Type: Beer Pub
+       Status: To Try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Birre Da Tutto Il Mundo
+       Address: Fondamenta dei Ormesini, 2710, 30121 Venezia VE
+       Type: Beer Pub
+       Status: To Try
+       Expectation: { Mine: 8, Google: 4.7 }
+     - Name: Birraria La Corte
+       Address: Campo San Polo, 2168, 30125 Venezia VE
+       Type: Pub
+       Status: To Try
+       Expectation: { Mine: 7, Google: 4.0 }
 
     Altro:
      - Name: Bir & Fud
