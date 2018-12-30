@@ -655,11 +655,26 @@ Beer places:
 
     Bologna:
      ##  Tried  ##
+     - Name: Il Santo Bevitore
+       Address: Via Galliera, 42, 40121 Bologna BO
+       Type: Brewpub
+       Status: Tried
+       Score: { Draught: 8, Bottles: 8, Food: 8, Place: 8 }
      - Name: Madama Beerstrò San Vitale
        Address: Via S. Vitale, 31, 40125 Bologna BO, Italy
        Type: Beer Bar
        Status: Tried
-       Score: { Draught: 7, Food: 8, Place: 8 }
+       Score: { Draught: 8, Bottles: 8, Food: 8, Place: 8 }
+     - Name: Astral Beers Pub
+       Address: Via Castiglione, 13/B, 40124 Bologna BO
+       Type: Beer Bar
+       Status: Tried
+       Score: { Draught: 7, Place: 7 }
+     - Name: Baladin Bologna
+       Address: Via Clavature, 12, 40124 Bologna BO
+       Type: Taproom
+       Status: Tried
+       Score: { Draught: 7, Place: 8 }
 
      ##  Stil To try  ##
      - Name: BrewDog Bar Bologna
@@ -672,26 +687,11 @@ Beer places:
        Type: Beer Bar
        Status: To try
        Expectation: { Mine: 7, Google: 4.5 }
-     - Name: Astral Beers Pub
-       Address: Via Castiglione, 13/B, 40124 Bologna BO
-       Type: Beer Bar
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.5 }
      - Name: Birra Cerqua
        Address: Via Broccaindosso, 5, 40125 Bologna BO
        Type: Brewpub
        Status: To try
        Expectation: { Mine: 7, Google: 4.7 }
-     - Name: Baladin Bologna
-       Address: Via Clavature, 12, 40124 Bologna BO
-       Type: Taproom
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.4 }
-     - Name: Il Santo Bevitore
-       Address: Via Galliera, 42, 40121 Bologna BO
-       Type: Brewpub
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.4 }
      - Name: Beershop the Pretext
        Address: Via Riva di Reno, 60/d, 40121 Bologna BO, Italy
        Type: Beer Shop
