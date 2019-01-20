@@ -225,6 +225,11 @@ Beer places:
        Type: Brewery
        Status: Tried
        Score: { Draught: 7, Place: 7 }
+     - Name: Temple Brew House
+       Address: 46 Essex St, London WC2R 3JF
+       Type: Brewpub
+       Status: Tried
+       Score: { Draught: 7, Food: 9, Place: 9 }
 
      ##  Still to try  ##
      - Name: House Of Hammerton
@@ -370,11 +375,6 @@ Beer places:
      - Name: Redchurch Brewery
        Address: 275-276 Poyser St, London E2 9RF
        Type: Brewery Taproom
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.5 }
-     - Name: Temple Brew House
-       Address: 46 Essex St, London WC2R 3JF
-       Type: Brewpub
        Status: To try
        Expectation: { Mine: 8, Google: 4.5 }
      - Name: Lowlander Grand Cafe
