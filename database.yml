@@ -802,6 +802,31 @@ Beer places:
        Type: Belgian Bar
        Status: Tried
        Score: { Draught: 8, Place: 7 }
+     - Name: À la Bécasse
+       Address: Rue de Tabora 11, 1000 Bruxelles, Belgium
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Draught: 7, Bottles: 8, Place: 9 }
+     - Name: L’Imaige Nostre-Dame
+       Address: Rue du Marché Aux Herbes 8, 1000 Bruxelles, Belgium
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Draught: 8, Bottles: 8, Place: 9 }
+     - Name: Brasserie du Lombard
+       Address: Rue du Lombard 1, 1000 Bruxelles, Belgium
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Draught: 8, Bottles: 9, Place: 8 }
+     - Name: In 't Spinnekopke
+       Address: Place du Jardin aux Fleurs 1, 1000 Bruxelles, Belgium
+       Type: Belgian Restaurant and Beers
+       Status: Tried
+       Score: { Bottles: 9, Place: 9, Food: 10 }
+     - Name: Restobières
+       Address: Rue des Renards 9, 1000 Bruxelles, Belgium
+       Type: Belgian Beer Restaurant
+       Status: Tried
+       Score: { Bottles: 9, Place: 9, Food: 10 }
 
      ##  Still To try  ##
      - Name: Daringman
