@@ -230,8 +230,18 @@ Beer places:
        Type: Brewpub
        Status: Tried
        Score: { Draught: 7, Food: 9, Place: 9 }
+     - Name: The Italian Job at the Mercato Metropolitano
+       Address: 40-42 Newington Causeway, London SE1 6DR
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 8, Bottle: 8, Food: 10, Place: 9 }
 
      ##  Still to try  ##
+     - Name: The Beer Merchant
+       Address: 99 Wallis Rd, London E9 5LN, UK
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
      - Name: House Of Hammerton
        Address: 99 Holloway Rd, London N7 8LT
        Type: Beer Pub
@@ -302,11 +312,6 @@ Beer places:
        Type: Beer Bar
        Status: To try
        Expectation: { Mine: 8, Google: 4.3 }
-     - Name: The Italian Job at the Mercato Metropolitano
-       Address: 40-42 Newington Causeway, London SE1 6DR
-       Type: Beer Pub
-       Status: To try
-       Expectation: { Mine: 8, Google: 5.0 }
      - Name: Soutwark Brewing Company
        Address: 46 Druid St, London SE1 2EZ
        Type: Brewery
