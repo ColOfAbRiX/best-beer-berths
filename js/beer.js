@@ -122,10 +122,24 @@ var PlacesDB = (function() {
       }
     };
 
+    /**
+     * TODO: Imports a cache file
+     */
+    var importCache = function(cacheFile) {
+    };
+
+    /**
+     * TODO: Exports a cache file
+     */
+    var exportCache = function() {
+    };
+
     return {
       'load': load,
       'save': save,
-      'reset': reset
+      'reset': reset,
+      'import': importCache,
+      'export': exportCache
     };
   })();
 

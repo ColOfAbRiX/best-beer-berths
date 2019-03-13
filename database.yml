@@ -235,13 +235,73 @@ Beer places:
        Type: Beer Pub
        Status: Tried
        Score: { Draught: 8, Bottle: 8, Food: 10, Place: 9 }
-
-     ##  Still to try  ##
      - Name: The Beer Merchant
        Address: 99 Wallis Rd, London E9 5LN, UK
        Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 9, Bottle: 10, Place: 8 }
+     - Name: Lord Tredegar
+       Address: 50 Lichfield Rd, London E3 5AL
+       Type: English Pub
+       Status: Tried
+       Score: { Draught: 8, Bottle: 7, Place: 10 }
+
+     ##  Still to try  ##
+     - Name: Kings Arms
+       Address: 11A Buckfast St, Bethnal Green, London E2 6EY
+       Type: English Pub
        Status: To try
-       Expectation: { Mine: 8, Google: 4.7 }
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: The Fox
+       Address: 372 Kingsland Rd, London E8 4DA
+       Type: English Pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4. }
+     - Name: King William IV
+       Address: HXFQ+WC Leyton Grange Estate, London
+       Type: English Pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.1 }
+     - Name: The Cock Tavern
+       Address: 315 Mare St, London E8 1EJ
+       Type: English Pub
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.1 }
+     - Name: Forest Road Brewing Co.
+       Address: GWQR+2Q Blackstone Estate, London
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: Hackney Brewery Ltd
+       Address: 358 Laburnum St, London E2 8BB
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: craftndraft
+       Address: 289 Hackney Rd, London E2 8NA
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 5.0 }
+     - Name: OGB Taproom
+       Address: London E1 6HF
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 5.0 }
+     - Name: Four Quarters East
+       Address: 8, Canalside, Queen Elisabeth Olympic Park, E Bay Ln, London E20 3BS
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: Seven Seasons
+       Address: 195 Hoxton St, Hoxton, London N1 6RA
+       Type: Bottle Shop
+       Status: To try
+       Expectation: { Draught: -1, Mine: 9, Google: 4.8 }
+     - Name: PEARL Hackney Wick
+       Address: East Wing Oslo House, 11 Prince Edward Rd, London E9 5LX
+       Type: Gatropub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.4 }
      - Name: House Of Hammerton
        Address: 99 Holloway Rd, London N7 8LT
        Type: Beer Pub
@@ -249,11 +309,6 @@ Beer places:
        Expectation: { Mine: 8, Google: 4.5 }
      - Name: The Wenlock Arms
        Address: The Wenlock Arms
-       Type: Beer Pub
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.5 }
-     - Name: House Of Hammerton
-       Address: House Of Hammerton
        Type: Beer Pub
        Status: To try
        Expectation: { Mine: 8, Google: 4.5 }
@@ -427,11 +482,6 @@ Beer places:
        Type: Beer pub
        Status: To try
        Expectation: { Mine: 7, Google: 4.4 }
-     - Name: Old Fountain
-       Address: 3 Baldwin St, London EC1V 9NU
-       Type: Beer pub
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.4 }
      - Name: Strongroom Bar & Kitchen
        Address: 120-124 Curtain Rd, Shoreditch, London EC2A 3SQ
        Type: Pub
@@ -472,6 +522,33 @@ Beer places:
        Type: Brewery
        Status: To try
        Expectation: { Mine: 7, Google: 4.8 }
+
+    St Albans:
+     - Name: Craft & Cleaver
+       Address: 62 Catherine St, St Albans AL3 5BU
+       Type: English Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.3 }
+     - Name: Dylans - The Kings Arms
+       Address: 7 George St, St Albans AL3 4ER
+       Type: English Pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.6 }
+     - Name: Beer Shop
+       Address: 71 London Rd, St Albans AL1 1LN
+       Type: Bottle shop
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
+     - Name: Bishops Cave
+       Address: 19 Holywell Hill, St Albans AL1 1EZ
+       Type: Brasserie
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
+     - Name: Dylans, The Plough
+       Address: Sleapshyde Ln, St Albans AL4 0SE
+       Type: English pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.3 }
 
     Cambridge:
      - Name: The Cambridge Blue
