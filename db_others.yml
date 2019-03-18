@@ -1,10 +1,29 @@
 ---
 #
 # Copyright 2018, Fabrizio Colonna, All rights reserved.
-# Last updated: 21/11/2018
+# Last updated: 18/03/2019
 #
 
 Beer places:
+
+  France:
+
+    Lyon:
+     - Name: Dikkenek Café
+       Address: 3 Rue d'Austerlitz, 69004 Lyon, France
+       Type: Belgian pub
+       Status: Tried
+       Score: { Draught: 9, Bottles: 8, Food: 8, Place: 9 }
+     - Name: Kaffee Berlin
+       Address: 4 Rue Tupin, 69002 Lyon, France
+       Type: German bar
+       Status: Tried
+       Score: { Draught: 7, Bottles: 8, Place: 8 }
+     - Name: Nomade MicroPub
+       Address: 250 Rue André Philip, 69003 Lyon, France
+       Type: Brewery taproom
+       Status: Tried
+       Score: { Draught: 7, Place: 7 }
 
   Denmark:
 
