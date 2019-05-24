@@ -1,7 +1,7 @@
 ---
 #
 # Copyright 2018, Fabrizio Colonna, All rights reserved.
-# Last updated: 18/03/2019
+# Last updated: 20/05/2019
 #
 
 Beer places:
@@ -206,8 +206,18 @@ Beer places:
        Status: Tried
        Score: { Draught: 7, Bottles: 8, Place: 7 }
      - Name: Fourpure Brewing Co.
-       Address: 34 Raymouth Rd, London SE16 2DB
+       Address: 72 Enid St, Bermondsey, London SE16 3RA
        Type: Brewery
+       Status: Tried
+       Score: { Draught: 7, Bottles: 8, Place: 9 }
+     - Name: The Craft Beer Co. Limehouse
+       Address: 576 Commercial Rd, London E14 7JD
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 8, Bottles: 9, Place: 9 }
+     - Name: London Calling Sweden
+       Address: 34 Raymouth Rd, London SE16 2DB
+       Type: Beer pub
        Status: Tried
        Score: { Draught: 9, Bottles: 7, Place: 8 }
      - Name: Partizan Brewing
@@ -512,11 +522,6 @@ Beer places:
        Type: Beer shop
        Status: To try
        Expectation: { Mine: 9, Google: 5.0 }
-     - Name: The Craft Beer Co. Limehouse
-       Address: 576 Commercial Rd, London E14 7JD
-       Type: Beer Pub
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.4 }
      - Name: 40ft Brewery
        Address: 18a Ashwin St, London E8 3DP
        Type: Brewery
