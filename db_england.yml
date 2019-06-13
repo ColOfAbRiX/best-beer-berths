@@ -206,7 +206,7 @@ Beer places:
        Status: Tried
        Score: { Draught: 7, Bottles: 8, Place: 7 }
      - Name: Fourpure Brewing Co.
-       Address: 34 Raymouth Rd, London SE16 2DB
+       Address: Bermondsey Trading Estate, 22 Rotherhithe New Rd, Bermondsey, London SE16 3LL
        Type: Brewery
        Status: Tried
        Score: { Draught: 9, Bottles: 7, Place: 8 }
@@ -216,7 +216,7 @@ Beer places:
        Status: Tried
        Score: { Draught: 8, Bottles: 9, Place: 9 }
      - Name: London Calling Sweden
-       Address: 34 Raymouth Rd, London SE16 2DB
+       Address: 72 Enid St, Bermondsey, London SE16 3RA
        Type: Beer pub
        Status: Tried
        Score: { Draught: 9, Bottles: 7, Place: 8 }
@@ -278,7 +278,7 @@ Beer places:
        Status: To try
        Expectation: { Mine: 9, Google: 4.1 }
      - Name: Forest Road Brewing Co.
-       Address: GWQR+2Q Blackstone Estate, London
+       Address: 8 Netil Ln, London E8 3RL
        Type: Brewery Taproom
        Status: To try
        Expectation: { Mine: 8, Google: 4.5 }
