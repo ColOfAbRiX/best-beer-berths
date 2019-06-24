@@ -1,12 +1,73 @@
 ---
 #
 # Copyright 2018, Fabrizio Colonna, All rights reserved.
-# Last updated: 18/03/2019
+# Last updated: 24/06/2019
 #
 
 Beer places:
 
   Switzerland:
+
+    Lugano:
+     - Name: Il Fermento
+       Address: Via Guglielmo Marconi 2, 6900 Lugano, Switzerland
+       Type: Pub
+       Status: Tried
+       Score: { Draught: 8, Bottles: 7, Place: 8 }
+
+    Bellinzona:
+     - Name: Il Fermento
+       Address: Via Codeborgo 12, 6500 Bellinzona, Switzerland
+       Type: Pub
+       Status: Tried
+       Score: { Draught: 8, Bottles: 7, Place: 8 }
+
+    Zermatt:
+     - Name: Elsie's Wine and Champagne Bar
+       Address: Kirchpl. 16, 3920 Zermatt, Switzerland
+       Type: Wine Bar
+       Status: Tried
+       Score: { Bottles: 7, Place: 9 }
+
+    Lausanne:
+     ##  Tried  ##
+     - Name: On the other side
+       Address: Rue Cité-Devant 4, 1005 Lausanne, Switzerland
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 7, Bottles: 7, Place: 8 }
+     - Name: La Mise en Bière
+       Address: Rue de la Tour 14, 1004 Lausanne, Switzerland
+       Type: Beer bar
+       Status: Tried
+       Score: { Draught: 9, Bottles: 7, Place: 6 }
+
+     ##  Still To try  ##
+     - Name: Le PiBar
+       Address: .
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Brasserie du Château
+       Address: Place du Tunnel 1, 1005 Lausanne, Switzerland
+       Type: Brewpub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.4 }
+     - Name: La Nébuleuse SA
+       Address: Chemin du Closel 5, 1020 Renens, Switzerland
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Brasserie du Haut-Lac - Vevey
+       Address: Avenue Reller 6, 1800 Vevey, Switzerland
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: ., Google: 4.6 }
+     - Name: La Cave à Bières
+       Address: Rue du Valentin 7, 1400 Yverdon-les-Bains, Switzerland
+       Type: Bottle shop
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.9 }
 
     Bern:
      - Name: On Tap Craftgallery
@@ -34,50 +95,6 @@ Beer places:
        Type: Bottle Shop
        Status: To try
        Expectation: { Mine: 8, Google: 4.7 }
-
-    Lausanne:
-     - Name: On the other side
-       Address: Rue Cité-Devant 4, 1005 Lausanne, Switzerland
-       Type: Beer Pub
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.4 }
-     - Name: La Mise en Bière
-       Address: Rue de la Tour 14, 1004 Lausanne, Switzerland
-       Type: Beer bar
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.7 }
-     - Name: Le PiBar
-       Address: .
-       Type: Beer Bar
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.6 }
-     - Name: Brasserie du Château
-       Address: Place du Tunnel 1, 1005 Lausanne, Switzerland
-       Type: Brewpub
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.4 }
-     - Name: La Nébuleuse SA
-       Address: Chemin du Closel 5, 1020 Renens, Switzerland
-       Type: Brewery Taproom
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.6 }
-     - Name: Brasserie du Haut-Lac - Vevey
-       Address: Avenue Reller 6, 1800 Vevey, Switzerland
-       Type: Brewery
-       Status: To try
-       Expectation: { Mine: ., Google: 4.6 }
-     - Name: La Cave à Bières
-       Address: Rue du Valentin 7, 1400 Yverdon-les-Bains, Switzerland
-       Type: Bottle shop
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.9 }
-
-    Canton Ticino:
-     - Name: Il Fermento
-       Address: Via Guglielmo Marconi 2, 6900 Lugano, Switzerland
-       Type: Pub
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.4 }
 
     Zurich:
      - Name: The Barrel Café & Craft Bier Shop

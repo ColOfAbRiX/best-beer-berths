@@ -1,7 +1,7 @@
 ---
 #
 # Copyright 2018, Fabrizio Colonna, All rights reserved.
-# Last updated: 20/05/2019
+# Last updated: 24/06/2019
 #
 
 Beer places:
@@ -998,44 +998,41 @@ Beer places:
 
   Switzerland:
 
-    Bern:
-     - Name: On Tap Craftgallery
-       Address: Rathausgasse 53, 3011 Bern, Switzerland
-       Type: Beer Bar
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.8 }
-     - Name: CraftGallery
-       Address: Marktgasse 38, 3011 Bern, Switzerland
-       Type: Beer bar and bottle shop
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.7 }
-     - Name: Au Trappiste
-       Address: Rathausgasse 68, 3011 Bern, Switzerland
-       Type: Beer Bar
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.6 }
-     - Name: Barbière
-       Address: Breitenrainpl. 40, 3014 Bern, Switzerland
-       Type: Beer Bar
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.6 }
-     - Name: Drinks of the World
-       Address: Bahnhofpl. 10, 3011 Bern, Switzerland
-       Type: Bottle Shop
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.7 }
+    Lugano:
+     - Name: Il Fermento
+       Address: Via Guglielmo Marconi 2, 6900 Lugano, Switzerland
+       Type: Pub
+       Status: Tried
+       Score: { Draught: 8, Bottles: 7, Place: 8 }
+
+    Bellinzona:
+     - Name: Il Fermento
+       Address: Via Codeborgo 12, 6500 Bellinzona, Switzerland
+       Type: Pub
+       Status: Tried
+       Score: { Draught: 8, Bottles: 7, Place: 8 }
+
+    Zermatt:
+     - Name: Elsie's Wine and Champagne Bar
+       Address: Kirchpl. 16, 3920 Zermatt, Switzerland
+       Type: Wine Bar
+       Status: Tried
+       Score: { Bottles: 7, Place: 9 }
 
     Lausanne:
+     ##  Tried  ##
      - Name: On the other side
        Address: Rue Cité-Devant 4, 1005 Lausanne, Switzerland
        Type: Beer Pub
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.4 }
+       Status: Tried
+       Score: { Draught: 7, Bottles: 7, Place: 8 }
      - Name: La Mise en Bière
        Address: Rue de la Tour 14, 1004 Lausanne, Switzerland
        Type: Beer bar
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.7 }
+       Status: Tried
+       Score: { Draught: 9, Bottles: 7, Place: 6 }
+
+     ##  Still To try  ##
      - Name: Le PiBar
        Address: .
        Type: Beer Bar
@@ -1062,12 +1059,32 @@ Beer places:
        Status: To try
        Expectation: { Mine: 9, Google: 4.9 }
 
-    Canton Ticino:
-     - Name: Il Fermento
-       Address: Via Guglielmo Marconi 2, 6900 Lugano, Switzerland
-       Type: Pub
+    Bern:
+     - Name: On Tap Craftgallery
+       Address: Rathausgasse 53, 3011 Bern, Switzerland
+       Type: Beer Bar
        Status: To try
-       Expectation: { Mine: 7, Google: 4.4 }
+       Expectation: { Mine: 9, Google: 4.8 }
+     - Name: CraftGallery
+       Address: Marktgasse 38, 3011 Bern, Switzerland
+       Type: Beer bar and bottle shop
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
+     - Name: Au Trappiste
+       Address: Rathausgasse 68, 3011 Bern, Switzerland
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Barbière
+       Address: Breitenrainpl. 40, 3014 Bern, Switzerland
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Drinks of the World
+       Address: Bahnhofpl. 10, 3011 Bern, Switzerland
+       Type: Bottle Shop
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
 
     Zurich:
      - Name: The Barrel Café & Craft Bier Shop
