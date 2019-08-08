@@ -1,7 +1,7 @@
 ---
 #
-# Copyright 2018, Fabrizio Colonna, All rights reserved.
-# Last updated: 24/06/2019
+# Copyright 2019, Fabrizio Colonna, All rights reserved.
+# Last updated: 08/08/2019
 #
 
 Beer places:
@@ -978,6 +978,83 @@ Beer places:
        Expectation: { Mine: 7, Google: 4.8 }
 
   France:
+
+    Paris:
+     - Name: Le Bouillon Belge
+       Address: 6 Rue Planchat, 75020 Paris, France
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.1 }
+     - Name: La Fine Mousse
+       Address: 6 Avenue Jean Aicard, 75011 Paris, France
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.5 }
+     - Name: Brewberry bar à bières
+       Address: 11 Rue du Pot de Fer, 75005 Paris, France
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.2 }
+     - Name: La Robe & La Mousse
+       Address: 3 Rue Monsieur le Prince, 75006 Paris, France
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Les Trois 8
+       Address: 11 Rue Victor Letalle, 75020 Paris, France
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Académie de la bière
+       Address: 88Bis Boulevard de Port-Royal, 75005 Paris, France
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.1 }
+     - Name: Café L'Envol Québécois
+       Address: 30 Rue Lacépède, 75005 Paris, France
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: Frog Revolution
+       Address: 9 Rue de la Bastille, 75004 Paris, France
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.2 }
+     - Name: L'Intrépide Bar
+       Address: 37 Rue Pierre Fontaine, 75009 Paris, France
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: A La Pompe À Bière
+       Address: 7ter Rue Duvergier, 75019 Paris, France
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
+     - Name: La Moustache Blanche
+       Address: 16 Rue des Tournelles, 75004 Paris, France
+       Type: Beer shop
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.9 }
+     - Name: Hoppy Corner
+       Address: 34 Rue des Petits Carreaux, 75002 Paris, France
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.7 }
+     - Name: Le Supercoin
+       Address: 3 Rue Baudelique, 75018 Paris, France
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.5 }
+     - Name: bon esprit - craft beers & good spirits
+       Address: 310 Rue Saint-Martin, 75003 Paris, France
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.6 }
+     - Name: I.B.U
+       Address: 20 Cour des Petites Écuries, 75010 Paris, France
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.7 }
 
     Lyon:
      - Name: Dikkenek Café
