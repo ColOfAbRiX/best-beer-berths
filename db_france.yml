@@ -1,7 +1,7 @@
 ---
 #
 # Copyright 2019, Fabrizio Colonna, All rights reserved.
-# Last updated: 08/08/2019
+# Last updated: 12/08/2019
 #
 
 Beer places:
@@ -9,31 +9,34 @@ Beer places:
   France:
 
     Paris:
+     ##  Tried  ##
      - Name: Le Bouillon Belge
        Address: 6 Rue Planchat, 75020 Paris, France
        Type: Bar
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.1 }
+       Status: Tried
+       Score: { Draught: 9, Bottle: 8, Place: 9 }
+     - Name: Brewberry bar à bières
+       Address: 11 Rue du Pot de Fer, 75005 Paris, France
+       Type: Bar
+       Status: Tried
+       Score: { Draught: 8, Bottle: 8, Place: 8 }
+     - Name: La Robe & La Mousse
+       Address: 3 Rue Monsieur le Prince, 75006 Paris, France
+       Type: Bar
+       Status: Tried
+       Score: { Draught: 7, Place: 8 }
      - Name: La Fine Mousse
        Address: 6 Avenue Jean Aicard, 75011 Paris, France
        Type: Bar
        Status: To try
-       Expectation: { Mine: 9, Google: 4.5 }
-     - Name: Brewberry bar à bières
-       Address: 11 Rue du Pot de Fer, 75005 Paris, France
-       Type: Bar
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.2 }
-     - Name: La Robe & La Mousse
-       Address: 3 Rue Monsieur le Prince, 75006 Paris, France
-       Type: Bar
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.6 }
+       Score: { Draught: 8, Bottle: 9, Place: 8 }
      - Name: Les Trois 8
        Address: 11 Rue Victor Letalle, 75020 Paris, France
        Type: Bar
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.6 }
+       Status: Tried
+       Score: { Draught: 7, Place: 8 }
+
+     ##  Stil To try  ##
      - Name: Académie de la bière
        Address: 88Bis Boulevard de Port-Royal, 75005 Paris, France
        Type: Bar
