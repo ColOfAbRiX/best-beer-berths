@@ -28,7 +28,7 @@ Beer places:
      - Name: La Fine Mousse
        Address: 6 Avenue Jean Aicard, 75011 Paris, France
        Type: Bar
-       Status: To try
+       Status: Tried
        Score: { Draught: 8, Bottle: 9, Place: 8 }
      - Name: Les Trois 8
        Address: 11 Rue Victor Letalle, 75020 Paris, France
