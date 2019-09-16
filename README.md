@@ -15,4 +15,3 @@ MIT
 ## Author Information
 
 [Fabrizio Colonna](mailto:colofabrix@tin.it)
-

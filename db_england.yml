@@ -1,7 +1,7 @@
 ---
 #
 # Copyright 2019, Fabrizio Colonna, All rights reserved.
-# Last updated: 20/05/2019
+# Last updated: 19/09/2019
 #
 
 Beer places:
@@ -255,6 +255,16 @@ Beer places:
        Type: English Pub
        Status: Tried
        Score: { Draught: 8, Bottle: 7, Place: 10 }
+     - Name: Lowlander Grand Cafe
+       Address: 36 Drury Ln, London WC2B 5RR
+       Type: English Pub
+       Status: Tried
+       Score: { Draught: 7, Bottle: 8, Place: 9 }
+     - Name: Belgo Holborn
+       Address: 67 Kingsway, London WC2B 6TD
+       Type: Belgian Pub
+       Status: Tried
+       Score: { Draught: 7, Bottle: 7, Place: 8 }
 
      ##  Still to try  ##
      - Name: Kings Arms
@@ -447,21 +457,11 @@ Beer places:
        Type: Brewery Taproom
        Status: To try
        Expectation: { Mine: 8, Google: 4.5 }
-     - Name: Lowlander Grand Cafe
-       Address: 36 Drury Ln, London WC2B 5RR
-       Type: English Pub
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.4 }
      - Name: Herman ze German
        Address: 43 Charlotte St, Fitzrovia, London W1T 1RS
        Type: German Deli
        Status: To try
        Expectation: { Mine: 8, Google: 4.3 }
-     - Name: Belgo Holborn
-       Address: 67 Kingsway, London WC2B 6TD
-       Type: Belgian Pub
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.0 }
      - Name: The Carpenters Arms
        Address: 80 Liverpool Rd, London N1 0QD
        Type: English pub (german beers)
