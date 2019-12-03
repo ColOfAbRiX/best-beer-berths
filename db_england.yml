@@ -265,6 +265,16 @@ Beer places:
        Type: Belgian Pub
        Status: Tried
        Score: { Draught: 7, Bottle: 7, Place: 8 }
+     - Name: Brave Sir Robin
+       Address: 29 Crouch Hill, Finsbury Park, London N4 4AP
+       Type: Craft Beer Pub
+       Status: Tried
+       Score: { Draught: 8, Bottle: 7, Place: 9 }
+     - Name: Grin and Beer It
+       Address: 172 Blackstock Rd, Highbury, London N5 1HA
+       Type: Beer Taproom
+       Status: Tried
+       Score: { Draught: 7, Bottle: 7, Place: 8 }
 
      ##  Still to try  ##
      - Name: Kings Arms
@@ -600,6 +610,18 @@ Beer places:
        Type: English Bar
        Status: Tried
        Score: { Draught: 7, Food: 9, Place: 7 }
+
+    Brighton:
+     - Name: Hand in Hand
+       Address: 33 Upper St James's St, Brighton BN2 1JN
+       Type: English Pub with Brewery
+       Status: Tried
+       Score: { Draught: 7, Place: 9 }
+     - Name: Brighton Bierhaus
+       Address: 161 Edward St, Brighton BN2 0JB
+       Type: Beer Bar
+       Status: Tried
+       Score: { Draught: 8, Place: 8 }
 
     Others:
      - Name: Queen St Brewhouse
