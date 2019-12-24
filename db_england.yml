@@ -1,7 +1,7 @@
 ---
 #
 # Copyright 2019, Fabrizio Colonna, All rights reserved.
-# Last updated: 19/09/2019
+# Last updated: 24/12/2019
 #
 
 Beer places:
@@ -275,6 +275,11 @@ Beer places:
        Type: Beer Taproom
        Status: Tried
        Score: { Draught: 7, Bottle: 7, Place: 8 }
+     - Name: Strongroom Bar & Kitchen
+       Address: 120-124 Curtain Rd, Shoreditch, London EC2A 3SQ
+       Type: Night bar
+       Status: Tried
+       Score: { Draught: 7, Bottle: 7, Place: 8 }
 
      ##  Still to try  ##
      - Name: Kings Arms
@@ -502,11 +507,6 @@ Beer places:
        Type: Beer pub
        Status: To try
        Expectation: { Mine: 7, Google: 4.4 }
-     - Name: Strongroom Bar & Kitchen
-       Address: 120-124 Curtain Rd, Shoreditch, London EC2A 3SQ
-       Type: Pub
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.1 }
      - Name: The Crown and Shuttle
        Address: 226 Shoreditch High St, London E1 6PJ
        Type: Pub

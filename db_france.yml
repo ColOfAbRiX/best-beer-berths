@@ -1,7 +1,7 @@
 ---
 #
 # Copyright 2019, Fabrizio Colonna, All rights reserved.
-# Last updated: 12/08/2019
+# Last updated: 24/12/2019
 #
 
 Beer places:
@@ -89,6 +89,7 @@ Beer places:
        Expectation: { Mine: 7, Google: 4.7 }
 
     Lyon:
+     ##  Tried  ##
      - Name: Dikkenek Café
        Address: 3 Rue d'Austerlitz, 69004 Lyon, France
        Type: Belgian pub
@@ -104,3 +105,35 @@ Beer places:
        Type: Brewery taproom
        Status: Tried
        Score: { Draught: 7, Place: 7 }
+
+     ##  Stil To try  ##
+     - Name: My Beers Lyon Confluence
+       Address: 97 Cours Charlemagne, 69002 Lyon, France
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: Orgao Beer House
+       Address: 145 Rue Sébastien Gryphe, 69007 Lyon, France
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.8 }
+     - Name: Le Bieristan
+       Address: 14 Rue Paul Lafargue, 69100 Villeurbanne, France
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.5 }
+     - Name: Beer O'Clock
+       Address: 4 Rue Octavio Mey, 69005 Lyon, France
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.7 }
+     - Name: Les Fleurs du Malt le Bar "La Mise en Bière"
+       Address: 15 Quai Romain Rolland, 69005 Lyon, France
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.5 }
+     - Name: 'Tom & Co : Brasseurs de Lyon'
+       Address: 5 Rue des Capucins, 69001 Lyon, France
+       Type: Brewery taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.8 }

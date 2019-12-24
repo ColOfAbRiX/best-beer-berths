@@ -1,7 +1,7 @@
 ---
 #
 # Copyright 2019, Fabrizio Colonna, All rights reserved.
-# Last updated: 28/12/2018
+# Last updated: 24/12/2019
 #
 
 Beer places:
@@ -110,6 +110,11 @@ Beer places:
        Type: Beer Bar
        Status: Tried
        Score: { Draught: 8, Bottles: 8, Place: 8 }
+     - Name: Gran Cru Taproom
+       Address: Viale Gaetano Marini, 2, 47822 Santarcangelo di Romagna RN, Italy
+       Type: Beer Bar
+       Status: Tried
+       Score: { Draught: 9, Bottles: 8, Place: 8 }
 
      ##  Stil To try  ##
      - Name: Sidro club
@@ -124,6 +129,11 @@ Beer places:
        Expectation: { Mine: 8, Google: 4.4 }
      - Name: The Brews
        Address: Via Marino Moretti, 32, 47042 Cesenatico FC, Italy
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.8 }
+     - Name: BEER Street
+       Address: Piazza Pompilio, 1, 47034 Forlimpopoli FC, Italy
        Type: Beer Bar
        Status: To try
        Expectation: { Mine: 7, Google: 4.8 }
