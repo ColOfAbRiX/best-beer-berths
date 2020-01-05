@@ -1188,6 +1188,29 @@ Beer places:
        Type: Brewery taproom
        Status: To try
        Expectation: { Mine: 8, Google: 4.8 }
+     - Name: 405 Lyon
+       Address: 9 rue Constantine, 69001 Lyon, France
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.7 }
+     - Name: Les BerThoM Pizay Lyon
+       Address: 24 Rue Pizay, 69001 Lyon, France
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.4 }
+
+    Annecy:
+     ##  Stil To try  ##
+     - Name: Le Ouistiti à Roulettes
+       Address: 31 rue sommeiller, 74000 Annecy, France
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.9 }
+     - Name: Beer O'clock
+       Address: 18 Fbg Sainte-Claire, 74000 Annecy, France
+       Type: Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
 
   Switzerland:
 
