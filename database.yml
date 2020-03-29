@@ -282,6 +282,16 @@ Beer places:
        Score: { Draught: 7, Bottle: 7, Place: 8 }
 
      ##  Still to try  ##
+     - Name: The Italian Job
+       Address: 130 Cadogan Terrace, London E9 5HP
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.8 }
+     - Name: Old Street Brewery & Taproom
+       Address: Arch 11 Gales Gardens, London E2 0EJ
+       Type: Beer Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.7 }
      - Name: Kings Arms
        Address: 11A Buckfast St, Bethnal Green, London E2 6EY
        Type: English Pub
@@ -1198,6 +1208,46 @@ Beer places:
        Type: Bar
        Status: To try
        Expectation: { Mine: 8, Google: 4.4 }
+
+    Toulouse:
+     ##  Tried  ##
+     - Name: Beer Rock Café La Tireuse
+       Address: 24 Rue Pargaminières, 31000 Toulouse, France
+       Type: Beer Bar
+       Status: Tried
+       Score: { Draught: 8, Bottle: 7, Place: 9 }
+     - Name: Le Bièrographe
+       Address: 12 Rue des Paradoux, 31000 Toulouse, France
+       Type: Beer Bar
+       Status: Tried
+       Score: { Draught: 8, Place: 7 }
+     - Name: La Houblonnière
+       Address: 37 Rue de la République, 31300 Toulouse, France
+       Type: Beer Bar
+       Status: Tried
+       Score: { Draught: 7, Bottles: 9, Place: 8 }
+
+     ##  Stil To try  ##
+     - Name: ROOSTER & BEER
+       Address: 100 Rue Riquet, 31000 Toulouse, France
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.7 }
+     - Name: Temple Beer
+       Address: 59 Allée du Rouergue, 31770 Colomiers, France
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.4 }
+     - Name: Beers And Bretzels
+       Address: Route d'Albi, 31180 Rouffiac-Tolosan, France
+       Type: Beer hall and food
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.3 }
+     - Name: Over a beer
+       Address: 259 Avenue de Muret, 31300 Toulouse, France
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
 
     Annecy:
      ##  Stil To try  ##

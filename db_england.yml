@@ -282,6 +282,16 @@ Beer places:
        Score: { Draught: 7, Bottle: 7, Place: 8 }
 
      ##  Still to try  ##
+     - Name: The Italian Job
+       Address: 130 Cadogan Terrace, London E9 5HP
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.8 }
+     - Name: Old Street Brewery & Taproom
+       Address: Arch 11 Gales Gardens, London E2 0EJ
+       Type: Beer Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.7 }
      - Name: Kings Arms
        Address: 11A Buckfast St, Bethnal Green, London E2 6EY
        Type: English Pub

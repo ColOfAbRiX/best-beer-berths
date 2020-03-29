@@ -154,17 +154,24 @@ Beer places:
        Expectation: { Mine: 8, Google: 4.4 }
 
     Toulouse:
-     ##  Stil To try  ##
+     ##  Tried  ##
      - Name: Beer Rock Café La Tireuse
        Address: 24 Rue Pargaminières, 31000 Toulouse, France
        Type: Beer Bar
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.6 }
+       Status: Tried
+       Score: { Draught: 8, Bottle: 7, Place: 9 }
      - Name: Le Bièrographe
        Address: 12 Rue des Paradoux, 31000 Toulouse, France
        Type: Beer Bar
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.5 }
+       Status: Tried
+       Score: { Draught: 8, Place: 7 }
+     - Name: La Houblonnière
+       Address: 37 Rue de la République, 31300 Toulouse, France
+       Type: Beer Bar
+       Status: Tried
+       Score: { Draught: 7, Bottles: 9, Place: 8 }
+
+     ##  Stil To try  ##
      - Name: ROOSTER & BEER
        Address: 100 Rue Riquet, 31000 Toulouse, France
        Type: Beer Bar
@@ -180,11 +187,6 @@ Beer places:
        Type: Beer hall and food
        Status: To try
        Expectation: { Mine: 8, Google: 4.3 }
-     - Name: La Houblonnière
-       Address: 37 Rue de la République, 31300 Toulouse, France
-       Type: Beer Bar
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.6 }
      - Name: Over a beer
        Address: 259 Avenue de Muret, 31300 Toulouse, France
        Type: Beer Bar
