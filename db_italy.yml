@@ -69,6 +69,79 @@ Beer places:
        Status: Tried
        Score: { Draught: 9, Bottles: -1, Place: 6 }
 
+    Roma:
+     ##  Stil To try  ##
+     - Name: Ma Che Siete Venuti A Fà
+       Address: Via Benedetta, 25, 00153 Roma RM
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.6 }
+     - Name: Bir & Fud
+       Address: Via Benedetta, 23, 00153 Roma RM
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: Donkey Punch
+       Address: Via della Scala, 33, 00153 Roma RM
+       Type: Sandwich bar with beers
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
+     - Name: Birreria Trilussa
+       Address: Via Benedetta, 19, 00153 Roma RM
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.1 }
+     - Name: Open Baladin
+       Address: Via degli Specchi, 6, 00186 Roma RM
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.5 }
+     - Name: Queen Makeda Grand Pub
+       Address: Via di S. Saba, 11, 00153 Roma RM
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.1 }
+     - Name: L'Osteria di Birra del Borgo Roma
+       Address: Via Silla, 26a, 00192 Roma RM
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.5 }
+     - Name: Roma Beer Company - Ponte Milvio
+       Address: Piazzale di Ponte Milvio, 40/42, 00135 Roma RM
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.3 }
+    #  - Name:
+    #    Address:
+    #    Type: Beer Pub
+    #    Status: To try
+    #    Expectation: { Mine: 8, Google: 4.5 }
+    #  - Name:
+    #    Address:
+    #    Type: Beer Pub
+    #    Status: To try
+    #    Expectation: { Mine: 8, Google: 4.5 }
+    #  - Name:
+    #    Address:
+    #    Type: Beer Pub
+    #    Status: To try
+    #    Expectation: { Mine: 8, Google: 4.5 }
+    #  - Name:
+    #    Address:
+    #    Type: Beer Pub
+    #    Status: To try
+    #    Expectation: { Mine: 8, Google: 4.5 }
+    #  - Name:
+    #    Address:
+    #    Type: Beer Pub
+    #    Status: To try
+    #    Expectation: { Mine: 8, Google: 4.5 }
+    #  - Name:
+    #    Address:
+    #    Type: Beer Pub
+    #    Status: To try
+    #    Expectation: { Mine: 8, Google: 4.5 }
+
     Rimini:
      - Name: FOB
        Address: Via Castracane, 17, 47921 Rimini RN, Italy
