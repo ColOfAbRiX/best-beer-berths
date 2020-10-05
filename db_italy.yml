@@ -70,34 +70,51 @@ Beer places:
        Score: { Draught: 9, Bottles: -1, Place: 6 }
 
     Roma:
-     ##  Stil To try  ##
+     ##  Tried  ##
      - Name: Ma Che Siete Venuti A Fà
        Address: Via Benedetta, 25, 00153 Roma RM
        Type: Beer Pub
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.6 }
+       Status: Tried
+       Score: { Draught: 9, Place: 8 }
      - Name: Bir & Fud
        Address: Via Benedetta, 23, 00153 Roma RM
        Type: Beer Pub
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.5 }
-     - Name: Donkey Punch
-       Address: Via della Scala, 33, 00153 Roma RM
-       Type: Sandwich bar with beers
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.7 }
-     - Name: Birreria Trilussa
-       Address: Via Benedetta, 19, 00153 Roma RM
-       Type: Beer Pub
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.1 }
+       Status: Tried
+       Score: { Draught: 8, Food: 8, Place: 8 }
      - Name: Open Baladin
        Address: Via degli Specchi, 6, 00186 Roma RM
        Type: Beer Pub
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.5 }
+       Status: Tried
+       Score: { Draught: 9, Food: 8, Place: 9 }
      - Name: Queen Makeda Grand Pub
        Address: Via di S. Saba, 11, 00153 Roma RM
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 8, Place: 7 }
+     - Name: Be.Re. + Trapizzino
+       Address: Via Vespasiano, 2, 00192 Roma RM
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 9, Food: 8, Place: 8 }
+     - Name: Artisan
+       Address: Via degli Aurunci, 7/9, 00185 Roma RM
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 7, Place: 7 }
+     - Name: Birrifugio Trastevere
+       Address: Via Federico Rosazza, 6, 00153 Roma RM
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 8, Place: 10 }
+     - Name: Malto Palace
+       Address: Via Titta Scarpetta, 1, 00153 Roma RM
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 7, Place: 8 }
+
+     ##  Stil To try  ##
+     - Name: Birreria Trilussa
+       Address: Via Benedetta, 19, 00153 Roma RM
        Type: Beer Pub
        Status: To try
        Expectation: { Mine: 8, Google: 4.1 }
@@ -116,11 +133,6 @@ Beer places:
        Type: Beer Pub
        Status: To try
        Expectation: { Mine: 8, Google: 4.8 }
-     - Name: Be.Re. + Trapizzino
-       Address: Via Vespasiano, 2, 00192 Roma RM
-       Type: Beer Pub
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.5 }
      - Name: Doppio Malto Roma
        Address: Via Poli, 50-52, 00187 Roma RM
        Type: Beer Pub
@@ -136,11 +148,6 @@ Beer places:
        Type: Beer Pub
        Status: To try
        Expectation: { Mine: 7, Google: 4.4 }
-     - Name: Artisan
-       Address: Via degli Aurunci, 7/9, 00185 Roma RM
-       Type: Beer Pub
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.7 }
      - Name: Luppolo 12
        Address: Via dei Marrucini, 12A, 00185 Roma RM
        Type: Beer Pub
@@ -171,11 +178,6 @@ Beer places:
        Type: Beer Pub
        Status: To try
        Expectation: { Mine: 8, Google: 4.5 }
-     - Name: Birrifugio Trastevere
-       Address: Via Federico Rosazza, 6, 00153 Roma RM
-       Type: Beer Pub
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.4 }
 
     Rimini:
      - Name: FOB
