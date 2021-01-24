@@ -244,7 +244,7 @@ Beer places:
        Address: 40-42 Newington Causeway, London SE1 6DR
        Type: Beer Pub
        Status: Tried
-       Score: { Draught: 8, Bottle: 8, Food: 10, Place: 9 }
+       Score: { Draught: 7, Bottle: 8, Food: 10, Place: 9 }
      - Name: The Beer Merchant
        Address: 99 Wallis Rd, London E9 5LN, UK
        Type: Beer Pub
@@ -282,6 +282,11 @@ Beer places:
        Score: { Draught: 7, Bottle: 7, Place: 8 }
 
      ##  Still to try  ##
+     - Name: Southampton Arms
+       Address: 139 Highgate Rd, Kentish Town, London NW5 1LE, United Kingdom
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.6 }
      - Name: The Italian Job
        Address: 130 Cadogan Terrace, London E9 5HP
        Type: Beer Pub
