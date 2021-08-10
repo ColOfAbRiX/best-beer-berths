@@ -184,7 +184,7 @@ Beer places:
        Address: 80 Druid St, London SE1
        Type: Beer pub
        Status: Tried
-       Score: { Draught: 7, Place: 8 }
+       Score: { Draught: 8, Place: 8 }
      - Name: Waterloo Tap
        Address: Sutton Walk, Lambeth, London SE1 8RL
        Type: Beer pub
@@ -280,6 +280,11 @@ Beer places:
        Type: Night bar
        Status: Tried
        Score: { Draught: 7, Bottle: 7, Place: 8 }
+     - Name: Southwark Brewing Company
+       Address: 46 Druid St, London SE1 2EZ
+       Type: Beer Taproom
+       Status: Tried
+       Score: { Draught: 7, Place: 8 }
 
      ##  Still to try  ##
      - Name: Southampton Arms
@@ -583,9 +588,14 @@ Beer places:
     Cambridge:
      - Name: The Cambridge Blue
        Address: 85-87 Gwydir St, Cambridge CB1 2LG
-       Type: Beer Pub
+       Type: Belgian Beer Pub
        Status: Tried
        Score: { Draught: 8, Bottles: 9, Place: 10 }
+     - Name: The Royal Standard Pub
+       Address: 292 Mill Rd, Cambridge CB1 3NL
+       Type: Belgian Beer Pub
+       Status: Tried
+       Score: { Draught: 8, Bottles: 8, Place: 9 }
      - Name: Pint Shop
        Address: 10 Peas Hill, Cambridge CB2 3PN
        Type: Beer Pub
@@ -638,12 +648,29 @@ Beer places:
        Status: Tried
        Score: { Draught: 8, Place: 8 }
 
-    Others:
+    Colchester:
      - Name: Queen St Brewhouse
        Address: 7 Queen St, Colchester CO1 2PG
        Type: English/Belgian Bar
        Status: Tried
        Score: { Draught: 8, Bottles: 8, Place: 10 }
+     - Name: The New Inn
+       Address: Bentalls Shopping Centre, 28 Colchester Rd, Heybridge, Maldon CM9 4GD
+       Type: English pub
+       Status: Tried
+       Score: { Draught: 7, Place: 9 }
+     - Name: Victoria Inn
+       Address: 10 N Station Rd, Colchester CO1 1RB
+       Type: English pub
+       Status: Tried
+       Score: { Draught: 8, Place: 7 }
+     - Name: Two Brews
+       Address: 37 Crouch St, Colchester CO3 3EN
+       Type: Bottle Shop
+       Status: Tried
+       Score: { Bottles: 8, Place: 7 }
+
+    Others:
      - Name: Kipps' Alehouse
        Address: 11-15 The Old High St, Folkestone CT20 1RL
        Type: Beer Pub

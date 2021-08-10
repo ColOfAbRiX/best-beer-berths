@@ -185,6 +185,11 @@ Beer places:
        Type: Italian Pub
        Status: Tried
        Score: { Draught: 10, Food: 8, Place: 7 }
+     - Name: Abeervinum
+       Address: Corso d'Augusto, 16, 47921 Rimini RN
+       Type: Bottle shop
+       Status: Tried
+       Score: { Bottles: 9, Place: 8 }
      - Name: L'Angolo Blu
        Address: Viale Siracusa, 73, 47924 Rimini RN, Italy
        Type: Bavarian Restaurant and Pizzeria
