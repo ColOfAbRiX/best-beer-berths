@@ -1,7 +1,7 @@
 ---
 #
 # Copyright 2019, Fabrizio Colonna, All rights reserved.
-# Last updated: 24/12/2019
+# Last updated: 04/10/2021
 #
 
 Beer places:
@@ -678,6 +678,11 @@ Beer places:
        Score: { Draught: 8, Place: 9 }
      - Name: Drayman's Son
        Address: 29a Fore Hill, Ely CB7 4AA
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 8, Place: 9 }
+     - Name: The Stoneworks Bar
+       Address: 8A Church St, Peterborough PE1 1XB
        Type: Beer Pub
        Status: Tried
        Score: { Draught: 8, Place: 9 }

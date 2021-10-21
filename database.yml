@@ -1,7 +1,7 @@
 ---
 #
 # Copyright 2019, Fabrizio Colonna, All rights reserved.
-# Last updated: 24/12/2019
+# Last updated: 21/10/2021
 #
 
 Beer places:
@@ -673,13 +673,16 @@ Beer places:
     Others:
      - Name: Kipps' Alehouse
        Address: 11-15 The Old High St, Folkestone CT20 1RL
-     - Name: Kipps' Alehouse
-       Address: 11-15 The Old High St, Folkestone CT20 1RL
        Type: Beer Pub
        Status: Tried
        Score: { Draught: 8, Place: 9 }
      - Name: Drayman's Son
        Address: 29a Fore Hill, Ely CB7 4AA
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 8, Place: 9 }
+     - Name: The Stoneworks Bar
+       Address: 8A Church St, Peterborough PE1 1XB
        Type: Beer Pub
        Status: Tried
        Score: { Draught: 8, Place: 9 }
@@ -955,6 +958,31 @@ Beer places:
        Score: { Draught: 7, Place: 8 }
 
      ##  Stil To try  ##
+     - Name: Beershop the Pretext
+       Address: Via Riva di Reno, 60/d, 40121 Bologna BO, Italy
+       Type: Beer Shop
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.8 }
+     - Name: Birreria Popolare
+       Address: Via dal Luzzo, 4a, 40125 Bologna BO
+       Type: Beer Restaurant
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: Bir & Fud
+       Address: Via Benedetta, 23, 00153 Roma RM, Italy
+       Type: Beer Restaurant
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.4 }
+     - Name: Beer for Bunnies
+       Address: Piazza S. Francesco, 11a, 40122 Bologna BO
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.6 }
+     - Name: Birra Cerqua
+       Address: Via Broccaindosso, 5, 40125 Bologna BO
+       Type: Brewpub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.6 }
      - Name: BrewDog Bar Bologna
        Address: Via S. Valentino, 2f, 40122 Bologna BO
        Type: Brepub
@@ -965,21 +993,11 @@ Beer places:
        Type: Beer Bar
        Status: To try
        Expectation: { Mine: 7, Google: 4.5 }
-     - Name: Birra Cerqua
-       Address: Via Broccaindosso, 5, 40125 Bologna BO
-       Type: Brewpub
+     - Name: Zapap Taproom
+       Address: Via Mascarella, 34, 40126 Bologna BO
+       Type: Beer Bar
        Status: To try
-       Expectation: { Mine: 7, Google: 4.7 }
-     - Name: Beershop the Pretext
-       Address: Via Riva di Reno, 60/d, 40121 Bologna BO, Italy
-       Type: Beer Shop
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.8 }
-     - Name: Bir & Fud
-       Address: Via Benedetta, 23, 00153 Roma RM, Italy
-       Type: Beer Restaurant
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.4 }
+       Expectation: { Mine: 7, Google: 4.5 }
 
     Venezia:
      - Name: Il Santo Bevitore
