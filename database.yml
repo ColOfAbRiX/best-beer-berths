@@ -1,7 +1,7 @@
 ---
 #
-# Copyright 2019, Fabrizio Colonna, All rights reserved.
-# Last updated: 21/10/2021
+# Copyright 2019-2021, Fabrizio Colonna, All rights reserved.
+# Last updated: 22/10/2021
 #
 
 Beer places:
@@ -956,6 +956,16 @@ Beer places:
        Type: Taproom
        Status: Tried
        Score: { Draught: 7, Place: 8 }
+     - Name: Beer for Bunnies
+       Address: Piazza S. Francesco, 11a, 40122 Bologna BO
+       Type: Beer Bar
+       Status: Tried
+       Expectation: { Draught: 7, Place: 8 }
+     - Name: Zapap Pratello
+       Address: Via del Pratello, 31, 40122 Bologna BO
+       Type: Beer Bar
+       Status: Tried
+       Expectation: { Draught: 7, Place: 7, Food: 8 }
 
      ##  Stil To try  ##
      - Name: Beershop the Pretext
@@ -973,11 +983,6 @@ Beer places:
        Type: Beer Restaurant
        Status: To try
        Expectation: { Mine: 8, Google: 4.4 }
-     - Name: Beer for Bunnies
-       Address: Piazza S. Francesco, 11a, 40122 Bologna BO
-       Type: Beer Bar
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.6 }
      - Name: Birra Cerqua
        Address: Via Broccaindosso, 5, 40125 Bologna BO
        Type: Brewpub
@@ -988,16 +993,71 @@ Beer places:
        Type: Brepub
        Status: To try
        Expectation: { Mine: 7, Google: 4.5 }
-     - Name: Zapap Pratello
-       Address: Via del Pratello, 31, 40122 Bologna BO
-       Type: Beer Bar
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.5 }
      - Name: Zapap Taproom
        Address: Via Mascarella, 34, 40126 Bologna BO
        Type: Beer Bar
        Status: To try
        Expectation: { Mine: 7, Google: 4.5 }
+     - Name: Birra Bellazzi
+       Address: Via Fondè, 21, 40068 San Lazzaro di Savena BO
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.6 }
+     - Name: Storiedipinte San Lazzaro
+       Address: Via Emilia, 166/A, 40068 San Lazzaro di Savena BO
+       Type: Pizza and Beer
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.3 }
+     - Name: Storiedipinte Bologna
+       Address: Via Maurizio Padoa, 6H, 40138 Bologna BO
+       Type: Pizza and Beer
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.3 }
+     - Name: Madama Beerstrò San Lazzaro
+       Address: Via Bellaria, 16/20, 40068 San Lazzaro di Savena BO
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: Harvest Pub
+       Address: Via Montello, 4, 40131 Bologna BO
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.4 }
+     - Name: Beerbo
+       Address: Via Carlo Sigonio, 13, 40137 Bologna BO
+       Type: Beer Store
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
+     - Name: Il Punto
+       Address: Via S. Rocco, 1G, 40122 Bologna BO
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: Ranzani 13 Bologna
+       Address: Via Camillo Ranzani, 5/12, 40127 Bologna BO
+       Type: Pizza & Beer
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: LOrtica
+       Address: Via Mascarella, 26/B, 40126 Bologna BO
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.3 }
+     - Name: Il Pretesto Beershop
+       Address: Via Riva di Reno, 60/d, 40121 Bologna BO
+       Type: Beer Shop
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.8 }
+     - Name: Beerichino
+       Address: Via Pietralata, 49a, 40122 Bologna BO
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.7 }
+     - Name: Fermento Bolognina
+       Address: Via Luigi Serra, 11/C, 40129 Bologna BO
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.4 }
 
     Venezia:
      - Name: Il Santo Bevitore

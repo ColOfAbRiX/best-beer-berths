@@ -1,7 +1,7 @@
 /*
 MIT License
 
-Copyright (c) 2018 Fabrizio Colonna <colofabrix@tin.it>
+Copyright (c) 2018-2021 Fabrizio Colonna <colofabrix@tin.it>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -147,7 +147,7 @@ function processQueueAsync( inputQueue, outputQueue, action, successValue, succe
 
       // Run the action
       runAction( (item, status) => {
-        Logger.debug( `processQueueAsync(): delay=${delay.toFixed(3)}ms, dec=${dDec.toFixed(3)}ms` );
+        Logger.debug( `processQueueAsync(): delay=${delay.toFixed(3)}ms, dec=${delayDecay.toFixed(3)}ms` );
 
         if( status == null ) {
           Logger.debug( "processQueueAsync(): Received null status" );
@@ -167,8 +167,8 @@ function processQueueAsync( inputQueue, outputQueue, action, successValue, succe
             outputQueue.push( doneItem );
           }
           // Tune delay and call callback
-          delay -= dDec;
-          dDec *= ( 1.0 - 1 / S ) * 0.9;
+          delay -= delayDecay;
+          delayDecay *= ( 1.0 - 1 / steepness ) * 0.9;
           if( successAction ) {
             successAction( doneItem );
           }
@@ -179,8 +179,8 @@ function processQueueAsync( inputQueue, outputQueue, action, successValue, succe
           Logger.debug( `processQueueAsync(): Received ${successValue} status` );
 
           // Tune delay and call callback
-          dDec = delay / S;
           delay *= 2.2;
+          delayDecay = delay / steepness;
           if( failAction ) {
             failAction( item, status );
           }
@@ -198,9 +198,9 @@ function processQueueAsync( inputQueue, outputQueue, action, successValue, succe
 
   // Set initial values and start
   Logger.debug( `processQueueAsync(): starting execution` );
-  const S = 2.0; // Steepness
+  const steepness = 2.0;
   var delay = 400;
-  var dDec = delay / ( S * 2.0 );
+  var delayDecay = delay / ( steepness * 2.0 );
   execute();
 }
 
