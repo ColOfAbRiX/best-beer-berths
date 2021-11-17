@@ -1111,7 +1111,7 @@ Beer places:
        Score: { Draught: 9, Bottles: 9, Place: 8 }
 
      ##  Still To try  ##
-     - Name: \'t Brugs Beertje
+     - Name: "'t Brugs Beertje"
        Address: Kemelstraat 5, 8000 Brugge, Belgium
        Type: Beer Cafe
        Status: To try
@@ -1141,7 +1141,7 @@ Beer places:
        Type: Bottle shop and pub
        Status: To try
        Expectation: { Mine: 9, Google: 4.4 }
-     - Name: \'t Poatersgat
+     - Name: "'t Poatersgat"
        Address: Vlamingstraat 82, 8000 Brugge, Belgium
        Type: Belgian Bar
        Status: To try
