@@ -1,7 +1,7 @@
 ---
 #
 # Copyright 2019-2021, Fabrizio Colonna, All rights reserved.
-# Last updated: 22/10/2021
+# Last updated: 17/11/2021
 #
 
 Beer places:
@@ -1111,46 +1111,71 @@ Beer places:
        Score: { Draught: 9, Bottles: 9, Place: 8 }
 
      ##  Still To try  ##
-     - Name: Beers Yesterday's World
+     - Name: \'t Brugs Beertje
+       Address: Kemelstraat 5, 8000 Brugge, Belgium
+       Type: Beer Cafe
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.7 }
+     - Name: Cafe Vlissinghe
+       Address: Blekersstraat 2, 8000 Brugge, Belgium
+       Type: Beer Cafe
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: \‘t Brugsch Bieratelier
+       Address: Wijngaardstraat 13, 8000 Brugge, Belgium
+       Type: Beer Cafe
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.4 }
+     - Name: Cambrinus
+       Address: Philipstockstraat 19, 8000 Brugge, Belgium
+       Type: Brasserie
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.4 }
+     - Name: Yesterdays World
        Address: Wijngaardstraat 6, 8000 Brugge, Belgium
-       Type: Belgian Bar
+       Type: Beer Vintage Bar
        Status: To try
        Expectation: { Mine: 8, Google: 4.7 }
-     - Name: Duvelorium Grand Beer Café
-       Address: Markt 1, 8000 Brugge, Belgium
-       Type: Belgian Bar
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.5 }
-     - Name: 2be / The Beerwall
-       Address: Wollestraat 53, 8000 Brugge, Belgium
-       Type: Belgian Bar
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.6 }
-     - Name: \'t Poatersgat
-       Address: Vlamingstraat 82, 8000 Brugge, Belgium
-       Type: Belgian Bar
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.6 }
-     - Name: De Garre
-       Address: De Garre
-       Type: Belgian Bar
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.6 }
-     - Name: Cafe Rose Red
-       Address: Cordoeaniersstraat 16, 8000 Brugge, Belgium
-       Type: Belgian Bar
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.7 }
-     - Name: Bauhaus Bar
-       Address: Langestraat 135, 8000 Brugge, Belgium
-       Type: Belgian Bar
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.5 }
      - Name: Bierpaleis
        Address: Katelijnestraat 25, 8000 Brugge, Belgium
        Type: Bottle shop and pub
        Status: To try
        Expectation: { Mine: 9, Google: 4.4 }
+     - Name: \'t Poatersgat
+       Address: Vlamingstraat 82, 8000 Brugge, Belgium
+       Type: Belgian Bar
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.6 }
+     - Name: 2be / The Beerwall
+       Address: Wollestraat 53, 8000 Brugge, Belgium
+       Type: Belgian Bar
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.6 }
+     - Name: Beers Yesterday's World
+       Address: Wijngaardstraat 6, 8000 Brugge, Belgium
+       Type: Belgian Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
+     - Name: De Garre
+       Address: De Garre
+       Type: Belgian Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Bauhaus Bar
+       Address: Langestraat 135, 8000 Brugge, Belgium
+       Type: Belgian Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: Duvelorium Grand Beer Café
+       Address: Markt 1, 8000 Brugge, Belgium
+       Type: Belgian Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: Cafe Rose Red
+       Address: Cordoeaniersstraat 16, 8000 Brugge, Belgium
+       Type: Belgian Bar
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.7 }
 
     Ghent:
      - Name: Dulle Griet
@@ -1185,7 +1210,7 @@ Beer places:
        Address: Rue du Chêne 5, 1000 Bruxelles, Belgium
        Type: Belgian Bar
        Status: Tried
-       Score: { Draught: 7, Bottles: 8, Place: 10  }
+       Score: { Draught: 7, Bottles: 9, Place: 10  }
      - Name: La Porte Noire
        Address: Rue des Alexiens 67, 1000 Bruxelles, Belgium
        Type: Beer Pub
@@ -1284,7 +1309,7 @@ Beer places:
        Status: To try
        Expectation: { Mine: 8, Google: 4.2 }
      - Name: Brouwerij Lindemans
-       Address: Lenniksebaan 1479, 1602 Vlezenbeek, Belgiu
+       Address: Lenniksebaan 1479, 1602 Vlezenbeek, Belgium
        Type: Brewery
        Status: To try
        Expectation: { Mine: 7, Google: 4.8 }
