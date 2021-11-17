@@ -34,7 +34,7 @@ Beer places:
        Type: Beer Cafe
        Status: To try
        Expectation: { Mine: 8, Google: 4.5 }
-     - Name: \‘t Brugsch Bieratelier
+     - Name: "'t Brugsch Bieratelier"
        Address: Wijngaardstraat 13, 8000 Brugge, Belgium
        Type: Beer Cafe
        Status: To try
