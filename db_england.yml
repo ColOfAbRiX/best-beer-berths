@@ -1,7 +1,7 @@
 ---
 #
 # Copyright 2019-2021, Fabrizio Colonna, All rights reserved.
-# Last updated: 04/10/2021
+# Last updated: 21/12/2021
 #
 
 Beer places:
@@ -184,7 +184,7 @@ Beer places:
        Address: 80 Druid St, London SE1
        Type: Beer pub
        Status: Tried
-       Score: { Draught: 8, Place: 8 }
+       Score: { Draught: 9, Place: 8 }
      - Name: Waterloo Tap
        Address: Sutton Walk, Lambeth, London SE1 8RL
        Type: Beer pub
@@ -285,6 +285,16 @@ Beer places:
        Type: Beer Taproom
        Status: Tried
        Score: { Draught: 7, Place: 8 }
+     - Name: King Charles I
+       Address: 55-57 Northdown St, London N1 9BL
+       Type: Pub
+       Status: Tried
+       Score: { Draught: 8, Place: 9 }
+     - Name: The Five Points Brewery & Taproom
+       Address: 61 Mare St, London E8 4RG
+       Type: Beer Taproom
+       Status: Tried
+       Score: { Draught: 8, Place: 8, Food: 8 }
 
      ##  Still to try  ##
      - Name: Southampton Arms
@@ -686,3 +696,8 @@ Beer places:
        Type: Beer Pub
        Status: Tried
        Score: { Draught: 8, Place: 9 }
+     - Name: Totally Tapped
+       Address: 23 Chilwell Rd, Beeston, Nottingham NG9 1EH
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
