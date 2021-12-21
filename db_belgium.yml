@@ -1,7 +1,7 @@
 ---
 #
 # Copyright 2019-2021, Fabrizio Colonna, All rights reserved.
-# Last updated: 17/11/2021
+# Last updated: 21/12/2021
 #
 
 Beer places:
@@ -22,53 +22,48 @@ Beer places:
        Type: Belgian Bar
        Status: Tried
        Score: { Draught: 9, Bottles: 9, Place: 8 }
-
-     ##  Still To try  ##
      - Name: "'t Brugs Beertje"
        Address: Kemelstraat 5, 8000 Brugge, Belgium
        Type: Beer Cafe
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.7 }
+       Status: Tried
+       Score: { Draught: 8, Bottles: 10, Place: 9 }
      - Name: Cafe Vlissinghe
        Address: Blekersstraat 2, 8000 Brugge, Belgium
        Type: Beer Cafe
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.5 }
+       Status: Tried
+       Score: { Draught: 7, Bottles: 8, Place: 10, Food: 9 }
      - Name: "'t Brugsch Bieratelier"
        Address: Wijngaardstraat 13, 8000 Brugge, Belgium
        Type: Beer Cafe
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.4 }
+       Status: Tried
+       Score: { Draught: 8, Place: 8, Food: 8 }
      - Name: Cambrinus
        Address: Philipstockstraat 19, 8000 Brugge, Belgium
        Type: Brasserie
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.4 }
+       Status: Tried
+       Score: { Draught: 9, Bottles: 10, Place: 9, Food: 9 }
      - Name: Yesterdays World
        Address: Wijngaardstraat 6, 8000 Brugge, Belgium
        Type: Beer Vintage Bar
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.7 }
-     - Name: Bierpaleis
-       Address: Katelijnestraat 25, 8000 Brugge, Belgium
-       Type: Bottle shop and pub
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.4 }
+       Status: Tried
+       Score: { Draught: 7, Bottles: 9, Place: 9 }
      - Name: "'t Poatersgat"
        Address: Vlamingstraat 82, 8000 Brugge, Belgium
        Type: Belgian Bar
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.6 }
+       Status: Tried
+       Score: { Draught: 7, Bottles: 8, Place: 8 }
+     - Name: Cafe Rose Red
+       Address: Cordoeaniersstraat 16, 8000 Brugge, Belgium
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Draught: 7, Bottles: 9, Place: 9 }
+
+     ##  Still To try  ##
      - Name: 2be / The Beerwall
        Address: Wollestraat 53, 8000 Brugge, Belgium
        Type: Belgian Bar
        Status: To try
        Expectation: { Mine: 9, Google: 4.6 }
-     - Name: Beers Yesterday's World
-       Address: Wijngaardstraat 6, 8000 Brugge, Belgium
-       Type: Belgian Bar
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.7 }
      - Name: De Garre
        Address: De Garre
        Type: Belgian Bar
@@ -84,11 +79,6 @@ Beer places:
        Type: Belgian Bar
        Status: To try
        Expectation: { Mine: 8, Google: 4.5 }
-     - Name: Cafe Rose Red
-       Address: Cordoeaniersstraat 16, 8000 Brugge, Belgium
-       Type: Belgian Bar
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.7 }
 
     Ghent:
      - Name: Dulle Griet
