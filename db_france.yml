@@ -1,7 +1,7 @@
 ---
 #
 # Copyright 2019-2021, Fabrizio Colonna, All rights reserved.
-# Last updated: 24/12/2019
+# Last updated: 25/05/2022
 #
 
 Beer places:
@@ -125,6 +125,11 @@ Beer places:
        Type: Bar
        Status: Tried
        Score: { Draught: 9, Bottles: 9, Place: 7 }
+     - Name: Barabaar Brotteaux
+       Address: 4 Bd des Brotteaux, 69006 Lyon
+       Type: Beer Hall
+       Status: Tried
+       Score: { Draught: 7, Bottles: 8, Place: 7 }
 
      ##  Stil To try  ##
      - Name: My Beers Lyon Confluence
@@ -132,11 +137,31 @@ Beer places:
        Type: Bar
        Status: To try
        Expectation: { Mine: 8, Google: 4.5 }
+     - Name: Beer-King Pub
+       Address: 246 Cr Lafayette, 69003 Lyon
+       Type: Beer Hall
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.3 }
+     - Name: BRO'S The Brew Brothers
+       Address: 2 Bd des Brotteaux, 69006 Lyon
+       Type: Beer Hall
+       Status: To try
+       Expectation: { Mine: 8, Google: 3.8 }
+     - Name: Au Fût et à mesure
+       Address: 18 Bd des Brotteaux, 69006 Lyon
+       Type: Beer Hall
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.3 }
+     - Name: Malto
+       Address: 2 Rue Chaponnay, 69003 Lyon
+       Type: Beer Hall
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.8 }
      - Name: Beer O'Clock
        Address: 4 Rue Octavio Mey, 69005 Lyon, France
        Type: Bar
        Status: To try
-       Expectation: { Mine: 7, Google: 4.7 }
+       Expectation: { Mine: 8, Google: 4.7 }
      - Name: 'Tom & Co : Brasseurs de Lyon'
        Address: 5 Rue des Capucins, 69001 Lyon, France
        Type: Brewery taproom
