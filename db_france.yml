@@ -1,7 +1,7 @@
 ---
 #
-# Copyright 2019-2021, Fabrizio Colonna, All rights reserved.
-# Last updated: 25/05/2022
+# Copyright 2019-2022, Fabrizio Colonna, All rights reserved.
+# Last updated: 26/05/2022
 #
 
 Beer places:
@@ -129,7 +129,12 @@ Beer places:
        Address: 4 Bd des Brotteaux, 69006 Lyon
        Type: Beer Hall
        Status: Tried
-       Score: { Draught: 7, Bottles: 8, Place: 7 }
+       Score: { Draught: 7, Bottles: 8, Place: 8 }
+     - Name: Les BerThoM Pizay Lyon
+       Address: 24 Rue Pizay, 69001 Lyon, France
+       Type: Bar
+       Status: Tried
+       Score: { Draught: 7, Bottles: 8, Place: 9 }
 
      ##  Stil To try  ##
      - Name: My Beers Lyon Confluence
@@ -137,16 +142,6 @@ Beer places:
        Type: Bar
        Status: To try
        Expectation: { Mine: 8, Google: 4.5 }
-     - Name: Beer-King Pub
-       Address: 246 Cr Lafayette, 69003 Lyon
-       Type: Beer Hall
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.3 }
-     - Name: BRO'S The Brew Brothers
-       Address: 2 Bd des Brotteaux, 69006 Lyon
-       Type: Beer Hall
-       Status: To try
-       Expectation: { Mine: 8, Google: 3.8 }
      - Name: Au Fût et à mesure
        Address: 18 Bd des Brotteaux, 69006 Lyon
        Type: Beer Hall
@@ -172,11 +167,6 @@ Beer places:
        Type: Bar
        Status: To try
        Expectation: { Mine: 7, Google: 4.7 }
-     - Name: Les BerThoM Pizay Lyon
-       Address: 24 Rue Pizay, 69001 Lyon, France
-       Type: Bar
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.4 }
 
     Toulouse:
      ##  Tried  ##
