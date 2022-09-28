@@ -2067,3 +2067,78 @@ Beer places:
        Type: Brewery Taproom
        Status: To try
        Expectation: { Mine: 9, Google: 4.6 }
+
+  Austria:
+
+    Vienna:
+     ##  Still To try  ##
+     - Name: AmmutsØn Craft Beer Dive
+       Address: Barnabitengasse 10, 1060 Wien, Austria
+       Type: Beer pub
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.7 }
+     - Name: Känguru
+       Address: Bürgerspitalgasse 20, 1060 Wien, Austria
+       Type: Pub
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.7 }
+     - Name: Bierteufl
+       Address: Ungargasse 5, 1030 Wien, Austria
+       Type: Beer Garden
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.4 }
+     - Name: 1516 Brewing Company
+       Address: Schwarzenbergstraße 2, 1010 Wien, Austria
+       Type: Microbrewery
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: 7Stern Bräu
+       Address: Siebensterngasse 19, 1070 Wien, Austria
+       Type: Microbrewry
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.4 }
+     - Name: Bräuhaus Ten.Fifty.
+       Address: Ankerbrotfabrik Unit 10.2, Absberggasse 27/3, 1100 Wien, Austria
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.8 }
+     - Name: Brauhund
+       Address: Schweglerstraße 48, 1150 Wien, Austria
+       Type: Beer bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
+     - Name: Philosopher Beer Bar Beisl
+       Address: Judengasse 11, 1010 Wien, Austria
+       Type: Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: Golser Bier & Wein Bar - In der Riemergasse
+       Address: Riemergasse 4, 1010 Wien, Austria
+       Type: Microbrewert
+       Status: To try
+       Expectation: { Mine: 8, Google: 5.0 }
+     - Name: Beer Paradise
+       Address: Judenpl. 1, 1010 Wien, Austria
+       Type: Restaurant
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.2 }
+     - Name: Beaver Brewing Company-1090
+       Address: Liechtensteinstraße 69, 1090 Wien, Austria
+       Type: Microbrewry
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.5 }
+     - Name: Brauwerk Wien
+       Address: Ottakringer Pl. 1, 1160 Wien, Austria
+       Type: Microbrewry
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.5 }
+     - Name: Brandauers Bierstube
+       Address: Am Pl. 5 a, 1130 Wien, Austria
+       Type: Pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.4 }
+     - Name: Salm Bräu
+       Address: Rennweg 8, 1030 Wien, Austria
+       Type: Microbrewry
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.4 }
