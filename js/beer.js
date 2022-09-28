@@ -40,7 +40,8 @@ var PlacesDB = (function() {
     var load = function() {
       // Check cache enabled
       if( !CACHE_ENABLED ) {
-        reset()
+        Logger.info("Cache is disabled");
+        reset();
         return false;
       }
 
@@ -185,9 +186,6 @@ var PlacesDB = (function() {
       for( var city in country_cities ) {
         var city_places = country_cities[city];
         for( var beer_place of city_places ) {
-          if( DEBUG && !city.match( DEBUG_CITY ) ) {
-            continue;
-          }
           // Check the data is valid, if not don't add it
           if( !_checkRawData(beer_place) ) {
             Logger.warn( `Missing information on entry ${JSON.stringify(beer_place)}` );
@@ -407,7 +405,9 @@ var PlacesDB = (function() {
   var _finalizeLoad = function() {
     Logger.info("Finalizing visualization of places");
     // Save the cache
-    Cache.save();
+    if( CACHE_ENABLED ) {
+      Cache.save();
+    }
   }
 
   /**
@@ -647,6 +647,7 @@ class BeerPlace {
         };
 
         Logger.info( `Found location for "${this.toString()}": ${this.google_location.place_id}` );
+        Logger.debug( `Google location for "${this.toString()}"`, this.google_location );
       }
 
       if( callback ) {
@@ -685,6 +686,7 @@ class BeerPlace {
         thisRef.google_details = {}
         Object.assign( thisRef.google_details, results );
         Logger.info( `Found details for "${this.raw_data.Name}".` );
+        Logger.debug( `Details for "${this.raw_data.Name}".`, thisRef.google_details );
       }
 
       if( callback ) {
@@ -734,6 +736,7 @@ class BeerPlace {
       url:           this.google_details ? this.google_details.url : "",
       directionsUrl: directions_url
     };
+    console.log(data);
     var hndl_template = Handlebars.compile( $('#place-template')[0].innerHTML );
     return hndl_template( data );
   }

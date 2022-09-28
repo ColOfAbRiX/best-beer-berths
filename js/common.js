@@ -31,13 +31,13 @@ const DEFAULT_POSITION = {lat: 51.5189138, lng: -0.0924759};
 const POSITION_UPDATE = 10;
 
 // Cache options
-const CACHE_ENABLED = urlParam("CACHE_ENABLED", true);
-const CACHE_DURATION = urlParam("CACHE_DURATION", 2678400);
+const CACHE_ENABLED = urlBoolParam("CACHE_ENABLED", true);
+const CACHE_DURATION = urlNumParam("CACHE_DURATION", 2678400);
 
 // Debug options
-const DEBUG = urlParam("DEBUG", false);
-const DEBUG_LEVEL = urlParam("DEBUG_LEVEL", 2);
-const DEBUG_ON_PAGE = urlParam("DEBUG_ON_PAGE", false);
+const DEBUG = urlBoolParam("DEBUG", false);
+const DEBUG_LEVEL = urlNumParam("DEBUG_LEVEL", 2);
+const DEBUG_ON_PAGE = urlBoolParam("DEBUG_ON_PAGE", false);
 const DEBUG_CITY = new RegExp( urlParam("DEBUG_CITY", "(london)"), 'i' );
 // const DEBUG_POSITION = {lat: 51.532492399999995, lng: -0.0351538};
 // const DEBUG_POSITION = {lat: 51.5189138, lng: -0.0924759};
@@ -81,7 +81,7 @@ var Logger = (function() {
     return false;
   }
 
-  var _write = function(value, type) {
+  var _write = function(value, type, ...optionalParams) {
     if( !_canLog(type) ) {
       return;
     }
@@ -96,13 +96,13 @@ var Logger = (function() {
       }
     } else {
       if( type === "trace" || type === "debug") {
-        console.log(value);
+        console.log(value, ...optionalParams);
       } else if( type === "info" ) {
-        console.info(value);
+        console.info(value, ...optionalParams);
       } else if( type === "warn" ) {
-        console.warn(value);
+        console.warn(value, ...optionalParams);
       } else if( type === "error" ) {
-        console.error(value);
+        console.error(value, ...optionalParams);
       }
     }
   };
@@ -118,11 +118,12 @@ var Logger = (function() {
   return {
     getLogLevel: getLogLevel,
     setLogLevel: setLogLevel,
-    trace: function(text) { _write(text, "trace") },
-    debug: function(text) { _write(text, "debug") },
-    info: function(text) { _write(text, "info") },
-    warn: function(text) { _write(text, "warn") },
-    error: function(text) { _write(text, "error") }
+    trace: function(text, ...optionalParams) { _write(text, "trace", ...optionalParams) },
+    debug: function(text, ...optionalParams) { _write(text, "debug", ...optionalParams) },
+    info: function(text, ...optionalParams) { _write(text, "info", ...optionalParams) },
+    info: function(text, ...optionalParams) { _write(text, "info", ...optionalParams) },
+    warn: function(text, ...optionalParams) { _write(text, "warn", ...optionalParams) },
+    error: function(text, ...optionalParams) { _write(text, "error", ...optionalParams) }
   };
 })();
 
@@ -258,6 +259,9 @@ function getGradientColour( start_colour, end_colour, percent ) {
  * interpolation
  */
 function rangeRelative( min, value, max ) {
+  if (min == max)
+    return min;
+
   // Make sure that min < max
   if( min > max ) {
     min = [max, max = min][0];
@@ -280,11 +284,9 @@ function isMobile() {
  * Create a Google Pin URL
  */
 function buildPinUrl( text, fill_colour, scale_factor, font_size ) {
-  var pin_url = `http${isSSL() ? 's' : ''}://` +
+  return `http${isSSL() ? 's' : ''}://` +
     `chart.apis.google.com/chart?chst=d_map_pin_letter&` +
     `chld=%E2%80%A2|${fill_colour}`;
-  Logger.trace( `pin_url: ${pin_url}` );
-  return pin_url
 }
 
 
@@ -300,6 +302,27 @@ function urlParam( name, default_value = null ) {
   else {
     return searchParams.get(name);
   }
+}
+
+
+/**
+ * Get a URL parameter as boolean
+ */
+function urlBoolParam( name, default_value = true ) {
+  const param = urlParam(name, default_value);
+  if (param === null) {
+    return null;
+  } else {
+    return param.toString().toLowerCase() === "true";
+  }
+}
+
+
+/**
+ * Get a URL parameter as number
+ */
+function urlNumParam( name, default_value = 0 ) {
+  return Number(urlParam(name, default_value));
 }
 
 
