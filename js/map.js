@@ -95,7 +95,7 @@ var GoogleMap = (function(){
     $.get(
       BEER_DATABASE_FILE,
       ( data ) => {
-        PlacesDB.init( jsyaml.safeLoad( data )['Beer places'] );
+        PlacesDB.init( jsyaml.load( data )['Beer places'] );
       },
       'text'
     );
