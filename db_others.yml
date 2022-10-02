@@ -1,7 +1,7 @@
 ---
 #
 # Copyright 2019-2022, Fabrizio Colonna, All rights reserved.
-# Last updated: 27/09/2022
+# Last updated: 02/10/2022
 #
 
 Beer places:
@@ -9,221 +9,106 @@ Beer places:
   Austria:
 
     Vienna:
-     ##  Still To try  ##
-     - Name: AmmutsØn Craft Beer Dive
-       Address: Barnabitengasse 10, 1060 Wien, Austria
-       Type: Beer pub
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.7 }
+     ##  Tried  ##
      - Name: Känguru
        Address: Bürgerspitalgasse 20, 1060 Wien, Austria
        Type: Pub
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.7 }
+       Status: Tried
+       Score: { Draught: 8, Bottles: 9, Place: 10 }
+     - Name: Salm Bräu
+       Address: Rennweg 8, 1030 Wien, Austria
+       Type: Microbrewry
+       Status: Tried
+       Score: { Draught: 8, Place: 9, Food: 9 }
+     - Name: 1516 Brewing Company
+       Address: Schwarzenbergstraße 2, 1010 Wien, Austria
+       Type: Microbrewery
+       Status: Tried
+       Score: { Draught: 7, Place: 9 }
+     - Name: AmmutsØn Craft Beer Dive
+       Address: Barnabitengasse 10, 1060 Wien, Austria
+       Type: Beer pub
+       Status: Tried
+       Score: { Draught: 8,Place: 8 }
+     - Name: Beaver Brewing Company-1090
+       Address: Liechtensteinstraße 69, 1090 Wien, Austria
+       Type: Microbrewry
+       Status: Tried
+       Score: { Draught: 8, Bottles: 7, Place: 8 }
+     - Name: 7Stern Bräu
+       Address: Siebensterngasse 19, 1070 Wien, Austria
+       Type: Microbrewry
+       Status: Tried
+       Score: { Draught: 7, Place: 7, Food: 7 }
+     - Name: Brauhund
+       Address: Schweglerstraße 48, 1150 Wien, Austria
+       Type: Beer bar
+       Status: Tried
+       Score: { Draught: 7, Bottles: 8, Place: 8 }
+     - Name: Philosopher Beer Bar Beisl
+       Address: Judengasse 11, 1010 Wien, Austria
+       Type: Pub
+       Status: Tried
+       Score: { Draught: 7, Bottles: 7, Place: 7 }
+
+     ##  Still To try  ##
      - Name: Bierteufl
        Address: Ungargasse 5, 1030 Wien, Austria
        Type: Beer Garden
        Status: To try
        Expectation: { Mine: 9, Google: 4.4 }
-     - Name: 1516 Brewing Company
-       Address: Schwarzenbergstraße 2, 1010 Wien, Austria
-       Type: Microbrewery
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.5 }
-     - Name: 7Stern Bräu
-       Address: Siebensterngasse 19, 1070 Wien, Austria
-       Type: Microbrewry
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.4 }
      - Name: Bräuhaus Ten.Fifty.
        Address: Ankerbrotfabrik Unit 10.2, Absberggasse 27/3, 1100 Wien, Austria
        Type: Brewery
        Status: To try
        Expectation: { Mine: 8, Google: 4.8 }
-     - Name: Brauhund
-       Address: Schweglerstraße 48, 1150 Wien, Austria
-       Type: Beer bar
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.7 }
-     - Name: Philosopher Beer Bar Beisl
-       Address: Judengasse 11, 1010 Wien, Austria
-       Type: Pub
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.5 }
-     - Name: Golser Bier & Wein Bar - In der Riemergasse
-       Address: Riemergasse 4, 1010 Wien, Austria
-       Type: Microbrewert
-       Status: To try
-       Expectation: { Mine: 8, Google: 5.0 }
-     - Name: Beer Paradise
-       Address: Judenpl. 1, 1010 Wien, Austria
-       Type: Restaurant
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.2 }
-     - Name: Beaver Brewing Company-1090
-       Address: Liechtensteinstraße 69, 1090 Wien, Austria
-       Type: Microbrewry
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.5 }
      - Name: Brauwerk Wien
        Address: Ottakringer Pl. 1, 1160 Wien, Austria
        Type: Microbrewry
        Status: To try
        Expectation: { Mine: 7, Google: 4.5 }
+     - Name: Golser Bier & Wein Bar - In der Riemergasse
+       Address: Riemergasse 4, 1010 Wien, Austria
+       Type: Microbrewert
+       Status: To try
+       Expectation: { Mine: 8, Google: 5.0 }
      - Name: Brandauers Bierstube
        Address: Am Pl. 5 a, 1130 Wien, Austria
        Type: Pub
        Status: To try
        Expectation: { Mine: 7, Google: 4.4 }
-     - Name: Salm Bräu
-       Address: Rennweg 8, 1030 Wien, Austria
-       Type: Microbrewry
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.4 }
-
-  Switzerland:
-
-  #   Lugano:
-  #    - Name: Il Fermento
-  #      Address: Via Guglielmo Marconi 2, 6900 Lugano, Switzerland
-  #      Type: Pub
-  #      Status: Tried
-  #      Score: { Draught: 8, Bottles: 7, Place: 8 }
-
-  #   Bellinzona:
-  #    - Name: Il Fermento
-  #      Address: Via Codeborgo 12, 6500 Bellinzona, Switzerland
-  #      Type: Pub
-  #      Status: Tried
-  #      Score: { Draught: 8, Bottles: 7, Place: 8 }
-
-  #   Zermatt:
-  #    - Name: Elsie's Wine and Champagne Bar
-  #      Address: Kirchpl. 16, 3920 Zermatt, Switzerland
-  #      Type: Wine Bar
-  #      Status: Tried
-  #      Score: { Bottles: 7, Place: 9 }
-
-  #   Lausanne:
-  #    ##  Tried  ##
-  #    - Name: On the other side
-  #      Address: Rue Cité-Devant 4, 1005 Lausanne, Switzerland
-  #      Type: Beer Pub
-  #      Status: Tried
-  #      Score: { Draught: 7, Bottles: 7, Place: 8 }
-  #    - Name: La Mise en Bière
-  #      Address: Rue de la Tour 14, 1004 Lausanne, Switzerland
-  #      Type: Beer bar
-  #      Status: Tried
-  #      Score: { Draught: 9, Bottles: 7, Place: 6 }
-
-  #    ##  Still To try  ##
-  #    - Name: Le PiBar
-  #      Address: .
-  #      Type: Beer Bar
-  #      Status: To try
-  #      Expectation: { Mine: 8, Google: 4.6 }
-  #    - Name: Brasserie du Château
-  #      Address: Place du Tunnel 1, 1005 Lausanne, Switzerland
-  #      Type: Brewpub
-  #      Status: To try
-  #      Expectation: { Mine: 7, Google: 4.4 }
-  #    - Name: La Nébuleuse SA
-  #      Address: Chemin du Closel 5, 1020 Renens, Switzerland
-  #      Type: Brewery Taproom
-  #      Status: To try
-  #      Expectation: { Mine: 8, Google: 4.6 }
-  #    - Name: Brasserie du Haut-Lac - Vevey
-  #      Address: Avenue Reller 6, 1800 Vevey, Switzerland
-  #      Type: Brewery
-  #      Status: To try
-  #      Expectation: { Mine: ., Google: 4.6 }
-  #    - Name: La Cave à Bières
-  #      Address: Rue du Valentin 7, 1400 Yverdon-les-Bains, Switzerland
-  #      Type: Bottle shop
-  #      Status: To try
-  #      Expectation: { Mine: 9, Google: 4.9 }
-
-  #   Bern:
-  #    - Name: On Tap Craftgallery
-  #      Address: Rathausgasse 53, 3011 Bern, Switzerland
-  #      Type: Beer Bar
-  #      Status: To try
-  #      Expectation: { Mine: 9, Google: 4.8 }
-  #    - Name: CraftGallery
-  #      Address: Marktgasse 38, 3011 Bern, Switzerland
-  #      Type: Beer bar and bottle shop
-  #      Status: To try
-  #      Expectation: { Mine: 8, Google: 4.7 }
-  #    - Name: Au Trappiste
-  #      Address: Rathausgasse 68, 3011 Bern, Switzerland
-  #      Type: Beer Bar
-  #      Status: To try
-  #      Expectation: { Mine: 8, Google: 4.6 }
-  #    - Name: Barbière
-  #      Address: Breitenrainpl. 40, 3014 Bern, Switzerland
-  #      Type: Beer Bar
-  #      Status: To try
-  #      Expectation: { Mine: 8, Google: 4.6 }
-  #    - Name: Drinks of the World
-  #      Address: Bahnhofpl. 10, 3011 Bern, Switzerland
-  #      Type: Bottle Shop
-  #      Status: To try
-  #      Expectation: { Mine: 8, Google: 4.7 }
-
-  #   Zurich:
-  #    - Name: The Barrel Café & Craft Bier Shop
-  #      Address: Postgasse 10, 3800 Interlaken, Switzerland
-  #      Type: Gastropub
-  #      Status: To try
-  #      Expectation: { Mine: 8., Google: 4.8 }
-  #    - Name: Haarige Kuh Brauerei
-  #      Address: Kammistrasse 11, 3800 Interlaken, Switzerland
-  #      Type: Brewey Taproom
-  #      Status: To try
-  #      Expectation: { Mine: 7, Google: 4.9 }
-  #    - Name: Dr. Brauwolf
-  #      Address: Räffelstrasse 26, 8045 Zürich, Switzerland
-  #      Type: Brewpub
-  #      Status: To try
-  #      Expectation: { Mine: 7, Google: 4.8 }
-  #    - Name: The International Beer Bar
-  #      Address: Luisenstrasse 7, 8005 Zürich, Switzerland
-  #      Type: Beer pub
-  #      Status: To try
-  #      Expectation: { Mine: 8, Google: 4.5 }
 
   Denmark:
 
-  #   København:
-  #    ##  Tried  ##
-  #    - Name: Ørsted Ølbar
-  #      Address: Nørre Farimagsgade 13, 1364 København K, Denmark
-  #      Type: Pub
-  #      Status: Tried
-  #      Score: { Draught: 8, Bottles: 10, Place: 9 }
-  #    - Name: Fermentoren
-  #      Address: Halmtorvet 29C, 1700 København V, Denmark
-  #      Type: Pub
-  #      Status: Tried
-  #      Score: { Draught: 9, Place: 7 }
-  #    - Name: Warpigs Brewpub
-  #      Address: Flæsketorvet 25, 1711 København V, Denmark
-  #      Type: Pub
-  #      Status: Tried
-  #      Score: { Draught: 9, Place: 6 }
+    København:
+     ##  Tried  ##
+     - Name: Ørsted Ølbar
+       Address: Nørre Farimagsgade 13, 1364 København K, Denmark
+       Type: Pub
+       Status: Tried
+       Score: { Draught: 8, Bottles: 10, Place: 9 }
+     - Name: Fermentoren
+       Address: Halmtorvet 29C, 1700 København V, Denmark
+       Type: Pub
+       Status: Tried
+       Score: { Draught: 9, Place: 7 }
+     - Name: Warpigs Brewpub
+       Address: Flæsketorvet 25, 1711 København V, Denmark
+       Type: Pub
+       Status: Tried
+       Score: { Draught: 9, Place: 6 }
 
-  #    ##  Still To try  ##
-  #    - Name: Mikkeller Bar
-  #      Address: Viktoriagade 8, 1655 København V, Denmark
-  #      Type: Pub
-  #      Status: To try
-  #      Expectation: { Mine: 7, Google: 4.5 }
-  #    - Name: Nørrebro Bryghus
-  #      Address: Ryesgade 3, 2200 København N, Denmark
-  #      Type: Pub
-  #      Status: To try
-  #      Expectation: { Mine: 7, Google: 4.1 }
+     ##  Still To try  ##
+     - Name: Mikkeller Bar
+       Address: Viktoriagade 8, 1655 København V, Denmark
+       Type: Pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.5 }
+     - Name: Nørrebro Bryghus
+       Address: Ryesgade 3, 2200 København N, Denmark
+       Type: Pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.1 }
 
   Sweden:
 
