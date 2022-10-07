@@ -9,13 +9,13 @@
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link id="favicon" rel="shortcut icon" type="image/png" href="favicon.png" />
 
-    <script type="text/javascript" src="js/jquery-3.6.1.min.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/popper.min-2.11.6.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/bootstrap.min-4.0.0.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/handlebars.min-v4.7.7.js"></script>
-    <script type="text/javascript" src="js/jquery-dateFormat.min.js"></script>
-    <script type="text/javascript" src="js/js-yaml.min-4.1.0.js"></script>
-    <script type="text/javascript" src="js/object_hash.min-3.0.0.js"></script>
+    <script type="text/javascript" src="js/libs/jquery-3.6.1.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/libs/popper.min-2.11.6.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/libs/bootstrap.min-4.0.0.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/libs/handlebars.min-v4.7.7.js"></script>
+    <script type="text/javascript" src="js/libs/jquery-dateFormat.min.js"></script>
+    <script type="text/javascript" src="js/libs/js-yaml.min-4.1.0.js"></script>
+    <script type="text/javascript" src="js/libs/object_hash.min-3.0.0.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
     <script type="text/javascript" src="js/map.js"></script>
     <script type="text/javascript" src="js/beer.js"></script>
@@ -51,33 +51,6 @@
             <li><a href="javascript:PlacesDB.toggleHeatmap()">Toggle Heatmap</a></li>
           </ul>
 
-          <!--
-          <h2>List of places (dummies)</h2>
-          <div id="placesList">
-            <div class="placeItem normal">
-              <h1>Moeder Lambic Fontain - 8.2</h1>
-              <p>
-                <strong>Address:</strong> Place Fontainas 8, 1000 Bruxelles, Belgium<br/>
-                <strong>Type:</strong> Belgian Bar
-              </p>
-            </div>
-            <div class="placeItem selected">
-              <h1>Ørsted Ølbar - 8.2</h1>
-              <p>
-                <strong>Address:</strong> Nørre Farimagsgade 13, 1364 København K, Denmark<br/>
-                <strong>Type:</strong> Pub
-              </p>
-            </div>
-            <div class="placeItem normal">
-              <h1>The Dove Freehouse and Kitchen - 8.2</h1>
-              <p>
-                <strong>Address:</strong> 24-28 Broadway Market, London E8 4QJ<br/>
-                <strong>Type:</strong> Belgian Bar
-              </p>
-            </div>
-          </div>
-          -->
-
           <div id="debug"></div>
         </div>
       </div>
@@ -101,16 +74,11 @@
           <span class="stars">{ "value": {{ avgScore }}, "minValue": {{ minAvgScore }}, "maxValue": {{ maxAvgScore }} }</span>
         </p>
         <p>
-          {{# if hasDetails }}<a href="{{ website }}" target="_blank">Website</a> -{{/ if }}
-          {{# if hasDetails }}<a href="{{ url }}" target="_blank">Open on Google</a> -{{/ if }}
+          {{# if url }}<a href="{{ url }}" target="_blank">Open on Google</a> -{{/ if }}
           <a href="{{ directionsUrl }}" target="_blank">Directions</a>
+          {{# if website }}- <a href="{{ website }}" target="_blank">Website</a>{{/ if }}
         </p>
-        </p>
-        <p>
-          <strong>Address:</strong> {{ address }}<br/>
-          <strong>Type:</strong> {{ type }}<br/>
-          <strong>Open now: </strong><span style="color: {{ openNowColour }}">{{ openNow }}</span>
-        </p>
+        <strong>Open now: </strong><span style="color: {{ openNowColour }}">{{ openNow }}</span><br/>
         <div style="height: 120px">
           {{# if imgUrl }}<img id="placeImage" src="{{ imgUrl }}" />{{/ if }}
           {{# if score }}
@@ -134,6 +102,14 @@
           </ul>
           {{/ if }}
         </div>
+        {{# if openingHours }}
+        <strong>Opening hours:</strong>
+        <ul>
+          {{# each openingHours }}
+          <li>{{ this }}</span></li>
+          {{/ each }}
+        </ul>
+        {{/ if }}
       </div>
     </script>
   </body>
