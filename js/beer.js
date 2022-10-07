@@ -718,6 +718,15 @@ class BeerPlace {
     // Group the colouring by Status
     var filter = x => x.status === this.status;
 
+    const website = this.google_details ? this.google_details.website : "";
+    const url = this.google_details ? this.google_details.url : ""
+    const openingHours =
+      this.google_details ?
+        this.google_details.opening_hours ?
+          this.google_details.opening_hours.weekday_text :
+          [] :
+        [];
+
     // Build and return template
     var data = {
       name:          this.raw_data.Name,
@@ -729,11 +738,11 @@ class BeerPlace {
       score:         this.raw_data.Score || "",
       expectation:   this.raw_data.Expectation || "",
       imgUrl:        this.google_location.photoUrl || "",
-      hasDetails:    'google_details' in this,
       openNow:       open_now,
       openNowColour: open_now_colour,
-      website:       this.google_details ? this.google_details.website : "",
-      url:           this.google_details ? this.google_details.url : "",
+      openingHours:  openingHours,
+      website:       website,
+      url:           url,
       directionsUrl: directions_url
     };
     console.log(data);

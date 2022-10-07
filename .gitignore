@@ -1,5 +1,7 @@
-Thumbs.db
+__pycache__
 .idea
 .history
 .vscode
+.metals
+Thumbs.db
 debug.log

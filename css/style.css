@@ -81,8 +81,16 @@ html, body {
 }
 
 /* InfoWindow */
+.placeInfo ul {
+  width:         250px;
+  padding-left:  20px;
+}
 #placeImage {
+  width:         150px;
+  max-height:    100px;
   float:         right;
+  margin-left:   8px;
+  margin-top:    8px;
 }
 span.stars, span.stars span {
   display:       block;
