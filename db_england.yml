@@ -706,6 +706,16 @@ Beer places:
        Score: { Bottles: 8, Place: 7 }
 
     Others:
+     - Name: The Ale House
+       Address: 24-26 Viaduct Rd, Chelmsford CM1 1TS
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 9, Place: 8 }
+     - Name: Radio City Social
+       Address: 35 Viaduct Rd, Chelmsford CM1 1TS
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 8, Place: 7 }
      - Name: Kipps' Alehouse
        Address: 11-15 The Old High St, Folkestone CT20 1RL
        Type: Beer Pub

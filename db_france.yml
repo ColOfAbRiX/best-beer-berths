@@ -187,6 +187,31 @@ Beer places:
        Score: { Draught: 7, Bottles: 9, Place: 8 }
 
      ##  Stil To try  ##
+     - Name: The Hopscotch Pub & Brewery
+       Address: 3 Rue Baour Lormian, 31000 Toulouse
+       Type: Beer & Whiskey
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
+     - Name: L'Ancienne Belgique
+       Address: 16 Rue de la Trinité, 31000 Toulouse
+       Type: Belgian Bar
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.1 }
+     - Name: Over a beer
+       Address: 259 Avenue de Muret, 31300 Toulouse, France
+       Type: Beer Bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: Bar L'Autruche - Brasserie Du Bec
+       Address: 1 Rue André Mercadier, 31000 Toulouse
+       Type: Beer bar
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: Breughel l'ancien
+       Address: 30 Rue de la Chaîne, 31000 Toulouse
+       Type: Beer hall
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.5 }
      - Name: ROOSTER & BEER
        Address: 100 Rue Riquet, 31000 Toulouse, France
        Type: Beer Bar
@@ -196,17 +221,12 @@ Beer places:
        Address: 59 Allée du Rouergue, 31770 Colomiers, France
        Type: Beer Bar
        Status: To try
-       Expectation: { Mine: 8, Google: 4.4 }
+       Expectation: { Mine: 7, Google: 4.4 }
      - Name: Beers And Bretzels
        Address: Route d'Albi, 31180 Rouffiac-Tolosan, France
        Type: Beer hall and food
        Status: To try
        Expectation: { Mine: 8, Google: 4.3 }
-     - Name: Over a beer
-       Address: 259 Avenue de Muret, 31300 Toulouse, France
-       Type: Beer Bar
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.5 }
 
     Annecy:
      ##  Stil To try  ##
