@@ -1,7 +1,7 @@
 ---
 #
-# Copyright 2019-2022, Fabrizio Colonna, All rights reserved.
-# Last updated: 26/05/2022
+# Copyright 2019-2023, Fabrizio Colonna, All rights reserved.
+# Last updated: 03/01/2023
 #
 
 Beer places:
@@ -170,33 +170,33 @@ Beer places:
 
     Toulouse:
      ##  Tried  ##
+     - Name: L'Ancienne Belgique
+       Address: 16 Rue de la Trinité, 31000 Toulouse
+       Type: Belgian Bar
+       Status: Tried
+       Score: { Draught: 8, Bottles: 8, Place: 9 }
      - Name: Beer Rock Café La Tireuse
        Address: 24 Rue Pargaminières, 31000 Toulouse, France
        Type: Beer Bar
        Status: Tried
        Score: { Draught: 8, Bottle: 7, Place: 9 }
-     - Name: Le Bièrographe
-       Address: 12 Rue des Paradoux, 31000 Toulouse, France
-       Type: Beer Bar
-       Status: Tried
-       Score: { Draught: 8, Place: 7 }
      - Name: La Houblonnière
        Address: 37 Rue de la République, 31300 Toulouse, France
        Type: Beer Bar
        Status: Tried
        Score: { Draught: 7, Bottles: 9, Place: 8 }
-
-     ##  Stil To try  ##
+     - Name: Le Bièrographe
+       Address: 12 Rue des Paradoux, 31000 Toulouse, France
+       Type: Beer Bar
+       Status: Tried
+       Score: { Draught: 8, Place: 7 }
      - Name: The Hopscotch Pub & Brewery
        Address: 3 Rue Baour Lormian, 31000 Toulouse
        Type: Beer & Whiskey
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.7 }
-     - Name: L'Ancienne Belgique
-       Address: 16 Rue de la Trinité, 31000 Toulouse
-       Type: Belgian Bar
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.1 }
+       Status: Tried
+       Score: { Draught: 7, Bottles: 7, Place: 8 }
+
+     ##  Stil To try  ##
      - Name: Over a beer
        Address: 259 Avenue de Muret, 31300 Toulouse, France
        Type: Beer Bar
@@ -229,14 +229,16 @@ Beer places:
        Expectation: { Mine: 8, Google: 4.3 }
 
     Annecy:
+     ##  Tried  ##
+     - Name: Beer O'clock
+       Address: 18 Fbg Sainte-Claire, 74000 Annecy, France
+       Type: Pub
+       Status: Tried
+       Score: { Draught: 8, Place: 8 }
+
      ##  Stil To try  ##
      - Name: Le Ouistiti à Roulettes
        Address: 31 rue sommeiller, 74000 Annecy, France
        Type: Bar
        Status: To try
        Expectation: { Mine: 7, Google: 4.9 }
-     - Name: Beer O'clock
-       Address: 18 Fbg Sainte-Claire, 74000 Annecy, France
-       Type: Pub
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.6 }
