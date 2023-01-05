@@ -1,7 +1,7 @@
 ---
 #
 # Copyright 2019-2023, Fabrizio Colonna, All rights reserved.
-# Last updated: 03/01/2023
+# Last updated: 05/01/2023
 #
 
 Beer places:
@@ -95,21 +95,6 @@ Beer places:
        Type: Belgian pub
        Status: Tried
        Score: { Draught: 9, Bottles: 8, Food: 8, Place: 9 }
-     - Name: Kaffee Berlin
-       Address: 4 Rue Tupin, 69002 Lyon, France
-       Type: German bar
-       Status: Tried
-       Score: { Draught: 7, Bottles: 8, Place: 8 }
-     - Name: Nomade MicroPub
-       Address: 250 Rue André Philip, 69003 Lyon, France
-       Type: Brewery taproom
-       Status: Tried
-       Score: { Draught: 7, Place: 7 }
-     - Name: Orgao Beer House
-       Address: 145 Rue Sébastien Gryphe, 69007 Lyon, France
-       Type: Bar
-       Status: Tried
-       Score: { Draught: 8, Place: 7 }
      - Name: Le Bieristan
        Address: 14 Rue Paul Lafargue, 69100 Villeurbanne, France
        Type: Bar
@@ -125,6 +110,26 @@ Beer places:
        Type: Bar
        Status: Tried
        Score: { Draught: 9, Bottles: 9, Place: 7 }
+     - Name: 405 Lyon
+       Address: 9 rue Constantine, 69001 Lyon, France
+       Type: Bar
+       Status: Tried
+       Expectation: { Draught: 8, Bottles: 7, Place: 8 }
+     - Name: Orgao Beer House
+       Address: 145 Rue Sébastien Gryphe, 69007 Lyon, France
+       Type: Bar
+       Status: Tried
+       Score: { Draught: 8, Place: 7 }
+     - Name: Kaffee Berlin
+       Address: 4 Rue Tupin, 69002 Lyon, France
+       Type: German bar
+       Status: Tried
+       Score: { Draught: 7, Bottles: 8, Place: 8 }
+     - Name: Nomade MicroPub
+       Address: 250 Rue André Philip, 69003 Lyon, France
+       Type: Brewery taproom
+       Status: Tried
+       Score: { Draught: 7, Place: 7 }
      - Name: Barabaar Brotteaux
        Address: 4 Bd des Brotteaux, 69006 Lyon
        Type: Beer Hall
@@ -157,16 +162,21 @@ Beer places:
        Type: Bar
        Status: To try
        Expectation: { Mine: 8, Google: 4.7 }
-     - Name: 'Tom & Co : Brasseurs de Lyon'
-       Address: 5 Rue des Capucins, 69001 Lyon, France
-       Type: Brewery taproom
+     - Name: Hopper
+       Address: 43 cours Gambetta, 69003 Lyon, France
+       Type: Bar
        Status: To try
-       Expectation: { Mine: 8, Google: 4.8 }
-     - Name: 405 Lyon
-       Address: 9 rue Constantine, 69001 Lyon, France
+       Expectation: { Mine: 8, Google: 4.4 }
+     - Name: Manneken-pis
+       Address: 7 rue Sainte Catherine, 69001 Lyon, France
        Type: Bar
        Status: To try
        Expectation: { Mine: 7, Google: 4.7 }
+     - Name: Dr Yeast
+       Address: 6 rue de Cuire, 69004 Lyon, France
+       Type: Bar
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.8 }
 
     Toulouse:
      ##  Tried  ##
