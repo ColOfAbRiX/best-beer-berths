@@ -1,7 +1,7 @@
 ---
 #
-# Copyright 2019-2023, Fabrizio Colonna, All rights reserved.
-# Last updated: 05/01/2023
+# Copyright 2019-2024, Fabrizio Colonna, All rights reserved.
+# Last updated: 24/01/2024
 #
 
 Beer places:
@@ -610,12 +610,57 @@ Beer places:
        Address: 10 Peas Hill, Cambridge CB2 3PN
        Type: Beer Pub
        Status: Tried
-       Score: { Draught: 8, Place: 7 }
+       Score: { Draught: 9, Place: 8 }
      - Name: The Cambridge Brew House
        Address: 1 King St, Cambridge CB1 1LH
        Type: Beer Pub
        Status: Tried
        Score: { Draught: 7, Food: 8, Place: 9 }
+     - Name: The Devonshire Arms
+       Address: 1 Devonshire Rd, Cambridge CB1 2BH
+       Type: Pub
+       Status: Tried
+       Score: { Draught: 7, Place: 8 }
+     - Name: BrewBoard
+       Address: B3 Button End, Harston, Cambridge CB22 7GX
+       Type: Taproom
+       Status: To Try
+       Expectation: { Mine: 8, Google: 5.0 }
+     - Name: Pastore Brewing and Blending
+       Address: Unit 2, Convent Dr, Waterbeach, Cambridge CB25 9QT
+       Type: Taproom
+       Status: To Try
+       Expectation: { Mine: 8, Google: 5.0 }
+     - Name: Thirsty Cambridge
+       Address: 46 Chesterton Rd, Cambridge CB4 1EN
+       Type: Pub
+       Status: To Try
+       Expectation: { Mine: 9, Google: 4.7 }
+     - Name: Burwell Brewery
+       Address: 17 The Paddocks, Burwell, CB2 50HQ
+       Type: Taproom
+       Status: To Try
+       Expectation: { Mine: 7, Google: 5.0 }
+     - Name: The Haymakers
+       Address: 54 High St, Chesterton, Cambridge CB4 1NG
+       Type: Pub
+       Status: To Try
+       Expectation: { Mine: 8, Google: 4.5 }
+     - Name: Wylde Sky Brewing Ltd.
+       Address: Unit 8A The Grip Industrial Est, Hadstock Rd, Linton, Cambridge CB21 4XN
+       Type: Taproom
+       Status: To Try
+       Expectation: { Mine: 8, Google: 4.9 }
+     - Name: The Bank Micropub
+       Address: 9 High St, Willingham, Cambridge CB24 5ES
+       Type: Beer
+       Status: To Try
+       Expectation: { Mine: 8, Google: 4.8 }
+     - Name:
+       Address:
+       Type:
+       Status: To Try
+       Expectation: { Mine: , Google: 4. }
 
     Plymouth:
      - Name: The Bread and Roses Free House
@@ -1131,6 +1176,43 @@ Beer places:
        Status: To try
        Expectation: { Mine: 7, Google: 4.0 }
 
+    Firenze:
+     - Name: Alibi Craft Beer & Kitchen
+       Address: Via Faenza, 21/R, 50123 Firenze FI, Italy
+       Type: Beer pub
+       Status: Tried
+       Score: { Draught: 9, Place: 8 }
+     - Name: Birreria Art 17
+       Address: Borgo la Croce, 64 r, 50121 Firenze FI, Italy
+       Type: Beer Hall
+       Status: Tried
+       Score: { Draught: 7, Place: 7 }
+     - Name: Archea Brewery
+       Address: Via dei Serragli, 44R, 50124 Firenze FI, Italy
+       Type: Beer pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.7 }
+     - Name: King Grizzly
+       Address: Via del Canto alla Quarconia, 7, 50122 Firenze FI, Italy
+       Type: Beer pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Fermento Food & Beer
+       Address: Via del Canto dei Nelli, 38, 50123 Firenze FI, Italy
+       Type: Restaurant
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.4 }
+     - Name: Birreria Fiorentina
+       Address: Via Antonio Pacinotti, 1/r, 50131 Firenze FI, Italy
+       Type: Beer Hall
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.6 }
+     - Name: Beer Spot
+       Address: Via Sant'Egidio, 5/ 7 rosso, 50121 Firenze FI, Italy
+       Type: Beer pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
+
     Altro:
      - Name: Bir & Fud
        Address: Via Benedetta, 23, 00153 Roma RM, Italy
@@ -1142,6 +1224,11 @@ Beer places:
        Type: Beer Bar
        Status: To try
        Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Il Molo
+       Address: RJMC+MV Ferrara, Province of Ferrara, Italy
+       Type: Beer pub
+       Status: Tried
+       Score: { Draught: 8, Place: 8 }
 
   Belgium:
 
