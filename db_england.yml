@@ -1,7 +1,7 @@
 ---
 #
-# Copyright 2019-2023, Fabrizio Colonna, All rights reserved.
-# Last updated: 30/05/2022
+# Copyright 2019-2024, Fabrizio Colonna, All rights reserved.
+# Last updated: 17/05/2024
 #
 
 Beer places:
@@ -610,12 +610,87 @@ Beer places:
        Address: 10 Peas Hill, Cambridge CB2 3PN
        Type: Beer Pub
        Status: Tried
-       Score: { Draught: 8, Place: 7 }
+       Score: { Draught: 9, Place: 8 }
      - Name: The Cambridge Brew House
        Address: 1 King St, Cambridge CB1 1LH
        Type: Beer Pub
        Status: Tried
        Score: { Draught: 7, Food: 8, Place: 9 }
+     - Name: The Devonshire Arms
+       Address: 1 Devonshire Rd, Cambridge CB1 2BH
+       Type: Pub
+       Status: Tried
+       Score: { Draught: 7, Place: 8 }
+     - Name: Pastore Brewing and Blending
+       Address: Unit 2, Convent Dr, Waterbeach, Cambridge CB25 9QT
+       Type: Taproom
+       Status: Tried
+       Score: { Draught: 7, Place: 8 }
+     - Name: The Blue Moon
+       Address: 2 Norfolk St, Cambridge CB1 2LF
+       Type: Pub
+       Status: Tried
+       Score: { Draught: 8, Place: 7 }
+     - Name: The Mill
+       Address: 14 Mill Ln, Cambridge CB2 1RX
+       Type: Pub
+       Status: Tried
+       Score: { Draught: 7, Place: 8 }
+     - Name: Thirsty Cambridge
+       Address: 46 Chesterton Rd, Cambridge CB4 1EN
+       Type: Pub
+       Status: To Try
+       Expectation: { Mine: 9, Google: 4.7 }
+     - Name: The Maypole
+       Address: 20A Portugal Pl, Cambridge CB5 8AF
+       Type: Pub
+       Status: To Try
+       Expectation: { Mine: 8, Google: 4.4 }
+     - Name: Papworth Brewery Limited
+       Address: 32, Earith Business Park, Meadow Drove, Earith, Huntingdon PE28 3QF
+       Type: Pub and Taproom
+       Status: To Try
+       Expectation: { Mine: 9, Google: 4.6 }
+     - Name: The Bank Micropub
+       Address: 9 High St, Willingham, Cambridge CB24 5ES
+       Type: Beer
+       Status: To Try
+       Expectation: { Mine: 9, Google: 4.8 }
+     - Name: BrewBoard
+       Address: B3 Button End, Harston, Cambridge CB22 7GX
+       Type: Taproom
+       Status: To Try
+       Expectation: { Mine: 8, Google: 5.0 }
+     - Name: The Hopbine Inn
+       Address: Petteridge Ln, Matfield, Tonbridge TN12 7NE
+       Type: Taproom
+       Status: To Try
+       Expectation: { Mine: 8, Google: 5.0 }
+     - Name: Wylde Sky Brewing Ltd.
+       Address: Unit 8A The Grip Industrial Est, Hadstock Rd, Linton, Cambridge CB21 4XN
+       Type: Taproom
+       Status: To Try
+       Expectation: { Mine: 8, Google: 4.9 }
+     - Name: Lord Conrad's Brewery & Tap
+       Address: Unit 21, Dry Drayton Industrial Estate, Scotland Rd, Dry Drayton CB23 8AT
+       Type: Taproom
+       Status: To Try
+       Expectation: { Mine: 8, Google: 4.8 }
+     - Name: Burwell Brewery
+       Address: 17 The Paddocks, Burwell, CB2 50HQ
+       Type: Taproom
+       Status: To Try
+       Expectation: { Mine: 7, Google: 5.0 }
+     - Name: The Haymakers
+       Address: 54 High St, Chesterton, Cambridge CB4 1NG
+       Type: Pub
+       Status: To Try
+       Expectation: { Mine: 7, Google: 4.5 }
+     - Name: Wheatsheaf Brewery
+       Address: 17, Halcyon Court, St Margarets Way, Stukeley Meadows Industrial Estate, Huntingdon PE29 6DG
+       Type: Taproom
+       Status: To Try
+       Expectation: { Mine: 7, Google: 4.9 }
 
     Plymouth:
      - Name: The Bread and Roses Free House
