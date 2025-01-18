@@ -1,7 +1,7 @@
 /*
 MIT License
 
-Copyright (c) 2018-2023 Fabrizio Colonna <colofabrix@tin.it>
+Copyright (c) 2018-2025 Fabrizio Colonna <colofabrix@tin.it>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -268,25 +268,6 @@ function rangeRelative( min, value, max ) {
   }
   var value = Math.max( min, Math.min( max, value ) );
   return (value - min) / (max - min);
-}
-
-
-/**
- * Returns true if we are on a mobile device
- */
-function isMobile() {
-  try { document.createEvent("TouchEvent"); } catch(e) { return false; }
-  return true;
-}
-
-
-/**
- * Create a Google Pin URL
- */
-function buildPinUrl( text, fill_colour, scale_factor, font_size ) {
-  return `http${isSSL() ? 's' : ''}://` +
-    `chart.apis.google.com/chart?chst=d_map_pin_letter&` +
-    `chld=%E2%80%A2|${fill_colour}`;
 }
 
 

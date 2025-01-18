@@ -1,7 +1,7 @@
 ---
 #
-# Copyright 2019-2024, Fabrizio Colonna, All rights reserved.
-# Last updated: 24/01/2024
+# Copyright 2019-2025, Fabrizio Colonna, All rights reserved.
+# Last updated: 18/01/2025
 #
 
 Beer places:
@@ -2268,3 +2268,74 @@ Beer places:
        Type: Pub
        Status: To try
        Expectation: { Mine: 7, Google: 4.4 }
+
+  Netherlands:
+
+    Amsterdam:
+     ##  Still To try  ##
+     - Name: Proeflokaal Arendsnest
+       Address: Herengracht 90, 1015 BS Amsterdam, Netherlands
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.7 }
+     - Name: Two Chefs Food Bar
+       Address: Hugo de Grootplein 11, 1052 KV Amsterdam, Netherlands
+       Type: Beer Restaurant
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.5 }
+     - Name: BeerTemple
+       Address: Nieuwezijds Voorburgwal 250, 1012 RR Amsterdam, Netherlands
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Brouwerij 't IJ
+       Address: Funenkade 7, 1018 AL Amsterdam, Netherlands
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.6 }
+     - Name: De Bekeerde Suster
+       Address: Kloveniersburgwal 6, 1012 CT Amsterdam, Netherlands
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Beer Tasting Room In The Wildeman
+       Address: Kolksteeg 3, 1012 PT Amsterdam, Netherlands
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
+
+     - Name: Brouwerij Homeland
+       Address: Marineterrein, Gebouw 027o Kattenburgerstraat 5-27o, 1018 JA Amsterdam, Netherlands
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.4 }
+     - Name: Brouwerij Kleiburg
+       Address: Brouwerij Kleiburg
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.4 }
+     - Name: Delirium Cafe Amsterdam
+       Address: Piet Heinkade 4, 1019 BR Amsterdam, Netherlands
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 3.9 }
+     - Name: Brouwerij De Prael
+       Address: Oudezijds Armsteeg 26, 1012 GP Amsterdam, Netherlands
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.4 }
+     - Name: Poesiat & Kater
+       Address: Polderweg 648, 1093 KP Amsterdam, Netherlands
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.2 }
+     - Name: Walhalla Brewery & Taproom
+       Address: Spijkerkade 10, 1021 JS Amsterdam, Netherlands
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.8 }
+     - Name: Breugem
+       Address: Brewery Taproom
+       Type: Nieuwe Hemweg 2, 1013 BG Amsterdam, Netherlands
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.8 }

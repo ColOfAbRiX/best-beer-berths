@@ -1,7 +1,7 @@
 /*
 MIT License
 
-Copyright (c) 2018-2023 Fabrizio Colonna <colofabrix@tin.it>
+Copyright (c) 2018-2025 Fabrizio Colonna <colofabrix@tin.it>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -41,20 +41,21 @@ var GoogleMap = (function(){
    *   https://github.com/Concept211/Google-Maps-Marker
    *   https://kml4earth.appspot.com/icons.html
    */
-  var init = function() {
+  var init = async function() {
     // Create global objects
-    map = new google.maps.Map(
+    map = await new google.maps.Map(
       $( '#map' )[0], {
         maxZoom: 18,
         minZoom: 2,
         zoom: 14,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        gestureHandling: 'greedy'
+        gestureHandling: 'greedy',
+        mapId: "4504f8b37365c3d0",
       }
     );
-    infoWindow = new google.maps.InfoWindow({ maxWidth: 300 });
-    placesService = new google.maps.places.PlacesService( map );
-    heatmap = new google.maps.visualization.HeatmapLayer({
+    infoWindow = await new google.maps.InfoWindow({ maxWidth: 300 });
+    placesService = await new google.maps.places.PlacesService( map );
+    heatmap = await new google.maps.visualization.HeatmapLayer({
       radius: 100,
       opacity: 0.5,
       maxIntensity: 15,
@@ -66,7 +67,6 @@ var GoogleMap = (function(){
     }
 
     // Add controls to the map
-    if( !isMobile() ) { _addLegend(); }
     _addCentreButton();
 
     // Centre the map on the current position
@@ -104,7 +104,7 @@ var GoogleMap = (function(){
   /**
    * Updates the current position on the map
    */
-  var _updatePosition = function() {
+  var _updatePosition = async function() {
     navigator.geolocation.getCurrentPosition(
       ( position ) => {
         var position = {
@@ -125,19 +125,18 @@ var GoogleMap = (function(){
   /**
    * Set the home position on the Map and optionally centre on it
    */
-  var _setHome = function( homePosition, center = true, init = false ) {
+  var _setHome = async function( homePosition, center = true, init = false ) {
+    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
     lastPosition = homePosition;
-
     if( typeof(homeMarker) == 'undefined' || init ) {
-      homeMarker = new google.maps.Marker( {
-        icon: 'img/marker_red.png',
-        clickable: false,
+      homeMarker = new AdvancedMarkerElement( {
         map: map,
-        position: homePosition
+        position: homePosition,
+        title: 'test'
       } );
     }
     else {
-      homeMarker.setPosition( homePosition );
+      homeMarker.position = homePosition;
     }
 
     if( init || center ) {
@@ -146,37 +145,9 @@ var GoogleMap = (function(){
   };
 
   /**
-   * Adds the legend to the map and configures it
-   */
-  var _addLegend = function() {
-    // Create a range of URLs to the coloured pins to display in the legend
-    var pins = ['tried', 'to try'].map( cat =>
-      [0.0, 0.5, 1.0].map( x =>
-        buildPinUrl("%E2%80%A2", getGradientColour(PINS[cat][0], PINS[cat][1], x), 0.7, 8)
-      ).map( url =>
-        $( '<img />' ).attr( "src", url ).prop( 'outerHTML' )
-      )
-    );
-
-    // Add the pin array to the legend
-    [{i: 0, name: '#legend-tried'}, {i: 1, name: '#legend-totry'}].map( x => {
-        $( x.name ).prepend( pins[x.i].join( '&hellip;' ) )
-      }
-    );
-
-    // Add legend to the map
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(
-      $( '#legend' )[0]
-    );
-
-    // Show the legend last
-    $( '#legend' ).show();
-  };
-
-  /**
    * Adds the button to centre the map
    */
-  var _addCentreButton = function() {
+  var _addCentreButton = async function() {
     $('body').append('<div id="center-btn" class="map-ctrl-box" role="button"><div id="ctrl-center-text">Centre map</div></div>');
 
     var btn = $( '#center-btn' )[0];
@@ -192,7 +163,7 @@ var GoogleMap = (function(){
   /**
    * Manage the visibility of all the markers in the viewport
    */
-  var _markersVisibility = function() {
+  var _markersVisibility = async function() {
     var bounds = map.getBounds();
     markers.forEach( marker =>
       _displayMarker(marker, bounds)
@@ -202,42 +173,42 @@ var GoogleMap = (function(){
   /**
    * Display a marker if it's in the visible region of the map
    */
-  var _displayMarker = function( marker, bounds ) {
+  var _displayMarker = async function( marker, bounds ) {
     if( bounds == undefined ) {
       return;
     }
     if( bounds.contains(marker.position) ) {
-      if( marker.getMap() != map ) {
-        marker.setMap( map );
+      if( marker.map != map ) {
+        marker.map = map;
       }
     }
     else {
-      marker.setMap( null );
+      marker.map = null;
     }
   }
 
   /**
    * Displays a heatmap with the places on the map
    */
-  var toggleHeatmap = function( points = [], display = null ) {
-    var heatmapShowing = heatmap && heatmap.getMap() == map
+  var toggleHeatmap = async function( points = [], display = null ) {
+    var heatmapShowing = heatmap && heatmap.map == map
 
     if( heatmapShowing && display == null || display == false ) {
       Logger.info( "Hiding heatmap" );
-      heatmap.setMap( null );
+      heatmap.map = null;
     }
     if( !heatmapShowing && display == null || display == true ) {
       Logger.info( "Displaying heatmap" );
       Logger.trace( points );
       heatmap.setData( points );
-      heatmap.setMap( map );
+      heatmap.map = map;
     }
   };
 
   /**
    * Adds a Beer Place as a marker on the map
    */
-  var addMarker = function( place, min_avg_score, max_avg_score ) {
+  var addMarker = async function( place, min_avg_score, max_avg_score ) {
     // Percentage of the colour based on the relative position of the score
     var value_percent = rangeRelative( min_avg_score, place.avg_score, max_avg_score );
 
@@ -248,20 +219,23 @@ var GoogleMap = (function(){
       value_percent
     );
 
-    // Build the pin
-    var pin_image = new google.maps.MarkerImage(
-      buildPinUrl(place.avg_score.toFixed(2), marker_colour, 1.0, 9),
-      new google.maps.Size( 21, 34 ),
-      new google.maps.Point( 0, 0 ),
-      new google.maps.Point( 10, 34 )
-    );
+    const { AdvancedMarkerElement, PinElement }= await google.maps.importLibrary("marker");
 
-    // Create and add the marker
-    var marker = new google.maps.Marker({
+    const pin = new PinElement({
+      glyphColor: "white",
+      background: "#" + marker_colour,
+    });
+
+    if (typeof place.google_location == "undefined") {
+      console.warn(`Beer place '${place.raw_data.Name} - ${place.raw_data.Address}' was not found by google`);
+      return;
+    };
+
+    const marker = new AdvancedMarkerElement({
+      map: map,
       title: `${place.raw_data.Name} - ${place.avg_score.toFixed(2)}/10`,
-      icon: pin_image,
       position: place.google_location.geometry.location,
-      infoWindow: infoWindow
+      content: pin.element,
     });
 
     // Add marker to the local list
