@@ -251,6 +251,8 @@ var GoogleMap = (function(){
       $( function() {
         $( 'span.stars' ).stars();
       } );
+
+      // Update the place info
       Logger.info( place );
     });
   };

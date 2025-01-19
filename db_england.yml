@@ -1,7 +1,7 @@
 ---
 #
 # Copyright 2019-2025, Fabrizio Colonna, All rights reserved.
-# Last updated: 17/05/2024
+# Last updated: 19/01/2025
 #
 
 Beer places:
@@ -230,11 +230,12 @@ Beer places:
        Type: Taproom
        Status: Tried
        Score: { Draught: 7, Place: 9 }
-     - Name: Affinity Brewing Company
-       Address: Railway Arch 7, Almond Road, London SE16 3LR
-       Type: Brewery
-       Status: Tried
-       Score: { Draught: 7, Place: 7 }
+   # Permanently closed
+   # - Name: Affinity Brewing Company
+   #   Address: Railway Arch 7, Almond Road, London SE16 3LR
+   #   Type: Brewery
+   #   Status: Tried
+   #   Score: { Draught: 7, Place: 7 }
      - Name: Temple Brew House
        Address: 46 Essex St, London WC2R 3JF
        Type: Brewpub
@@ -307,11 +308,12 @@ Beer places:
        Type: Beer Pub
        Status: To try
        Expectation: { Mine: 8, Google: 4.8 }
-     - Name: Old Street Brewery & Taproom
-       Address: Arch 11 Gales Gardens, London E2 0EJ
-       Type: Beer Taproom
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.7 }
+  # Permanently closed
+  #  - Name: Old Street Brewery & Taproom
+  #    Address: Arch 11 Gales Gardens, London E2 0EJ
+  #    Type: Beer Taproom
+  #    Status: To try
+  #    Expectation: { Mine: 7, Google: 4.7 }
      - Name: Kings Arms
        Address: 11A Buckfast St, Bethnal Green, London E2 6EY
        Type: English Pub
@@ -342,6 +344,16 @@ Beer places:
        Type: Brewery Taproom
        Status: To try
        Expectation: { Mine: 8, Google: 4.6 }
+     - Name: Hackney Church Brew Co.
+       Address: 17 Bohemia Pl, London E8 1DU
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.4 }
+     - Name: Hackney Brewery & High Hill Taproom
+       Address: Unit 10, Lockwood Way, London E17 5RB
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.7 }
      - Name: craftndraft
        Address: 289 Hackney Rd, London E2 8NA
        Type: Beer Bar
@@ -542,11 +554,6 @@ Beer places:
        Type: Pub
        Status: To try
        Expectation: { Mine: 7, Google: 4.1 }
-     - Name: Well and Bucket
-       Address: 226 Shoreditch High St, London E1 6PJ
-       Type: Pub
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.2 }
      - Name: The White Hart Brew Pub
        Address: 1 Mile End Rd, London E1 4TP
        Type: English Pub
@@ -630,22 +637,22 @@ Beer places:
        Address: 2 Norfolk St, Cambridge CB1 2LF
        Type: Pub
        Status: Tried
-       Score: { Draught: 8, Place: 7 }
+       Score: { Draught: 8, Place: 8 }
      - Name: The Mill
        Address: 14 Mill Ln, Cambridge CB2 1RX
        Type: Pub
        Status: Tried
+       Score: { Draught: 7, Place: 8 }
+     - Name: The Maypole
+       Address: 20A Portugal Pl, Cambridge CB5 8AF
+       Type: Pub
+       Status: To Try
        Score: { Draught: 7, Place: 8 }
      - Name: Thirsty Cambridge
        Address: 46 Chesterton Rd, Cambridge CB4 1EN
        Type: Pub
        Status: To Try
        Expectation: { Mine: 9, Google: 4.7 }
-     - Name: The Maypole
-       Address: 20A Portugal Pl, Cambridge CB5 8AF
-       Type: Pub
-       Status: To Try
-       Expectation: { Mine: 8, Google: 4.4 }
      - Name: Papworth Brewery Limited
        Address: 32, Earith Business Park, Meadow Drove, Earith, Huntingdon PE28 3QF
        Type: Pub and Taproom
@@ -775,10 +782,10 @@ Beer places:
        Status: Tried
        Score: { Draught: 8, Place: 7 }
      - Name: Two Brews
-       Address: 37 Crouch St, Colchester CO3 3EN
+       Address: 11 Church St, Colchester CO1 1NF
        Type: Bottle Shop
        Status: Tried
-       Score: { Bottles: 8, Place: 7 }
+       Score: { Draft: 8, Bottles: 9, Place: 10 }
 
     Others:
      - Name: The Ale House
