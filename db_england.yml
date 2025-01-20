@@ -296,6 +296,11 @@ Beer places:
        Type: Beer Taproom
        Status: Tried
        Score: { Draught: 8, Place: 8, Food: 8 }
+     - Name: The Five Points Brewing Company
+       Address: 3 Institute Pl, London E8 1JE, UK
+       Type: Brewery
+       Status: Tried
+       Score: { Draught: 7, Place: 8, Food: 8 }
 
      ##  Still to try  ##
      - Name: Southampton Arms
@@ -339,11 +344,6 @@ Beer places:
        Type: Brewery Taproom
        Status: To try
        Expectation: { Mine: 8, Google: 4.5 }
-     - Name: Hackney Brewery Ltd
-       Address: 358 Laburnum St, London E2 8BB
-       Type: Brewery Taproom
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.6 }
      - Name: Hackney Church Brew Co.
        Address: 17 Bohemia Pl, London E8 1DU
        Type: Brewery Taproom
@@ -474,11 +474,6 @@ Beer places:
        Type: English Pub
        Status: To try
        Expectation: { Mine: 9, Google: 4.3 }
-     - Name: The Five Points Brewing Company
-       Address: 3 Institute Pl, London E8 1JE, UK
-       Type: Brewery
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.9 }
      - Name: London Beer Lab
        Address: Arch 41 Railway Arches, Nursery Rd, Brixton, London SW9 8BP
        Type: Beer pub and shop
@@ -608,6 +603,11 @@ Beer places:
        Type: Belgian Beer Pub
        Status: Tried
        Score: { Draught: 8, Bottles: 9, Place: 10 }
+     - Name: The Elm Tree
+       Address: 16A Orchard St, Cambridge CB1 1JT
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 8, Bottles: 8, Place: 10 }
      - Name: The Royal Standard Pub
        Address: 292 Mill Rd, Cambridge CB1 3NL
        Type: Belgian Beer Pub
@@ -628,6 +628,11 @@ Beer places:
        Type: Pub
        Status: Tried
        Score: { Draught: 7, Place: 8 }
+     - Name: The Geldard
+       Address: 1 Ainsworth St, Cambridge CB1 2PF
+       Type: Pub
+       Status: Tried
+       Score: { Draught: 7, Place: 10 }
      - Name: Pastore Brewing and Blending
        Address: Unit 2, Convent Dr, Waterbeach, Cambridge CB25 9QT
        Type: Taproom
@@ -646,7 +651,7 @@ Beer places:
      - Name: The Maypole
        Address: 20A Portugal Pl, Cambridge CB5 8AF
        Type: Pub
-       Status: To Try
+       Status: Tried
        Score: { Draught: 7, Place: 8 }
      - Name: Thirsty Cambridge
        Address: 46 Chesterton Rd, Cambridge CB4 1EN

@@ -279,12 +279,12 @@ Beer places:
        Address: Piazza S. Francesco, 11a, 40122 Bologna BO
        Type: Beer Bar
        Status: Tried
-       Expectation: { Draught: 7, Place: 8 }
+       Score: { Draught: 7, Place: 8 }
      - Name: Zapap Pratello
        Address: Via del Pratello, 31, 40122 Bologna BO
        Type: Beer Bar
        Status: Tried
-       Expectation: { Draught: 7, Place: 7, Food: 8 }
+       Score: { Draught: 7, Place: 7, Food: 8 }
 
      ##  Stil To try  ##
      - Name: Beershop the Pretext

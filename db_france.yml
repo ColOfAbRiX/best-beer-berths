@@ -144,7 +144,7 @@ Beer places:
        Address: 9 rue Constantine, 69001 Lyon, France
        Type: Bar
        Status: Tried
-       Expectation: { Draught: 8, Bottles: 7, Place: 8 }
+       Score: { Draught: 8, Bottles: 7, Place: 8 }
 
      ##  Stil To try  ##
      - Name: My Beers Lyon Confluence

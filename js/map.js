@@ -221,9 +221,17 @@ var GoogleMap = (function(){
 
     const { AdvancedMarkerElement, PinElement }= await google.maps.importLibrary("marker");
 
-    const pin = new PinElement({
+    if (place.raw_data.Status.toLowerCase() == "tried") {
+      var borderColor =  "#CC0000";
+    }
+    else {
+      var borderColor =  "#0000CC";
+    }
+
+    var pin = new PinElement({
       glyphColor: "white",
       background: "#" + marker_colour,
+      borderColor: borderColor
     });
 
     if (typeof place.google_location == "undefined") {
@@ -231,7 +239,7 @@ var GoogleMap = (function(){
       return;
     };
 
-    const marker = new AdvancedMarkerElement({
+    var marker = new AdvancedMarkerElement({
       map: map,
       title: `${place.raw_data.Name} - ${place.avg_score.toFixed(2)}/10`,
       position: place.google_location.geometry.location,
@@ -253,6 +261,12 @@ var GoogleMap = (function(){
       } );
 
       // Update the place info
+      place.queryDetails( (place, status) => {
+        console.log("Updating content status", status);
+        console.log("Updating content", place.htmlDetails());
+        infoWindow.setContent( place.htmlDetails() );
+      }, true );
+
       Logger.info( place );
     });
   };

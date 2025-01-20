@@ -272,6 +272,15 @@ function rangeRelative( min, value, max ) {
 
 
 /**
+ * Returns true if we are on a mobile device
+ */
+function isMobile() {
+  try { document.createEvent("TouchEvent"); } catch(e) { return false; }
+  return true;
+}
+
+
+/**
  * Get a URL parameter
  * See https://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
  */
