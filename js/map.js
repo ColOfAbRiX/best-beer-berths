@@ -262,8 +262,6 @@ var GoogleMap = (function(){
 
       // Update the place info
       place.queryDetails( (place, status) => {
-        console.log("Updating content status", status);
-        console.log("Updating content", place.htmlDetails());
         infoWindow.setContent( place.htmlDetails() );
       }, true );
 

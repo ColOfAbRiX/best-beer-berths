@@ -706,8 +706,8 @@ class BeerPlace {
 
     // Opening hours
     var open_now = "???", open_now_colour = "black";
-    if( this.google_details && this.google_details.opening_hours ) {
-      if( this.google_details.opening_hours.open_now ) {
+    if( this.google_details && this.google_details.opening_hours && this.google_details.opening_hours.isOpen ) {
+      if( this.google_details.opening_hours.isOpen() ) {
         open_now = "Open"; open_now_colour = "green";
       }
       else {
@@ -745,7 +745,7 @@ class BeerPlace {
       url:           url,
       directionsUrl: directions_url
     };
-    console.log(data);
+
     var hndl_template = Handlebars.compile( $('#place-template')[0].innerHTML );
     return hndl_template( data );
   }
