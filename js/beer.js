@@ -298,8 +298,8 @@ var PlacesDB = (function() {
         Logger.warn( `All locations done: items=${local_db.length}, successful=${end_queue.length} queries=${queries}, failures=${failures}, time=${time.toFixed(3)}s.` );
         local_db = end_queue;
 
-        // Run next query
-        _queryForDetails();
+        // Perform the final actions
+        _finalizeLoad();
       }
     );
   };
@@ -684,6 +684,7 @@ class BeerPlace {
 
       if( status === google.maps.places.PlacesServiceStatus.OK ) {
         thisRef.google_details = {}
+        delete results.utc_offset;  // Otherwise we get a deprecation error
         Object.assign( thisRef.google_details, results );
         Logger.info( `Found details for "${this.raw_data.Name}".` );
         Logger.debug( `Details for "${this.raw_data.Name}".`, thisRef.google_details );

@@ -129,6 +129,34 @@ var Logger = (function() {
 
 
 /**
+ * Increases the debug level of the page and reloads it
+ */
+function increaseLogLevel() {
+  var nextLevel = Math.min(DEBUG_LEVEL + 1, 4);
+
+  var currentUrl = new URL(window.location);
+  currentUrl.searchParams.set('DEBUG', true);
+  currentUrl.searchParams.set('DEBUG_LEVEL', nextLevel);
+
+  window.location.href = currentUrl;
+};
+
+
+/**
+ * Decreases the debug level of the page and reloads it
+ */
+function decreaseLogLevel() {
+  var nextLevel = Math.max(DEBUG_LEVEL - 1, 0);
+  var enabled = nextLevel > 0;
+
+  var currentUrl = new URL(window.location);
+  currentUrl.searchParams.set('DEBUG_LEVEL', nextLevel);
+  currentUrl.searchParams.set('DEBUG', enabled);
+
+  window.location.href = currentUrl;
+};
+
+/**
  * Executes an asynchronous action over objects of a queue
  */
 function processQueueAsync( inputQueue, outputQueue, action, successValue, successAction, failAction, doneAction ) {

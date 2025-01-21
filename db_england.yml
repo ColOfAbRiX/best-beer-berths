@@ -514,11 +514,6 @@ Beer places:
        Type: German Deli
        Status: To try
        Expectation: { Mine: 8, Google: 4.3 }
-     - Name: The Carpenters Arms
-       Address: 80 Liverpool Rd, London N1 0QD
-       Type: English pub (german beers)
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.5 }
      - Name: The Pig and Butcher
        Address: 80 Liverpool Rd, London N1 0QD
        Type: English pub

@@ -53,7 +53,7 @@ var GoogleMap = (function(){
         mapId: "4504f8b37365c3d0",
       }
     );
-    infoWindow = await new google.maps.InfoWindow({ maxWidth: 300 });
+    infoWindow = await new google.maps.InfoWindow({ maxWidth: 450 });
     placesService = await new google.maps.places.PlacesService( map );
     heatmap = await new google.maps.visualization.HeatmapLayer({
       radius: 100,
@@ -255,15 +255,16 @@ var GoogleMap = (function(){
       infoWindow.setContent( place.htmlDetails() );
       infoWindow.open( map, marker );
 
+      // Update the place info
+      place.queryDetails( (place, status) => {
+        infoWindow.setContent( place.htmlDetails() );
+        $( function() { $( 'span.stars' ).stars(); } );
+      }, true );
+
       // Build the stars
       $( function() {
         $( 'span.stars' ).stars();
       } );
-
-      // Update the place info
-      place.queryDetails( (place, status) => {
-        infoWindow.setContent( place.htmlDetails() );
-      }, true );
 
       Logger.info( place );
     });

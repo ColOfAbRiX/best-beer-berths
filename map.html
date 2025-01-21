@@ -3,23 +3,19 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min-4.6.2.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link id="favicon" rel="shortcut icon" type="image/png" href="favicon.png" />
-
-    <script type="text/javascript" src="js/libs/jquery-3.6.1.min.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/libs/popper.min-2.11.6.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/libs/bootstrap.min-4.0.0.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/libs/handlebars.min-v4.7.7.js"></script>
-    <script type="text/javascript" src="js/libs/jquery-dateFormat.min.js"></script>
-    <script type="text/javascript" src="js/libs/js-yaml.min-4.1.0.js"></script>
-    <script type="text/javascript" src="js/libs/object_hash.min-3.0.0.js"></script>
-    <script type="text/javascript" src="js/common.js"></script>
-    <script type="text/javascript" src="js/map.js"></script>
-    <script type="text/javascript" src="js/beer.js"></script>
-    <script type="text/javascript" src="js/map-style.js"></script>
+    <script type="text/javascript" src="js/libs/jquery.min-3.7.1.js" crossorigin="anonymous" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/libs/bootstrap.min-4.6.2.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/libs/handlebars.min-4.7.7.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/libs/jquery-dateFormat.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/libs/js-yaml.min-4.1.0.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/libs/object_hash.min-3.0.0.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/common.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/map.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/beer.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/map-style.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkJA89Qjb-HVrRm7jEOpiKxGmOG4SFiz4&callback=GoogleMap.init&libraries=places,visualization" async defer></script>
     <title>Best Beer Berths</title>
   </head>
@@ -49,6 +45,8 @@
             <li><a href="javascript:PlacesDB.Cache.export()">Export cache</a></li>
             <li><a href="javascript:PlacesDB.Cache.import()">Import cache</a></li>
             <li><a href="javascript:PlacesDB.toggleHeatmap()">Toggle Heatmap</a></li>
+            <li><a href="javascript:increaseLogLevel()">Increase Log Level</a></li>
+            <li><a href="javascript:decreaseLogLevel()">Decrease Log Level</a></li>
           </ul>
 
           <div id="debug"></div>
