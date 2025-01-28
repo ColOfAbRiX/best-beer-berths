@@ -2309,38 +2309,49 @@ Beer places:
   Netherlands:
 
     Amsterdam:
-     ##  Still To try  ##
+     ##  Tried  ##
      - Name: Proeflokaal Arendsnest
        Address: Herengracht 90, 1015 BS Amsterdam, Netherlands
        Type: Beer Pub
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.7 }
-     - Name: Two Chefs Food Bar
-       Address: Hugo de Grootplein 11, 1052 KV Amsterdam, Netherlands
-       Type: Beer Restaurant
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.5 }
+       Status: Tried
+       Score: { Draught: 9, Place: 10 }
      - Name: BeerTemple
        Address: Nieuwezijds Voorburgwal 250, 1012 RR Amsterdam, Netherlands
        Type: Beer Pub
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.6 }
-     - Name: Brouwerij 't IJ
-       Address: Funenkade 7, 1018 AL Amsterdam, Netherlands
-       Type: Brewery Taproom
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.6 }
-     - Name: De Bekeerde Suster
-       Address: Kloveniersburgwal 6, 1012 CT Amsterdam, Netherlands
-       Type: Brewery Taproom
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.6 }
+       Status: Tried
+       Score: { Draught: 9, Place: 10 }
      - Name: Beer Tasting Room In The Wildeman
        Address: Kolksteeg 3, 1012 PT Amsterdam, Netherlands
        Type: Beer Pub
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.7 }
+       Status: Tried
+       Score: { Draught: 8, Place: 9 }
+     - Name: Mikkeller at Morebeer
+       Address: Lange Leidsedwarsstraat 4, 1017 NL Amsterdam, Netherlands
+       Type: Beer pub
+       Status: Tried
+       Score: { Draught: 7, Place: 8 }
+     - Name: Jopen
+       Address: Gedempte Voldersgracht 2, 2011 WD Haarlem, Netherlands
+       Type: Brewpub
+       Status: Tried
+       Score: { Draught: 8, Food: 8, Place: 8 }
+     - Name: Brouwerij 't IJ
+       Address: Funenkade 7, 1018 AL Amsterdam, Netherlands
+       Type: Brewery Taproom
+       Status: Tried
+       Score: { Draught: 7, Place: 8 }
+     - Name: De Bekeerde Suster
+       Address: Kloveniersburgwal 6, 1012 CT Amsterdam, Netherlands
+       Type: Brewery Taproom
+       Status: Tried
+       Score: { Draught: 7, Place: 7 }
+     - Name: Two Chefs Food Bar
+       Address: Hugo de Grootplein 11, 1052 KV Amsterdam, Netherlands
+       Type: Beer Restaurant
+       Status: Tried
+       Score: { Draught: 7, Food: 8, Place: 8 }
 
+     ##  Still To try  ##
      - Name: Brouwerij Homeland
        Address: Marineterrein, Gebouw 027o Kattenburgerstraat 5-27o, 1018 JA Amsterdam, Netherlands
        Type: Brewery Taproom
