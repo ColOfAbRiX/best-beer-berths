@@ -251,6 +251,7 @@ var PlacesDB = (function() {
 
   /**
    * Loads asynchronously the information about the location of all the places
+   * Uses Nominatim (OpenStreetMap's geocoding service)
    */
   var _queryForLocations = function() {
     var start_queue = local_db.slice();
@@ -267,7 +268,7 @@ var PlacesDB = (function() {
       /* action */
       ( place ) => place.queryLocation.bind( place ),
       /* successValue */
-      google.maps.places.PlacesServiceStatus.OK,
+      PlacesServiceStatus.OK,
       /* successAction */
       ( place ) => {
         Logger.trace( `Adding ${place.toString()} to the map` );
@@ -276,9 +277,9 @@ var PlacesDB = (function() {
       },
       /* failAction */
       ( place, error ) => {
-        if( error === google.maps.places.PlacesServiceStatus.OVER_QUERY_LIMIT ) {
-          // In case of Google throttling us, retry
-          Logger.error( `Google throttling error for ${place.toString()}: ${error}` );
+        if( error === PlacesServiceStatus.OVER_QUERY_LIMIT ) {
+          // In case of rate limiting, retry
+          Logger.error( `Rate limit error for ${place.toString()}: ${error}` );
           failures++;
         }
         else {
@@ -322,7 +323,7 @@ var PlacesDB = (function() {
       /* action */
       ( place ) => place.queryDetails.bind( place ),
       /* successValue */
-      google.maps.places.PlacesServiceStatus.OK,
+      PlacesServiceStatus.OK,
       /* successAction */
       ( place ) => {
         queries++;
@@ -350,53 +351,10 @@ var PlacesDB = (function() {
   };
 
   /**
-   * Converts a database of point into data for Google heatmap
+   * Converts a database of point into data for heatmap (stub - not used in Leaflet version)
    */
   var _db2heatmap = function( data ) {
-    // Centering the averages of the two types of places
-    var filter = x => x.status === "to try";
-    var avgToTryScore = avgAvgScore( filter );
-    var minToTryScore = minAvgScore( filter ) - avgToTryScore;
-    var maxToTryScore = maxAvgScore( filter ) - avgToTryScore;
-
-    var filter = x => x.status === "tried";
-    var avgTriedScore = avgAvgScore( filter );
-    var minTriedScore = minAvgScore( filter ) - avgTriedScore;
-    var maxTriedScore = maxAvgScore( filter ) - avgTriedScore;
-
-    data = data.map( function(place) {
-      if( !place.google_location ) {
-        return { location: null, weight: 0.0 }
-      };
-
-      // Rescaling weight
-      var weight = place.avg_score;
-      if( place.status === "to try" ) {
-        weight -= avgToTryScore;
-        weight = rescalePoint(weight, minToTryScore, maxToTryScore)
-      }
-      else if( place.status === "tried" ) {
-        weight -= avgTriedScore;
-        weight = rescalePoint(weight, minTriedScore, maxTriedScore)
-      }
-
-      // Location of the point
-      var location = {
-        lat: place.google_location.geometry.location.lat,
-        lng: place.google_location.geometry.location.lng
-      };
-      if( place.google_location.geometry.location instanceof google.maps.LatLng ) {
-        location = place.google_location.geometry.location.toJSON();
-      }
-
-      // Result
-      return {
-        location: new google.maps.LatLng( location ),
-        weight: weight
-      };
-    });
-
-    return data;
+    return [];
   };
 
   /**
@@ -411,15 +369,14 @@ var PlacesDB = (function() {
   }
 
   /**
-   * Request the toggle of the Heatmap
+   * Request the toggle of the Heatmap (stub - not used in Leaflet version)
    */
   var toggleHeatmap = function() {
-    var points = _db2heatmap(local_db);
-    GoogleMap.toggleHeatmap( points );
+    Logger.info( "Heatmap feature not available in Leaflet version" );
   };
 
   /**
-   * A fingerprint of the Database data, excluding Google data
+   * A fingerprint of the Database data, excluding OSM data
    */
   var dbHash = function() {
     var hashes = local_db.map( x => x.data_hash );
@@ -519,8 +476,8 @@ class BeerPlace {
   static loadFromJSON( json_object ) {
     var bp = new BeerPlace( json_object.raw_data );
     Object.assign( bp, {
-      google_details: json_object.google_details,
-      google_location: json_object.google_location
+      osm_details: json_object.osm_details,
+      osm_location: json_object.osm_location
     });
     return bp;
   }
@@ -609,139 +566,262 @@ class BeerPlace {
   }
 
   /**
-   * Queries Google to fetch information about the position and then calls a
-   * callback function when the data is available.
+   * Queries Nominatim (OpenStreetMap) to fetch information about the position
+   * and then calls a callback function when the data is available.
    */
   queryLocation( callback, force = false ) {
     // Skip if already present
-    if( this.google_location && !force ) {
+    if( this.osm_location && !force ) {
       Logger.warn( `Location data already loaded for ${this.toString()}` );
       if( callback ) {
-        callback( this, google.maps.places.PlacesServiceStatus.OK );
+        callback( this, PlacesServiceStatus.OK );
       }
       return;
     }
 
     var thisRef = this;
-    var request = { 'query': `${this.raw_data.Name}, ${this.raw_data.Address}` };
-    GoogleMap.placesService().textSearch( request, ( results, status ) => {
-      Logger.info( `Text search completed for "${this.toString()}" with status ${status}` );
+    // Use just the address for better Nominatim results (business names often confuse it)
+    var query = this.raw_data.Address;
+    var url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=1`;
 
-      if( status === google.maps.places.PlacesServiceStatus.OK ) {
-        results = results[0];
+    $.ajax({
+      url: url,
+      dataType: 'json',
+      headers: {
+        'User-Agent': 'BestBeerBerths/1.0'
+      },
+      success: function(results) {
+        Logger.info( `Nominatim search completed for "${thisRef.toString()}"` );
 
-        var photo_url = ""
-        if( results.photos && results.photos.length > 0 ) {
-          photo_url = results.photos[0].getUrl({ 'maxHeight': 100, 'maxWidth': 150 });
+        if( results && results.length > 0 ) {
+          var result = results[0];
+
+          thisRef.osm_location = {
+            place_id: result.place_id,
+            osm_id: result.osm_id,
+            osm_type: result.osm_type,
+            display_name: result.display_name,
+            lat: parseFloat(result.lat),
+            lon: parseFloat(result.lon),
+            boundingbox: result.boundingbox,
+            class: result.class,
+            type: result.type
+          };
+
+          Logger.info( `Found location for "${thisRef.toString()}": ${thisRef.osm_location.display_name}` );
+          Logger.debug( `OSM location for "${thisRef.toString()}"`, thisRef.osm_location );
+
+          if( callback ) {
+            callback( thisRef, PlacesServiceStatus.OK );
+          }
         }
+        else {
+          Logger.warn( `No results found for "${thisRef.toString()}"` );
+          if( callback ) {
+            callback( thisRef, PlacesServiceStatus.ZERO_RESULTS );
+          }
+        }
+      },
+      error: function(xhr, status, error) {
+        Logger.error( `Nominatim error for "${thisRef.toString()}": ${error}` );
 
-        thisRef.google_location = {
-          place_id: results.place_id,
-          formatted_address: results.formatted_address,
-          geometry: results.geometry,
-          name: results.name,
-          opening_hours: results.opening_hours,
-          open_now: results.open_now,
-          rating: results.rating,
-          photoUrl: photo_url
-        };
-
-        Logger.info( `Found location for "${this.toString()}": ${this.google_location.place_id}` );
-        Logger.debug( `Google location for "${this.toString()}"`, this.google_location );
-      }
-
-      if( callback ) {
-        callback( this, status );
+        // Check for rate limiting
+        if( xhr.status === 429 ) {
+          if( callback ) {
+            callback( thisRef, PlacesServiceStatus.OVER_QUERY_LIMIT );
+          }
+        }
+        else {
+          if( callback ) {
+            callback( thisRef, PlacesServiceStatus.ERROR );
+          }
+        }
       }
     });
   }
 
   /**
-   * Queries Google for detailed information about the place and then calls a
-   * callback function when the data is available.
+   * Queries Overpass API for detailed information about the place including
+   * opening hours, and then calls a callback function when the data is available.
+   * Uses coordinates from geocoding to search nearby, combined with name matching.
    */
   queryDetails( callback, force = false ) {
-    if( !this.google_location ) {
-      Logger.debug( this );
-      Logger.error( `Can't load Details because Location is missing for ${this.raw_data.Name}` );
+    if( this.osm_details && !force ) {
+      Logger.warn( `Details data already loaded for ${this.raw_data.Name}` );
       if( callback ) {
-        callback( this, null );
+        callback( this, PlacesServiceStatus.OK );
       }
       return;
     }
-    if( this.google_details && !force ) {
-      Logger.warn( `Details data already loaded for ${this.raw_data.Name}` );
+
+    if( !this.osm_location ) {
+      Logger.warn( `Can't query details - no location for ${this.raw_data.Name}` );
+      this.osm_details = {};
       if( callback ) {
-        callback( this, google.maps.places.PlacesServiceStatus.OK );
+        callback( this, PlacesServiceStatus.OK );
       }
       return;
     }
 
     var thisRef = this;
-    var request = { 'placeId': this.google_location.place_id };
-    GoogleMap.placesService().getDetails( request, ( results, status ) => {
-      Logger.info( `Details search completed for "${this.raw_data.Name}" with status ${status}` );
 
-      if( status === google.maps.places.PlacesServiceStatus.OK ) {
-        thisRef.google_details = {}
-        delete results.utc_offset;  // Otherwise we get a deprecation error
-        Object.assign( thisRef.google_details, results );
-        Logger.info( `Found details for "${this.raw_data.Name}".` );
-        Logger.debug( `Details for "${this.raw_data.Name}".`, thisRef.google_details );
-      }
+    // Escape special characters in the name for regex search
+    var escapedName = this.raw_data.Name
+      .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')  // Escape regex special chars
+      .replace(/'/g, "\\'");  // Escape single quotes for Overpass
 
-      if( callback ) {
-        callback( this, status );
+    // Use coordinates from geocoding with a reasonable radius (500m)
+    var lat = this.osm_location.lat;
+    var lon = this.osm_location.lon;
+
+    // Build Overpass query: Search by NAME near the geocoded coordinates
+    // This combines location precision with name matching
+    var overpassQuery = `
+      [out:json][timeout:15];
+      (
+        node["name"~"${escapedName}",i](around:500,${lat},${lon});
+        way["name"~"${escapedName}",i](around:500,${lat},${lon});
+        relation["name"~"${escapedName}",i](around:500,${lat},${lon});
+      );
+      out body;
+    `;
+
+    Logger.debug( `Overpass query for "${thisRef.raw_data.Name}" near (${lat},${lon})` );
+
+    var url = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(overpassQuery)}`;
+
+    $.ajax({
+      url: url,
+      dataType: 'json',
+      success: function(data) {
+        Logger.info( `Overpass details search completed for "${thisRef.raw_data.Name}"` );
+
+        if( data && data.elements && data.elements.length > 0 ) {
+          // Try to find the best match by looking for opening_hours
+          var element = data.elements[0];
+          for( var el of data.elements ) {
+            if( el.tags && el.tags.opening_hours ) {
+              element = el;
+              break;
+            }
+          }
+
+          thisRef.osm_details = {
+            name: element.tags ? element.tags.name : null,
+            opening_hours: element.tags ? element.tags.opening_hours : null,
+            website: element.tags ? element.tags.website : null,
+            phone: element.tags ? element.tags.phone : null,
+            cuisine: element.tags ? element.tags.cuisine : null,
+            amenity: element.tags ? element.tags.amenity : null,
+            addr_street: element.tags ? element.tags['addr:street'] : null,
+            addr_housenumber: element.tags ? element.tags['addr:housenumber'] : null,
+            addr_city: element.tags ? element.tags['addr:city'] : null
+          };
+
+          Logger.info( `Found details for "${thisRef.raw_data.Name}" (OSM name: "${thisRef.osm_details.name}").` );
+          Logger.debug( `Details for "${thisRef.raw_data.Name}".`, thisRef.osm_details );
+
+          if( callback ) {
+            callback( thisRef, PlacesServiceStatus.OK );
+          }
+        }
+        else {
+          Logger.warn( `No Overpass details found for "${thisRef.raw_data.Name}" near (${lat},${lon})` );
+          thisRef.osm_details = {};
+          if( callback ) {
+            callback( thisRef, PlacesServiceStatus.OK );
+          }
+        }
+      },
+      error: function(xhr, status, error) {
+        Logger.error( `Overpass error for "${thisRef.raw_data.Name}": ${error}` );
+        thisRef.osm_details = {};
+        if( callback ) {
+          callback( thisRef, PlacesServiceStatus.ERROR );
+        }
       }
     });
+  }
+
+  /**
+   * Check if the place is currently open based on opening_hours tag
+   */
+  _isOpenNow() {
+    if( !this.osm_details || !this.osm_details.opening_hours ) {
+      return null;
+    }
+
+    try {
+      // Use the opening_hours library if available
+      if( typeof opening_hours !== 'undefined' ) {
+        var oh = new opening_hours(this.osm_details.opening_hours);
+        return oh.getState();
+      }
+    }
+    catch( e ) {
+      Logger.debug( `Could not parse opening hours for "${this.raw_data.Name}": ${e}` );
+    }
+
+    return null;
   }
 
   /**
    * Build the InfoWindow content for the place
    */
   htmlDetails() {
-    // See https://developers.google.com/maps/documentation/urls/guide
-    var directions_url = (isSSL() ? "https" : "http") + "://www.google.com/maps/dir/?api=1";
-    directions_url += "&destination=" + encodeURI(this.google_location.formatted_address)
-    directions_url += "&travelmode=bicycling"      // Options are driving, walking, bicycling or transit
+    // See https://www.openstreetmap.org/directions
+    var directions_url = "https://www.openstreetmap.org/directions?";
+    if( this.osm_location ) {
+      directions_url += `route=;${this.osm_location.lat},${this.osm_location.lon}`;
+      directions_url += "&engine=fossgis_osrm_bike";
+    }
 
     // Opening hours
     var open_now = "???", open_now_colour = "black";
-    if( this.google_details && this.google_details.opening_hours && this.google_details.opening_hours.isOpen ) {
-      if( this.google_details.opening_hours.isOpen() ) {
-        open_now = "Open"; open_now_colour = "green";
-      }
-      else {
-        open_now = "Closed"; open_now_colour = "red";
-      }
+    var isOpen = this._isOpenNow();
+    if( isOpen === true ) {
+      open_now = "Open"; open_now_colour = "green";
+    }
+    else if( isOpen === false ) {
+      open_now = "Closed"; open_now_colour = "red";
     }
 
     // Group the colouring by Status
     var filter = x => x.status === this.status;
 
-    const website = this.google_details ? this.google_details.website : "";
-    const url = this.google_details ? this.google_details.url : ""
-    const openingHours =
-      this.google_details ?
-        this.google_details.opening_hours ?
-          this.google_details.opening_hours.weekday_text :
-          [] :
-        [];
+    const website = this.osm_details ? this.osm_details.website : "";
+    const url = this.osm_location ?
+      `https://www.openstreetmap.org/${this.osm_location.osm_type}/${this.osm_location.osm_id}` : "";
+
+    // Parse opening hours for display
+    var openingHoursDisplay = [];
+    if( this.osm_details && this.osm_details.opening_hours ) {
+      try {
+        if( typeof opening_hours !== 'undefined' ) {
+          var oh = new opening_hours(this.osm_details.opening_hours);
+          // Get a human-readable version
+          openingHoursDisplay = [this.osm_details.opening_hours];
+        }
+      }
+      catch( e ) {
+        openingHoursDisplay = [this.osm_details.opening_hours];
+      }
+    }
 
     // Build and return template
     var data = {
       name:          this.raw_data.Name,
       type:          this.raw_data.Type,
-      address:       this.google_location.formatted_address,
+      address:       this.osm_location ? this.osm_location.display_name : this.raw_data.Address,
       avgScore:      this.avg_score.toFixed( 2 ),
       minAvgScore:   PlacesDB.minAvgScore( filter ),
       maxAvgScore:   PlacesDB.maxAvgScore( filter ),
       score:         this.raw_data.Score || "",
       expectation:   this.raw_data.Expectation || "",
-      imgUrl:        this.google_location.photoUrl || "",
+      imgUrl:        "",  // No images from OSM
       openNow:       open_now,
       openNowColour: open_now_colour,
-      openingHours:  openingHours,
+      openingHours:  openingHoursDisplay,
       website:       website,
       url:           url,
       directionsUrl: directions_url

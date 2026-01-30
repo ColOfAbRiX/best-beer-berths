@@ -23,48 +23,39 @@ SOFTWARE*/
 
 "use strict";
 
-var GoogleMap = (function(){
+// Status constants to replace Google's PlacesServiceStatus
+var PlacesServiceStatus = {
+  OK: "OK",
+  ZERO_RESULTS: "ZERO_RESULTS",
+  OVER_QUERY_LIMIT: "OVER_QUERY_LIMIT",
+  ERROR: "ERROR"
+};
+
+var LeafletMap = (function(){
   // Global objects
   var map;
-  var heatmap;
   var homeMarker;
-  var infoWindow;
-  var placesService;
   var lastPosition;
   var centerHome = true;
   var markers = [];
 
   /**
-   * Initializes Google Map.
-   *
-   * For marker icons, see:
-   *   https://github.com/Concept211/Google-Maps-Marker
-   *   https://kml4earth.appspot.com/icons.html
+   * Initializes Leaflet Map.
    */
   var init = async function() {
-    // Create global objects
-    map = await new google.maps.Map(
-      $( '#map' )[0], {
-        maxZoom: 18,
-        minZoom: 2,
-        zoom: 14,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        gestureHandling: 'greedy',
-        mapId: "4504f8b37365c3d0",
-      }
-    );
-    infoWindow = await new google.maps.InfoWindow({ maxWidth: 450 });
-    placesService = await new google.maps.places.PlacesService( map );
-    heatmap = await new google.maps.visualization.HeatmapLayer({
-      radius: 100,
-      opacity: 0.5,
-      maxIntensity: 15,
+    Logger.info( "Initializing Leaflet Map..." );
+
+    // Create map
+    map = L.map('map', {
+      maxZoom: 18,
+      minZoom: 2,
+      zoom: 14
     });
 
-    // Set style if present
-    if( typeof GOOGLE_MAP_STYLE !== 'undefined' ) {
-      map.set( 'styles', GOOGLE_MAP_STYLE );
-    }
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
     // Add controls to the map
     _addCentreButton();
@@ -87,9 +78,12 @@ var GoogleMap = (function(){
     }
 
     // Event management
-    map.addListener( 'click', () => infoWindow.close() );
-    map.addListener( 'drag', () => centerHome = false );
-    map.addListener( 'idle', () => _markersVisibility() )
+    map.on( 'click', () => {
+      // Close any open popups
+      map.closePopup();
+    });
+    map.on( 'drag', () => centerHome = false );
+    map.on( 'moveend', () => _markersVisibility() );
 
     // Load the database and start the processing of information
     $.get(
@@ -126,21 +120,28 @@ var GoogleMap = (function(){
    * Set the home position on the Map and optionally centre on it
    */
   var _setHome = async function( homePosition, center = true, init = false ) {
-    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
     lastPosition = homePosition;
+
+    // Create home marker icon
+    var homeIcon = L.divIcon({
+      className: 'home-marker',
+      html: '<div style="background-color: #4285F4; width: 16px; height: 16px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 6px rgba(0,0,0,0.3);"></div>',
+      iconSize: [22, 22],
+      iconAnchor: [11, 11]
+    });
+
     if( typeof(homeMarker) == 'undefined' || init ) {
-      homeMarker = new AdvancedMarkerElement( {
-        map: map,
-        position: homePosition,
-        title: 'test'
-      } );
+      homeMarker = L.marker([homePosition.lat, homePosition.lng], {
+        icon: homeIcon,
+        title: 'Your location'
+      }).addTo(map);
     }
     else {
-      homeMarker.position = homePosition;
+      homeMarker.setLatLng([homePosition.lat, homePosition.lng]);
     }
 
     if( init || center ) {
-      map.setCenter( homePosition );
+      map.setView([homePosition.lat, homePosition.lng], map.getZoom() || 14);
     }
   };
 
@@ -148,16 +149,21 @@ var GoogleMap = (function(){
    * Adds the button to centre the map
    */
   var _addCentreButton = async function() {
-    $('body').append('<div id="center-btn" class="map-ctrl-box" role="button"><div id="ctrl-center-text">Centre map</div></div>');
-
-    var btn = $( '#center-btn' )[0];
-
-    btn.addEventListener('click', () => {
-      centerHome = true;
-      _setHome( lastPosition, centerHome );
+    // Create a custom control
+    var CentreControl = L.Control.extend({
+      options: { position: 'topright' },
+      onAdd: function(map) {
+        var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control map-ctrl-box');
+        container.innerHTML = '<a href="#" id="center-btn" role="button" style="padding: 5px 10px; display: block; text-decoration: none; color: #333;">Centre map</a>';
+        container.onclick = function(e) {
+          e.preventDefault();
+          centerHome = true;
+          _setHome( lastPosition, centerHome );
+        };
+        return container;
+      }
     });
-
-    map.controls[google.maps.ControlPosition.TOP_CENTER].push( btn );
+    map.addControl(new CentreControl());
   };
 
   /**
@@ -177,32 +183,23 @@ var GoogleMap = (function(){
     if( bounds == undefined ) {
       return;
     }
-    if( bounds.contains(marker.position) ) {
-      if( marker.map != map ) {
-        marker.map = map;
+    if( bounds.contains(marker.getLatLng()) ) {
+      if( !map.hasLayer(marker) ) {
+        marker.addTo(map);
       }
     }
     else {
-      marker.map = null;
+      if( map.hasLayer(marker) ) {
+        map.removeLayer(marker);
+      }
     }
   }
 
   /**
-   * Displays a heatmap with the places on the map
+   * Displays a heatmap with the places on the map (stub - heatmap removed)
    */
   var toggleHeatmap = async function( points = [], display = null ) {
-    var heatmapShowing = heatmap && heatmap.map == map
-
-    if( heatmapShowing && display == null || display == false ) {
-      Logger.info( "Hiding heatmap" );
-      heatmap.map = null;
-    }
-    if( !heatmapShowing && display == null || display == true ) {
-      Logger.info( "Displaying heatmap" );
-      Logger.trace( points );
-      heatmap.setData( points );
-      heatmap.map = map;
-    }
+    Logger.info( "Heatmap feature not available in Leaflet version" );
   };
 
   /**
@@ -219,45 +216,48 @@ var GoogleMap = (function(){
       value_percent
     );
 
-    const { AdvancedMarkerElement, PinElement }= await google.maps.importLibrary("marker");
-
     if (place.raw_data.Status.toLowerCase() == "tried") {
-      var borderColor =  "#CC0000";
+      var borderColor = "#CC0000";
     }
     else {
-      var borderColor =  "#0000CC";
+      var borderColor = "#0000CC";
     }
 
-    var pin = new PinElement({
-      glyphColor: "white",
-      background: "#" + marker_colour,
-      borderColor: borderColor
-    });
-
-    if (typeof place.google_location == "undefined") {
-      console.warn(`Beer place '${place.raw_data.Name} - ${place.raw_data.Address}' was not found by google`);
+    if (typeof place.osm_location == "undefined" || place.osm_location == null) {
+      console.warn(`Beer place '${place.raw_data.Name} - ${place.raw_data.Address}' was not found by geocoder`);
       return;
     };
 
-    var marker = new AdvancedMarkerElement({
-      map: map,
-      title: `${place.raw_data.Name} - ${place.avg_score.toFixed(2)}/10`,
-      position: place.google_location.geometry.location,
-      content: pin.element,
+    // Create custom marker icon using the same color scheme
+    var markerIcon = L.divIcon({
+      className: 'beer-marker',
+      html: `<div style="
+        background-color: #${marker_colour};
+        width: 24px;
+        height: 24px;
+        border-radius: 50% 50% 50% 0;
+        transform: rotate(-45deg);
+        border: 2px solid ${borderColor};
+        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      "></div>`,
+      iconSize: [24, 24],
+      iconAnchor: [12, 24],
+      popupAnchor: [0, -24]
     });
 
-    // Add marker to the local list
-    markers.push( marker );
-    _displayMarker( marker, map.getBounds() );
+    var marker = L.marker([place.osm_location.lat, place.osm_location.lon], {
+      icon: markerIcon,
+      title: `${place.raw_data.Name} - ${place.avg_score.toFixed(2)}/10`
+    });
 
-    // Manage the click
-    marker.addListener('click', () => {
-      infoWindow.setContent( place.htmlDetails() );
-      infoWindow.open( map, marker );
+    // Bind popup with place details
+    marker.bindPopup(place.htmlDetails(), { maxWidth: 450 });
 
-      // Update the place info
+    // Handle click to update details
+    marker.on('click', () => {
+      // Update the place info on click
       place.queryDetails( (place, status) => {
-        infoWindow.setContent( place.htmlDetails() );
+        marker.setPopupContent( place.htmlDetails() );
         $( function() { $( 'span.stars' ).stars(); } );
       }, true );
 
@@ -268,12 +268,23 @@ var GoogleMap = (function(){
 
       Logger.info( place );
     });
+
+    // Add marker to the local list
+    markers.push( marker );
+    _displayMarker( marker, map.getBounds() );
   };
 
   return {
-    'placesService': function() { return placesService; },
     'init': init,
     'addMarker': addMarker,
     'toggleHeatmap': toggleHeatmap,
   };
 })();
+
+// Alias for backwards compatibility
+var GoogleMap = LeafletMap;
+
+// Initialize when DOM is ready (replaces the Google Maps callback)
+$(document).ready(function() {
+  LeafletMap.init();
+});
