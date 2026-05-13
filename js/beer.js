@@ -630,7 +630,17 @@ class BeerPlace {
     var thisRef = this;
     // Use just the address for better Nominatim results (business names often confuse it)
     var query = this.raw_data.Address;
-    var url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=1`;
+
+    // Determine the appropriate Nominatim URL based on environment
+    // When running locally (localhost), use our proxy to avoid CORS issues
+    // When running in production, use the direct Nominatim URL
+    var nominatimBaseUrl = window.location.hostname === 'localhost' ||
+                          window.location.hostname === '127.0.0.1' ||
+                          window.location.host.indexOf('localhost') !== -1
+        ? '/proxy/nominatim'
+        : 'https://nominatim.openstreetmap.org/search';
+
+    var url = nominatimBaseUrl + '?format=json&q=' + encodeURIComponent(query) + '&limit=1';
 
     $.ajax({
       url: url,
