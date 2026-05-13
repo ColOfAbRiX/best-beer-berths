@@ -1,6 +1,6 @@
 # Best Beer Berths
 
-To access the map online: [Best Beer Berths](https://rawgit.com/ColOfAbRiX/best-beer-berths/master/map.html).
+To access the map online: [Best Beer Berths](https://colofabrix.github.io/best-beer-berths/map.html).
 
 This project is a way of remember and visualize my favourite places to have great beers as well as to give some tools like statistics and distances.
 

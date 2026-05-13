@@ -1,7 +1,7 @@
 ---
 #
-# Copyright 2017-2025, Fabrizio Colonna, All rights reserved.
-# Last updated: 18/01/2025
+# Copyright 2017-2026 Fabrizio Colonna, All rights reserved.
+# Last updated: 13/05/2026
 #
 
 Beer places:
@@ -593,6 +593,7 @@ Beer places:
        Expectation: { Mine: 7, Google: 4.3 }
 
     Cambridge:
+     ##  Tried  ##
      - Name: The Cambridge Blue
        Address: 85-87 Gwydir St, Cambridge CB1 2LG
        Type: Belgian Beer Pub
@@ -607,7 +608,7 @@ Beer places:
        Address: 292 Mill Rd, Cambridge CB1 3NL
        Type: Belgian Beer Pub
        Status: Tried
-       Score: { Draught: 8, Bottles: 8, Place: 9 }
+       Score: { Draught: 7, Bottles: 8, Place: 8 }
      - Name: Pint Shop
        Address: 10 Peas Hill, Cambridge CB2 3PN
        Type: Beer Pub
@@ -617,7 +618,7 @@ Beer places:
        Address: 1 King St, Cambridge CB1 1LH
        Type: Beer Pub
        Status: Tried
-       Score: { Draught: 7, Food: 8, Place: 9 }
+       Score: { Draught: 7, Food: 8, Place: 8 }
      - Name: The Devonshire Arms
        Address: 1 Devonshire Rd, Cambridge CB1 2BH
        Type: Pub
@@ -650,9 +651,16 @@ Beer places:
        Score: { Draught: 7, Place: 8 }
      - Name: Thirsty Cambridge
        Address: 46 Chesterton Rd, Cambridge CB4 1EN
-       Type: Pub
-       Status: To Try
-       Expectation: { Mine: 9, Google: 4.7 }
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 9, Place: 8 }
+     - Name: The Handsome Prince
+       Address: 6 King St, Cambridge CB1 1LN
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 8, Place: 8 }
+
+     ##  Still to try  ##
      - Name: Papworth Brewery Limited
        Address: 32, Earith Business Park, Meadow Drove, Earith, Huntingdon PE28 3QF
        Type: Pub and Taproom
@@ -1283,7 +1291,6 @@ Beer places:
        Type: Belgian Bar
        Status: Tried
        Score: { Draught: 9, Bottles: 9, Place: 8 }
-
      - Name: "'t Brugs Beertje"
        Address: Kemelstraat 5, 8000 Brugge, Belgium
        Type: Beer Cafe
@@ -1617,7 +1624,7 @@ Beer places:
        Address: 9 rue Constantine, 69001 Lyon, France
        Type: Bar
        Status: Tried
-       Expectation: { Draught: 8, Bottles: 7, Place: 8 }
+       Score: { Draught: 8, Bottles: 7, Place: 8 }
 
      ##  Stil To try  ##
      - Name: My Beers Lyon Confluence
@@ -1838,6 +1845,78 @@ Beer places:
        Status: To try
        Expectation: { Mine: 8, Google: 4.5 }
 
+  Austria:
+
+    Vienna:
+     ##  Tried  ##
+     - Name: Känguru
+       Address: Bürgerspitalgasse 20, 1060 Wien, Austria
+       Type: Pub
+       Status: Tried
+       Score: { Draught: 8, Bottles: 9, Place: 10 }
+     - Name: Salm Bräu
+       Address: Rennweg 8, 1030 Wien, Austria
+       Type: Microbrewry
+       Status: Tried
+       Score: { Draught: 8, Place: 9, Food: 9 }
+     - Name: 1516 Brewing Company
+       Address: Schwarzenbergstraße 2, 1010 Wien, Austria
+       Type: Microbrewery
+       Status: Tried
+       Score: { Draught: 7, Place: 9 }
+     - Name: AmmutsØn Craft Beer Dive
+       Address: Barnabitengasse 10, 1060 Wien, Austria
+       Type: Beer pub
+       Status: Tried
+       Score: { Draught: 8,Place: 8 }
+     - Name: Beaver Brewing Company-1090
+       Address: Liechtensteinstraße 69, 1090 Wien, Austria
+       Type: Microbrewry
+       Status: Tried
+       Score: { Draught: 8, Bottles: 7, Place: 8 }
+     - Name: 7Stern Bräu
+       Address: Siebensterngasse 19, 1070 Wien, Austria
+       Type: Microbrewry
+       Status: Tried
+       Score: { Draught: 7, Place: 7, Food: 7 }
+     - Name: Brauhund
+       Address: Schweglerstraße 48, 1150 Wien, Austria
+       Type: Beer bar
+       Status: Tried
+       Score: { Draught: 7, Bottles: 8, Place: 8 }
+     - Name: Philosopher Beer Bar Beisl
+       Address: Judengasse 11, 1010 Wien, Austria
+       Type: Pub
+       Status: Tried
+       Score: { Draught: 7, Bottles: 7, Place: 7 }
+
+     ##  Still To try  ##
+     - Name: Bierteufl
+       Address: Ungargasse 5, 1030 Wien, Austria
+       Type: Beer Garden
+       Status: To try
+       Expectation: { Mine: 9, Google: 4.4 }
+     - Name: Bräuhaus Ten.Fifty.
+       Address: Ankerbrotfabrik Unit 10.2, Absberggasse 27/3, 1100 Wien, Austria
+       Type: Brewery
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.8 }
+     - Name: Brauwerk Wien
+       Address: Ottakringer Pl. 1, 1160 Wien, Austria
+       Type: Microbrewry
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.5 }
+     - Name: Golser Bier & Wein Bar - In der Riemergasse
+       Address: Riemergasse 4, 1010 Wien, Austria
+       Type: Microbrewert
+       Status: To try
+       Expectation: { Mine: 8, Google: 5.0 }
+     - Name: Brandauers Bierstube
+       Address: Am Pl. 5 a, 1130 Wien, Austria
+       Type: Pub
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.4 }
+
   Denmark:
 
     København:
@@ -1883,6 +1962,88 @@ Beer places:
        Type: Brewery taproom
        Status: Tried
        Score: { Draught: 8, Place: 6 }
+
+  Netherlands:
+
+    Amsterdam:
+     ##  Tried  ##
+     - Name: Proeflokaal Arendsnest
+       Address: Herengracht 90, 1015 BS Amsterdam, Netherlands
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 9, Place: 10 }
+     - Name: BeerTemple
+       Address: Nieuwezijds Voorburgwal 250, 1012 RR Amsterdam, Netherlands
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 9, Place: 10 }
+     - Name: Beer Tasting Room In The Wildeman
+       Address: Kolksteeg 3, 1012 PT Amsterdam, Netherlands
+       Type: Beer Pub
+       Status: Tried
+       Score: { Draught: 8, Place: 9 }
+     - Name: Mikkeller at Morebeer
+       Address: Lange Leidsedwarsstraat 4, 1017 NL Amsterdam, Netherlands
+       Type: Beer pub
+       Status: Tried
+       Score: { Draught: 7, Place: 8 }
+     - Name: Jopen
+       Address: Gedempte Voldersgracht 2, 2011 WD Haarlem, Netherlands
+       Type: Brewpub
+       Status: Tried
+       Score: { Draught: 8, Food: 8, Place: 8 }
+     - Name: Brouwerij 't IJ
+       Address: Funenkade 7, 1018 AL Amsterdam, Netherlands
+       Type: Brewery Taproom
+       Status: Tried
+       Score: { Draught: 7, Place: 8 }
+     - Name: De Bekeerde Suster
+       Address: Kloveniersburgwal 6, 1012 CT Amsterdam, Netherlands
+       Type: Brewery Taproom
+       Status: Tried
+       Score: { Draught: 7, Place: 7 }
+     - Name: Two Chefs Food Bar
+       Address: Hugo de Grootplein 11, 1052 KV Amsterdam, Netherlands
+       Type: Beer Restaurant
+       Status: Tried
+       Score: { Draught: 7, Food: 8, Place: 8 }
+
+     ##  Still To try  ##
+     - Name: Brouwerij Homeland
+       Address: Marineterrein, Gebouw 027o Kattenburgerstraat 5-27o, 1018 JA Amsterdam, Netherlands
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.4 }
+     - Name: Brouwerij Kleiburg
+       Address: Brouwerij Kleiburg
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.4 }
+     - Name: Delirium Cafe Amsterdam
+       Address: Piet Heinkade 4, 1019 BR Amsterdam, Netherlands
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 3.9 }
+     - Name: Brouwerij De Prael
+       Address: Oudezijds Armsteeg 26, 1012 GP Amsterdam, Netherlands
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.4 }
+     - Name: Poesiat & Kater
+       Address: Polderweg 648, 1093 KP Amsterdam, Netherlands
+       Type: Beer Pub
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.2 }
+     - Name: Walhalla Brewery & Taproom
+       Address: Spijkerkade 10, 1021 JS Amsterdam, Netherlands
+       Type: Brewery Taproom
+       Status: To try
+       Expectation: { Mine: 7, Google: 4.8 }
+     - Name: Breugem
+       Address: Brewery Taproom
+       Type: Nieuwe Hemweg 2, 1013 BG Amsterdam, Netherlands
+       Status: To try
+       Expectation: { Mine: 8, Google: 4.8 }
 
   USA:
 
@@ -2233,157 +2394,3 @@ Beer places:
        Type: Brewery Taproom
        Status: To try
        Expectation: { Mine: 9, Google: 4.6 }
-
-  Austria:
-
-    Vienna:
-     ##  Tried  ##
-     - Name: Känguru
-       Address: Bürgerspitalgasse 20, 1060 Wien, Austria
-       Type: Pub
-       Status: Tried
-       Score: { Draught: 8, Bottles: 9, Place: 10 }
-     - Name: Salm Bräu
-       Address: Rennweg 8, 1030 Wien, Austria
-       Type: Microbrewry
-       Status: Tried
-       Score: { Draught: 8, Place: 9, Food: 9 }
-     - Name: 1516 Brewing Company
-       Address: Schwarzenbergstraße 2, 1010 Wien, Austria
-       Type: Microbrewery
-       Status: Tried
-       Score: { Draught: 7, Place: 9 }
-     - Name: AmmutsØn Craft Beer Dive
-       Address: Barnabitengasse 10, 1060 Wien, Austria
-       Type: Beer pub
-       Status: Tried
-       Score: { Draught: 8,Place: 8 }
-     - Name: Beaver Brewing Company-1090
-       Address: Liechtensteinstraße 69, 1090 Wien, Austria
-       Type: Microbrewry
-       Status: Tried
-       Score: { Draught: 8, Bottles: 7, Place: 8 }
-     - Name: 7Stern Bräu
-       Address: Siebensterngasse 19, 1070 Wien, Austria
-       Type: Microbrewry
-       Status: Tried
-       Score: { Draught: 7, Place: 7, Food: 7 }
-     - Name: Brauhund
-       Address: Schweglerstraße 48, 1150 Wien, Austria
-       Type: Beer bar
-       Status: Tried
-       Score: { Draught: 7, Bottles: 8, Place: 8 }
-     - Name: Philosopher Beer Bar Beisl
-       Address: Judengasse 11, 1010 Wien, Austria
-       Type: Pub
-       Status: Tried
-       Score: { Draught: 7, Bottles: 7, Place: 7 }
-
-     ##  Still To try  ##
-     - Name: Bierteufl
-       Address: Ungargasse 5, 1030 Wien, Austria
-       Type: Beer Garden
-       Status: To try
-       Expectation: { Mine: 9, Google: 4.4 }
-     - Name: Bräuhaus Ten.Fifty.
-       Address: Ankerbrotfabrik Unit 10.2, Absberggasse 27/3, 1100 Wien, Austria
-       Type: Brewery
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.8 }
-     - Name: Brauwerk Wien
-       Address: Ottakringer Pl. 1, 1160 Wien, Austria
-       Type: Microbrewry
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.5 }
-     - Name: Golser Bier & Wein Bar - In der Riemergasse
-       Address: Riemergasse 4, 1010 Wien, Austria
-       Type: Microbrewert
-       Status: To try
-       Expectation: { Mine: 8, Google: 5.0 }
-     - Name: Brandauers Bierstube
-       Address: Am Pl. 5 a, 1130 Wien, Austria
-       Type: Pub
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.4 }
-
-  Netherlands:
-
-    Amsterdam:
-     ##  Tried  ##
-     - Name: Proeflokaal Arendsnest
-       Address: Herengracht 90, 1015 BS Amsterdam, Netherlands
-       Type: Beer Pub
-       Status: Tried
-       Score: { Draught: 9, Place: 10 }
-     - Name: BeerTemple
-       Address: Nieuwezijds Voorburgwal 250, 1012 RR Amsterdam, Netherlands
-       Type: Beer Pub
-       Status: Tried
-       Score: { Draught: 9, Place: 10 }
-     - Name: Beer Tasting Room In The Wildeman
-       Address: Kolksteeg 3, 1012 PT Amsterdam, Netherlands
-       Type: Beer Pub
-       Status: Tried
-       Score: { Draught: 8, Place: 9 }
-     - Name: Mikkeller at Morebeer
-       Address: Lange Leidsedwarsstraat 4, 1017 NL Amsterdam, Netherlands
-       Type: Beer pub
-       Status: Tried
-       Score: { Draught: 7, Place: 8 }
-     - Name: Jopen
-       Address: Gedempte Voldersgracht 2, 2011 WD Haarlem, Netherlands
-       Type: Brewpub
-       Status: Tried
-       Score: { Draught: 8, Food: 8, Place: 8 }
-     - Name: Brouwerij 't IJ
-       Address: Funenkade 7, 1018 AL Amsterdam, Netherlands
-       Type: Brewery Taproom
-       Status: Tried
-       Score: { Draught: 7, Place: 8 }
-     - Name: De Bekeerde Suster
-       Address: Kloveniersburgwal 6, 1012 CT Amsterdam, Netherlands
-       Type: Brewery Taproom
-       Status: Tried
-       Score: { Draught: 7, Place: 7 }
-     - Name: Two Chefs Food Bar
-       Address: Hugo de Grootplein 11, 1052 KV Amsterdam, Netherlands
-       Type: Beer Restaurant
-       Status: Tried
-       Score: { Draught: 7, Food: 8, Place: 8 }
-
-     ##  Still To try  ##
-     - Name: Brouwerij Homeland
-       Address: Marineterrein, Gebouw 027o Kattenburgerstraat 5-27o, 1018 JA Amsterdam, Netherlands
-       Type: Brewery Taproom
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.4 }
-     - Name: Brouwerij Kleiburg
-       Address: Brouwerij Kleiburg
-       Type: Brewery Taproom
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.4 }
-     - Name: Delirium Cafe Amsterdam
-       Address: Piet Heinkade 4, 1019 BR Amsterdam, Netherlands
-       Type: Beer Pub
-       Status: To try
-       Expectation: { Mine: 8, Google: 3.9 }
-     - Name: Brouwerij De Prael
-       Address: Oudezijds Armsteeg 26, 1012 GP Amsterdam, Netherlands
-       Type: Brewery Taproom
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.4 }
-     - Name: Poesiat & Kater
-       Address: Polderweg 648, 1093 KP Amsterdam, Netherlands
-       Type: Beer Pub
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.2 }
-     - Name: Walhalla Brewery & Taproom
-       Address: Spijkerkade 10, 1021 JS Amsterdam, Netherlands
-       Type: Brewery Taproom
-       Status: To try
-       Expectation: { Mine: 7, Google: 4.8 }
-     - Name: Breugem
-       Address: Brewery Taproom
-       Type: Nieuwe Hemweg 2, 1013 BG Amsterdam, Netherlands
-       Status: To try
-       Expectation: { Mine: 8, Google: 4.8 }

@@ -1,7 +1,7 @@
 /*
 MIT License
 
-Copyright (c) 2017-2025 Fabrizio Colonna <colofabrix@tin.it>
+Copyright (c) 2017-2026 Fabrizio Colonna <colofabrix@tin.it>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,8 @@ SOFTWARE.
 
 "use strict";
 
-const BEER_DATABASE_FILE = urlParam("BEER_DATABASE_FILE", "database.yml")
+const BEER_DATABASE_FILE = "database.yml"
+const BEER_PATH = urlParam("BEER_PATH", "")
 
 // Default position when no other position is available
 const DEFAULT_POSITION = {lat: 51.5189138, lng: -0.0924759};

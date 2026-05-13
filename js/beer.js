@@ -1,7 +1,7 @@
 /*
 MIT License
 
-Copyright (c) 2017-2025 Fabrizio Colonna <colofabrix@tin.it>
+Copyright (c) 2017-2026 Fabrizio Colonna <colofabrix@tin.it>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -156,8 +156,14 @@ var PlacesDB = (function() {
    * Initializes the DB
    */
   var init = function( raw_data ) {
+    // Select the subset of data based on BEER_PATH
+    var data_to_load = _selectPlace(raw_data, BEER_PATH);
+
+    console.log("BEER_PATH", BEER_PATH);
+    console.log("data_to_load", data_to_load);
+
     // Interpreting YAML data as first thing
-    local_db = _parseYaml( raw_data );
+    local_db = _parseYaml( data_to_load );
 
     // Starts the filling of the Beer Places DB
     if( Cache.load() ) {
@@ -173,6 +179,48 @@ var PlacesDB = (function() {
       _queryForLocations();
     }
   };
+
+/**
+ * Selects a subset of the beer places data based on a path
+ */
+var _selectPlace = function(raw_data, path) {
+  if (!path || path === "") {
+    return raw_data;
+  }
+
+  var parts = path.split('.');
+  var current = raw_data;
+
+  for (var i = 0; i < parts.length; i++) {
+    if (current.hasOwnProperty(parts[i])) {
+      current = current[parts[i]];
+    } else {
+      return {};
+    }
+  }
+
+  // Special case: if path is just one level (e.g., "England"),
+  // we want to return { "England": <england_data> }
+  if (parts.length === 1) {
+    var result = {};
+    result[parts[0]] = current;
+    return result;
+  }
+
+  // For longer paths (e.g., "England.London"), we want to return:
+  // { "England": { "London": <london_data> } }
+  var result = {};
+  var currentLevel = result;
+
+  for (var i = 0; i < parts.length - 1; i++) {
+    currentLevel[parts[i]] = {};
+    currentLevel = currentLevel[parts[i]];
+  }
+
+  currentLevel[parts[parts.length - 1]] = current;
+
+  return result;
+};
 
   /**
    * Scan all the YAML results and build the database
