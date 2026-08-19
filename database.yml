@@ -1515,6 +1515,11 @@ Beer places:
        Type: Bar
        Status: Tried
        Score: { Draught: 7, Place: 8 }
+     - Name: Express de Lyon
+       Address: 1 Rue de Lyon, 75012 Paris, France
+       Type: Brasserie
+       Status: Tried
+       Score: { Draught: 7, Place: 8 }
 
      ##  Stil To try  ##
      - Name: Académie de la bière
